@@ -10,6 +10,7 @@ public class Driver {
 			pgd.addClass("wordcount", Wordcount.class,"");
 			pgd.addClass("kmeans", Kmeans.class,"");
 			pgd.addClass("wordcount1char", Wordcount1char.class, "");
+			pgd.addClass("wordcountsort", Wordcountsort.class, "");
       			pgd.driver(args);
 			exitCode = 0;
 		}
