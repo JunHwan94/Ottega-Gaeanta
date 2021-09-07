@@ -93,7 +93,7 @@ public class MatrixMultiplier1 {
 		config.setInt("m",Integer.parseInt(otherArgs[4]));
 
 
-		job.setJarByClass(MatrixMulti.class);
+		job.setJarByClass(MatrixMultiplier1.class);
 		job.setMapperClass(MMMapper.class);
 		job.setReducerClass(MMReducer.class);
 		job.setMapOutputKeyClass(Text.class);
