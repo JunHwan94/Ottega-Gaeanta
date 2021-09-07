@@ -13,6 +13,7 @@ public class Driver {
 			pgd.addClass("wordcountsort", Wordcountsort.class, "A map/reduce program that counts words and sort words");
 			pgd.addClass("inverted", InvertedIndex.class, "A map/reduce program that genereates the inverted index using words in the input files.");
 			pgd.addClass("matadd", MatrixAdd.class, "A map/reduce program that computes the addition of two matrices.");
+			pgd.addClass("matmulti1", MatrixMultiplier1.class, "A map/reduce program that computes the addition of two matrices.");
       			pgd.driver(args);
 			exitCode = 0;
 		}
