@@ -12,7 +12,7 @@
 
 ### 와이어프레임
 
-- [피그마] (https://www.figma.com/file/lhDtkfKlM8cGv4efBdTGrO/B4A1-%ED%94%BC%EA%B7%B8%EB%A7%88-%EC%B4%88%EC%95%88)
+- [피그마](https://www.figma.com/file/lhDtkfKlM8cGv4efBdTGrO/B4A1-%ED%94%BC%EA%B7%B8%EB%A7%88-%EC%B4%88%EC%95%88)
 
 
 
