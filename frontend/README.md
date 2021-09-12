@@ -1,4 +1,4 @@
-# 
+# frontend
 
 ## Project setup
 ```
@@ -22,12 +22,3 @@ yarn lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
-
-<br>
-# Environment
-- vue 2.6.11
-- vuetify 2.5.8
-- sass-loader 10.x.x
-- vuex 3.6.2
-
-
