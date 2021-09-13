@@ -30,9 +30,11 @@
         cols="12"
       >
         <h2 class="headline font-weight-bold mb-3">
-          What's next?
+          {{getTest}}
         </h2>
-
+        <v-btn 
+          elevation="2"  @click="testa"
+        >dsadad</v-btn>
         <v-row justify="center">
           <a
             v-for="(next, i) in whatsNext"
@@ -92,10 +94,12 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
   export default {
     name: 'HelloWorld',
 
     data: () => ({
+      test: 213,
       ecosystem: [
         {
           text: 'vuetify-loader',
@@ -147,5 +151,17 @@
         },
       ],
     }),
+    computed: {
+      ...mapGetters(["getTest"]),
+    },
+    mounted: {
+      
+    },
+    methods: {
+      testa () {
+        alert('test')
+        this.$store.commit('SET_TEST','변경했습니다')
+      },
+    }
   }
 </script>
