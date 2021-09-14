@@ -13,6 +13,11 @@ Vue.use(VueRouter)
 
 const routes = [
   {
+    path: '/',
+    name: 'LandingMain',
+    component: Landing
+  },
+  {
     path: '/landing',
     name: 'Landing',
     component: Landing
