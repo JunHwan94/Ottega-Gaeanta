@@ -22,23 +22,26 @@ public class StyleCollector {
 		
 		public void map(Object key, Text value, Context context) throws IOException, InterruptedException {
 			String valStr = value.toString();
-			String split1 = valStr.split("label\":")[1];
-			String[] split2 = split1.split("},"); 
-			
-			String style = split2[0];
-			String fileInfo = split2[1].split("}")[0];
-			StringBuilder sb = new StringBuilder();
-			style = style.substring(0, style.length() - 1);
-			sb.append(style).append(",").append(fileInfo);
-			// 스타일 split
-			String styleCategory = style.split("style")[2];
-			styleCategory = styleCategory.split(",")[0];
-			styleCategory = styleCategory.substring(3 ,styleCategory.length() - 1);
-			
-			keyTxt.set(styleCategory);
-			Text val = new Text();
-			val.set(sb.toString() + "}");
-			context.write(keyTxt, val);
+			String[] split = valStr.split("label\":");
+			if(split.length > 1){
+				String split1 = split[1];
+				String[] split2 = split1.split("},"); 
+				
+				String style = split2[0];
+				String fileInfo = split2[1].split("}")[0];
+				StringBuilder sb = new StringBuilder();
+				style = style.substring(0, style.length() - 1);
+				sb.append(style).append(",").append(fileInfo);
+				// 스타일 split
+				String styleCategory = style.split("style")[2];
+				styleCategory = styleCategory.split("\"")[2];
+				//styleCategory = styleCategory.substring(3, styleCategory.length());
+				
+				keyTxt.set(styleCategory);
+				Text val = new Text();
+				val.set(sb.toString() + "}");
+				context.write(keyTxt, val);
+			}
 		}
 	}
 	// Reduce
