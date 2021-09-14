@@ -33,7 +33,7 @@
         ['Large', 'lg'],
       ],
       colors: ['teal darken-1'],
-      items: [...Array(4)].map((_, i) => `Item ${i}`),
+      items: ['메인으로', '의상 검색','퍼스널 컬러','패피TI',],
     }),
   }
 </script>
