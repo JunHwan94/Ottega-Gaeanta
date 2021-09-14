@@ -31,7 +31,7 @@
 }
 .main {
   text-align: center;
-  position: relative;
+  margin-top: 4rem;
 }
 .main-image {
   width: 90%;
