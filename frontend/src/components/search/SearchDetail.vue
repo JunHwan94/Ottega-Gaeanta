@@ -3,7 +3,8 @@
     <v-dialog
       v-model="showSearchDetail"
       persistent
-      width="500"
+      width="70%"
+      height="50%"
     >
       <!-- <template v-slot:activator="{ on, attrs }">
         <v-btn
@@ -15,6 +16,10 @@
           Click Me
         </v-btn>
       </template> -->
+      <!-- <flipbook class="flipbook" :pages="pages" v-slot="flipbook">
+        <button @click="flipbook.flipLeft">Previous Page</button>
+        <button @click="flipbook.flipRight">Next Page</button>
+      </flipbook> -->
 
       <v-card>
         <v-card-title class="text-h5 grey lighten-2">
@@ -22,7 +27,8 @@
         </v-card-title>
         
         <div class="d-flex">
-          <v-img src="@/assets/logo.png" alt="image"></v-img>
+          <!-- <v-img src="@/assets/logo.png" alt="image" style="width: ; height: 70%;"></v-img> -->
+          <v-img :src="searchDetailImageURL" alt="image" style="width: 25%; height: 70%;"></v-img>
           <v-card-text>
             <h1>스타일 : 아방가르드</h1>
             <br>
@@ -49,6 +55,7 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
+// import Flipbook from 'flipbook-vue'
 
 export default {
   name: 'SearchDetail',
@@ -57,14 +64,22 @@ export default {
   //     type: Boolean,
   //   }
   // },
+  components: { 
+    // Flipbook 
+  },
   data () {
     return {
       dialog: false,
+      pages: ['@/assets/1.jpg',
+              '@/assets/2.jpg',
+              '@/assets/3.jpg',
+              ]
     }
   },
   computed: {
     ...mapState([
-      'showSearchDetail'
+      'showSearchDetail',
+      'searchDetailImageURL'
     ])
   },
   methods: {
@@ -76,5 +91,9 @@ export default {
 </script>
 
 <style>
+.flipbook .viewport {
+  width: 150vw;
+  height: 90vh;
+}
 
 </style>
