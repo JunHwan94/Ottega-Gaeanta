@@ -22,10 +22,7 @@ public class StyleCollector {
 		
 		public void map(Object key, Text value, Context context) throws IOException, InterruptedException {
 			String valStr = value.toString();
-			// System.out.println(valStr);
-			// System.out.println(valStr.split("label")[0]);
-			String split1 = valStr.split("label\":")[1]; // not working
-			System.out.println(split1);
+			String split1 = valStr.split("label\":")[1];
 			String[] split2 = split1.split("},"); 
 			
 			String style = split2[0];
@@ -33,12 +30,11 @@ public class StyleCollector {
 			StringBuilder sb = new StringBuilder();
 			style = style.substring(0, style.length() - 1);
 			sb.append(style).append(",").append(fileInfo);
-			// TODO 스타일 split
+			// 스타일 split
 			String styleCategory = style.split("style")[2];
 			styleCategory = styleCategory.split(",")[0];
-			styleCategory = styleCategory.substring(3 ,styleCategory.length() - 1); // substring "
+			styleCategory = styleCategory.substring(3 ,styleCategory.length() - 1);
 			
-			System.out.println(style);
 			keyTxt.set(styleCategory);
 			Text val = new Text();
 			val.set(sb.toString() + "}");
