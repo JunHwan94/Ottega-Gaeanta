@@ -24,7 +24,7 @@
             :v-slot="{ hover }"
           >
             <v-card color="grey" @click="showStyleInfo({showSearchDetail, imgURL : images[number[index-1]]})">
-              <v-img :src="images[number[index-1]]" @load="this.$redrawVueMasonry()"></v-img>
+              <v-img :src="images[number[index-1]]"></v-img>
               <!-- <v-img src="@/assets/logo.png" @load="this.$redrawVueMasonry()"></v-img> -->
             </v-card>
           </v-hover>
@@ -87,7 +87,7 @@ export default {
       this.chips = [...this.chips]
     },
     repaint() {
-      setTimeout(() => this.$redrawVueMasonry(), 0);
+      setTimeout(() => this.$redrawVueMasonry(), 500);
     }
   },
 }
