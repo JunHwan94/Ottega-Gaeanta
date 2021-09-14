@@ -38,13 +38,11 @@
 </template>
 
 <script>
-import Vue from 'vue'
+
 import SearchDetail from '@/components/search/SearchDetail'
 import SearchItems from '@/components/search/SearchItems'
 import { mapActions, mapState } from 'vuex'
-import {VueMasonryPlugin} from 'vue-masonry'
 
-Vue.use(VueMasonryPlugin)
 
 
 export default {
@@ -71,6 +69,14 @@ export default {
       // 'searchItemsBool'
     ])
   },
+  mounted() {
+    this.repaint();
+  },
+  watch: {
+    images: function() {
+      this.repaint();
+    }
+  },
   methods: {
     ...mapActions([
       'showStyleInfo',
@@ -80,7 +86,10 @@ export default {
       this.chips.splice(this.chips.indexOf(item), 1)
       this.chips = [...this.chips]
     },
-  }
+    repaint() {
+      setTimeout(() => this.$redrawVueMasonry(), 0);
+    }
+  },
 }
 </script>
 
