@@ -85,7 +85,7 @@
               지금 바로 옷태가 괜찮네 서비스에<br>
               접속하고 다양한 기능을 경험하세요.
             </div>
-            <div class="menu-btn" :style="{ backgroundColor: btnColor[page - 1]}">
+            <div class="menu-btn" @click="changePage(4)" :style="{ backgroundColor: btnColor[page - 1]}">
               서비스 시작하기
             </div>
           </v-col>
@@ -119,12 +119,16 @@
         '#99DDCC',
         'hotpink',
       ],
+      pages: ['/','/','/','/','/chooseStyle'],
       page: 1,
     }),
     methods: {
       nextPage(page) {
         this.page = page
         this.moveFocusing(page)
+      },
+      changePage(index) {
+        this.$router.push(this.pages[index])
       },
       clearFocusing() {
         const menu = document.getElementsByClassName('menu')
