@@ -13,8 +13,8 @@
           </template>
 
           <v-list>
-            <v-list-item v-for="item in items" :key="item" link>
-              <v-list-item-title v-text="item"></v-list-item-title>
+            <v-list-item v-for="(item, index) in items" :key="item" link>
+              <v-list-item-title v-text="item" @click="changePage(index)"></v-list-item-title>
             </v-list-item>
           </v-list>
         </v-menu>
@@ -33,8 +33,14 @@
         ['Large', 'lg'],
       ],
       colors: ['teal darken-1'],
-      items: [...Array(4)].map((_, i) => `Item ${i}`),
+      items: ['메인으로', '의상 검색','입은 옷 색 조합 평가','미지정 메뉴',],
+      pages: ['/','/searchResult','/evaluationCamera','/'],
     }),
+    methods: {
+      changePage(index) {
+        this.$router.push(this.pages[index])
+      }
+    }
   }
 </script>
 
