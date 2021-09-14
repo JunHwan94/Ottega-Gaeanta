@@ -16,12 +16,19 @@
   export default {
     name: 'LandingMain',
     data: () => ({
-      mainImageUrl: 'https://www.10wallpaper.com/wallpaper/1366x768/1611/Girl_in_white_dress-Celebrity_Poster_Wallpapers_1366x768.jpg',
+      // mainImageUrl: 'https://post-phinf.pstatic.net/MjAyMTA0MDZfMjIw/MDAxNjE3Njk0NTYzMDIy.vh_iFhI2K6VWGCSX0ysqFr23aPnYqPTZkzpbUav7xRkg.AWMAI1T96OnWsGWPDDwHrkNCAgOlBho_S9cqzhArFg8g.JPEG/%EC%9D%BC%EB%9F%AC%EC%8A%A4%ED%8A%B8_%EB%8F%84%EC%8B%9D%ED%99%94.jpg?type=w1200',
+      mainImageUrl: require('../../assets/main.png'),
     }),
   }
 </script>
 
 <style scoped>
+@font-face {
+    font-family: 'Binggrae-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Binggrae-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 .main {
   text-align: center;
   position: relative;
@@ -36,12 +43,14 @@
   font-size: 4rem;
   position: absolute;
   text-align: initial;
+  font-family: Binggrae-Bold;
   animation: fadeIn 1.5s ease-in-out;
 }
 .text {
   font-weight: bold;
-  color: white;
+  color: black;
   width: 100%;
+  font-family: Binggrae-Bold;
   animation: fadeIn 2.0s ease-in-out;
 }
 .main-text {
