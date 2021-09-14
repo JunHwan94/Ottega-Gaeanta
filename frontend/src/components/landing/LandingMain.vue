@@ -32,6 +32,7 @@
 .main {
   text-align: center;
   position: relative;
+  background-color: green;
 }
 .main-image {
   width: 90%;
