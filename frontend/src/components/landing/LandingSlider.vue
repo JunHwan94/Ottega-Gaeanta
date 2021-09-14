@@ -130,7 +130,8 @@
         const menu = document.getElementsByClassName('menu')
         const progress = document.getElementsByClassName('progress')
         for (let i = 0; i < menu.length; i++) {
-          menu[i].style.color = 'hotpink'
+          menu[i].style.color = 'hotpink' // <- menu hover 문제
+          // menu[i].classList.remove('menu')
           progress[i].style.background = 'white'
           progress[i].style.borderColor = '#e4d2d2';
         }
@@ -139,7 +140,7 @@
         this.clearFocusing()
         const menu = document.querySelector(`.menu:nth-child(${index})`)
         const progress = document.querySelector(`.progress:nth-child(${index})`)
-        menu.style.color = '#331'
+        menu.style.color = 'red'
         progress.style.background = this.btnColor[index - 1]
         progress.style.borderColor = this.btnColor[index - 1]
       },
