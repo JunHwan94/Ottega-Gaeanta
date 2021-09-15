@@ -5,7 +5,7 @@ import ChooseStyle from '../views/style/ChooseStyle.vue'
 import SearchResult from '../views/search/SearchResult.vue'
 import SearchItems from '../components/search/SearchItems.vue'
 import SearchDetail from '../components/search/SearchDetail.vue'
-import EvaluationCamera from '../views/evaluation/EvaluationCamera.vue'
+import EvaluationMain from '../views/evaluation/EvaluationMain.vue'
 import EvaluationFilm from '../views/evaluation/EvaluationFilm.vue'
 import EvaluationResult from '../views/evaluation/EvaluationResult.vue'
 
@@ -43,9 +43,9 @@ const routes = [
     component: SearchDetail
   },
   {
-    path: '/evaluationCamera',
-    name: 'EvaluationCamera',
-    component: EvaluationCamera
+    path: '/evaluationMain',
+    name: 'EvaluationMain',
+    component: EvaluationMain
   },
   {
     path: '/evaluationFilm',
