@@ -20,10 +20,11 @@ buildscript{
 }
 
 plugins {
-	id "com.github.node-gradle.node" version "2.2.3"
 	id 'org.springframework.boot' version "${springBootVer}"
 	id 'java'
+	id 'idea'
 }
+apply plugin: 'application'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'com.github.node-gradle.node'
 
@@ -52,9 +53,9 @@ configurations {
 	providedRuntime
 }
 
-task deleteVueArtifact(type: Delete) {
-	delete "src/main/webapp/static", "src/main/webapp/index.html", "src/main/webapp/basic-tool/node_modules"
-}
+//task deleteVueArtifact(type: Delete) {
+//	delete "src/main/webapp/static", "src/main/webapp/index.html", "src/main/webapp/basic-tool/node_modules"
+//}
 
 task webpack(type: NpmTask, dependsOn: 'npmInstall') {
 	args = ['run','build']
@@ -70,22 +71,22 @@ def buildTime() {
 
 project.ext.set("build.date", buildTime())
 
-//processResources {
-//	with copySpec {
-//		from "src/main/resources"
-//		include "**/application*.yml"
-//		include "**/application*.yaml"
-//		include "**/application*.properties"
-//		project.properties.findAll().each {
-//			prop ->
-//				if (prop.value != null) {
-//					filter(ReplaceTokens, tokens: [(prop.key): String.valueOf(prop.value)])
-//					filter(ReplaceTokens, tokens: [ ('project.' + prop.key): String.valueOf(prop.value)])
-//					filter(ReplaceTokens, tokens: [ ('project.ext.' + prop.key): String.valueOf(prop.value)])
-//				}
-//		}
-//	}
-//}
+processResources {
+	with copySpec {
+		from "src/main/resources"
+		include "**/application*.yml"
+		include "**/application*.yaml"
+		include "**/application*.properties"
+		project.properties.findAll().each {
+			prop ->
+				if (prop.value != null) {
+					filter(ReplaceTokens, tokens: [(prop.key): String.valueOf(prop.value)])
+					filter(ReplaceTokens, tokens: [ ('project.' + prop.key): String.valueOf(prop.value)])
+					filter(ReplaceTokens, tokens: [ ('project.ext.' + prop.key): String.valueOf(prop.value)])
+				}
+		}
+	}
+}
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'

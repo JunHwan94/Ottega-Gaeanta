@@ -30,10 +30,10 @@ public class TestRepositorySupport {
     }
 
     public List<Data> getDoc(SearchReq searchReq){
-        Query query = new Query(where(searchReq.getCloth() + ".categori").is(searchReq.getCategori())
+        Query query = new Query(where(searchReq.getCloth() + ".category").is(searchReq.getCategory())
             .and(searchReq.getCloth() + ".color").is(searchReq.getColor())
             .and(searchReq.getCloth() + ".print").is(searchReq.getPrint())
         );
-        return mongoTemplate.find(query, Data.class).subList(0, 10);
+        return mongoTemplate.find(query.limit(10), Data.class);
     }
 }

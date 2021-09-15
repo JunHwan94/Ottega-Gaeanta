@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class SearchReq {
     String cloth;
-    String categori;
+    String category;
     String color;
     String print;
 }
