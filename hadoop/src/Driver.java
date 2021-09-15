@@ -14,6 +14,7 @@ public class Driver {
 			pgd.addClass("inverted", InvertedIndex.class, "A map/reduce program that genereates the inverted index using words in the input files.");
 			pgd.addClass("matadd", MatrixAdd.class, "A map/reduce program that computes the addition of two matrices.");
 			pgd.addClass("matmulti1", MatrixMultiplier1.class, "A map/reduce program that computes the addition of two matrices.");
+			pgd.addClass("onlystyle", StyleCollector.class, "");
       			pgd.driver(args);
 			exitCode = 0;
 		}
