@@ -33,34 +33,34 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry.addResourceHandler("swagger-ui.html")
                 .addResourceLocations("classpath:/META-INF/resources/");
 
-//        registry.addResourceHandler("/**")
-//                .addResourceLocations("classpath:/dist/")
-//                .resourceChain(true)
-//                .addResolver(new PathResourceResolver() {
-//                    @Override
-//                    protected Resource getResource(String resourcePath, Resource location) throws IOException {
-//                        Resource requestResource = location.createRelative(resourcePath);
-//                        return requestResource.exists() && requestResource.isReadable()
-//                                ? requestResource : new ClassPathResource("/dist/index.html");
-//                    }
-//                });
-        registry.addResourceHandler("/webjars/**")
-                .addResourceLocations("classpath:/META-INF/resources/webjars/");
-
-        registry.addResourceHandler("/css/**")
-                .addResourceLocations("classpath:/dist/css/");
-
-        registry.addResourceHandler("/fonts/**")
-                .addResourceLocations("classpath:/dist/fonts/");
-
-        registry.addResourceHandler("/icons/**")
-                .addResourceLocations("classpath:/dist/icons/");
-
-        registry.addResourceHandler("/img/**")
-                .addResourceLocations("classpath:/dist/img/");
-
-        registry.addResourceHandler("/js/**")
-                .addResourceLocations("classpath:/dist/js/");
+        registry.addResourceHandler("/**")
+                .addResourceLocations("classpath:/dist/")
+                .resourceChain(true)
+                .addResolver(new PathResourceResolver() {
+                    @Override
+                    protected Resource getResource(String resourcePath, Resource location) throws IOException {
+                        Resource requestResource = location.createRelative(resourcePath);
+                        return requestResource.exists() && requestResource.isReadable()
+                                ? requestResource : new ClassPathResource("/dist/index.html");
+                    }
+                });
+//        registry.addResourceHandler("/webjars/**")
+//                .addResourceLocations("classpath:/META-INF/resources/webjars/");
+//
+//        registry.addResourceHandler("/css/**")
+//                .addResourceLocations("classpath:/dist/css/");
+//
+//        registry.addResourceHandler("/fonts/**")
+//                .addResourceLocations("classpath:/dist/fonts/");
+//
+//        registry.addResourceHandler("/icons/**")
+//                .addResourceLocations("classpath:/dist/icons/");
+//
+//        registry.addResourceHandler("/img/**")
+//                .addResourceLocations("classpath:/dist/img/");
+//
+//        registry.addResourceHandler("/js/**")
+//                .addResourceLocations("classpath:/dist/js/");
 
 
     }

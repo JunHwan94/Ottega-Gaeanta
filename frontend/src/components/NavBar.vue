@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="nav-container">
     <div class="header">
       <div class="left">
         <h2>Ottega-Gaeanta</h2>
@@ -50,6 +50,11 @@
   padding-left: 3%;
   padding-right: 3%;
   width: 100%;
+}
+.nav-container {
+  z-index: 1;
+  position: absolute;
+  width: 100vw;
 }
 .left {
   width: 50%;
