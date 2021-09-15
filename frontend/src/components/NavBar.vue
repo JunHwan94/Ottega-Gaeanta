@@ -52,7 +52,7 @@
   width: 100%;
 }
 .nav-container {
-  z-index: 1;
+  z-index: 2;
   position: absolute;
   width: 100vw;
 }

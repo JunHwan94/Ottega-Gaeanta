@@ -23,12 +23,6 @@
 </script>
 
 <style scoped>
-@font-face {
-    font-family: 'Binggrae-Bold';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Binggrae-Bold.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
 .main {
   text-align: center;
   margin-top: 4rem;
