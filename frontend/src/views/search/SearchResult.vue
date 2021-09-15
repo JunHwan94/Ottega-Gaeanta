@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="d-flex col">
-      <p class="col-2">OTTEGA GAEANTA</p>
+      <p class="col-2"></p>
       <!-- 검색창 -->
       <div class="col-8 mx-4">
         <SearchItems
