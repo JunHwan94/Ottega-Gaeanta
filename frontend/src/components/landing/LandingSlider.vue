@@ -1,5 +1,7 @@
 <template>
   <div class="slider">
+    <Snowf :amount="20" :size="5" :speed="1.5" :wind="10" :opacity="1" :swing="1" :image="null" :zIndex="1"
+      :resize="true" color="#ff69b4" />
     <div>
       <v-container class="lighten-5">
         <v-row class="mb-12" no-gutters>
@@ -85,17 +87,17 @@
               지금 바로 옷태가 괜찮네 서비스에<br>
               접속하고 다양한 기능을 경험하세요.
             </div>
-            <div class="menu-btn" :style="{ backgroundColor: btnColor[page - 1]}">
+            <div class="menu-btn" @click="changePage(4)" :style="{ backgroundColor: btnColor[page - 1]}">
               서비스 시작하기
             </div>
           </v-col>
         </v-row>
       </v-container>
       <div class="progress-container">
-        <div class="progress" @click="nextPage(1)"/>
-        <div class="progress" @click="nextPage(2)"/>
-        <div class="progress" @click="nextPage(3)"/>
-        <div class="progress" @click="nextPage(4)"/>
+        <div class="progress" @click="nextPage(1)" />
+        <div class="progress" @click="nextPage(2)" />
+        <div class="progress" @click="nextPage(3)" />
+        <div class="progress" @click="nextPage(4)" />
       </div>
     </div>
 
@@ -103,14 +105,17 @@
 </template>
 
 <script>
+  import Snowf from 'vue-snowf';
   export default {
     name: 'LandingSlider',
-    components: {},
+    components: {
+      Snowf,
+    },
     data: () => ({
       image: [
         'https://img1.daumcdn.net/thumb/R1280x0.fpng/?fname=http://t1.daumcdn.net/brunch/service/user/6x6e/image/mG_H5qGH5RElp6kLQGHG0sheyG8.png',
         'https://static.coupangcdn.com/image/vendor_inventory/5fdd/3635f2d30ae5299adad49ac0d61cc2cf47a02d5c1f70d3e37db5f9ed1d54.jpg',
-        'https://lh3.googleusercontent.com/proxy/LLxe4nMUgm83UjeZrDOMpsdVNPCA-X6sjcX113hVN5tgrymZ8rfOcpYtU17Dm9sX-tZk_8mi4SUIcCZWTNjfxwGqVxe-Wwnb9TE8PjeaGGJzJNLzoublBTb4Hr5fNYvwJgNeRBtagdBpMugfXpwTa466Jj6pqI_mjvDcv2b23WiWkvrMH64',
+        'https://post-phinf.pstatic.net/MjAyMTA0MDZfMjIw/MDAxNjE3Njk0NTYzMDIy.vh_iFhI2K6VWGCSX0ysqFr23aPnYqPTZkzpbUav7xRkg.AWMAI1T96OnWsGWPDDwHrkNCAgOlBho_S9cqzhArFg8g.JPEG/%EC%9D%BC%EB%9F%AC%EC%8A%A4%ED%8A%B8_%EB%8F%84%EC%8B%9D%ED%99%94.jpg?type=w1200',
         'https://post-phinf.pstatic.net/MjAyMTA0MDZfMjIw/MDAxNjE3Njk0NTYzMDIy.vh_iFhI2K6VWGCSX0ysqFr23aPnYqPTZkzpbUav7xRkg.AWMAI1T96OnWsGWPDDwHrkNCAgOlBho_S9cqzhArFg8g.JPEG/%EC%9D%BC%EB%9F%AC%EC%8A%A4%ED%8A%B8_%EB%8F%84%EC%8B%9D%ED%99%94.jpg?type=w1200'
       ],
       btnColor: [
@@ -119,12 +124,16 @@
         '#99DDCC',
         'hotpink',
       ],
+      pages: ['/', '/', '/', '/', '/chooseStyle'],
       page: 1,
     }),
     methods: {
       nextPage(page) {
         this.page = page
         this.moveFocusing(page)
+      },
+      changePage(index) {
+        this.$router.push(this.pages[index])
       },
       clearFocusing() {
         const menu = document.getElementsByClassName('menu')
@@ -155,20 +164,8 @@
   height: 45vh;
   text-align: center;
 }
-@font-face {
-    font-family: 'HSYuji-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/HSYuji-Regular.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'Cafe24Ssurround';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
 img {
-  width:25vw;
+  width: 25vw;
   height: 250px;
 }
 .progress-container {
@@ -192,6 +189,7 @@ img {
   font-size: 1.5rem;
   color: hotpink;
   cursor: pointer;
+  z-index: 2;
 }
 .menu:hover {
   color: red;
@@ -199,6 +197,7 @@ img {
 .menu-detail {
   font-family: Cafe24Ssurround;
   text-align: left;
+  z-index: 2;
 }
 .menu-detail-title {
   font-size: 2rem;
