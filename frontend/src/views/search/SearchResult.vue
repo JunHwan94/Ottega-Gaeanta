@@ -1,5 +1,5 @@
 <template>
-  <div style="background-color: red;">
+  <div>
     <div class="d-flex col">
       <p class="col-2"></p>
       <!-- 검색창 -->
