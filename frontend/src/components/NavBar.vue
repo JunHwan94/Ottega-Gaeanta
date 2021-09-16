@@ -34,7 +34,7 @@
       ],
       colors: ['teal darken-1'],
       items: ['메인으로', '의상 검색','입은 옷 색 조합 평가','미지정 메뉴',],
-      pages: ['/','/searchResult','/evaluationCamera','/'],
+      pages: ['/','/searchResult','/evaluationMain','/'],
     }),
     methods: {
       changePage(index) {
