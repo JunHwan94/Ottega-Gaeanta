@@ -2,7 +2,7 @@
   <v-main>
     <v-menu offset-y :close-on-click="false" :close-on-content-click="false" v-model="menuOpen">
       <template v-slot:activator="{ on }">
-        <v-btn v-on="on" class="mt-4" style="width: 100%"><v-icon class="mx-4">mdi-magnify</v-icon>Search your style..</v-btn> <!-- class에 mt-4 검색창 안눌려서 내림 -->
+        <v-btn v-on="on" class="mt-5" style="width: 100%"><v-icon class="mx-4">mdi-magnify</v-icon>Search your style..</v-btn> <!-- class에 mt-4 검색창 안눌려서 내림 -->
       </template>
       <v-card>
         <!-- 의류 카테고리 선택 -->
@@ -37,19 +37,30 @@
                   
                 >
                   <v-card
-                    :color="active ? 'primary' : 'grey lighten-1'"
+                    :color="active ? 'primary' : 'white'"
                     class="ma-4"
-                    height="100"
-                    width="70"
+                    height="10rem"
+                    width="7rem"
                     @click="toggle"
                   >
                   
-                    <v-row
+                    <!-- <v-row
                       class="fill-height"
                       align="center"
                       justify="center"
-                    >
-                      <h5>{{ styleItems[n-1] }}</h5>
+                    > -->
+                    <v-img
+                      src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+                      height="70%"
+                    ></v-img>
+
+                    <v-card-subtitle 
+                      align="center"
+                      justify="middle"
+                      >
+                      
+                      <h3>{{ styleItems[n-1] }}</h3>
+                    </v-card-subtitle>
                       <v-scale-transition>
                         <v-icon
                           v-if="active"
@@ -58,7 +69,7 @@
                           
                         ></v-icon>
                       </v-scale-transition>
-                    </v-row>
+                    <!-- </v-row> -->
                   </v-card>
                 </v-slide-item>
               </v-slide-group>
@@ -94,7 +105,7 @@
           <template>
             <v-sheet
               class="mx-5"
-              max-width="800"
+              max-width="100%"
             >
               <v-slide-group
                 v-model="designValue"
@@ -108,18 +119,30 @@
                   
                 >
                   <v-card
-                    :color="active ? 'primary' : 'grey lighten-1'"
+                    :color="active ? 'primary' : designItems[n-1]"
                     class="ma-4"
-                    height="100"
-                    width="70"
+                    height="7rem"
+                    width="5rem"
                     @click="toggle"
                   >
-                    <v-row
+                  
+                    <!-- <v-row
                       class="fill-height"
                       align="center"
                       justify="center"
-                    >
+                    > -->
+                    <!-- <v-img
+                      src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+                      height="70%"
+                    ></v-img> -->
+
+                    <v-card-subtitle 
+                      align="center"
+                      justify="middle"
+                      >
+                      
                       <h3>{{ designItems[n-1] }}</h3>
+                    </v-card-subtitle>
                       <v-scale-transition>
                         <v-icon
                           v-if="active"
@@ -128,7 +151,7 @@
                           
                         ></v-icon>
                       </v-scale-transition>
-                    </v-row>
+                    <!-- </v-row> -->
                   </v-card>
                 </v-slide-item>
               </v-slide-group>
@@ -214,7 +237,7 @@ export default {
       model: null,
       styleItems: ['탑', '블라우스', '티셔츠', '니트웨어', '셔츠', '브라탑', '후드티'],
       styleValue: null,
-      designItems: ['Black','white','grey','red','beige','purple','mint','yellow'],
+      designItems: ['black','white','grey','red','beige','purple','mint','yellow'],
       designValue: null,
     }
   }
