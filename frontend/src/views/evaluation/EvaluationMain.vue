@@ -34,25 +34,6 @@
           <img class="right-image" style="width:400px; height:400px; visibility: hidden;" />
         </v-col>
       </v-row>
-      <!-- <img class="main-image" :src="mainImageUrl" style="width:100px; height:100px;"/>
-      <v-row class="menu-container" justify="center">
-        <div class="menu">
-          실시간 측정 방식
-          <v-icon large color="white darken-5">mdi-selection</v-icon>
-        </div>
-      </v-row><br>
-      <v-row class="menu-container" justify="center">
-        <div class="menu">
-          사진 업로드 방식
-          <v-icon large color="white darken-5"> mdi-folder-star</v-icon>
-        </div>
-      </v-row><br>
-      <v-row class="menu-container" justify="center">
-        <div class="menu">
-          색 조합표 보기
-          <v-icon large color="white darken-5"> mdi-arrow-up-bold-box-outline</v-icon>
-        </div>
-      </v-row> -->
     </div>
   </div>
 </template>
@@ -69,20 +50,17 @@
       const rightImage = document.querySelector('.right-image')
       menu[0].addEventListener('mouseover', function () {
         imageClear()
-        leftImage.src =
-          'https://post-phinf.pstatic.net/MjAyMTA0MDZfMjIw/MDAxNjE3Njk0NTYzMDIy.vh_iFhI2K6VWGCSX0ysqFr23aPnYqPTZkzpbUav7xRkg.AWMAI1T96OnWsGWPDDwHrkNCAgOlBho_S9cqzhArFg8g.JPEG/%EC%9D%BC%EB%9F%AC%EC%8A%A4%ED%8A%B8_%EB%8F%84%EC%8B%9D%ED%99%94.jpg?type=w1200'
+        leftImage.src = require('@/assets/main.png')
         leftImage.style.visibility = 'visible'
       })
       menu[1].addEventListener('mouseover', function () {
         imageClear()
-        rightImage.src =
-          'https://post-phinf.pstatic.net/MjAyMTA0MDZfMjIw/MDAxNjE3Njk0NTYzMDIy.vh_iFhI2K6VWGCSX0ysqFr23aPnYqPTZkzpbUav7xRkg.AWMAI1T96OnWsGWPDDwHrkNCAgOlBho_S9cqzhArFg8g.JPEG/%EC%9D%BC%EB%9F%AC%EC%8A%A4%ED%8A%B8_%EB%8F%84%EC%8B%9D%ED%99%94.jpg?type=w1200'
+        rightImage.src = require('@/assets/main.png')
         rightImage.style.visibility = 'visible'
       })
       menu[2].addEventListener('mouseover', function () {
         imageClear()
-        rightImage.src =
-          'https://post-phinf.pstatic.net/MjAyMTA0MDZfMjIw/MDAxNjE3Njk0NTYzMDIy.vh_iFhI2K6VWGCSX0ysqFr23aPnYqPTZkzpbUav7xRkg.AWMAI1T96OnWsGWPDDwHrkNCAgOlBho_S9cqzhArFg8g.JPEG/%EC%9D%BC%EB%9F%AC%EC%8A%A4%ED%8A%B8_%EB%8F%84%EC%8B%9D%ED%99%94.jpg?type=w1200'
+        leftImage.src = require('@/assets/main.png')
         leftImage.style.visibility = 'visible'
       })
 
