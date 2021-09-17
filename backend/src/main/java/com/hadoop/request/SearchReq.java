@@ -1,4 +1,4 @@
-package com.example.request;
+package com.hadoop.request;
 
 import lombok.Getter;
 import lombok.Setter;
