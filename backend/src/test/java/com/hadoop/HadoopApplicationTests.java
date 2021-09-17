@@ -1,10 +1,10 @@
-package com.example;
+package com.hadoop;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DemoApplicationTests {
+class HadoopApplicationTests {
 
 	@Test
 	void contextLoads() {
