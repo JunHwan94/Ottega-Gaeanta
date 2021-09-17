@@ -38,7 +38,7 @@ repositories {
 	maven { url "https://plugins.gradle.org/m2/" }
 }
 
-group = 'com.example'
+group = 'com.hadoop'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
