@@ -13,7 +13,7 @@
       </v-col>
       <v-col lg=3 align="left">
         <div class="card" align="center">
-          <img :src="mainImageUrl" />
+          <evaluation-camera></evaluation-camera>
         </div>
       </v-col>
       <v-col lg=3></v-col>
@@ -22,20 +22,32 @@
       <div class="capture-btn" @click="capture()">
         <h2>5초 뒤 촬용😊</h2>
       </div>
+      <div class="capture-btn" style="color: white" @click="post()">
+        <h2>의상 분석😊</h2>
+      </div>
     </v-row>
   </div>
 </template>
 
 <script>
+  import EvaluationCamera from '@/components/evaluation/EvaluationCamera.vue'
   export default {
     data: () => ({
       mainImageUrl: require('@/assets/evaluation-model.png'),
     }),
+    components: {
+      EvaluationCamera,
+    },
     methods: {
       capture() {
-        alert('test')
+        this.$children[0].$vnode.componentInstance.toggleStream()
+      },
+      post() {
+        this.$children[0].$vnode.componentInstance.post()
       }
     },
+    mounted() {
+    }
   }
 </script>
 
@@ -50,7 +62,6 @@
   margin-top: 10vh;
   margin-bottom: 5vh;
 }
-
 .content-area {
   width: 100%;
   height: 70%;
@@ -74,7 +85,7 @@ p, h2 {
 .capture-btn {
   border: 2px solid black;
   padding: 10px;
-  width: 25vw;
+  width: 400px;
   border-radius: 25px;
   background-color: violet;
   cursor: pointer;
