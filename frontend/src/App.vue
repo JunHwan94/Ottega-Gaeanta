@@ -17,10 +17,12 @@
     data: () => ({
     }),
     methods: {
-      aaa() {
-        alert('test')
-        this.$router.push('landing')
-      }
+    },
+    mounted() {
+      let script = document.createElement('script')
+      script.setAttribute('src', 'https://docs.opencv.org/3.4/opencv.js')
+      script.async = true;
+      document.head.appendChild(script)
     }
   };
 </script>
