@@ -23,7 +23,7 @@
           <template>
             <v-sheet
               class="mx-5"
-              max-width="100%"
+              max-width="80%"
             >
               <v-slide-group
                 v-model="styleValue"
@@ -37,7 +37,7 @@
                   
                 >
                   <v-card
-                    :color="active ? 'primary' : 'white'"
+                    :color="active ? '#BBBBBB' : 'white'"
                     class="ma-4"
                     height="10rem"
                     width="7rem"
@@ -105,7 +105,7 @@
           <template>
             <v-sheet
               class="mx-5"
-              max-width="100%"
+              max-width="80%"
             >
               <v-slide-group
                 v-model="designValue"
@@ -113,50 +113,94 @@
                 show-arrows
               >
                 <v-slide-item
-                  v-for="n in 8"
+                  v-for="n in 31"
                   :key="n"
                   v-slot="{ active, toggle }"
                   
                 >
                   <v-card
-                    :color="active ? 'primary' : designItems[n-1]"
-                    class="ma-4"
-                    height="7rem"
-                    width="5rem"
+                    :color="active ? '#BBBBBB' : 'white'"
+                    class=""
+                    height="5.5rem"
+                    width="4rem"
                     @click="toggle"
+                    style="text-align:center;"
+                    elevation="0"
                   >
-                  
-                    <!-- <v-row
-                      class="fill-height"
-                      align="center"
-                      justify="center"
-                    > -->
-                    <!-- <v-img
-                      src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-                      height="70%"
-                    ></v-img> -->
-
-                    <v-card-subtitle 
-                      align="center"
-                      justify="middle"
-                      >
-                      
-                      <h3>{{ designItems[n-1] }}</h3>
-                    </v-card-subtitle>
+                    <v-avatar
+                      :color="designRGBs[n-1]"
+                      size="2rem"
+                      @click="toggle"
+                      class="ma-3"
+                      style="border: 1px solid black"
+                    >
+                      <v-img :src="require('@/assets/designpatterns/' + designItems[n-1] + '.jpg')" v-if="n > 13"></v-img>
                       <v-scale-transition>
                         <v-icon
                           v-if="active"
                           color="white"
-                          size="30"
+                          size="4rem"
                           
                         ></v-icon>
                       </v-scale-transition>
-                    <!-- </v-row> -->
+                    </v-avatar>
+                    <div style="text-align:center;">
+                      <span 
+                        class="black--text"
+                        style="font-size:0.8rem"
+                      >
+                        {{ designItems[n-1] }}
+                      </span>
+                    </div>
                   </v-card>
                 </v-slide-item>
+                <!-- 여기부터는 패턴들 -->
+                <!-- <v-slide-item
+                  v-for="n in list"
+                  :key="n"
+                  v-slot="{ active, toggle }"
+                  
+                >
+                  <v-card
+                    :color="active ? '#BBBBBB' : 'white'"
+                    class=""
+                    height="5.5rem"
+                    width="4rem"
+                    @click="toggle"
+                    style="text-align:center;"
+                    elevation="0"
+                  >
+                    <v-avatar
+                      
+                      size="2rem"
+                      @click="toggle"
+                      class="ma-3"
+                      style="border: 1px solid black"
+                    >
+                      
+                      <v-scale-transition>
+                        <v-icon
+                          v-if="active"
+                          color="white"
+                          size="4rem"
+                          
+                        ></v-icon>
+                      </v-scale-transition>
+                    </v-avatar>
+                    <div style="text-align:center;">
+                      <span 
+                        class="black--text"
+                        style="font-size:0.8rem"
+                      >
+                        {{ designItems[n-1] }}
+                      </span>
+                    </div>
+                  </v-card>
+                </v-slide-item> -->
               </v-slide-group>
               <v-divider></v-divider>
               <br>
+              
               <v-expand-transition>
                 <v-sheet
                   v-if="designValue != null"
@@ -225,10 +269,11 @@ export default {
       this.styleValue = null;
       this.designValue = null;
       this.model = null;
-    }
+    },
   },
   data () {
     return {
+      list: [14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31],
       menuOpen: false,
       firstname: "",
       lastname: "",
@@ -237,7 +282,14 @@ export default {
       model: null,
       styleItems: ['탑', '블라우스', '티셔츠', '니트웨어', '셔츠', '브라탑', '후드티'],
       styleValue: null,
-      designItems: ['black','white','grey','red','beige','purple','mint','yellow'],
+      designItems: [
+                    'black','white','grey','red','pink','orange','beige','brown','yellow','green','blue','sky blue','purple',
+                    'check','stripe','zigzag','leopard','zebra','dot','camouflage','paisley','argyle','floral','lettering','skull','tiedye','gradation','solid','graphic','houndstouth','gingham'
+                    ],
+      designRGBs: [
+                    '#000000','#FFFFFFF','#808080','#FF0000','#FF00FF','#FFA500','#F5F5DC','#964B00','#FFFF00','#008000','#0000FF','#87CEEB','#800080',
+                    '#000000','#FFFFFFF','#808080','#FF0000','#FF00FF','#FFA500','#F5F5DC','#964B00','#FFFF00','#008000','#0000FF','#87CEEB','#800080','#964B00','#FFFF00','#008000','#0000FF','#87CEEB'
+                    ],
       designValue: null,
     }
   }
