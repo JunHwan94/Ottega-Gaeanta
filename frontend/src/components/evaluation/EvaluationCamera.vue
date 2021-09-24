@@ -23,7 +23,7 @@
       src: '',
       cap: '',
       file: '',
-
+      formdata: '',
     }),
     methods: {
       toggleStream() {
@@ -67,22 +67,27 @@
             document.querySelector('#output').style.display = 'block';
             cv.imshow('output', this.src);
 
-            const imgDataUrl = this.canvas.toDataURL('image/png')
+            const imgDataUrl = this.canvas.toDataURL('image/jpg')
             const blobBin = atob(imgDataUrl.split(',')[1]);	// base64 데이터 디코딩
             let array = [];
             for (let i = 0; i < blobBin.length; i++) {
                 array.push(blobBin.charCodeAt(i));
             }
-            const file = new Blob([new Uint8Array(array)], {type: 'image/png'});	// Blob 생성
-            const formdata = new FormData();	// formData 생성
-            formdata.append("file", file);	// file data 추가
-            console.log(file)
-            this.file = file
+            const file = new Blob([new Uint8Array(array)], {type: 'image/jpg'});	// Blob 생성
+            // console.log(file);
+            this.formdata = new FormData();	// formData 생성
+            this.formdata.append("image", file);	// file data 추가
+
+            // this.formdata = formdata;
+            console.log(this.formdata);
+            // this.file = file
         }
       },
       post() {
-        alert(this.file)
-        console.log(this.file)
+        this.$store.dispatch('evaluateImage', this.formdata)
+        .then((result) => {
+          console.log(result.data);
+        })
       }
     },
     mounted() {
