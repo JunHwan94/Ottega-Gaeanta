@@ -10,4 +10,5 @@ public class SearchReq {
     String category;
     String color;
     String print;
+    int page;
 }
