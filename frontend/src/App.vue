@@ -19,8 +19,15 @@
     methods: {
     },
     mounted() {
+      // open cv script
       let script = document.createElement('script')
       script.setAttribute('src', 'https://docs.opencv.org/3.4/opencv.js')
+      script.async = true;
+      document.head.appendChild(script)
+
+      // pixi script
+      script = document.createElement('script')
+      script.setAttribute('src', 'https://cdnjs.cloudflare.com/ajax/libs/pixi.js/5.1.3/pixi.min.js')
       script.async = true;
       document.head.appendChild(script)
     }
