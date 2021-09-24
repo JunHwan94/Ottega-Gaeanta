@@ -1,6 +1,7 @@
 package com.hadoop.service;
 
 import com.hadoop.util.FileUtil;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
@@ -24,11 +25,10 @@ public class EvalService {
         image.transferTo(file);
 
         MultiValueMap<String, Object> params = new LinkedMultiValueMap<>();
-        params.add("file", image);
+        params.add("file", new FileSystemResource("../file.jpg"));
 
         HttpHeaders headers = new HttpHeaders();
-//        headers.add("","");
-        headers.add("Accept", MediaType.APPLICATION_JSON.toString());
+        headers.add("Accept", MediaType.APPLICATION_JSON.toString());   // json 결과 String으로 변환해서 가져오기는 하는데 흠
         headers.setContentType(MediaType.MULTIPART_FORM_DATA);
 
         HttpEntity<MultiValueMap<String, Object>> entity = new HttpEntity<>(params, headers);
