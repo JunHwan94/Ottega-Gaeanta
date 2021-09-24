@@ -1,7 +1,7 @@
 <template>
   <div class="nav-container">
     <div class="header">
-      <div class="left">
+      <div class="left" @click="changePage(0)">
         <h2>Ottega-Gaeanta</h2>
       </div>
       <div class="right" justify-end>
@@ -59,6 +59,9 @@
 .left {
   width: 50%;
   float: left;
+}
+.left > h2 {
+  cursor: pointer;
 }
 .right {
   width: 50%;
