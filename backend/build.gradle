@@ -61,6 +61,10 @@ task webpack(type: NpmTask, dependsOn: 'npmInstall') {
 	args = ['run','build']
 }
 
+task processPackageResources(type: Copy) {
+	duplicatesStrategy = 'include'
+}
+
 processResources.dependsOn 'webpack'
 
 def buildTime() {
