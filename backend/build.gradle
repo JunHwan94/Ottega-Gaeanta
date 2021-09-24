@@ -61,10 +61,6 @@ task webpack(type: NpmTask, dependsOn: 'npmInstall') {
 	args = ['run','build']
 }
 
-task processPackageResources(type: Copy) {
-	duplicatesStrategy = 'include'
-}
-
 processResources.dependsOn 'webpack'
 
 def buildTime() {
@@ -77,6 +73,7 @@ project.ext.set("build.date", buildTime())
 
 processResources {
 	with copySpec {
+		duplicatesStrategy = 'include'
 		from "src/main/resources"
 		include "**/application*.yml"
 		include "**/application*.yaml"
