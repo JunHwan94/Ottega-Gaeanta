@@ -26,8 +26,8 @@ public class SearchController {
         return searchService.getDatas(searchReq);
     }
 
-    @GetMapping("/temp")
-    public List<String> getImageUrl(@RequestBody ){
-
-    }
+//    @GetMapping("/temp")
+//    public List<String> getImageUrl(@RequestBody ){
+//
+//    }
 }
