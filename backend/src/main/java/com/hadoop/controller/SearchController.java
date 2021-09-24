@@ -2,6 +2,7 @@ package com.hadoop.controller;
 
 import com.hadoop.entity.Data;
 import com.hadoop.request.SearchReq;
+import com.hadoop.service.S3Service;
 import com.hadoop.service.SearchService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,16 @@ public class SearchController {
     @Autowired
     SearchService searchService;
 
+    @Autowired
+    S3Service s3Service;
+
     @PostMapping("/keyword")
     public List<Data> getDocuments(@RequestBody SearchReq searchReq){
         return searchService.getDatas(searchReq);
+    }
+
+    @GetMapping("/temp")
+    public List<String> getImageUrl(@RequestBody ){
+
     }
 }

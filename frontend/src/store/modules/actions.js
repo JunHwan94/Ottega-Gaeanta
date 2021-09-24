@@ -1,5 +1,9 @@
 // import $axios from 'axios'
 
+import axios from 'axios'
+axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
+
+const baseUrl = 'https://localhost:8095/'
 // axios 샘플
 export function showStyleInfo({ commit }, credentials) {
     const showSearchDetail = !credentials.showSearchDetail
@@ -11,4 +15,10 @@ export function showStyleInfo({ commit }, credentials) {
 export function showSearchItems({ commit }, credentials) {
     const searchItemsBool = !credentials.searchItemsBool
     commit("SEARCH_ITEMS_CATEGORY", searchItemsBool)
+}
+
+export function evaluateImage({ commit }, image) {
+    console.log(image)
+    const url = baseUrl + 'eval/input'
+    return axios.post(url, image)
 }
