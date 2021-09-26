@@ -105,7 +105,7 @@ video {
   height: 100%;
 }
 .main {
-  font-family: HSYuji-Regular;
+  font-family: Cafe24Ssurround;
   width: 100%;
   height: 100%;
 }

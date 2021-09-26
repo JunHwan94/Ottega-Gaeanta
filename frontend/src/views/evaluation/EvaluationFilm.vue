@@ -56,7 +56,7 @@
   padding-top: 4rem;
   height: 100%;
   width: 100vw;
-  background: linear-gradient(#8AFFC7 5%, #FFCECE, #BAD7DF);
+  background: linear-gradient(to bottom right, #FBACCC, #F1D1D0, white);
 }
 .title {
   margin-top: 10vh;
@@ -80,14 +80,14 @@ img {
   padding: 10px 0px;
 }
 p, h2 {
-  font-family: HSYuji-Regular;
+  font-family: Cafe24Ssurround;
 }
 .capture-btn {
   border: 2px solid black;
   padding: 10px;
   width: 400px;
   border-radius: 25px;
-  background-color: violet;
+  background-color: #F875AA;
   cursor: pointer;
 }
 </style>
