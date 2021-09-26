@@ -119,10 +119,10 @@
         'https://post-phinf.pstatic.net/MjAyMTA0MDZfMjIw/MDAxNjE3Njk0NTYzMDIy.vh_iFhI2K6VWGCSX0ysqFr23aPnYqPTZkzpbUav7xRkg.AWMAI1T96OnWsGWPDDwHrkNCAgOlBho_S9cqzhArFg8g.JPEG/%EC%9D%BC%EB%9F%AC%EC%8A%A4%ED%8A%B8_%EB%8F%84%EC%8B%9D%ED%99%94.jpg?type=w1200'
       ],
       btnColor: [
-        '#BAD7DF',
-        '#FFE2E2',
-        '#99DDCC',
-        'hotpink',
+        '#F875AA',
+        '#F875AA',
+        '#F875AA',
+        '#F875AA',
       ],
       pages: ['/', '/', '/', '/', '/chooseStyle'],
       page: 1,
@@ -185,9 +185,9 @@ img {
   box-shadow: 0 0 5px green;
 }
 .menu {
-  font-family: 'HSYuji-Regular';
+  font-family: 'Cafe24Ssurround';
   font-size: 1.5rem;
-  color: hotpink;
+  color: #F975AA;
   cursor: pointer;
   z-index: 2;
 }
@@ -212,6 +212,7 @@ img {
   border-radius: 20px;
   padding: 10px;
   cursor: pointer;
+  color: white;
 }
 .menu-row {
   animation: fadeIn 1.0s ease-in-out;

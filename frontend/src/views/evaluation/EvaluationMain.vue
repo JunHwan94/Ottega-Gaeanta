@@ -82,18 +82,18 @@
   padding-top: 4rem;
   height: 100vh;
   width: 100vw;
-  background: linear-gradient(to bottom right, skyblue, white);
+  background: linear-gradient(to bottom right, #FBACCC, #F1D1D0, white);
 }
 
 .intro {
-  font-family: HSYuji-Regular;
+  font-family: Cafe24Ssurround;
 }
 
 .card {
   width: 80vw;
   height: 60vh;
-  background-color: rgb(255, 255, 255);
-  border: 1px solid white;
+  background-color: #F4F9F9;
+  border: 1px solid #F4F9F9;
   border-radius: 10px;
   margin: 0 auto;
   /* opacity: 0.6; */
@@ -119,10 +119,10 @@
   /* display: block; */
   transition: all .5s cubic-bezier(0.645, 0.045, 0.355, 1);
   margin-top: -10px;
-  background-color: hotpink;
+  background-color: #F875AA;
   border-radius: 8px;
   cursor: pointer;
-  font-family: HSYuji-Regular;
+  font-family: Cafe24Ssurround;
   ;
   /* margin-bottom: 20px; */
 }

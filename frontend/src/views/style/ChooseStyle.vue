@@ -29,7 +29,7 @@
     </div>
     <div class="divider"></div>
     <div align="center">
-      <div class="btn" @click="confirm()">dasdad</div>
+      <div class="btn" @click="confirm()">스타일 확정</div>
     </div>
   </div>
 </template>
@@ -147,7 +147,8 @@
     padding-top: 4rem;
     height: 100vh;
     width: 100vw;
-    background: linear-gradient(to bottom right, skyblue, white);
+    background: linear-gradient(to bottom right, #FBACCC, #F1D1D0, white);
+    font-family: Binggrae-Bold;
   }
 
   .container {
@@ -223,8 +224,9 @@
   padding: 10px;
   width: 400px;
   border-radius: 25px;
-  background-color: violet;
+  background-color: #F875AA;
   cursor: pointer;
   margin-top: 5vh;
+  font-family: Cafe24Ssurround;
 }
 </style>
