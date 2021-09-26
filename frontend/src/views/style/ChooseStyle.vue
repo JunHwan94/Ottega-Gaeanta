@@ -6,13 +6,15 @@
     </div>
     <div class="container">
       <div class="box" align="center">
-        <img :src="img">
+        <!-- <img :src="img"> -->
+        <div class="check"></div>
       </div>
       <div class="box">
         <img :src="img2">
       </div>
       <div class="box">
         <img src="https://source.unsplash.com/1000x804">
+
       </div>
       <div class="box">
         <img src="https://source.unsplash.com/1000x806">
@@ -20,6 +22,10 @@
       <div class="box">
         <img src="https://source.unsplash.com/1000x806">
       </div>
+    </div>
+    <div class="divider"></div>
+    <div align="center">
+      <div class="btn" @click="confirm()">dasdad</div>
     </div>
   </div>
 </template>
@@ -30,27 +36,46 @@
       img: require('@/assets/sample2.jpg'),
       img2: require('@/assets/main.png'),
     }),
+    methods: {
+      confirm() {
+        alert('검색 페이지로 이동')
+        // 스타일 세 개 이상 선택 했는지 확인
 
+        // 선호 스타일 리스트 한 번 보여주고 다시 물어보기 ?
+
+        // 이동
+        this.$router.push('/searchResult')
+      }
+    },
     mounted() {
-      let app = new PIXI.Application({width: 250, height: 400});
-      document.querySelector('.main-container').appendChild(app.view);
+      const frameWidth = 310, frameHeight = 300;
+
+      let app = new PIXI.Application({
+        width: frameWidth,
+        height: frameHeight
+      });
+
+      /* PIXI 객체 생성 및 적용 */
+      console.log(app.view.style.position = 'relative')
+      document.querySelector('.box').appendChild(app.view); // html tag 한 개 나옴
       let img = new PIXI.Sprite.from(require('@/assets/sample2.jpg'));
-      img.width = 250;
-      img.height = 400;
+      img.width = frameWidth;
+      img.height = frameHeight;
       app.stage.addChild(img);
 
+      /* PIXI 이미지 외곡 설정 및 적용 */
       let depthMap = new PIXI.Sprite.from(require('@/assets/map3.jpg'));
-      depthMap.width = 250;
-      depthMap.height = 400;
+      depthMap.width = frameWidth;
+      depthMap.height = frameHeight;
       app.stage.addChild(depthMap);
-
       let displacementFilter = new PIXI.filters.DisplacementFilter(depthMap);
       app.stage.filters = [displacementFilter];
 
-      let control = document.querySelector('.main-container')
-      control.onmousemove = function(e) {
-          displacementFilter.scale.x = (window.innerWidth / 2 - e.clientX) / 20;
-          displacementFilter.scale.y = (window.innerHeight / 2 - e.clientY) / 20;
+      /* PIXI 이미지 마우스 이벤트 지정 */
+      let control = document.querySelector('.box')
+      control.onmousemove = function (e) {
+        displacementFilter.scale.x = (window.innerWidth / 2 - e.clientX) / 20;
+        displacementFilter.scale.y = (window.innerHeight / 2 - e.clientY) / 20;
       };
     },
   }
@@ -72,6 +97,10 @@
     /* height: 100vh; */
   }
 
+  .divider {
+    margin-top: 50px;
+  }
+
   .box {
     flex: 1;
     overflow: hidden;
@@ -81,8 +110,17 @@
     line-height: 0;
     height: 100%;
     cursor: pointer;
+    /* background: black; */
+    position: relative;
   }
-
+  .check {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: black;
+    z-index: 1;
+    opacity: 0.5;
+  }
   .box>img {
     width: 100%;
     /* height: calc(100% - 10vh); */
@@ -95,8 +133,8 @@
   .box:hover {
     flex: 5%;
   }
-F
-  .box:hover>img {
+
+  F .box:hover>img {
     width: 100%;
     height: 100%;
   }
@@ -104,9 +142,19 @@ F
   .explain-area {
     margin: 100px;
   }
+
   .explain-detail {
     margin-left: 15px;
     margin-top: 15px;
     font-size: 3vh;
   }
+  .btn {
+  border: 2px solid black;
+  padding: 10px;
+  width: 400px;
+  border-radius: 25px;
+  background-color: violet;
+  cursor: pointer;
+  margin-top: 5vh;
+}
 </style>
