@@ -5,23 +5,27 @@
       <p class="explain-detail">회원님이 좋아하실만한 스타일이나 색감을 더 많이 추천해드릴 수 있습니다.</p>
     </div>
     <div class="container">
-      <div class="box" align="center">
-        <!-- <img :src="img"> -->
-        <div class="check"></div>
+      <div v-for="i in 5" :key="i" class="box" @click="boxClick(i - 1)">
+        <div class="select">
+          <!-- <h1>♥</h1> -->
+        </div>
+      </div>
+      <!-- <div class="box">
+        <div class="select">
+        </div>
       </div>
       <div class="box">
-        <img :src="img2">
+        <div class="select">
+        </div>
       </div>
       <div class="box">
-        <img src="https://source.unsplash.com/1000x804">
-
+        <div class="select">
+        </div>
       </div>
       <div class="box">
-        <img src="https://source.unsplash.com/1000x806">
-      </div>
-      <div class="box">
-        <img src="https://source.unsplash.com/1000x806">
-      </div>
+        <div class="select">
+        </div>
+      </div> -->
     </div>
     <div class="divider"></div>
     <div align="center">
@@ -33,50 +37,107 @@
 <script>
   export default {
     data: () => ({
-      img: require('@/assets/sample2.jpg'),
-      img2: require('@/assets/main.png'),
+      images: [
+        require('@/assets/chooseStyle/sample2.jpg'),
+        require('@/assets/chooseStyle/sample3.jpg'),
+        require('@/assets/chooseStyle/sample4.jpg'),
+        require('@/assets/chooseStyle/sample5.jpg'),
+        require('@/assets/chooseStyle/sample6.jpg'),
+      ],
+      checkList: [false, false, false, false, false],
     }),
     methods: {
       confirm() {
-        alert('검색 페이지로 이동')
+        alert(this.checkList)
         // 스타일 세 개 이상 선택 했는지 확인
 
         // 선호 스타일 리스트 한 번 보여주고 다시 물어보기 ?
 
         // 이동
         this.$router.push('/searchResult')
+      },
+      boxClick (i) {
+        this.checkList[i] = !this.checkList[i]
+        const select = document.getElementsByClassName('select')[i]
+        if (this.checkList[i]) {
+          select.classList.add('check')
+        } else {
+          select.classList.remove('check')
+        }
+        
       }
     },
     mounted() {
       const frameWidth = 310, frameHeight = 300;
-
-      let app = new PIXI.Application({
-        width: frameWidth,
-        height: frameHeight
-      });
+      const size = 5
+      // let app = new PIXI.Application({
+      //   width: frameWidth,
+      //   height: frameHeight
+      // });
+      console.log(this.img)
+      const apps = []
+      for (let i = 0; i < size; i++) {
+        apps[i] = new PIXI.Application({width: frameWidth, height: frameHeight})
+      }
 
       /* PIXI 객체 생성 및 적용 */
-      console.log(app.view.style.position = 'relative')
-      document.querySelector('.box').appendChild(app.view); // html tag 한 개 나옴
-      let img = new PIXI.Sprite.from(require('@/assets/sample2.jpg'));
-      img.width = frameWidth;
-      img.height = frameHeight;
-      app.stage.addChild(img);
+      // console.log(app.view.style.position = 'relative')
+      // document.querySelector('.box').appendChild(app.view); // html tag 한 개 나옴
+      const frames = document.getElementsByClassName('box')
+      for (let i = 0; i < frames.length; i++) {
+        frames[i].appendChild(apps[i].view)
+        console.log('ddd')
+      }
+      console.log('1')
+      const images = []
+      for (let i = 0; i < size; i++) {
+        images[i] = new PIXI.Sprite.from(this.images[i])
+        images[i].width = frameWidth
+        images[i].height = frameHeight
+        apps[i].stage.addChild(images[i])
+      }
+      console.log('2')
+      // let img = new PIXI.Sprite.from(require('@/assets/sample2.jpg'));
+      // img.width = frameWidth;
+      // img.height = frameHeight;
+      // app.stage.addChild(img);
 
       /* PIXI 이미지 외곡 설정 및 적용 */
-      let depthMap = new PIXI.Sprite.from(require('@/assets/map3.jpg'));
-      depthMap.width = frameWidth;
-      depthMap.height = frameHeight;
-      app.stage.addChild(depthMap);
-      let displacementFilter = new PIXI.filters.DisplacementFilter(depthMap);
-      app.stage.filters = [displacementFilter];
+      const depthMaps = []
+      const displacementFilters = []
+      for (let i = 0; i < size; i++) {
+        depthMaps[i] = new PIXI.Sprite.from(require('@/assets/map3.jpg'));
+        depthMaps[i].width = frameWidth
+        depthMaps[i].height = frameHeight
+        console.log('2-1')
+        apps[i].stage.addChild(depthMaps[i])
+        console.log('2-2')
+        displacementFilters[i] = new PIXI.filters.DisplacementFilter(depthMaps[i])
+        console.log('2-3')
+        console.log(apps[i])
+        apps[i].stage.filters = [displacementFilters[i]]
+      }
+      console.log('3')
+      for (let i = 0; i < frames.length; i++) {
+        frames[i].onmousemove = function (e) {
+          displacementFilters[i].scale.x = (window.innerWidth / 2 - e.clientX) / 20;
+          displacementFilters[i].scale.y = (window.innerHeight / 2 - e.clientY) / 20;
+        }
+      }
+      console.log('4')
+      // let depthMap = new PIXI.Sprite.from(require('@/assets/map3.jpg'));
+      // depthMap.width = frameWidth;
+      // depthMap.height = frameHeight;
+      // app.stage.addChild(depthMap);
+      // let displacementFilter = new PIXI.filters.DisplacementFilter(depthMap);
+      // app.stage.filters = [displacementFilter];
 
       /* PIXI 이미지 마우스 이벤트 지정 */
-      let control = document.querySelector('.box')
-      control.onmousemove = function (e) {
-        displacementFilter.scale.x = (window.innerWidth / 2 - e.clientX) / 20;
-        displacementFilter.scale.y = (window.innerHeight / 2 - e.clientY) / 20;
-      };
+      // let control = document.querySelector('.box')
+      // control.onmousemove = function (e) {
+      //   displacementFilter.scale.x = (window.innerWidth / 2 - e.clientX) / 20;
+      //   displacementFilter.scale.y = (window.innerHeight / 2 - e.clientY) / 20;
+      // };
     },
   }
 </script>
@@ -110,16 +171,25 @@
     line-height: 0;
     height: 100%;
     cursor: pointer;
+    border-radius: 15px;
+    border: 2px solid black;
     /* background: black; */
     position: relative;
+    /* box-shadow: 0 20px 30px rgba(0,0,0,.1); */
   }
-  .check {
+  .select {
     position: absolute;
     width: 100%;
     height: 100%;
-    background: black;
     z-index: 1;
+  }
+  .check {
+    background: black;
     opacity: 0.5;
+  }
+  .check > h1 { 
+    color: red; 
+    line-height: 300px;
   }
   .box>img {
     width: 100%;
@@ -131,7 +201,7 @@
   }
 
   .box:hover {
-    flex: 5%;
+    flex: 2%;
   }
 
   F .box:hover>img {
