@@ -73,6 +73,7 @@ project.ext.set("build.date", buildTime())
 
 processResources {
 	with copySpec {
+		duplicatesStrategy = 'include'
 		from "src/main/resources"
 		include "**/application*.yml"
 		include "**/application*.yaml"

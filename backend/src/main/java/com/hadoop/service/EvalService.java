@@ -1,6 +1,4 @@
 package com.hadoop.service;
-
-import com.google.gson.JsonObject;
 import com.hadoop.entity.ColorRank;
 import com.hadoop.response.EvalColorRes;
 import com.hadoop.util.ColorRankUtil;
@@ -14,7 +12,6 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.io.File;
 import java.io.IOException;
 
@@ -64,4 +61,6 @@ public class EvalService {
         EvalColorRes evalColorRes = new EvalColorRes(top, pants, colorRankUtil.rank.get(key));
         return evalColorRes;
     }
+
+
 }

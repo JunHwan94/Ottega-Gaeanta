@@ -1,7 +1,7 @@
 <template>
   <div class="nav-container">
     <div class="header">
-      <div class="left">
+      <div class="left" @click="changePage(0)">
         <h2>Ottega-Gaeanta</h2>
       </div>
       <div class="right" justify-end>
@@ -32,7 +32,7 @@
       btns: [
         ['Large', 'lg'],
       ],
-      colors: ['teal darken-1'],
+      colors: ['#F875AA'],
       items: ['메인으로', '의상 검색','입은 옷 색 조합 평가','미지정 메뉴',],
       pages: ['/','/searchResult','/evaluationMain','/'],
     }),
@@ -59,6 +59,9 @@
 .left {
   width: 50%;
   float: left;
+}
+.left > h2 {
+  cursor: pointer;
 }
 .right {
   width: 50%;
