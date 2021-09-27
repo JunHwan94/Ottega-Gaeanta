@@ -81,12 +81,11 @@ def main():
     colorArray = [['black', [0, 0, 0]], ['white', [255, 255, 255]], ['grey', [128, 128, 128]],
                   ['red', [255, 0, 0]], ['pink', [255, 0, 255]], ['orange', [255, 165, 0]],
                   ['beige', [245, 245, 220]], ['brown', [150, 75, 0]], ['yellow', [255, 255, 0]],
-                  ['green', [0, 128, 0]], ['khaki', [240, 230, 140]], ['mint', [62, 180, 137]],
-                  ['blue', [0, 0, 255]], ['navy', [0, 0, 128]], ['skyblue', [135, 206, 235]],
-                  ['purple', [128, 0, 128]], ['lavender', [230, 230, 250]], ['wine', [114, 47, 55]],
-                  ['neon', [255, 255, 0]], ['gold', [255, 215, 0]]
+                  ['green', [0, 128, 0]],
+                  ['blue', [0, 0, 255]],  ['skyblue', [135, 206, 235]],
+                  ['purple', [128, 0, 128]],
                   ]
-    compareArray = [["0"] * 2 for i in range(20)]
+    compareArray = [["0"] * 2 for i in range(13)]
 
     bar = plot_colors(hist, clt.cluster_centers_, resultArray)
 
@@ -96,7 +95,7 @@ def main():
         if (resultArray[i][1][0] <= 5 and resultArray[i][1][1] <= 5 and resultArray[i][1][2] <= 5):
             print("")
         else:
-            for j in range(20):
+            for j in range(13):
                 compareArray[j][0] = colorArray[j][0]
                 # compareArray[j][1] = abs(resultArray[i][1][0] - colorArray[j][1][0]) + abs(resultArray[i][1][1] - colorArray[j][1][1]) + abs(resultArray[i][1][2] - colorArray[j][1][2])
                 compareArray[j][1] = math.sqrt(math.pow((resultArray[i][1][0] - colorArray[j][1][0]), 2) + math.pow((
