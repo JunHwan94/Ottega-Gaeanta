@@ -1,8 +1,10 @@
 import os
+from posix import O_ACCMODE
 
 from flask import Flask, request, flash, jsonify
 import flask
 from flask_cors import CORS
+from numpy.core.numerictypes import obj2sctype
 from werkzeug.utils import secure_filename
 
 # import config
@@ -48,6 +50,30 @@ def movePants():
 
     return False
 
+def moveSkirt():
+    ii = [i for i in os.listdir(MaskModelImagePath) if 'skirt' in i]
+    if len(ii) != 0:
+        shutil.copy2(MaskModelImagePath+ii[0], ExtractImagePath)
+        return True
+
+    return False
+
+def moveDress():
+    ii = [i for i in os.listdir(MaskModelImagePath) if 'dress' in i]
+    if len(ii) != 0:
+        shutil.copy2(MaskModelImagePath+ii[0], ExtractImagePath)
+        return True
+
+    return False
+
+def moveOuter():
+    ii = [i for i in os.listdir(MaskModelImagePath) if 'outer' in i]
+    if len(ii) != 0:
+        shutil.copy2(MaskModelImagePath+ii[0], ExtractImagePath)
+        return True
+
+    return False
+
 @app.route("/")
 @app.route('/index')
 def index():
@@ -55,7 +81,7 @@ def index():
 
 @app.route("/model", methods=['POST'])
 def uploadImageFile():
-    top, pants, dress = '', '', ''
+    top, pants, skirt, dress, outer = '', '', '', '', ''
     if request.method == 'POST':
         if 'file' not in request.files:
             flash('No file part')
@@ -77,12 +103,42 @@ def uploadImageFile():
             check = movePants()
             if check:
                 pants = extract.main()
+            deleteAllfileInExtract()
+            check = moveSkirt()
+            if check:
+                skirt = extract.main()
+            deleteAllfileInExtract()
+            check = moveDress()
+            if check:
+                dress = extract.main()
+            deleteAllfileInExtract()
+            check = moveOuter()
+            if check:
+                outer = extract.main()
 
-    result = {'top' : top, 'pants' : pants, 'dress' : dress}
+    if top is None and outer is not None:
+        top = outer
+    if top is None and pants is None and dress is not None:
+        top = dress
+        pants = dress
+    if top is not None and outer is not None and dress is not None:
+        top = outer
+        pants = dress
+    if pants is None and skirt is not None:
+        pants = skirt
+    if pants is None and dress is not None:
+        pants = dress
+
+
+
+
+    result = {'top' : top, 'pants' : pants}
     print(result)
-            
+
     return jsonify(result)
 
 
-if __name__ == "__main__": 
-    app.run(host='0.0.0.0', port='8000', debug=True)
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port='3000', debug=True)
+
+# /opt/conda/envs/server/bin/gunicorn
