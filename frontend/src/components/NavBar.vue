@@ -42,6 +42,7 @@
 </template>
 
 <script>
+  import { mapGetters } from "vuex";
   export default {
     name: 'NavBar',
     data: () => ({
@@ -54,9 +55,18 @@
       items: ['메인으로', '의상 검색','색 조합 평가','미지정 메뉴',],
       pages: ['/','/searchResult','/evaluationMain','/'],
     }),
+    computed: {
+      ...mapGetters(["getVideoStream"]),
+    },
     methods: {
       changePage(index) {
         this.menuVisible = false
+        if (this.getVideoStream != null) { // 웹 캠 객체가 활성화 상태이면 비활성 처리함
+          const tracks = this.getVideoStream.getTracks()
+          tracks.forEach(track => {
+            track.stop();
+          });
+        }
         this.$router.push(this.pages[index])
       },
       clickMenu() {

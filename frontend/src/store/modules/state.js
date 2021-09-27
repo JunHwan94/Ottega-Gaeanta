@@ -1,10 +1,11 @@
-const showSearchDetail = false;
-const searchItemsBool = false;
+const showSearchDetail = false
+const searchItemsBool = false
 const images = ['@/assets/1.jpg',
                 '@/assets/2.jpg',
                 '@/assets/3.jpg',
-                ];
-const searchDetailImageURL = '@/assets/3.jpg';
+                ]
+const searchDetailImageURL = '@/assets/3.jpg'
+const videoStream = null
 
 export default function () {
     return {
@@ -12,5 +13,6 @@ export default function () {
         searchItemsBool,
         images,
         searchDetailImageURL,
+        videoStream,
     }
 }
