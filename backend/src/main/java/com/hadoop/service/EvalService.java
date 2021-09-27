@@ -1,5 +1,4 @@
 package com.hadoop.service;
-
 import com.hadoop.util.FileUtil;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.*;
@@ -8,13 +7,11 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.io.File;
 import java.io.IOException;
 
 @Service
 public class EvalService {
-
     public ResponseEntity<String> storeImage(MultipartFile image) throws IOException {
         FileUtil fileUtil = FileUtil.getInstance();
 
@@ -47,4 +44,6 @@ public class EvalService {
         }
         return response;
     }
+
+
 }
