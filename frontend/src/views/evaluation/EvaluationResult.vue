@@ -94,8 +94,8 @@
   padding-top: 4rem;
   height: 250vh;
   width: 100vw;
-  background: linear-gradient(white 10%, #8AFFC7, #FFCECE, #BAD7DF);
-  font-family: HSYuji-Regular;
+  background: linear-gradient(to bottom right, #FBACCC, #F1D1D0, white);
+  font-family: Binggrae-Bold;
 }
 
 .top {
@@ -103,7 +103,7 @@
 }
 
 .top div {
-  font-family: HSYuji-Regular;
+  font-family: Binggrae-Bold;
 }
 
 #sub-title {
@@ -114,7 +114,7 @@
   font-size: 50px;
 }
 .color-card {
-  border: 2px solid black;
+  box-shadow: 3px 3px 3px 3px rgb(226, 171, 99);
   border-radius: 30px;
   width: 25vw;
   height: 100%;
@@ -123,12 +123,13 @@
   background: white;
 }
 .card {
-  border: 2px solid black;
+  /* border: 2px solid black; */
+  box-shadow: 3px 3px 3px 3px rgb(226, 171, 99);
   width: 25vw;
   height: 400px;
   border-radius: 30px;
   padding: 20px;
-  background: bisque
+  background: #F4F9F9;
 }
 
 .card>p {
@@ -183,7 +184,7 @@
   padding: 10px;
   width: 400px;
   border-radius: 25px;
-  background-color: violet;
+  background-color: #F875AA;
   cursor: pointer;
   margin-top: 5vh;
 }
