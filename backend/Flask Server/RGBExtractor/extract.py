@@ -83,7 +83,7 @@ def main():
                   ['beige', [245, 245, 220]], ['brown', [150, 75, 0]], ['yellow', [255, 255, 0]],
                   ['green', [0, 128, 0]],
                   ['blue', [0, 0, 255]],  ['skyblue', [135, 206, 235]],
-                  ['purple', [128, 0, 128]],
+                  ['purple', [128, 0, 128]]
                   ]
     compareArray = [["0"] * 2 for i in range(13)]
 
