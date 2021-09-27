@@ -8,7 +8,7 @@ import java.util.ArrayList;
 @Getter
 @Setter
 public class Data {
-    ArrayList < Object > style = new ArrayList < Object > ();
+    ArrayList < Style > style = new ArrayList < Style > ();
     ArrayList < Object > outer = new ArrayList < Object > ();
     ArrayList < Object > bottom = new ArrayList < Object > ();
     ArrayList < Object > onepiece = new ArrayList < Object > ();
