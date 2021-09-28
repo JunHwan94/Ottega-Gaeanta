@@ -441,28 +441,22 @@ export default {
     save() {
       alert(`검색 ㄱㄱ싱!`);
       this.menuOpen = false;
-      this.menuOpen = false;
       this.categoryValue = null;
       this.styleValue = null;
       this.designValue = null;
-      this.model = null;
     },
     initialization () {
       this.menuOpen = false;
       this.categoryValue = null;
       this.styleValue = null;
       this.designValue = null;
-      this.model = null;
     },
   },
   data () {
     return {
       menuOpen: false,
-      firstname: "",
-      lastname: "",
       categoryItems: ['상의','하의','아우터','원피스'],
       categoryValue: null,
-      model: null,
       styleItems: ['탑', '블라우스', '캐주얼상의', '니트웨어', '셔츠', '베스트','코트','재킷','점퍼','패딩','청바지','팬츠','스커트','드레스','점프수트','수영복'],
       styleValue: null,
       topIndex: [1,2,3,4,5,6],
@@ -470,8 +464,8 @@ export default {
       outerIndex: [7,8,9,10],
       dressIndex: [14,15,16],
       designItems: [
-                    'black','white','grey','red','pink','orange','beige','brown','yellow','green','blue','sky blue','purple',
-                    'check','stripe','zigzag','leopard','zebra','dot','camouflage','paisley','argyle','floral','lettering','skull','tiedye','gradation','solid','graphic','houndstouth','gingham'
+                    '블랙','화이트','그레이','레드','핑크','오렌지','베이지','브라운','옐로우','그린','블루','스카이블루','퍼플',
+                    '체크','스트라이프','지그재그','호피','지브라','도트','카무플라쥬','페이즐리','아가일','플로럴','레터링','해골','타이다이','그라데이션','무지','그래픽','하운즈 투스','깅엄'
                     ],
       designRGBs: [
                     '#000000','#FFFFFFF','#808080','#FF0000','#FF00FF','#FFA500','#F5F5DC','#964B00','#FFFF00','#008000','#0000FF','#87CEEB','#800080',
