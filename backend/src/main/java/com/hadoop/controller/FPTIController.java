@@ -18,7 +18,7 @@ public class FPTIController {
     private final FPTIService fptiService;
 
     @GetMapping("/result")
-    public ResponseEntity<? extends BaseResponseBody> getSurvey(int typeNo){
+    public ResponseEntity<? extends BaseResponseBody> getResult(int typeNo){
         FPTIType type = fptiService.getResult(typeNo);
         return ResponseEntity.status(200).body(FPTIRes.of(type));
     }
