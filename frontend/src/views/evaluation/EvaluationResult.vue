@@ -45,6 +45,7 @@
             색상 조합 이렇게 다양합니다 이 기준에 맞춰서 옷을 입으면 조금 더 나은 스타일링이 가능하겠죠!?<br>
             색상 조합 이렇게 다양합니다 이 기준에 맞춰서 옷을 입으면 조금 더 나은 스타일링이 가능하겠죠!?<br>
             색상 조합 이렇게 다양합니다 이 기준에 맞춰서 옷을 입으면 조금 더 나은 스타일링이 가능하겠죠!?
+            {{ getUserFashionRate }}
           </div>
         </v-col>
         <v-col lg=2></v-col>
@@ -71,6 +72,7 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
   export default {
     data: () => ({
       mainImageUrl: require('@/assets/evaluation-model.png'),
@@ -81,6 +83,9 @@
         require('@/assets/evalResult-sample-3.jpg'),
       ]
     }),
+    computed: {
+    ...mapGetters(["getUserFashionRate"]),
+    },
     methods: {
       move() {
         alert('test')
