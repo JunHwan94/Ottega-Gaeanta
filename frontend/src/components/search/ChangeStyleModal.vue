@@ -1,11 +1,11 @@
 <template>
   <div>
-    <div class="changeStyle">
+    <!-- <div class="changeStyle">
       <v-img :src="changeStyleImg" class="vimg"></v-img>
       <div style="font-family: Binggrae-Bold;" class="vbtn">
         선호스타일
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
