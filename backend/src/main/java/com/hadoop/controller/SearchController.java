@@ -3,16 +3,18 @@ package com.hadoop.controller;
 import com.hadoop.entity.Data;
 import com.hadoop.repository.SearchRepository;
 import com.hadoop.request.SearchReq;
+import com.hadoop.response.OtherStyleRes;
 import com.hadoop.response.SearchRes;
 import com.hadoop.service.S3Service;
 import com.hadoop.service.SearchService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Api(value="예시")
 @RestController
@@ -39,5 +41,10 @@ public class SearchController {
 
         SearchRes searchRes = new SearchRes(clothes, s3url);
         return ResponseEntity.ok().body(searchRes);
+    }
+
+    @PostMapping("/other")
+    public ResponseEntity<List<OtherStyleRes>> getOtherStyle(@RequestBody String style){
+        return ResponseEntity.ok(searchService.getOtherStyles(style));
     }
 }
