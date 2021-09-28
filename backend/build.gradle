@@ -16,6 +16,7 @@ buildscript{
 		classpath "io.spring.gradle:dependency-management-plugin:${springDependencyMgmtVer}.RELEASE"
 		classpath "org.springframework:springloaded:${springLoadedVer}.RELEASE"
 		classpath "com.github.node-gradle:gradle-node-plugin:3.1.0"
+		classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:3.3"
 	}
 }
 
@@ -23,10 +24,13 @@ plugins {
 	id 'org.springframework.boot' version "${springBootVer}"
 	id 'java'
 	id 'idea'
+	id "org.sonarqube" version "3.3"
 }
 apply plugin: 'application'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'com.github.node-gradle.node'
+apply plugin: 'org.sonarqube'
+apply plugin: 'jacoco'
 
 repositories {
 	mavenCentral()
@@ -107,4 +111,31 @@ dependencies {
 
 test {
 	useJUnitPlatform()
+	finalizedBy 'jacocoTestReport'
+}
+jacoco {
+	toolVersion = "0.8.7"
+}
+jacocoTestReport {
+	reports {
+		xml.enabled true
+		csv.enabled false
+		html.enabled false
+	}
+}
+
+sonarqube {
+	properties {
+		property "sonar.projectKey", "s05-bigdata-dist_S05P21B206_AXwp_KW6-V6HVf4nJyvW"
+		property 'sonar.host.url', 'http://j5b206.p.ssafy.io:5000/'
+		property 'sonar.login', '9601c8e6ef9da61d27b78a5d4ca7963cf35d649f'
+		property 'sonar.sources', 'src'
+		property 'sonar.language', 'java'
+		property 'sonar.projectVersion', '0.0.1-SNAPSHOT'
+		property 'sonar.sourceEncoding', 'UTF-8'
+		property 'sonar.coverage.jacoco.xmlReportPaths', '${buildDir}/reports/jacoco/test/jacocoTestReport.xml'
+		property 'sonar.java.binaries', '${buildDir}/classes'
+		property 'sonar.test.inclusions', '**/*Test.java'
+		property 'sonar.exclusions', '**/test/**, **/Q*.java, **/*Doc*.java, **/resources/**'
+	}
 }
