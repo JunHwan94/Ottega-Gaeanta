@@ -19,7 +19,7 @@
             </div>
           </v-row><br>
           <v-row class="menu-container" justify="center">
-            <div class="menu">
+            <div class="menu" @click="toggleModal()">
               사진 업로드 방식
               <img :src="test1" style="vertical-align:middle; width: 50px; height: 50px;"/>
               <!-- <v-icon large color="white darken-5"> mdi-folder-star</v-icon> -->
@@ -38,10 +38,12 @@
         </v-col>
       </v-row>
     </div>
+    <evaluation-picture-modal v-if="modalVisible" @close="invisibleModal"></evaluation-picture-modal>
   </div>
 </template>
 
 <script>
+  import EvaluationPictureModal from '@/components/evaluation/EvaluationPictureModal.vue'
   export default {
     data: () => ({
       pages: ['evaluationFilm'],
@@ -49,7 +51,11 @@
       test: require('@/assets/camerapicture.png'),
       test1: require('@/assets/picture.png'),
       test2: require('@/assets/color.png'),
+      modalVisible: false,
     }),
+    components: {
+      EvaluationPictureModal,
+    },
     mounted() {
       const menu = document.querySelectorAll('.menu')
       const leftImage = document.querySelector('.left-image')
@@ -79,6 +85,12 @@
       changePage(index) {
         this.$router.push(this.pages[index])
       },
+      toggleModal () {
+        this.modalVisible = !this.modalVisible
+      },
+      invisibleModal () {
+        this.modalVisible = false
+      }
     }
   }
 </script>
@@ -142,5 +154,10 @@
   width:400px; height:400px; visibility: hidden;
   transition-property: all;
   transition-duration: 2.5s;
+}
+
+.blur {
+  background: black;
+  opacity: 0.5;
 }
 </style>
