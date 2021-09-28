@@ -21,8 +21,8 @@
         <div class="top-menu">
           <div>
           <img :src="hangerImg" @click="clickMenu()"/>
-          <div class="menu" @click="clickMenu()">
-            메뉴
+          <div class="nav-menu">
+            <span @click="clickMenu()">메뉴</span>
           </div>
           </div>
           <div class="menu-detail" align="right" v-if="menuVisible">
@@ -113,9 +113,11 @@
   height: 40px;
   cursor: pointer;
 }
-.menu {
+.nav-menu {
   margin-right: 5px;
   color: #F875AA;
+}
+.nav-menu > span {
   cursor: pointer;
 }
 .menu-detail {

@@ -6,6 +6,7 @@ const images = ['@/assets/1.jpg',
                 ]
 const searchDetailImageURL = '@/assets/3.jpg'
 const videoStream = null
+const selectedUserStyle = []
 
 export default function () {
     return {
