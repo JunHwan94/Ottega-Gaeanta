@@ -3,7 +3,7 @@
 import axios from 'axios'
 axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 
-const baseUrl = 'https://localhost:8095/'
+const baseUrl = 'https://localhost:443/'
 // axios 샘플
 export function showStyleInfo({ commit }, credentials) {
     const showSearchDetail = !credentials.showSearchDetail

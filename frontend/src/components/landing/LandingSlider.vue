@@ -33,7 +33,7 @@
               다른 사람들은 어떻게 옷을 입는지 구경하고<br>
               나만의 스타일을 만들어가세요.
             </div>
-            <div class="menu-btn" :style="{ backgroundColor: btnColor[page - 1]}">
+            <div class="menu-btn">
               스타일 똑똑하게 검색하세요!
             </div>
           </v-col>
@@ -51,7 +51,7 @@
               120만건의 패션 스타일을 분석하여<br>
               어울리는 스타일과 색상을 알려드려요!
             </div>
-            <div class="menu-btn" :style="{ backgroundColor: btnColor[page - 1]}">
+            <div class="menu-btn">
               나만의 코디를 추천 받고싶다면?
             </div>
           </v-col>
@@ -69,7 +69,7 @@
               나의 피부톤을 정확하게 알고 자신만의<br>
               개성있는 스타일을 만들어가세요!
             </div>
-            <div class="menu-btn" :style="{ backgroundColor: btnColor[page - 1]}">
+            <div class="menu-btn">
               나이 퍼스널 컬러 알아보기
             </div>
           </v-col>
@@ -87,7 +87,7 @@
               지금 바로 옷태가 괜찮네 서비스에<br>
               접속하고 다양한 기능을 경험하세요.
             </div>
-            <div class="menu-btn" @click="changePage(4)" :style="{ backgroundColor: btnColor[page - 1]}">
+            <div class="menu-btn" @click="changePage(4)">
               서비스 시작하기
             </div>
           </v-col>
@@ -119,10 +119,10 @@
         'https://post-phinf.pstatic.net/MjAyMTA0MDZfMjIw/MDAxNjE3Njk0NTYzMDIy.vh_iFhI2K6VWGCSX0ysqFr23aPnYqPTZkzpbUav7xRkg.AWMAI1T96OnWsGWPDDwHrkNCAgOlBho_S9cqzhArFg8g.JPEG/%EC%9D%BC%EB%9F%AC%EC%8A%A4%ED%8A%B8_%EB%8F%84%EC%8B%9D%ED%99%94.jpg?type=w1200'
       ],
       btnColor: [
-        '#BAD7DF',
-        '#FFE2E2',
-        '#99DDCC',
-        'hotpink',
+        '#F875AA',
+        '#F875AA',
+        '#F875AA',
+        '#F875AA',
       ],
       pages: ['/', '/', '/', '/', '/chooseStyle'],
       page: 1,
@@ -142,7 +142,7 @@
           menu[i].style.color = 'hotpink' // <- menu hover 문제
           // menu[i].classList.remove('menu')
           progress[i].style.background = 'white'
-          progress[i].style.borderColor = '#e4d2d2';
+          progress[i].style.borderColor = '#e4d2d2'
         }
       },
       moveFocusing(index) {
@@ -153,7 +153,14 @@
         progress.style.background = this.btnColor[index - 1]
         progress.style.borderColor = this.btnColor[index - 1]
       },
-    }
+    },
+    mounted() {
+      // 슬라이더 첫 메뉴 초기 선택
+      const firstProgress = document.getElementsByClassName('progress')[0]
+      firstProgress.style.background = '#F975AA'
+      firstProgress.style.borderColor = '#F975AA'
+      document.getElementsByClassName('menu')[0].style.color = 'red'
+    },
   }
 </script>
 
@@ -185,9 +192,9 @@ img {
   box-shadow: 0 0 5px green;
 }
 .menu {
-  font-family: 'HSYuji-Regular';
+  font-family: 'Cafe24Ssurround';
   font-size: 1.5rem;
-  color: hotpink;
+  color: #F975AA;
   cursor: pointer;
   z-index: 2;
 }
@@ -212,6 +219,12 @@ img {
   border-radius: 20px;
   padding: 10px;
   cursor: pointer;
+  color: white;
+  background-color: #F875AA;
+}
+.menu-btn:hover {
+  background-color: #F1D1D0;
+  color: #F875AA;
 }
 .menu-row {
   animation: fadeIn 1.0s ease-in-out;

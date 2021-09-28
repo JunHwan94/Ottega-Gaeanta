@@ -19,8 +19,15 @@
     methods: {
     },
     mounted() {
+      // open cv script
       let script = document.createElement('script')
       script.setAttribute('src', 'https://docs.opencv.org/3.4/opencv.js')
+      script.async = true;
+      document.head.appendChild(script)
+
+      // pixi script
+      script = document.createElement('script')
+      script.setAttribute('src', 'https://cdnjs.cloudflare.com/ajax/libs/pixi.js/5.1.3/pixi.min.js')
       script.async = true;
       document.head.appendChild(script)
     }
@@ -32,12 +39,6 @@
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Binggrae-Bold.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-}
-@font-face {
-  font-family: 'HSYuji-Regular';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/HSYuji-Regular.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
 }
 @font-face {
   font-family: 'Cafe24Ssurround';
