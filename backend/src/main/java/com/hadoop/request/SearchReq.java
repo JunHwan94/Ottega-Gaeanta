@@ -3,6 +3,8 @@ package com.hadoop.request;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+
 @Getter
 @Setter
 public class SearchReq {
@@ -10,5 +12,6 @@ public class SearchReq {
     String category;
     String color;
     String print;
+    String[] style;
     int page;
 }
