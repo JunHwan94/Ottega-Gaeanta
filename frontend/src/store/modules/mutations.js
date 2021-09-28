@@ -14,3 +14,7 @@ export function SAVE_VIDEO_STREAM (state, stream) {
 export function SAVE_SELECTED_USER_STYLE (state, selectedUserStyle) {
   state.selectedUserStyle = selectedUserStyle
 }
+export function SAVE_USER_FASHION_RATE (state, userFashionRate) {
+  state.userFashionRate = userFashionRate
+  console.log(state.userFashionRate)
+}
