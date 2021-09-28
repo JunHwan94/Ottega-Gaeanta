@@ -1,7 +1,9 @@
 package com.hadoop.response;
 
 import com.hadoop.entity.FPTIType;
+import lombok.Getter;
 
+@Getter
 public class FPTIRes extends BaseResponseBody{
     private static class ResHolder{
         private static final FPTIRes res = new FPTIRes();
