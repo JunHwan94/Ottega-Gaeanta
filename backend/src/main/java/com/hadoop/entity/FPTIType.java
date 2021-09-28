@@ -1,8 +1,8 @@
 package com.hadoop.entity;
 
-import lombok.Setter;
+import lombok.Data;
 
-@Setter
+@Data
 public class FPTIType {
     private Integer typeNo;
     private String fptiName;
