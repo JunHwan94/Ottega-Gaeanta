@@ -31,7 +31,7 @@ public class EvalService {
         image.transferTo(file);
 
         MultiValueMap<String, Object> params = new LinkedMultiValueMap<>();
-        params.add("file", new FileSystemResource("../sample.jpg"));
+        params.add("file", new FileSystemResource("../file.jpg"));
 
         HttpHeaders headers = new HttpHeaders();
 //        headers.add("Accept", MediaType.APPLICATION_JSON.toString());   // json 결과 String으로 변환해서 가져오기는 하는데 흠
