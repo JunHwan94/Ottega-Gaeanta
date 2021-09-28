@@ -11,3 +11,6 @@ export function SEARCH_DETAIL_IMAGE_URL (state, searchDetailImageURL) {
 export function SAVE_VIDEO_STREAM (state, stream) {
     state.videoStream = stream
 }
+export function SAVE_SELECTED_USER_STYLE (state, selectedUserStyle) {
+  state.selectedUserStyle = selectedUserStyle
+}
