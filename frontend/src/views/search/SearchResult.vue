@@ -21,7 +21,7 @@
     </div>
     <v-container>
       <v-row v-masonry>
-        <v-col v-for="index in 20" :key="index" cols="3">
+        <v-col v-for="index in 20" :key="index" cols="2">
           <v-hover
             :v-slot="{ hover }"
           >
