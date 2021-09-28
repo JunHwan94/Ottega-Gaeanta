@@ -1,5 +1,10 @@
 package com.hadoop.service;
+import com.hadoop.entity.ColorRank;
+import com.hadoop.response.EvalColorRes;
+import com.hadoop.util.ColorRankUtil;
 import com.hadoop.util.FileUtil;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
@@ -12,7 +17,11 @@ import java.io.IOException;
 
 @Service
 public class EvalService {
-    public ResponseEntity<String> storeImage(MultipartFile image) throws IOException {
+
+    @Autowired
+    ColorRankUtil colorRankUtil;
+
+    public EvalColorRes storeImage(MultipartFile image) throws IOException {
         FileUtil fileUtil = FileUtil.getInstance();
 
         File t = new File("..");
@@ -22,27 +31,35 @@ public class EvalService {
         image.transferTo(file);
 
         MultiValueMap<String, Object> params = new LinkedMultiValueMap<>();
-        params.add("file", new FileSystemResource("../file.jpg"));
+        params.add("file", new FileSystemResource("../sample.jpg"));
 
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Accept", MediaType.APPLICATION_JSON.toString());   // json 결과 String으로 변환해서 가져오기는 하는데 흠
+//        headers.add("Accept", MediaType.APPLICATION_JSON.toString());   // json 결과 String으로 변환해서 가져오기는 하는데 흠
         headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+        headers.add("Accept", MediaType.APPLICATION_JSON_VALUE);
 
         HttpEntity<MultiValueMap<String, Object>> entity = new HttpEntity<>(params, headers);
 
         RestTemplate rt = new RestTemplate();
-        ResponseEntity<String> response = null;
+        ResponseEntity<ColorRank> response = null;
 
         try {
             response = rt.postForEntity(
                     "http://j5b206.p.ssafy.io:8888/model",
                     entity,
-                    String.class
+                    ColorRank.class
             );
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return response;
+
+        String top = response.getBody().getTop();
+        String pants = response.getBody().getPants();
+
+        String key = top + ":" + pants;
+
+        EvalColorRes evalColorRes = new EvalColorRes(top, pants, colorRankUtil.rank.get(key));
+        return evalColorRes;
     }
 
 

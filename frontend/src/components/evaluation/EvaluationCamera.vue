@@ -31,6 +31,7 @@
             navigator.getUserMedia(
               this.constraints, // user media config
               (stream) => { // success
+                this.$store.commit('SAVE_VIDEO_STREAM', stream)
                 this.video.width = this.videoWidth
                 this.video.height = this.videoHeight //prevent Opencv.js error.
                 video.srcObject = stream;
@@ -46,6 +47,9 @@
         }
         else { // stop 버튼 누르면 화면 검은색 됨
             const stream = video.srcObject;
+            alert('스탑누름')
+            console.log(stream)
+            console.log(stream.getTracks())
             const tracks = stream.getTracks();
             tracks.forEach(track => {
                 track.stop();
@@ -110,7 +114,7 @@ video {
   height: 100%;
 }
 .main {
-  font-family: HSYuji-Regular;
+  font-family: Cafe24Ssurround;
   width: 100%;
   height: 100%;
 }

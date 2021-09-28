@@ -8,30 +8,33 @@
     <div class="card">
       <v-row class="menu-container" justify="center">
         <v-col lg=4>
-          <img class="left-image" style="width:400px; height:400px; visibility: hidden;" />
+          <img class="left-image"/>
         </v-col>
         <v-col lg=4>
           <v-row class="menu-container" justify="center" @click="changePage(0)">
-            <div class="menu">
+            <div class="menu" style="">
               실시간 측정 방식
-              <v-icon large color="white darken-5">mdi-selection</v-icon>
+              <img :src="test" style="vertical-align:middle; width: 50px; height: 50px;"/>
+              <!-- <v-icon large color="white darken-5">mdi-selection</v-icon> -->
             </div>
           </v-row><br>
           <v-row class="menu-container" justify="center">
             <div class="menu">
               사진 업로드 방식
-              <v-icon large color="white darken-5"> mdi-folder-star</v-icon>
+              <img :src="test1" style="vertical-align:middle; width: 50px; height: 50px;"/>
+              <!-- <v-icon large color="white darken-5"> mdi-folder-star</v-icon> -->
             </div>
           </v-row><br>
           <v-row class="menu-container" justify="center">
             <div class="menu">
               색 조합표 보기
-              <v-icon large color="white darken-5"> mdi-arrow-up-bold-box-outline</v-icon>
+              <img :src="test2" style="vertical-align:middle; width: 50px; height: 50px;"/>
+              <!-- <v-icon large color="white darken-5"> mdi-arrow-up-bold-box-outline</v-icon> -->
             </div>
           </v-row>
         </v-col>
         <v-col lg=4>
-          <img class="right-image" style="width:400px; height:400px; visibility: hidden;" />
+          <img class="right-image"/>
         </v-col>
       </v-row>
     </div>
@@ -43,6 +46,9 @@
     data: () => ({
       pages: ['evaluationFilm'],
       mainImageUrl: '',
+      test: require('@/assets/camerapicture.png'),
+      test1: require('@/assets/picture.png'),
+      test2: require('@/assets/color.png'),
     }),
     mounted() {
       const menu = document.querySelectorAll('.menu')
@@ -50,12 +56,12 @@
       const rightImage = document.querySelector('.right-image')
       menu[0].addEventListener('mouseover', function () {
         imageClear()
-        leftImage.src = require('@/assets/main.png')
+        leftImage.src = require('@/assets/camerapicture.png')
         leftImage.style.visibility = 'visible'
       })
       menu[1].addEventListener('mouseover', function () {
         imageClear()
-        rightImage.src = require('@/assets/main.png')
+        rightImage.src = require('@/assets/camerapicture.png')
         rightImage.style.visibility = 'visible'
       })
       menu[2].addEventListener('mouseover', function () {
@@ -82,18 +88,18 @@
   padding-top: 4rem;
   height: 100vh;
   width: 100vw;
-  background: linear-gradient(to bottom right, skyblue, white);
+  background: linear-gradient(to bottom right, #FBACCC, #F1D1D0, white);
 }
 
 .intro {
-  font-family: HSYuji-Regular;
+  font-family: Cafe24Ssurround;
 }
 
 .card {
   width: 80vw;
   height: 60vh;
-  background-color: rgb(255, 255, 255);
-  border: 1px solid white;
+  background-color: #F4F9F9;
+  border: 1px solid #F4F9F9;
   border-radius: 10px;
   margin: 0 auto;
   /* opacity: 0.6; */
@@ -119,10 +125,10 @@
   /* display: block; */
   transition: all .5s cubic-bezier(0.645, 0.045, 0.355, 1);
   margin-top: -10px;
-  background-color: hotpink;
+  background-color: #F875AA;
   border-radius: 8px;
   cursor: pointer;
-  font-family: HSYuji-Regular;
+  font-family: Cafe24Ssurround;
   ;
   /* margin-bottom: 20px; */
 }
@@ -130,5 +136,11 @@
 .menu:hover {
   box-shadow: 1px 1px 10px 0 rgba(0, 0, 0, .1);
   margin-top: 0;
+}
+
+.left-image, .right-image {
+  width:400px; height:400px; visibility: hidden;
+  transition-property: all;
+  transition-duration: 2.5s;
 }
 </style>

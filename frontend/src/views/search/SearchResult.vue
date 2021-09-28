@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div style="background: #f4f9f9;">
     <div class="d-flex col">
       <p class="col-2"></p>
       <!-- 검색창 -->
-      <div class="col-8 mx-4">
+      <div class="col-8 mx-4" style="z-index: 3;">
         <SearchItems
 
         />
@@ -15,7 +15,9 @@
           :searchItemsBool="searchItemsBool"
         /> -->
       </div>
-      
+      <div class="col-1" style="z-index: 3;">
+        <ChangeStyleModal/>
+      </div>
     </div>
     <v-container>
       <v-row v-masonry>
@@ -41,6 +43,7 @@
 
 import SearchDetail from '@/components/search/SearchDetail'
 import SearchItems from '@/components/search/SearchItems'
+import ChangeStyleModal from '@/components/search/ChangeStyleModal'
 import { mapActions, mapState } from 'vuex'
 
 
@@ -49,6 +52,7 @@ export default {
   components: {
     SearchDetail,
     SearchItems,
+    ChangeStyleModal,
   },
   data () {
     return {
