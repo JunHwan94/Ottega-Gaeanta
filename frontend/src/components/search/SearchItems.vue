@@ -422,7 +422,7 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex'
+import { mapActions, mapState, mapGetters } from 'vuex'
 
 export default {
   name: 'SearchItems',
@@ -430,7 +430,8 @@ export default {
     ...mapState([
       'showSearchDetail',
       'searchItemsBool',
-    ])
+    ]),
+    ...mapGetters(["getSelectedUserStyle"]),
   },
   methods: {
     ...mapActions([
