@@ -7,3 +7,6 @@ export function getVideoStream (state) {
 export function getSelectedUserStyle (state) {
   return state.selectedUserStyle
 }
+export function getUserFashionRate (state) {
+  return state.userFashionRate
+}
