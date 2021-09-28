@@ -11,7 +11,9 @@ public class FPTIRes extends BaseResponseBody{
 
     private FPTIRes(){}
 
-    public static FPTIRes of(FPTIType type){
+    public static FPTIRes of(int statusCode, String message, FPTIType type){
+        ResHolder.res.setStatusCode(statusCode);
+        ResHolder.res.setMessage(message);
         ResHolder.res.type = type;
         return ResHolder.res;
     }

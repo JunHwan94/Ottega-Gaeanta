@@ -23,6 +23,6 @@ public class FPTIController {
     public ResponseEntity<? extends BaseResponseBody> getResult(int typeNo){
         FPTIType type = fptiService.getResult(typeNo);
         log.debug(type.toString());
-        return ResponseEntity.status(200).body(FPTIRes.of(type));
+        return ResponseEntity.status(200).body(FPTIRes.of(200, "성공", type));
     }
 }
