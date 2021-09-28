@@ -4,3 +4,6 @@ export function getTest (state) {
 export function getVideoStream (state) {
   return state.videoStream
 }
+export function getSelectedUserStyle (state) {
+  return state.selectedUserStyle
+}
