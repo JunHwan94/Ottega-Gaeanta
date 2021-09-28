@@ -5,6 +5,7 @@ import ChooseStyle from '../views/style/ChooseStyle.vue'
 import SearchResult from '../views/search/SearchResult.vue'
 import SearchItems from '../components/search/SearchItems.vue'
 import SearchDetail from '../components/search/SearchDetail.vue'
+import ChangeStyleModal from '../components/search/ChangeStyleModal.vue'
 import EvaluationMain from '../views/evaluation/EvaluationMain.vue'
 import EvaluationFilm from '../views/evaluation/EvaluationFilm.vue'
 import EvaluationResult from '../views/evaluation/EvaluationResult.vue'
@@ -41,6 +42,11 @@ const routes = [
     path: '/searchDetail',
     name: 'SearchDetail',
     component: SearchDetail
+  },
+  {
+    path: '/changeStyleModal',
+    name: 'ChangeStyleModal',
+    component: ChangeStyleModal
   },
   {
     path: '/evaluationMain',
