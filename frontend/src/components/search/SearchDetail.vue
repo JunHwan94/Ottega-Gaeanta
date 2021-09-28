@@ -56,36 +56,8 @@
           </v-card-actions>
         </v-card>
       </section>
-
       <!-- 플립북 테스트 끝 -->
-
-      <!-- <v-card>
-        <v-card-title class="text-h5 grey lighten-2">
-          코디 정보
-        </v-card-title>
-        
-        <div class="d-flex">
-          <v-img :src="searchDetailImageURL" alt="image" style="width: 25%; height: 70%;"></v-img>
-          <v-card-text>
-            <h1>스타일 : 아방가르드</h1>
-            <br>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Soluta consequatur inventore quasi consequuntur in ipsam cum, non quam optio libero iure vel, dolore totam amet vero incidunt iusto suscipit voluptatibus.</p>
-          </v-card-text>
-        </div>
-
-        <v-divider></v-divider>
-
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn
-            color="primary"
-            text
-            @click="showStyleInfo({showSearchDetail})"
-          >
-            닫기
-          </v-btn>
-        </v-card-actions>
-      </v-card> -->
+      
     </v-dialog>
   </div>
 </template>
