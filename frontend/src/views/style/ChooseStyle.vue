@@ -44,11 +44,36 @@
         require('@/assets/chooseStyle/sample5.jpg'),
         require('@/assets/chooseStyle/sample6.jpg'),
       ],
+      style: [
+        '트레디셔널',
+        '매니시',
+        '페미닌',
+        '에스닉',
+        '컨템포러리',
+        '내추럴',
+        '젠더프루이드',
+        '스포티',
+        '서브컬쳐',
+        '캐주얼',
+      ],
       checkList: [false, false, false, false, false],
     }),
     methods: {
       confirm() {
-        alert(this.checkList)
+        let checkCount = 0
+        const selectedUserStyle = []
+        for (let i = 0; i < this.checkList.length; i++) {
+          if (this.checkList[i]) {
+            selectedUserStyle.push(this.style[i])
+            checkCount++
+          }
+        }
+        if (checkCount < 3) {
+          alert('선호 스타일을 세 가지 선택해주세요.')
+          return
+        }
+        this.$store.commit('SAVE_SELECTED_USER_STYLE', selectedUserStyle)
+
         // 스타일 세 개 이상 선택 했는지 확인
 
         // 선호 스타일 리스트 한 번 보여주고 다시 물어보기 ?
@@ -86,9 +111,7 @@
       const frames = document.getElementsByClassName('box')
       for (let i = 0; i < frames.length; i++) {
         frames[i].appendChild(apps[i].view)
-        console.log('ddd')
       }
-      console.log('1')
       const images = []
       for (let i = 0; i < size; i++) {
         images[i] = new PIXI.Sprite.from(this.images[i])
@@ -96,7 +119,6 @@
         images[i].height = frameHeight
         apps[i].stage.addChild(images[i])
       }
-      console.log('2')
       // let img = new PIXI.Sprite.from(require('@/assets/sample2.jpg'));
       // img.width = frameWidth;
       // img.height = frameHeight;
@@ -109,11 +131,8 @@
         depthMaps[i] = new PIXI.Sprite.from(require('@/assets/map3.jpg'));
         depthMaps[i].width = frameWidth
         depthMaps[i].height = frameHeight
-        console.log('2-1')
         apps[i].stage.addChild(depthMaps[i])
-        console.log('2-2')
         displacementFilters[i] = new PIXI.filters.DisplacementFilter(depthMaps[i])
-        console.log('2-3')
         console.log(apps[i])
         apps[i].stage.filters = [displacementFilters[i]]
       }

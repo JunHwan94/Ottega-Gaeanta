@@ -8,54 +8,66 @@
     <div class="card">
       <v-row class="menu-container" justify="center">
         <v-col lg=4>
-          <img class="left-image" style="width:400px; height:400px; visibility: hidden;" />
+          <img class="left-image"/>
         </v-col>
         <v-col lg=4>
           <v-row class="menu-container" justify="center" @click="changePage(0)">
-            <div class="menu">
+            <div class="menu" style="">
               실시간 측정 방식
-              <v-icon large color="white darken-5">mdi-selection</v-icon>
+              <img :src="test" style="vertical-align:middle; width: 50px; height: 50px;"/>
+              <!-- <v-icon large color="white darken-5">mdi-selection</v-icon> -->
             </div>
           </v-row><br>
           <v-row class="menu-container" justify="center">
-            <div class="menu">
+            <div class="menu" @click="toggleModal()">
               사진 업로드 방식
-              <v-icon large color="white darken-5"> mdi-folder-star</v-icon>
+              <img :src="test1" style="vertical-align:middle; width: 50px; height: 50px;"/>
+              <!-- <v-icon large color="white darken-5"> mdi-folder-star</v-icon> -->
             </div>
           </v-row><br>
           <v-row class="menu-container" justify="center">
             <div class="menu">
               색 조합표 보기
-              <v-icon large color="white darken-5"> mdi-arrow-up-bold-box-outline</v-icon>
+              <img :src="test2" style="vertical-align:middle; width: 50px; height: 50px;"/>
+              <!-- <v-icon large color="white darken-5"> mdi-arrow-up-bold-box-outline</v-icon> -->
             </div>
           </v-row>
         </v-col>
         <v-col lg=4>
-          <img class="right-image" style="width:400px; height:400px; visibility: hidden;" />
+          <img class="right-image"/>
         </v-col>
       </v-row>
     </div>
+    <evaluation-picture-modal v-if="modalVisible" @close="invisibleModal"></evaluation-picture-modal>
   </div>
 </template>
 
 <script>
+  import EvaluationPictureModal from '@/components/evaluation/EvaluationPictureModal.vue'
   export default {
     data: () => ({
       pages: ['evaluationFilm'],
       mainImageUrl: '',
+      test: require('@/assets/camerapicture.png'),
+      test1: require('@/assets/picture.png'),
+      test2: require('@/assets/color.png'),
+      modalVisible: false,
     }),
+    components: {
+      EvaluationPictureModal,
+    },
     mounted() {
       const menu = document.querySelectorAll('.menu')
       const leftImage = document.querySelector('.left-image')
       const rightImage = document.querySelector('.right-image')
       menu[0].addEventListener('mouseover', function () {
         imageClear()
-        leftImage.src = require('@/assets/main.png')
+        leftImage.src = require('@/assets/camerapicture.png')
         leftImage.style.visibility = 'visible'
       })
       menu[1].addEventListener('mouseover', function () {
         imageClear()
-        rightImage.src = require('@/assets/main.png')
+        rightImage.src = require('@/assets/camerapicture.png')
         rightImage.style.visibility = 'visible'
       })
       menu[2].addEventListener('mouseover', function () {
@@ -73,6 +85,12 @@
       changePage(index) {
         this.$router.push(this.pages[index])
       },
+      toggleModal () {
+        this.modalVisible = !this.modalVisible
+      },
+      invisibleModal () {
+        this.modalVisible = false
+      }
     }
   }
 </script>
@@ -130,5 +148,16 @@
 .menu:hover {
   box-shadow: 1px 1px 10px 0 rgba(0, 0, 0, .1);
   margin-top: 0;
+}
+
+.left-image, .right-image {
+  width:400px; height:400px; visibility: hidden;
+  transition-property: all;
+  transition-duration: 2.5s;
+}
+
+.blur {
+  background: black;
+  opacity: 0.5;
 }
 </style>

@@ -6,7 +6,81 @@
       </template>
       <v-card max-width="100%">
         <!-- 의류 카테고리 선택 -->
-        <h3 class="my-2 mx-2">Category</h3>
+        <v-main>
+          <h3 class="my-2 mx-2">Category</h3>
+          <v-divider></v-divider>
+          <template>
+            <v-sheet
+              class="mx-5"
+              max-width="80%"
+            >
+              <v-slide-group
+                v-model="categoryValue"
+                class="px-4"
+                show-arrows
+              >
+                <v-slide-item
+                  v-for="n in 4"
+                  :key="n"
+                  v-slot="{ active, toggle }"
+                  
+                >
+                  <v-card
+                    :style="active ? 'border: 7px solid #FBACCC;' : 'border: 1px solid white;'"
+                    class="ma-4"
+                    height="10rem"
+                    width="7rem"
+                    @click="toggle"
+                  >
+                    <v-img
+                      :src="require('@/assets/categories/' + categoryItems[n-1] + '.jpg')"
+                      height="70%"
+                    ></v-img>
+
+                    <v-card-subtitle 
+                      align="center"
+                      justify="middle"
+                      >
+                      
+                      <h4>{{ categoryItems[n-1] }}</h4>
+                    </v-card-subtitle>
+                    <v-scale-transition>
+                      <v-icon
+                        v-if="active"
+                        color="white"
+                        size="30"
+                        
+                      ></v-icon>
+                    </v-scale-transition>
+                  </v-card>
+                </v-slide-item>
+              </v-slide-group>
+              <v-divider></v-divider>
+              <br>
+              <v-expand-transition>
+                <v-sheet
+                  v-if="categoryValue != null"
+                  height="50"
+                  tile
+                >
+                  <v-row
+                    class="fill-height"
+                    align="center"
+                    justify="center"
+                  >
+                    <h3 class="text-h6">
+                      Selected {{ categoryItems[categoryValue] }}
+                    </h3>
+                  </v-row>
+                </v-sheet>
+              </v-expand-transition>
+              
+            </v-sheet>
+          </template>
+        </v-main>
+
+
+        <!-- <h3 class="my-2 mx-2">Category</h3>
         <v-autocomplete
           class="mx-3"
           v-model="categoryValue"
@@ -14,10 +88,10 @@
           dense
           filled
           :label="categoryValue"
-        ></v-autocomplete>
+        ></v-autocomplete> -->
 
         <!-- 스타일 선택  -->
-        <v-main v-if="categoryValue">
+        <v-main v-if="categoryValue != null">
           <h3 class="my-2 mx-2">Style</h3>
           <v-divider></v-divider>
           <template>
@@ -30,7 +104,7 @@
                 v-model="styleValue"
                 class="px-4"
                 show-arrows
-                v-if="categoryValue === '상의'"
+                v-if="categoryValue === 0"
               >
                 <v-slide-item
                   v-for="n in topIndex"
@@ -39,7 +113,7 @@
                   
                 >
                   <v-card
-                    :color="active ? '#BBBBBB' : 'white'"
+                    :style="active ? 'border: 7px solid #FBACCC;' : 'border: 1px solid white;'"
                     class="ma-4"
                     height="10rem"
                     width="7rem"
@@ -74,7 +148,7 @@
                 v-model="styleValue"
                 class="px-4"
                 show-arrows
-                v-if="categoryValue === '하의'"
+                v-if="categoryValue === 1"
               >
                 <v-slide-item
                   v-for="n in bottomIndex"
@@ -83,7 +157,7 @@
                   
                 >
                   <v-card
-                    :color="active ? '#BBBBBB' : 'white'"
+                    :style="active ? 'border: 7px solid #FBACCC;' : 'border: 1px solid white;'"
                     class="ma-4"
                     height="10rem"
                     width="7rem"
@@ -124,7 +198,7 @@
                 v-model="styleValue"
                 class="px-4"
                 show-arrows
-                v-if="categoryValue === '아우터'"
+                v-if="categoryValue === 2"
               >
                 <v-slide-item
                   v-for="n in outerIndex"
@@ -133,7 +207,7 @@
                   
                 >
                   <v-card
-                    :color="active ? '#BBBBBB' : 'white'"
+                    :style="active ? 'border: 7px solid #FBACCC;' : 'border: 1px solid white;'"
                     class="ma-4"
                     height="10rem"
                     width="7rem"
@@ -174,7 +248,7 @@
                 v-model="styleValue"
                 class="px-4"
                 show-arrows
-                v-if="categoryValue === '원피스'"
+                v-if="categoryValue === 3"
                >
                 <v-slide-item
                   v-for="n in dressIndex"
@@ -183,7 +257,7 @@
                   
                 >
                   <v-card
-                    :color="active ? '#BBBBBB' : 'white'"
+                    :style="active ? 'border: 7px solid #FBACCC;' : 'border: 1px solid white;'"
                     class="ma-4"
                     height="10rem"
                     width="7rem"
@@ -227,19 +301,19 @@
                     justify="center"
                   >
                     <!-- 상의 -->
-                    <h3 class="text-h6" v-if="categoryValue === '상의'">
+                    <h3 class="text-h6" v-if="categoryValue === 0">
                       Selected {{ styleItems[topIndex[styleValue]-1] }}
                     </h3>
                     <!-- 하의 -->
-                    <h3 class="text-h6" v-if="categoryValue === '하의'">
+                    <h3 class="text-h6" v-if="categoryValue === 1">
                       Selected {{ styleItems[bottomIndex[styleValue]-1] }}
                     </h3>
                     <!-- 아우터 -->
-                    <h3 class="text-h6" v-if="categoryValue === '아우터'">
+                    <h3 class="text-h6" v-if="categoryValue === 2">
                       Selected {{ styleItems[outerIndex[styleValue]-1] }}
                     </h3>
                     <!-- 원피스 -->
-                    <h3 class="text-h6" v-if="categoryValue === '원피스'">
+                    <h3 class="text-h6" v-if="categoryValue === 3">
                       Selected {{ styleItems[dressIndex[styleValue]-1] }}
                     </h3>
                   </v-row>
@@ -271,7 +345,7 @@
                   
                 >
                   <v-card
-                    :color="active ? '#BBBBBB' : 'white'"
+                    :color="active ? '#FBACCC' : 'white'"
                     class=""
                     height="5.5rem"
                     width="4rem"
@@ -339,8 +413,8 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="grey darken-2" @click="initialization()" dark>닫기</v-btn>
-          <v-btn v-if="designValue != null" color="primary" @click="save">검색</v-btn>
-          <v-btn v-else disabled color="primary" @click="save">검색</v-btn>
+          <v-btn v-if="designValue != null" color="#FBACCC" @click="save">검색</v-btn>
+          <v-btn v-else disabled color="#FBACCC" @click="save">검색</v-btn>
         </v-card-actions>
       </v-card>
     </v-menu>
@@ -348,7 +422,7 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex'
+import { mapActions, mapState, mapGetters } from 'vuex'
 
 export default {
   name: 'SearchItems',
@@ -356,7 +430,8 @@ export default {
     ...mapState([
       'showSearchDetail',
       'searchItemsBool',
-    ])
+    ]),
+    ...mapGetters(["getSelectedUserStyle"]),
   },
   methods: {
     ...mapActions([
@@ -366,28 +441,22 @@ export default {
     save() {
       alert(`검색 ㄱㄱ싱!`);
       this.menuOpen = false;
-      this.menuOpen = false;
       this.categoryValue = null;
       this.styleValue = null;
       this.designValue = null;
-      this.model = null;
     },
     initialization () {
       this.menuOpen = false;
       this.categoryValue = null;
       this.styleValue = null;
       this.designValue = null;
-      this.model = null;
     },
   },
   data () {
     return {
       menuOpen: false,
-      firstname: "",
-      lastname: "",
       categoryItems: ['상의','하의','아우터','원피스'],
       categoryValue: null,
-      model: null,
       styleItems: ['탑', '블라우스', '캐주얼상의', '니트웨어', '셔츠', '베스트','코트','재킷','점퍼','패딩','청바지','팬츠','스커트','드레스','점프수트','수영복'],
       styleValue: null,
       topIndex: [1,2,3,4,5,6],
@@ -395,8 +464,8 @@ export default {
       outerIndex: [7,8,9,10],
       dressIndex: [14,15,16],
       designItems: [
-                    'black','white','grey','red','pink','orange','beige','brown','yellow','green','blue','sky blue','purple',
-                    'check','stripe','zigzag','leopard','zebra','dot','camouflage','paisley','argyle','floral','lettering','skull','tiedye','gradation','solid','graphic','houndstouth','gingham'
+                    '블랙','화이트','그레이','레드','핑크','오렌지','베이지','브라운','옐로우','그린','블루','스카이블루','퍼플',
+                    '체크','스트라이프','지그재그','호피','지브라','도트','카무플라쥬','페이즐리','아가일','플로럴','레터링','해골','타이다이','그라데이션','무지','그래픽','하운즈 투스','깅엄'
                     ],
       designRGBs: [
                     '#000000','#FFFFFFF','#808080','#FF0000','#FF00FF','#FFA500','#F5F5DC','#964B00','#FFFF00','#008000','#0000FF','#87CEEB','#800080',

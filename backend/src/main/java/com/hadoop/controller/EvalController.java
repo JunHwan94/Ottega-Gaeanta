@@ -1,5 +1,6 @@
 package com.hadoop.controller;
 
+import com.hadoop.response.EvalColorRes;
 import com.hadoop.service.EvalService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ public class EvalController {
     EvalService evalService;
 
     @PostMapping(value = "/input")
-    public ResponseEntity<String> getInput(@RequestBody MultipartFile image) throws IOException {
-        return evalService.storeImage(image);
+    public ResponseEntity<EvalColorRes> getInput(@RequestBody MultipartFile image) throws IOException {
+        return ResponseEntity.ok().body(evalService.storeImage(image));
     }
 }
