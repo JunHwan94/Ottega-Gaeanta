@@ -13,3 +13,6 @@ export function getUserFashionRate (state) {
 export function getImages (state) {
   return state.images
 }
+export function getSearchReq (state) {
+  return state.searchReq
+}

@@ -14,11 +14,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @Api(value="예시")
 @RestController
 @RequestMapping("/search")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class SearchController {
 
     @Autowired
