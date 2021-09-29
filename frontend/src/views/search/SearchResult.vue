@@ -37,7 +37,7 @@
     <SearchDetail
       :showSearchDetail="showSearchDetail"
     />
-    <infinite-loading @infinite="infiniteHandler" spinner="waveDots"></infinite-loading>
+    <!-- <infinite-loading @infinite="infiniteHandler" spinner="waveDots"></infinite-loading> -->
   </div>
 </template>
 
