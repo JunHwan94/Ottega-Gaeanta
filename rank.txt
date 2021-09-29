@@ -9,7 +9,7 @@ black:brown/B
 black:yellow/F
 black:green/D
 black:blue/A
-black:sky blue/B
+black:skyblue/B
 black:purple/D
 white:black/A
 white:white/F
@@ -22,7 +22,7 @@ white:brown/A
 white:yellow/F
 white:green/B
 white:blue/A
-white:sky blue/A
+white:skyblue/A
 white:purple/F
 grey:black/A
 grey:white/A
@@ -35,7 +35,7 @@ grey:brown/C
 grey:yellow/F
 grey:green/D
 grey:blue/B
-grey:sky blue/C
+grey:skyblue/C
 grey:purple/D
 red:black/B
 red:white/B
@@ -48,7 +48,7 @@ red:brown/D
 red:yellow/D
 red:green/D
 red:blue/C
-red:sky blue/C
+red:skyblue/C
 red:purple/D
 pink:black/A
 pink:white/A
@@ -61,7 +61,7 @@ pink:brown/D
 pink:yellow/C
 pink:green/D
 pink:blue/A
-pink:sky blue/A
+pink:skyblue/A
 pink:purple/D
 orange:black/B
 orange:white/B
@@ -74,7 +74,7 @@ orange:brown/B
 orange:yellow/C
 orange:green/D
 orange:blue/A
-orange:sky blue/B
+orange:skyblue/B
 orange:purple/D
 beige:black/A
 beige:white/A
@@ -87,7 +87,7 @@ beige:brown/A
 beige:yellow/C
 beige:green/C
 beige:blue/A
-beige:sky blue/A
+beige:skyblue/A
 beige:purple/D
 brown:black/A
 brown:white/A
@@ -100,7 +100,7 @@ brown:brown/A
 brown:yellow/B
 brown:green/C
 brown:blue/A
-brown:sky blue/A
+brown:skyblue/A
 brown:purple/C
 yellow:black/B
 yellow:white/A
@@ -113,7 +113,7 @@ yellow:brown/A
 yellow:yellow/B
 yellow:green/C
 yellow:blue/A
-yellow:sky blue/A
+yellow:skyblue/A
 yellow:purple/D
 green:black/A
 green:white/A
@@ -126,7 +126,7 @@ green:brown/A
 green:yellow/D
 green:green/C
 green:blue/A
-green:sky blue/B
+green:skyblue/B
 green:purple/C
 blue:black/A
 blue:white/A
@@ -139,21 +139,21 @@ blue:brown/B
 blue:yellow/C
 blue:green/C
 blue:blue/A
-blue:sky blue/A
+blue:skyblue/A
 blue:purple/B
-sky blue:black/B
-sky blue:white/A
-sky blue:grey/B
-sky blue:red/C
-sky blue:pink/C
-sky blue:orange/D
-sky blue:beige/A
-sky blue:brown/B
-sky blue:yellow/D
-sky blue:green/D
-sky blue:blue/A
-sky blue:sky blue/C
-sky blue:purple/D
+skyblue:black/B
+skyblue:white/A
+skyblue:grey/B
+skyblue:red/C
+skyblue:pink/C
+skyblue:orange/D
+skyblue:beige/A
+skyblue:brown/B
+skyblue:yellow/D
+skyblue:green/D
+skyblue:blue/A
+skyblue:skyblue/C
+skyblue:purple/D
 purple:black/A
 purple:white/A
 purple:grey/B
@@ -165,5 +165,5 @@ purple:brown/B
 purple:yellow/C
 purple:green/C
 purple:blue/B
-purple:sky blue/B
+purple:skyblue/B
 purple:purple/C
