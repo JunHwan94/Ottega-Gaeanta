@@ -29,3 +29,7 @@ export function setImages (state, images) {
 export function addImages (state, images) {
   state.images.concat(images)
 }
+
+export function SAVE_FPTI_SURVEYS (state, surveys) {
+  state.surveys = surveys
+}
