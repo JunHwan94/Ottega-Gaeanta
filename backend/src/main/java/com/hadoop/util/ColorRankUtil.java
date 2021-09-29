@@ -22,7 +22,7 @@ public class ColorRankUtil {
             final String rootPath = System.getProperty("java.class.path").split(";")[1];
 
 //            System.out.println(System.getProperty("java.class.path"));
-            File file = new File(rootPath + "/rank.txt");
+            File file = new File(rootPath + "\\rank.txt");
 //            System.out.println("init 실행");
             FileReader fr = new FileReader(file);
             BufferedReader br = new BufferedReader(fr);
