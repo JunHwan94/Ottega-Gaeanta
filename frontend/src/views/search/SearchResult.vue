@@ -4,10 +4,7 @@
       <p class="col-2"></p>
       <!-- 검색창 -->
       <div class="col-8 mx-4" style="z-index: 3;">
-        <SearchItems
-
-        />
-
+        <SearchItems/>
         <!-- <v-btn style="width: 100%" @click="showSearchItems({searchItemsBool})">
           Search your style
         </v-btn>
@@ -22,22 +19,18 @@
     <v-container>
       <v-row id="searchRow" v-masonry>        
         <v-col v-for="index in images" :key="index" cols="2">
-          <v-hover
-            :v-slot="{ hover }"
-          >
+          <v-hover :v-slot="{ hover }">
             <v-card color="grey" @click="showStyleInfo({showSearchDetail, imgURL : images[number[index-1]]})">
               <v-img :src="index"></v-img>
               <!-- <v-img src="@/assets/logo.png" @load="this.$redrawVueMasonry()"></v-img> -->
             </v-card>
           </v-hover>
         </v-col>
-        <!-- <infinite-loading @infinite="infiniteHandler" spinner="waveDots"></infinite-loading> -->
       </v-row>      
+      <!-- <infinite-loading @infinite="infiniteHandler" spinner="waveDots"></infinite-loading> -->
     </v-container>
-    <SearchDetail
-      :showSearchDetail="showSearchDetail"
-    />
-    <!-- <infinite-loading @infinite="infiniteHandler" spinner="waveDots"></infinite-loading> -->
+    <SearchDetail :showSearchDetail="showSearchDetail"/>
+    <infinite-loading @infinite="infiniteHandler" spinner="waveDots"></infinite-loading>
   </div>
 </template>
 
@@ -48,6 +41,9 @@ import SearchItems from '@/components/search/SearchItems'
 import ChangeStyleModal from '@/components/search/ChangeStyleModal'
 import { mapActions, mapGetters, mapState } from 'vuex'
 import InfiniteLoading from 'vue-infinite-loading';
+
+Grid00.set_autosizingtype("row");
+Grid00.set_extendsizetype("row");
 
 export default {
   components: {
@@ -67,6 +63,7 @@ export default {
       // showSearchDetail: false,
       chips: ['Programming', 'Playing video games', 'Watching movies', 'Sleeping'],
       items: ['Streaming', 'Eating'],
+      page : 1
     }
   },
   computed: {
@@ -96,7 +93,14 @@ export default {
       setTimeout(() => this.$redrawVueMasonry(), 500);
     },
     infiniteHandler() {
-      console.log("인피니트")
+      console.log('인피티트 중')
+      let searchReq = this.$store.getters['getSearchReq']
+      searchReq.page++
+      this.$store.commit('setSearchReq')
+      this.$store.dispatch('showSearchItems', searchReq)
+        .then((result) => {
+          this.$store.commit('addImages', result.data.s3url)
+        })
     }
   },
 }
@@ -107,7 +111,7 @@ export default {
   height: 100%;
   overflow: auto;
 } */
-#searchRow {
-  overflow: visible;
-}
+/* #searchRow {
+  overflow: v;
+} */
 </style>
