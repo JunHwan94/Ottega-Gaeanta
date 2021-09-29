@@ -9,7 +9,12 @@
       <v-row>
         <v-col lg=2></v-col>
         <v-col class="evaluation-comment" lg=4>
-          색상 매칭만 잘해도 반은 간다!
+          색상 매칭만 잘해도 반은 간다!<br>
+          <span>
+            의상 진단 결과 아주 양호 합니다!<br>
+            흰색 티셔츠와 검은색 진, 잘 어울리는 조합입니다.<br>
+            님 좀 입는듯!?
+          </span>
         </v-col>
         <v-col lg=4>
           <div class="card">
@@ -18,13 +23,11 @@
               <v-col lg=6 align="center">
                 <img class="evaluation-img" :src="mainImageUrl" />
               </v-col>
-              <v-col lg=6 align="center">
-                의상 진단 결과 아주 나이스 합니다!
-                흰색 티셔츠 나이스하구요, 검은색 스키닌 또한 나이스 합니다.
-                님 옷 좀 입는듯!?
+              <v-col lg=6 align="center"><br>
+                <div class="rate">{{getUserFashionRate.rank}}</div>
               </v-col>
             </v-row>
-            <div>한줄 평 <br> 나이스 합니다.</div>
+            <div>한줄 평 <br> 색 상 조합에 조금만 더 신경을 기울이면<br> 좋은 스타일링이 가능할 것 같습니다 화이팅!</div>
           </div>
         </v-col>
         <v-col lg=2></v-col>
@@ -42,9 +45,8 @@
         <v-col lg=4>
           <div class="color-comment">
             <div class="area-divider"></div>
-            색상 조합 이렇게 다양합니다 이 기준에 맞춰서 옷을 입으면 조금 더 나은 스타일링이 가능하겠죠!?<br>
-            색상 조합 이렇게 다양합니다 이 기준에 맞춰서 옷을 입으면 조금 더 나은 스타일링이 가능하겠죠!?<br>
-            색상 조합 이렇게 다양합니다 이 기준에 맞춰서 옷을 입으면 조금 더 나은 스타일링이 가능하겠죠!?
+            색상 조합 이렇게 다양합니다<br> 이 기준에 맞춰서 옷을 입으면 조금 더 나은 스타일링이 가능하겠죠!?<br><br>
+            서비스를 지속적으로 이용하면서 자신만의 컬러 조합과 스타일을 만들어보세요<br>
           </div>
         </v-col>
         <v-col lg=2></v-col>
@@ -53,7 +55,7 @@
     <div class="area-divider"></div>
     <div class="recommend-area" align="center">
       <div class="recommend-title" align="left">
-        니도 해보든가 ㅋ
+        같은 색상으로 스타일링한 다른 옷
       </div>
       <div class="recommend-detail" >
         <div class="recommend-item" v-for="img in recommendImages" v-bind:key="img">
@@ -61,7 +63,7 @@
         </div>
       </div>
       <div class="btn" @click="move()">
-        <h2>비슷한 색 조합 의상 둘러보기 😊</h2>
+        <h2>비슷한 색 조합 의상 둘러보기</h2>
       </div>
       <div>
       </div>
@@ -71,6 +73,7 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
   export default {
     data: () => ({
       mainImageUrl: require('@/assets/evaluation-model.png'),
@@ -81,9 +84,12 @@
         require('@/assets/evalResult-sample-3.jpg'),
       ]
     }),
+    computed: {
+    ...mapGetters(["getUserFashionRate"]),
+    },
     methods: {
       move() {
-        alert('test')
+        this.$router.push('searchResult/')
       }
     }
   }
@@ -97,7 +103,10 @@
   background: linear-gradient(to bottom right, #FBACCC, #F1D1D0, white);
   font-family: Binggrae-Bold;
 }
-
+.rate {
+  font-size: 50px;
+  color: red;
+}
 .top {
   margin-top: 5em;
 }
@@ -138,7 +147,10 @@
 
 .evaluation-comment {
   font-size: 40px;
-  line-height: 250px;
+}
+
+.evaluation-comment > span{
+  font-size: 20px;
 }
 
 .area-divider {
@@ -169,10 +181,13 @@
   display: inline-block;
   width: 300px;
   height: 300px;
-  border: 2px solid black;
+  cursor: pointer;
   border-radius: 45%;
   overflow: hidden;
   margin: 30px 30px;
+}
+.recommend-item:hover {
+  border: 2px solid #F875AA;
 }
 .recommend-detail img {
   width: 100%;
@@ -180,12 +195,13 @@
 
 }
 .btn {
-  border: 2px solid black;
+  border: 2px solid #F875AA;
   padding: 10px;
   width: 400px;
-  border-radius: 25px;
+  border-radius: 20px;
   background-color: #F875AA;
   cursor: pointer;
+  color: white;
   margin-top: 5vh;
 }
 </style>
