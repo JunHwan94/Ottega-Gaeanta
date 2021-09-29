@@ -5,18 +5,16 @@ import lombok.Getter;
 
 @Getter
 public class FPTIRes extends BaseResponseBody{
-    private static class ResHolder{
-        private static final FPTIRes res = new FPTIRes();
-    }
 
     private FPTIType type;
 
     private FPTIRes(){}
 
     public static FPTIRes of(int statusCode, String message, FPTIType type){
-        ResHolder.res.setStatusCode(statusCode);
-        ResHolder.res.setMessage(message);
-        ResHolder.res.type = type;
-        return ResHolder.res;
+        FPTIRes res = new FPTIRes();
+        res.setStatusCode(statusCode);
+        res.setMessage(message);
+        res.type = type;
+        return res;
     }
 }

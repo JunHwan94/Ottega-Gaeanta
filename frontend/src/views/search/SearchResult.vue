@@ -26,6 +26,7 @@
             </v-card>
           </v-hover>
         </v-col>
+        <!-- <infinite-loading @infinite="infiniteHandler" spinner="waveDots"></infinite-loading> -->
       </v-row>      
       <!-- <infinite-loading @infinite="infiniteHandler" spinner="waveDots"></infinite-loading> -->
     </v-container>
