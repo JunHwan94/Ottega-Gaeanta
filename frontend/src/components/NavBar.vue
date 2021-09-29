@@ -52,8 +52,8 @@
         ['Large', 'lg'],
       ],
       colors: ['#F875AA'],
-      items: ['메인으로', '의상 검색','색 조합 평가','미지정 메뉴',],
-      pages: ['/','/searchResult','/evaluationMain','/'],
+      items: ['메인으로', '의상 검색','색 조합 평가','FPTI(패피티아이)',],
+      pages: ['/','/searchResult','/evaluationMain','/fpti'],
     }),
     computed: {
       ...mapGetters(["getVideoStream"]),

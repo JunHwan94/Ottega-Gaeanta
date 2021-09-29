@@ -13,6 +13,7 @@ const searchDetailImageURL = '@/assets/3.jpg'
 const videoStream = null
 const selectedUserStyle = []
 const userFashionRate = []
+const surveys = []
 
 export default function () {
   return {
@@ -22,6 +23,7 @@ export default function () {
     searchDetailImageURL,
     videoStream,
     selectedUserStyle,
-    userFashionRate
+    userFashionRate,
+    surveys
   }
 }
