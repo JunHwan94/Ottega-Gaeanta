@@ -1,5 +1,5 @@
 <template>
-  <div style="background: #f4f9f9;">
+  <div style="background: #f4f9f9;" id="searchBack">
     <div class="d-flex col">
       <p class="col-2"></p>
       <!-- 검색창 -->
@@ -20,22 +20,24 @@
       </div>
     </div>
     <v-container>
-      <v-row v-masonry>
-        <v-col v-for="index in 20" :key="index" cols="2">
+      <v-row id="searchRow" v-masonry>        
+        <v-col v-for="index in images" :key="index" cols="2">
           <v-hover
             :v-slot="{ hover }"
           >
             <v-card color="grey" @click="showStyleInfo({showSearchDetail, imgURL : images[number[index-1]]})">
-              <v-img :src="images[number[index-1]]"></v-img>
+              <v-img :src="index"></v-img>
               <!-- <v-img src="@/assets/logo.png" @load="this.$redrawVueMasonry()"></v-img> -->
             </v-card>
           </v-hover>
         </v-col>
-      </v-row>
+        <infinite-loading @infinite="infiniteHandler" spinner="waveDots"></infinite-loading>
+      </v-row>      
     </v-container>
     <SearchDetail
       :showSearchDetail="showSearchDetail"
     />
+    <infinite-loading @infinite="infiniteHandler" spinner="waveDots"></infinite-loading>
   </div>
 </template>
 
@@ -44,23 +46,23 @@
 import SearchDetail from '@/components/search/SearchDetail'
 import SearchItems from '@/components/search/SearchItems'
 import ChangeStyleModal from '@/components/search/ChangeStyleModal'
-import { mapActions, mapState } from 'vuex'
-
-
+import { mapActions, mapGetters, mapState } from 'vuex'
+import InfiniteLoading from 'vue-infinite-loading';
 
 export default {
   components: {
     SearchDetail,
     SearchItems,
     ChangeStyleModal,
+    InfiniteLoading,
   },
   data () {
     return {
       number: [0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2],
-      images: [require('@/assets/1.jpg'),
-               require('@/assets/2.jpg'),
-               require('@/assets/3.jpg'),
-              ],
+      // images: [require('@/assets/1.jpg'),
+      //          require('@/assets/2.jpg'),
+      //          require('@/assets/3.jpg'),
+      //         ],
       hover: true,
       // showSearchDetail: false,
       chips: ['Programming', 'Playing video games', 'Watching movies', 'Sleeping'],
@@ -70,16 +72,16 @@ export default {
   computed: {
     ...mapState([
       'showSearchDetail',
-      // 'searchItemsBool'
-    ])
+      'images'
+    ]),
   },
   mounted() {
     this.repaint();
   },
   watch: {
-    images: function() {
-      this.repaint();
-    }
+    // images: function() {
+    //   this.repaint();
+    // }
   },
   methods: {
     ...mapActions([
@@ -92,11 +94,20 @@ export default {
     },
     repaint() {
       setTimeout(() => this.$redrawVueMasonry(), 500);
+    },
+    infiniteHandler() {
+      console.log("인피니트")
     }
   },
 }
 </script>
 
 <style>
-
+/* #searchBack {
+  height: 100%;
+  overflow: auto;
+} */
+#searchRow {
+  overflow: visible;
+}
 </style>
