@@ -25,19 +25,19 @@ public class SearchRepositorySupport {
             query = new Query(where(searchReq.getCloth() + ".category").is(searchReq.getCategory())
                     .and(searchReq.getCloth() + ".print").all(searchReq.getPrint())
                     .and("style.style").in(searchReq.getStyle())
-            ).skip(searchReq.getPage()*10);
+            ).skip(searchReq.getPage()*20);
         } else if (searchReq.getPrint().equals("")){
             query = new Query(where(searchReq.getCloth() + ".category").is(searchReq.getCategory())
                     .and(searchReq.getCloth() + ".color").all(searchReq.getColor())
                     .and("style.style").in(searchReq.getStyle())
-            ).skip(searchReq.getPage()*10);
+            ).skip(searchReq.getPage()*20);
         } else {
             query = new Query(where(searchReq.getCloth() + ".category").is(searchReq.getCategory())
                     .and(searchReq.getCloth() + ".color").all(searchReq.getColor())
                     .and(searchReq.getCloth() + ".print").all(searchReq.getPrint())
                     .and("style.style").in(searchReq.getStyle())
-            ).skip(searchReq.getPage()*10);
+            ).skip(searchReq.getPage()*20);
         }
-        return mongoTemplate.find(query.limit(10), Data.class);
+        return mongoTemplate.find(query.limit(20), Data.class);
     }
 }
