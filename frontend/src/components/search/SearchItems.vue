@@ -439,11 +439,37 @@ export default {
       'showSearchItems',
     ]),
     save() {
-      alert(`검색 ㄱㄱ싱!`);
+      // alert(`검색 ㄱㄱ싱!`);
+      let colorSample = ['블랙','화이트','그레이','레드','핑크','오렌지','베이지','브라운','옐로우','그린','블루','스카이블루','퍼플'];
+      
+      let searchReq = {
+        style : ['페미닌'],
+        cloth : this.categoryItems[this.categoryValue],
+        category : this.styleItems[this.styleValue],
+        color : '',
+        print : '',
+        page : 1,
+      };
+
+      if(!colorSample.includes(this.designItems[this.designValue])){
+        searchReq.print = this.designItems[this.designValue];
+      } else searchReq.color = this.designItems[this.designValue];
+
+      if(searchReq.cloth == '상의') searchReq.cloth = 'top'
+      else if(searchReq.cloth == '하의') searchReq.cloth = 'bottom'
+      else if(searchReq.cloth == '아우터') searchReq.cloth = 'outer'
+      else searchReq.cloth = 'onepiece'
+
+      this.$store.dispatch('showSearchItems', searchReq)
+        .then((result) => {
+          this.$store.commit('setImages', result.data.s3url);
+        })
+      
       this.menuOpen = false;
-      this.categoryValue = null;
-      this.styleValue = null;
-      this.designValue = null;
+      // this.menuOpen = false;
+      // this.categoryValue = null;
+      // this.styleValue = null;
+      // this.designValue = null;
     },
     initialization () {
       this.menuOpen = false;

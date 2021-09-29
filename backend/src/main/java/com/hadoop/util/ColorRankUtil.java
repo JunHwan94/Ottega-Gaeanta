@@ -19,7 +19,8 @@ public class ColorRankUtil {
     public void initRank(){
 
         try {
-            File file = new File("../rank.txt");
+            File file = new File(System.getProperty("user.dir").substring(0, System.getProperty("user.dir").length() - 7) + "/rank.txt");
+            System.out.println("init 실행");
             FileReader fr = new FileReader(file);
             BufferedReader br = new BufferedReader(fr);
             String line = null;
@@ -29,6 +30,7 @@ public class ColorRankUtil {
                 String key = a[0];
                 String value = a[1];
                 rank.put(key, value);
+                System.out.println(rank.get(key));
             }
         } catch (Exception e) {
             e.printStackTrace();
