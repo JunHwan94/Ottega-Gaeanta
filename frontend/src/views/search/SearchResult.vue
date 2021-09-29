@@ -16,22 +16,22 @@
         <ChangeStyleModal/>
       </div>
     </div>
-    <v-container>
-      <v-row id="searchRow" v-masonry>        
+    <v-container id="container-height">
+      <div id="searchRow" v-masonry>
         <v-col v-for="index in images" :key="index" cols="2">
           <v-hover :v-slot="{ hover }">
-            <v-card color="grey" @click="showStyleInfo({showSearchDetail, imgURL : images[number[index-1]]})">
+            <v-card id="card-img" @click="showStyleInfo({showSearchDetail, imgURL : index})">
               <v-img :src="index"></v-img>
               <!-- <v-img src="@/assets/logo.png" @load="this.$redrawVueMasonry()"></v-img> -->
             </v-card>
           </v-hover>
         </v-col>
         <!-- <infinite-loading @infinite="infiniteHandler" spinner="waveDots"></infinite-loading> -->
-      </v-row>      
+      </div>      
       <!-- <infinite-loading @infinite="infiniteHandler" spinner="waveDots"></infinite-loading> -->
     </v-container>
-    <SearchDetail :showSearchDetail="showSearchDetail"/>
     <infinite-loading @infinite="infiniteHandler" spinner="waveDots"></infinite-loading>
+    <SearchDetail :showSearchDetail="showSearchDetail"/>
   </div>
 </template>
 
@@ -74,9 +74,9 @@ export default {
     this.repaint();
   },
   watch: {
-    // images: function() {
-    //   this.repaint();
-    // }
+    images: function() {
+      this.repaint();
+    }
   },
   methods: {
     ...mapActions([
@@ -105,11 +105,18 @@ export default {
 </script>
 
 <style>
-/* #searchBack {
+#searchBack {
   height: 100%;
   overflow: auto;
+}
+#searchRow {
+  /* overflow: v; */
+  height: 100%;
+}
+/* #container-height {
+  height: 110vh;
 } */
-/* #searchRow {
-  overflow: v;
-} */
+#card-img:hover {
+  border: 5px solid #FBACCC;
+}
 </style>
