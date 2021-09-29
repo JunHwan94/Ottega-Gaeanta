@@ -19,7 +19,7 @@ public class ColorRankUtil {
     public void initRank(){
 
         try {
-            File file = new File(System.getProperty("user.dir").substring(0, System.getProperty("user.dir").length() - 7) + "/rank.txt");
+            File file = new File(System.getProperty("user.dir").substring(0, System.getProperty("user.dir").length() - 7) + "\\rank.txt");
             System.out.println("init 실행");
             FileReader fr = new FileReader(file);
             BufferedReader br = new BufferedReader(fr);
