@@ -10,3 +10,6 @@ export function getSelectedUserStyle (state) {
 export function getUserFashionRate (state) {
   return state.userFashionRate
 }
+export function getImages (state) {
+  return state.images
+}

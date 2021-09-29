@@ -13,9 +13,10 @@ export function showStyleInfo({ commit }, credentials) {
     commit("SEARCH_STYLE_UNIT_INFO", showSearchDetail)
     commit("SEARCH_DETAIL_IMAGE_URL", imgURL)
 }
-export function showSearchItems({ commit }, credentials) {
-    const searchItemsBool = !credentials.searchItemsBool
-    commit("SEARCH_ITEMS_CATEGORY", searchItemsBool)
+export function showSearchItems({ commit }, searchReq) {
+    console.log(searchReq)
+    const url = baseUrl + "search/s3image"
+    return axios.post(url, searchReq)
 }
 
 export function evaluateImage({ commit }, image) {
