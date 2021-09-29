@@ -1,8 +1,10 @@
 package com.hadoop.controller;
 
+import com.hadoop.entity.FPTISurvey;
 import com.hadoop.entity.FPTIType;
 import com.hadoop.response.BaseResponseBody;
 import com.hadoop.response.FPTIRes;
+import com.hadoop.response.FPTISurveyRes;
 import com.hadoop.service.FPTIService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/fpti")
 @AllArgsConstructor
@@ -21,6 +25,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class FPTIController {
 
     private final FPTIService fptiService;
+
+    @GetMapping("/getSurveys")
+    @ApiOperation(value = "패피티아이 질문 리스트", notes = "패피티아이 질문 리스트 조회")
+    public ResponseEntity<? extends BaseResponseBody> getSurveys(){
+        List<FPTISurvey> surveys = fptiService.getSurveys();
+        return ResponseEntity.status(200).body(FPTISurveyRes.of(200, "성공", surveys));
+    }
 
     @GetMapping("/result/{typeNo}")
     @ApiOperation(value = "패피티아이 유형 정보", notes = "패피티아이 유형 조회")
