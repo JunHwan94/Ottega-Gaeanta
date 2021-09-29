@@ -448,7 +448,7 @@ export default {
         category : this.styleItems[this.styleValue],
         color : '',
         print : '',
-        page : 1,
+        page : 0,
       };
 
       if(!colorSample.includes(this.designItems[this.designValue])){
@@ -460,8 +460,13 @@ export default {
       else if(searchReq.cloth == '아우터') searchReq.cloth = 'outer'
       else searchReq.cloth = 'onepiece'
 
+      // store에 있는 searchReq에 저장
+      this.$store.commit('setSearchReq', searchReq)
+
+      // action에 있는 백엔드 API 호출 function 실행
       this.$store.dispatch('showSearchItems', searchReq)
         .then((result) => {
+          // store에 있는 이미지 배열에 저장
           this.$store.commit('setImages', result.data.s3url);
         })
       

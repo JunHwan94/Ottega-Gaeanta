@@ -18,6 +18,10 @@ export function SAVE_USER_FASHION_RATE (state, userFashionRate) {
   state.userFashionRate = userFashionRate
   console.log(state.userFashionRate)
 }
+export function setSearchReq (state, searchReq) {
+  state.searchReq = searchReq
+}
+
 export function setImages (state, images) {
   state.images = images
 }
