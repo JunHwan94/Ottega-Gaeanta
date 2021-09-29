@@ -31,7 +31,7 @@
             </v-card>
           </v-hover>
         </v-col>
-        <infinite-loading @infinite="infiniteHandler" spinner="waveDots"></infinite-loading>
+        <!-- <infinite-loading @infinite="infiniteHandler" spinner="waveDots"></infinite-loading> -->
       </v-row>      
     </v-container>
     <SearchDetail
