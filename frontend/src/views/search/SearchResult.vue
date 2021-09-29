@@ -26,6 +26,7 @@
             </v-card>
           </v-hover>
         </v-col>
+        <!-- <infinite-loading @infinite="infiniteHandler" spinner="waveDots"></infinite-loading> -->
       </v-row>      
       <!-- <infinite-loading @infinite="infiniteHandler" spinner="waveDots"></infinite-loading> -->
     </v-container>
@@ -41,9 +42,6 @@ import SearchItems from '@/components/search/SearchItems'
 import ChangeStyleModal from '@/components/search/ChangeStyleModal'
 import { mapActions, mapGetters, mapState } from 'vuex'
 import InfiniteLoading from 'vue-infinite-loading';
-
-Grid00.set_autosizingtype("row");
-Grid00.set_extendsizetype("row");
 
 export default {
   components: {
