@@ -57,29 +57,29 @@
       EvaluationPictureModal,
     },
     mounted() {
-      const menu = document.querySelectorAll('.menu')
-      const leftImage = document.querySelector('.left-image')
-      const rightImage = document.querySelector('.right-image')
-      menu[0].addEventListener('mouseover', function () {
-        imageClear()
-        leftImage.src = require('@/assets/camerapicture.png')
-        leftImage.style.visibility = 'visible'
-      })
-      menu[1].addEventListener('mouseover', function () {
-        imageClear()
-        rightImage.src = require('@/assets/camerapicture.png')
-        rightImage.style.visibility = 'visible'
-      })
-      menu[2].addEventListener('mouseover', function () {
-        imageClear()
-        leftImage.src = require('@/assets/main.png')
-        leftImage.style.visibility = 'visible'
-      })
+      // const menu = document.querySelectorAll('.menu')
+      // const leftImage = document.querySelector('.left-image')
+      // const rightImage = document.querySelector('.right-image')
+      // menu[0].addEventListener('mouseover', function () {
+      //   imageClear()
+      //   leftImage.src = require('@/assets/camerapicture.png')
+      //   leftImage.style.visibility = 'visible'
+      // })
+      // menu[1].addEventListener('mouseover', function () {
+      //   imageClear()
+      //   rightImage.src = require('@/assets/camerapicture.png')
+      //   rightImage.style.visibility = 'visible'
+      // })
+      // menu[2].addEventListener('mouseover', function () {
+      //   imageClear()
+      //   leftImage.src = require('@/assets/main.png')
+      //   leftImage.style.visibility = 'visible'
+      // })
 
-      const imageClear = function () {
-        leftImage.style.visibility = 'hidden'
-        rightImage.style.visibility = 'hidden'
-      }
+      // const imageClear = function () {
+      //   leftImage.style.visibility = 'hidden'
+      //   rightImage.style.visibility = 'hidden'
+      // }
     },
     methods: {
       changePage(index) {
