@@ -18,20 +18,16 @@
     </div>
     <v-container id="container-height">
       <v-row id="searchRow" v-masonry>
-        <v-col v-for="index in images" :key="index" cols="2">
+        <v-col v-for="(image, index) in images" :key="index" cols="2">
           <v-hover :v-slot="{ hover }">
-            <v-card id="card-img" @click="showStyleInfo({showSearchDetail, imgURL : index})">
-              <p>{{index}}</p>
-              <v-img :src="index"></v-img>
+            <v-card id="card-img" @click="showStyleInfo({showSearchDetail, idx : index, imgURL : image})">
+              <v-img :src="image"></v-img>
               <!-- <v-img src="@/assets/logo.png" @load="this.$redrawVueMasonry()"></v-img> -->
             </v-card>
           </v-hover>
         </v-col>
-      </v-row>      
-      <!-- <infinite-loading v-if="this.infin" @infinite="infiniteHandler" spinner="waveDots"></infinite-loading> -->
-      <!-- <infinite-loading @infinite="infiniteHandler" spinner="waveDots"></infinite-loading> -->
+      </v-row>
     </v-container>
-    <!-- <infinite-loading @infinite="infiniteHandler" spinner="waveDots"></infinite-loading> -->
     <SearchDetail :showSearchDetail="showSearchDetail"/>
   </div>
 </template>
@@ -59,10 +55,6 @@ export default {
   data () {
     return {
       number: [0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2],
-      // images: [require('@/assets/1.jpg'),
-      //          require('@/assets/2.jpg'),
-      //          require('@/assets/3.jpg'),
-      //         ],
       hover: true,
       // showSearchDetail: false,
       chips: ['Programming', 'Playing video games', 'Watching movies', 'Sleeping'],
@@ -74,6 +66,7 @@ export default {
     ...mapState([
       'showSearchDetail',
       'images',
+      'imageInfos',
       'infin',
       'searchReq'
     ]),
@@ -99,23 +92,25 @@ export default {
       this.chips = [...this.chips]
     },
     repaint() {
-      setTimeout(() => this.$redrawVueMasonry(), 700);
+      setTimeout(() => this.$redrawVueMasonry(), 200);
     },
     async infiniteHandler() {
-      if((window.innerHeight + window.scrollY) >= document.body.offsetHeight){
-          // setTimeout(() => {
+      if((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
             let searchReq = this.$store.getters['getSearchReq']
             if(this.infin) searchReq.page++
+
             this.$store.commit('setSearchReq', searchReq)
-            this.$store.dispatch('showSearchItems', searchReq)
+
+            await this.$store.dispatch('showSearchItems', searchReq)
               .then((result) => {
                 console.log(result.data)
-                this.$store.commit('addImages', result.data.s3url)
+                this.$store.commit('addImages', result.data)
                 setTimeout(() => {
+                  // 스크롤 막는 부분인데 효력 없음. 지우기 무서워서 그냥 둠.
+                  $('body').off('scroll touchmove mousewheel');
                   this.repaint()
-                }, 500);
-          // }, 100);
-          
+                  $('body').on('scroll touchmove mousewheel');
+                }, 1000);
         })
       }
     }
