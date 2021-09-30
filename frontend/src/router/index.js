@@ -9,6 +9,7 @@ import ChangeStyleModal from '../components/search/ChangeStyleModal.vue'
 import EvaluationMain from '../views/evaluation/EvaluationMain.vue'
 import EvaluationFilm from '../views/evaluation/EvaluationFilm.vue'
 import EvaluationResult from '../views/evaluation/EvaluationResult.vue'
+import Fpti from '../views/fpti/Fpti.vue'
 
 Vue.use(VueRouter)
 
@@ -62,6 +63,11 @@ const routes = [
     path: '/evaluationResult',
     name: 'EvaluationResult',
     component: EvaluationResult
+  },
+  {
+    path: '/fpti',
+    name: 'Fpti',
+    component: Fpti
   },
 ]
 

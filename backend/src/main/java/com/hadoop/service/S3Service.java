@@ -16,7 +16,6 @@ public class S3Service {
 //        int pageCount = page * 10;    // clothes도 10개만 가져오는거라 0 부터 시작해도 될 것 같습니다.
         for(int i = 0; i < clothes.size(); i++){
             urlList.add(s3url+ clothes.get(i).getStyle().get(0).getStyle()+ "/" + clothes.get(i).getFileName());
-            System.out.println(urlList.get(i));
 //            if(pageCount == (page*10) + 10)break;
         }
         return urlList;
