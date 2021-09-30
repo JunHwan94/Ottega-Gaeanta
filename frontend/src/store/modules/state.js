@@ -14,6 +14,7 @@ const videoStream = null
 const selectedUserStyle = []
 const userFashionRate = []
 const infin = false
+const surveys = []
 
 export default function () {
   return {
@@ -25,6 +26,7 @@ export default function () {
     infin,
     searchReq,
     selectedUserStyle,
-    userFashionRate
+    userFashionRate,
+    surveys
   }
 }
