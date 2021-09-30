@@ -19,3 +19,9 @@ export function getSearchReq (state) {
 export function getSurveys (state) {
   return state.surveys
 }
+export function getImageInfos (state) {
+  return state.imageInfos
+}
+export function getImageDetail (state) {
+  return state.imageDetail
+}

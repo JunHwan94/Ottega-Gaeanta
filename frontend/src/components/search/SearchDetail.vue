@@ -42,6 +42,7 @@
             <h1>스타일 : 아방가르드</h1>
             <br>
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Soluta consequatur inventore quasi consequuntur in ipsam cum, non quam optio libero iure vel, dolore totam amet vero incidunt iusto suscipit voluptatibus.</p>
+            {{ imageDetail }}
           </div>
 
           <v-card-actions style="height: 5vh">
@@ -89,7 +90,10 @@ export default {
   computed: {
     ...mapState([
       'showSearchDetail',
-      'searchDetailImageURL'
+      'searchDetailImageURL',
+
+      // 이 친구가 해당 사진 정보 담고 있습니다.
+      'imageDetail'
     ]),
     flipCSS () {
       if (this.show) {
