@@ -11,11 +11,7 @@ import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -43,4 +39,13 @@ public class FPTIController {
         // TODO 예외 처리하기 null 등
         return ResponseEntity.status(200).body(FPTIRes.of(200, "성공", type));
     }
+
+    @GetMapping("/result")
+    @ApiOperation(value = "패피티아이 순위 정하기", notes = "패피티아이 순위 정해서 typeNo 반환")
+    public ResponseEntity<? extends BaseResponseBody> getArray(@RequestParam(value = "arr[]", required = true) List<Integer> array){
+        int typeNo = fptiService.getTypeNo(array);
+        FPTIType type = fptiService.getResult(typeNo);
+        return ResponseEntity.status(200).body(FPTIRes.of(200, "성공", type));
+    }
+
 }
