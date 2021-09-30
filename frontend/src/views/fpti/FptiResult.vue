@@ -2,49 +2,74 @@
   <div id="div-container">
     <div align="center" style="margin-top: 5rem;">
       <v-card style="width: 30rem;">
-        <h1 style="text-align: left;">패피티아이 진단 결과</h1>
-        <h1 style="text-align: right; color: #F875AA">당신은?</h1>
+        <h1 style="text-align: center;">패피티아이(FPTI) 진단 결과</h1>
+        <h1 style="text-align: center; color: #F875AA; margin-top: 5px;">당신은?</h1>
         <v-img :src="result.iconUrl"></v-img>
         <br>
         <div style="height: 7rem; vertical-align: middle; background-color: #333333">
           <div class="d-flex pt-3" style="justify-content: center; display: inline-block;">
             <span style="color: white; text-align: center; font-size: 1rem;">Your</span>
-            &nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;
             <span style="color: white; text-align: center;">St.</span>
           </div>
           <h1 style="color: white; text-align: center; text-decoration: underline;">{{result.fptiName}}</h1>
         </div>
-        <br>
+        <br><br><br>
         <div class="d-flex">
           <div v-for="tag in result.hashtag" :key="tag">
-            <span style="color: #FBACCC; margin-left: 20px; font-family: Cafe24Ssurround;">{{ tag }}</span>
+            <h3 style="color: #FBACCC; margin-left: 20px; font-family: Cafe24Ssurround;">{{ tag }}</h3>
           </div>
         </div>
         <br>
         <h2>{{result.title}}</h2>
         <div class="mx-3 mt-3">
-          <span style="font-size: 1.2rem;">{{result.desc}}</span >
+          <h5 style="font-size: 1.2rem; ">{{result.desc}}</h5>
         </div>
+        <br><br><br>
+        <!-- <h2 style="color: #F875AA; text-align: center; font-family: Cafe24Ssurround;">{{ result.comment }}</h2> -->
         <br>
-        <h2 style="color: #F875AA; text-align: center; font-family: Cafe24Ssurround;">{{ result.comment }}</h2>
-        <br>
-        <div>
-          <v-row style="background-color: #F1D1D0; height: 200px;">
+        <div style="background-color: #F1D1D0; height: 430px;">
+          <div style="height: 40px;"></div>
+          <div class="pt-2">
+            <h2 style="color: #F875AA; text-align: center; font-family: Cafe24Ssurround;">{{ result.comment }}</h2>
+          </div>
+          <v-row>
             <v-col v-for="(image, idx) in result.bgImgUrl" :key="idx" cols="4">
-              <v-avatar size="7rem" :style="'margin-top:'+paddingArray[idx]">
+              <v-avatar :size="sizeArray[idx]" :style="'margin-top:'+paddingArray[idx]+';'+'padding: 0px;'" id="avatarImg">
                 <img :src="image" style="border: 5px solid #FBACCC;">
               </v-avatar>
             </v-col>
           </v-row>
+          <div style="height: 30px;"></div>
+          <v-btn @click="goToSearch" id="goSearchBtn" style="color: #F875AA; text-align: right; font-family: Cafe24Ssurround; margin-right: 20px; width: 250px;">패션 검색 gogo -></v-btn>
         </div>
-        <div style="height: 200px;"></div>
+        <div style="background-color: #F4F9F9; height: 300px;">
+          <div style="height: 50px;"></div>
+          <div class="">
+            <h2 style="color: #F875AA; text-align: center; font-family: Cafe24Ssurround;">패피티아이 결과를</h2>
+            <div class="d-flex" style="margin-left: 15%">
+              <h1 style="color: #222222; text-align: center; font-family: Cafe24Ssurround;">친구들과</h1>&nbsp;&nbsp;&nbsp;
+              <h1 style="color: #F875AA; text-align: center; font-family: Cafe24Ssurround;">공유해보세요!</h1>
+            </div>
+          </div>
+          <div style="height: 50px;"></div>
+          <!-- 카카오 공유 -->
+          <div>
+            카카오공유 구현예정
+          </div>
+        </div>
       </v-card>
+      <div style="height: 100px;"></div>
     </div>
   </div>
 </template>
 
 <script>
+import SearchResult from '@/views/search/SearchResult.vue'
 export default {
+  components: {
+    SearchResult
+  },
   data () {
     return {
       result: {
@@ -57,15 +82,25 @@ export default {
         "bgImgUrl" : [
           "https://j5b206.s3.ap-northeast-2.amazonaws.com/클래식/GramMeterGroove_033_59.jpg", 
           "https://j5b206.s3.ap-northeast-2.amazonaws.com/프레피/20190315(샘플,중국)-최정임님-sk2271k93(3)-바비제이(샘플,프로썸SK)0315-모델-IMG_6541.jpg", 
-          "https://j5b206.s3.ap-northeast-2.amazonaws.com/프레피/20180309(대행)13-jk1004(5931)IMG_0006.jpg"], 
+          "https://j5b206.s3.ap-northeast-2.amazonaws.com/프레피/20180309(대행)13-jk1004(5931)IMG_0006.JPG"], 
         "hashtag" : ["#고전의", "#늙은이", "#지성미"]
       },
-      paddingArray: ['10%','40%','15%'],
+      sizeArray: ['8.5rem','10rem','9rem'],
+      paddingArray: ['10%','60%','25%'],
+    }
+  },
+  methods: {
+    goToSearch () {
+      this.$router.push('SearchResult')
     }
   }
 }
 </script>
 
 <style>
-
+#goSearchBtn:hover {
+  background-color: #FBACCC;
+  color: #FBACCC;
+  cursor: pointer;
+}
 </style>
