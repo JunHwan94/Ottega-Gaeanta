@@ -2,20 +2,27 @@
   <v-app>
     <nav-bar></nav-bar>
     <v-main>
+      <loading-spinner :loading="getLoadingSpinnerStatus"/>
       <router-view />
     </v-main>
   </v-app>
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
   import NavBar from '@/components/NavBar.vue'
+  import LoadingSpinner from '@/components/loadingSpinner/LoadingSpinner.vue'
   export default {
     name: 'App',
     components: {
       NavBar,
+      LoadingSpinner,
     },
     data: () => ({
     }),
+    computed: {
+      ...mapGetters(["getLoadingSpinnerStatus"]),
+    },
     methods: {
     },
     mounted() {
