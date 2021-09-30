@@ -197,6 +197,7 @@ export default {
       }
       if (qno == this.getSurveys.length) { // 마지막 문항인 경우
         console.log(this.stylePoints)
+        alert('완료되었습니다.')
         // this.$router.push('/')
       }
       this.$refs.fpti.next() // next page
