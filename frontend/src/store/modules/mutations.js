@@ -39,3 +39,7 @@ export function initInfin (state) {
 export function searchStart (state) {
   state.infin = true
 }
+
+export function SAVE_FPTI_SURVEYS (state, surveys) {
+  state.surveys = surveys
+}
