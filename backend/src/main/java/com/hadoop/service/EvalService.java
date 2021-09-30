@@ -1,5 +1,7 @@
 package com.hadoop.service;
 import com.hadoop.entity.ColorRank;
+import com.hadoop.entity.Rank;
+import com.hadoop.repository.EvalRepositorySupport;
 import com.hadoop.response.EvalColorRes;
 import com.hadoop.util.ColorRankUtil;
 import com.hadoop.util.FileUtil;
@@ -19,7 +21,7 @@ import java.io.IOException;
 public class EvalService {
 
     @Autowired
-    ColorRankUtil colorRankUtil;
+    EvalRepositorySupport evalRepositorySupport;
 
     public EvalColorRes storeImage(MultipartFile image) throws IOException {
         FileUtil fileUtil = FileUtil.getInstance();
@@ -56,9 +58,11 @@ public class EvalService {
         String top = response.getBody().getTop();
         String pants = response.getBody().getPants();
 
-        String key = top + ":" + pants;
+        String key = top + "-" + pants;
 
-        EvalColorRes evalColorRes = new EvalColorRes(top, pants, "A");
+        Rank rank = evalRepositorySupport.getRank(key);
+
+        EvalColorRes evalColorRes = new EvalColorRes(top, pants, rank.getValue());
         return evalColorRes;
     }
 
