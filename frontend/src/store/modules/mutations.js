@@ -27,5 +27,15 @@ export function setImages (state, images) {
 }
 
 export function addImages (state, images) {
-  state.images.concat(images)
+  for (let i = 0; i < images.length; i++){
+    state.images.push(images[i])
+  }
+}
+
+export function initInfin (state) {
+  state.infin = false
+}
+
+export function searchStart (state) {
+  state.infin = true
 }

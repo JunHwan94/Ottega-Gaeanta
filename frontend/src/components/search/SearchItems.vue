@@ -426,6 +426,9 @@ import { mapActions, mapState, mapGetters } from 'vuex'
 
 export default {
   name: 'SearchItems',
+  created() {
+    this.$store.commit('initInfin')
+  },
   computed: {
     ...mapState([
       'showSearchDetail',
@@ -460,15 +463,19 @@ export default {
       else if(searchReq.cloth == '아우터') searchReq.cloth = 'outer'
       else searchReq.cloth = 'onepiece'
 
+      console.log(searchReq)
       // store에 있는 searchReq에 저장
       this.$store.commit('setSearchReq', searchReq)
 
       // action에 있는 백엔드 API 호출 function 실행
       this.$store.dispatch('showSearchItems', searchReq)
         .then((result) => {
+          console.log(result.data)
           // store에 있는 이미지 배열에 저장
           this.$store.commit('setImages', result.data.s3url);
+          this.$store.commit('searchStart')
         })
+      
       
       this.menuOpen = false;
       // this.menuOpen = false;
