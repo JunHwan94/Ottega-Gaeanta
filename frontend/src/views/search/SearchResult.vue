@@ -17,7 +17,7 @@
       </div>
     </div>
     <v-container id="container-height">
-      <div id="searchRow" v-masonry>
+      <v-row id="searchRow" v-masonry>
         <v-col v-for="index in images" :key="index" cols="2">
           <v-hover :v-slot="{ hover }">
             <v-card id="card-img" @click="showStyleInfo({showSearchDetail, imgURL : index})">
@@ -26,11 +26,11 @@
             </v-card>
           </v-hover>
         </v-col>
-        <!-- <infinite-loading @infinite="infiniteHandler" spinner="waveDots"></infinite-loading> -->
-      </div>      
+      </v-row>      
+      <!-- <infinite-loading v-if="this.infin" @infinite="infiniteHandler" spinner="waveDots"></infinite-loading> -->
       <!-- <infinite-loading @infinite="infiniteHandler" spinner="waveDots"></infinite-loading> -->
     </v-container>
-    <infinite-loading @infinite="infiniteHandler" spinner="waveDots"></infinite-loading>
+    <!-- <infinite-loading @infinite="infiniteHandler" spinner="waveDots"></infinite-loading> -->
     <SearchDetail :showSearchDetail="showSearchDetail"/>
   </div>
 </template>
@@ -40,9 +40,14 @@
 import SearchDetail from '@/components/search/SearchDetail'
 import SearchItems from '@/components/search/SearchItems'
 import ChangeStyleModal from '@/components/search/ChangeStyleModal'
-import { mapActions, mapGetters, mapState } from 'vuex'
+import { mapActions, mapGetters, mapMutations, mapState } from 'vuex'
 import InfiniteLoading from 'vue-infinite-loading';
 
+// window.onscroll = function(e) {
+//   if((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+//     console.log(this.number)
+//   }
+// }
 export default {
   components: {
     SearchDetail,
@@ -67,11 +72,16 @@ export default {
   computed: {
     ...mapState([
       'showSearchDetail',
-      'images'
+      'images',
+      'infin',
+      'searchReq'
     ]),
   },
   mounted() {
-    this.repaint();
+    this.repaint();    
+  },
+  created() {
+    window.addEventListener('scroll', this.infiniteHandler)
   },
   watch: {
     images: function() {
@@ -90,15 +100,24 @@ export default {
     repaint() {
       setTimeout(() => this.$redrawVueMasonry(), 500);
     },
-    infiniteHandler() {
-      console.log('인피티트 중')
-      let searchReq = this.$store.getters['getSearchReq']
-      searchReq.page++
-      this.$store.commit('setSearchReq')
-      this.$store.dispatch('showSearchItems', searchReq)
-        .then((result) => {
-          this.$store.commit('addImages', result.data.s3url)
+    async infiniteHandler() {
+      if((window.innerHeight + window.scrollY) >= document.body.offsetHeight){
+          // setTimeout(() => {
+            let searchReq = this.$store.getters['getSearchReq']
+            if(this.infin) searchReq.page++
+            this.$store.commit('setSearchReq')
+            this.$store.dispatch('showSearchItems', searchReq)
+              .then((result) => {
+                console.log(result.data)
+                this.$store.commit('addImages', result.data.s3url)
+                this.repaint()
+            setTimeout(() => {
+              
+            }, 1000);
+          // }, 250);
+          
         })
+      }
     }
   },
 }
@@ -107,12 +126,12 @@ export default {
 <style>
 #searchBack {
   height: 100%;
-  overflow: auto;
+  /* overflow: auto; */
 }
 #searchRow {
-  /* overflow: v; */
+  /* overflow: v;  */
   height: 100%;
-}
+} 
 /* #container-height {
   height: 110vh;
 } */

@@ -7,12 +7,13 @@ const searchReq = {
   category : '',
   color : '',
   print : '',
-  page : 1,
+  page : 0
 };
 const searchDetailImageURL = '@/assets/3.jpg'
 const videoStream = null
 const selectedUserStyle = []
 const userFashionRate = []
+const infin = false
 
 export default function () {
   return {
@@ -21,6 +22,8 @@ export default function () {
     images,
     searchDetailImageURL,
     videoStream,
+    infin,
+    searchReq,
     selectedUserStyle,
     userFashionRate
   }
