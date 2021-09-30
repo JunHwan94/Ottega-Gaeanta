@@ -25,3 +25,6 @@ export function getImageInfos (state) {
 export function getImageDetail (state) {
   return state.imageDetail
 }
+export function getLoadingSpinnerStatus (state) {
+  return state.LoadingStatus
+}

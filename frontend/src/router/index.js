@@ -11,6 +11,7 @@ import EvaluationFilm from '../views/evaluation/EvaluationFilm.vue'
 import EvaluationResult from '../views/evaluation/EvaluationResult.vue'
 import Fpti from '../views/fpti/Fpti.vue'
 import FptiResult from '../views/fpti/FptiResult.vue'
+import store from '../store/index'
 
 Vue.use(VueRouter)
 
@@ -81,6 +82,17 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  store.commit('startSpinner');
+  setTimeout(() => {
+      next();
+  }, 500);
+})
+
+router.afterEach((to, from) => {
+  store.commit('endSpinner');
 })
 
 export default router

@@ -61,3 +61,13 @@ export function setImageDetail (state, detail) {
 export function SAVE_FPTI_SURVEYS (state, surveys) {
   state.surveys = surveys
 }
+
+export function startSpinner(state) {
+  // alert('tesa')
+  state.LoadingStatus = true
+}
+
+export function endSpinner(state) {
+  // alert('tesa')
+  state.LoadingStatus = false
+}
