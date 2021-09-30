@@ -325,7 +325,7 @@
         </v-main>
 
         <!-- 디자인 선택 (패턴, 색상) -->
-        <v-main v-if="styleValue != null">
+        <v-main v-if="styleValue != null" id="design-overflow">
         <h3 class="my-2 mx-2">Design</h3>
         <v-divider></v-divider>
           <template>
@@ -518,5 +518,8 @@ export default {
 <style>
 .search-container {
   z-index: 10;
+}
+#design-overflow {
+  overflow: hidden;
 }
 </style>

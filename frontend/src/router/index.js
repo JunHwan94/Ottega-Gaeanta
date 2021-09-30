@@ -10,6 +10,7 @@ import EvaluationMain from '../views/evaluation/EvaluationMain.vue'
 import EvaluationFilm from '../views/evaluation/EvaluationFilm.vue'
 import EvaluationResult from '../views/evaluation/EvaluationResult.vue'
 import Fpti from '../views/fpti/Fpti.vue'
+import FptiResult from '../views/fpti/FptiResult.vue'
 
 Vue.use(VueRouter)
 
@@ -68,6 +69,11 @@ const routes = [
     path: '/fpti',
     name: 'Fpti',
     component: Fpti
+  },
+  {
+    path: '/fptiResult',
+    name: 'FptiResult',
+    component: FptiResult
   },
 ]
 
