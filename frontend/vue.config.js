@@ -6,7 +6,15 @@ module.exports = {
   ],
   devServer: {
     port: 8080,
-    proxy: 'https://localhost:443',
+    // proxy: 'https://localhost:443',
+    proxy: {
+      '/search': {
+        target: 'https://localhost:443',
+      },
+      '/eval': {
+        target : 'https://localhost:443',
+      }      
+    },
     disableHostCheck: true
   },
   configureWebpack: {

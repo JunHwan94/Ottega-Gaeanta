@@ -1,13 +1,10 @@
 <template>
-  <div style="background: #f4f9f9;">
+  <div style="background: #f4f9f9;" id="searchBack">
     <div class="d-flex col">
       <p class="col-2"></p>
       <!-- 검색창 -->
       <div class="col-8 mx-4" style="z-index: 3;">
-        <SearchItems
-
-        />
-
+        <SearchItems/>
         <!-- <v-btn style="width: 100%" @click="showSearchItems({searchItemsBool})">
           Search your style
         </v-btn>
@@ -19,23 +16,19 @@
         <ChangeStyleModal/>
       </div>
     </div>
-    <v-container>
-      <v-row v-masonry>
-        <v-col v-for="index in 20" :key="index" cols="2">
-          <v-hover
-            :v-slot="{ hover }"
-          >
-            <v-card color="grey" @click="showStyleInfo({showSearchDetail, imgURL : images[number[index-1]]})">
-              <v-img :src="images[number[index-1]]"></v-img>
+    <v-container id="container-height">
+      <v-row id="searchRow" v-masonry>
+        <v-col v-for="(image, index) in images" :key="index" cols="2">
+          <v-hover :v-slot="{ hover }">
+            <v-card id="card-img" @click="showStyleInfo({showSearchDetail, idx : index, imgURL : image})">
+              <v-img :src="image"></v-img>
               <!-- <v-img src="@/assets/logo.png" @load="this.$redrawVueMasonry()"></v-img> -->
             </v-card>
           </v-hover>
         </v-col>
       </v-row>
     </v-container>
-    <SearchDetail
-      :showSearchDetail="showSearchDetail"
-    />
+    <SearchDetail :showSearchDetail="showSearchDetail"/>
   </div>
 </template>
 
@@ -44,37 +37,45 @@
 import SearchDetail from '@/components/search/SearchDetail'
 import SearchItems from '@/components/search/SearchItems'
 import ChangeStyleModal from '@/components/search/ChangeStyleModal'
-import { mapActions, mapState } from 'vuex'
+import { mapActions, mapGetters, mapMutations, mapState } from 'vuex'
+import InfiniteLoading from 'vue-infinite-loading';
 
-
-
+// window.onscroll = function(e) {
+//   if((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+//     console.log(this.number)
+//   }
+// }
 export default {
   components: {
     SearchDetail,
     SearchItems,
     ChangeStyleModal,
+    InfiniteLoading,
   },
   data () {
     return {
       number: [0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2],
-      images: [require('@/assets/1.jpg'),
-               require('@/assets/2.jpg'),
-               require('@/assets/3.jpg'),
-              ],
       hover: true,
       // showSearchDetail: false,
       chips: ['Programming', 'Playing video games', 'Watching movies', 'Sleeping'],
       items: ['Streaming', 'Eating'],
+      page : 1
     }
   },
   computed: {
     ...mapState([
       'showSearchDetail',
-      // 'searchItemsBool'
-    ])
+      'images',
+      'imageInfos',
+      'infin',
+      'searchReq'
+    ]),
   },
   mounted() {
-    this.repaint();
+    this.repaint();    
+  },
+  created() {
+    window.addEventListener('scroll', this.infiniteHandler)
   },
   watch: {
     images: function() {
@@ -91,12 +92,45 @@ export default {
       this.chips = [...this.chips]
     },
     repaint() {
-      setTimeout(() => this.$redrawVueMasonry(), 500);
+      setTimeout(() => this.$redrawVueMasonry(), 200);
+    },
+    async infiniteHandler() {
+      if((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+            let searchReq = this.$store.getters['getSearchReq']
+            if(this.infin) searchReq.page++
+
+            this.$store.commit('setSearchReq', searchReq)
+
+            await this.$store.dispatch('showSearchItems', searchReq)
+              .then((result) => {
+                console.log(result.data)
+                this.$store.commit('addImages', result.data)
+                setTimeout(() => {
+                  // 스크롤 막는 부분인데 효력 없음. 지우기 무서워서 그냥 둠.
+                  $('body').off('scroll touchmove mousewheel');
+                  this.repaint()
+                  $('body').on('scroll touchmove mousewheel');
+                }, 1000);
+        })
+      }
     }
   },
 }
 </script>
 
 <style>
-
+#searchBack {
+  height: 100%;
+  /* overflow: auto; */
+}
+#searchRow {
+  /* overflow: v;  */
+  height: 100%;
+} 
+/* #container-height {
+  height: 110vh;
+} */
+#card-img:hover {
+  border: 5px solid #FBACCC;
+}
 </style>

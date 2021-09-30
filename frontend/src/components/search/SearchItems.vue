@@ -426,6 +426,9 @@ import { mapActions, mapState, mapGetters } from 'vuex'
 
 export default {
   name: 'SearchItems',
+  created() {
+    this.$store.commit('initInfin')
+  },
   computed: {
     ...mapState([
       'showSearchDetail',
@@ -439,11 +442,44 @@ export default {
       'showSearchItems',
     ]),
     save() {
-      alert(`검색 ㄱㄱ싱!`);
+      let colorSample = ['블랙','화이트','그레이','레드','핑크','오렌지','베이지','브라운','옐로우','그린','블루','스카이블루','퍼플'];
+      
+      let searchReq = {
+        style : '',
+        cloth : this.categoryItems[this.categoryValue],
+        category : this.styleItems[this.styleValue],
+        color : '',
+        print : '',
+        page : 0,
+      };
+
+      // 선호하는 스타일들을 request 객체에 추가 
+      searchReq.style = this.getSelectedUserStyle
+
+      // 색인지 무늬인지 구별
+      if(!colorSample.includes(this.designItems[this.designValue])){
+        searchReq.print = this.designItems[this.designValue];
+      } else searchReq.color = this.designItems[this.designValue];
+
+      // store에 있는 searchReq에 저장
+      this.$store.commit('setSearchReq', searchReq)
+
+      // action에 있는 백엔드 API 호출 function 실행
+      this.$store.dispatch('showSearchItems', searchReq)
+        .then((result) => {
+          console.log(result.data)
+          // store에 있는 이미지 배열에 저장
+          this.$store.commit('setImages', result.data);
+          this.$store.commit('searchStart')
+        })
+      
+      
+      // 메뉴 닫기. (일단 기존 검색 이력은 남겨두고 닫습니다.)
       this.menuOpen = false;
-      this.categoryValue = null;
-      this.styleValue = null;
-      this.designValue = null;
+      // this.menuOpen = false;
+      // this.categoryValue = null;
+      // this.styleValue = null;
+      // this.designValue = null;
     },
     initialization () {
       this.menuOpen = false;
@@ -455,7 +491,7 @@ export default {
   data () {
     return {
       menuOpen: false,
-      categoryItems: ['상의','하의','아우터','원피스'],
+      categoryItems: ['top','bottom','outer','onepiece'],
       categoryValue: null,
       styleItems: ['탑', '블라우스', '캐주얼상의', '니트웨어', '셔츠', '베스트','코트','재킷','점퍼','패딩','청바지','팬츠','스커트','드레스','점프수트','수영복'],
       styleValue: null,

@@ -10,3 +10,18 @@ export function getSelectedUserStyle (state) {
 export function getUserFashionRate (state) {
   return state.userFashionRate
 }
+export function getImages (state) {
+  return state.images
+}
+export function getSearchReq (state) {
+  return state.searchReq
+}
+export function getSurveys (state) {
+  return state.surveys
+}
+export function getImageInfos (state) {
+  return state.imageInfos
+}
+export function getImageDetail (state) {
+  return state.imageDetail
+}

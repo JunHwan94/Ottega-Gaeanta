@@ -13,6 +13,7 @@ import java.io.*;
 @Api(value="색 평가")
 @RestController
 @RequestMapping("/eval")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class EvalController {
 
     @Autowired

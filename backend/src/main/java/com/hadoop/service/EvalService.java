@@ -58,7 +58,7 @@ public class EvalService {
 
         String key = top + ":" + pants;
 
-        EvalColorRes evalColorRes = new EvalColorRes(top, pants, colorRankUtil.rank.get(key));
+        EvalColorRes evalColorRes = new EvalColorRes(top, pants, "A");
         return evalColorRes;
     }
 

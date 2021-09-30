@@ -1,23 +1,36 @@
 const showSearchDetail = false
 const searchItemsBool = false
-const images = [
-  '@/assets/1.jpg',
-  '@/assets/2.jpg',
-  '@/assets/3.jpg',
-]
+const images = [] // 이미지 URL 배열
+const imageInfos = [] // 사진 정보 담고 있는 Json 배열
+const imageDetail = ''  // 사진 정보 디테일 JSON
+const searchReq = {   // 검색 action 들어갈 request 객체
+  style : [],
+  cloth : '',
+  category : '',
+  color : '',
+  print : '',
+  page : 0
+};
 const searchDetailImageURL = '@/assets/3.jpg'
 const videoStream = null
 const selectedUserStyle = []
 const userFashionRate = []
+const infin = false   // 검색 기능 시에 무한 스크롤 실행 여부. 처음 검색창에 들어가면 비활성화, 처음 검색 결과 이후 활성화
+const surveys = []
 
 export default function () {
   return {
     showSearchDetail,
     searchItemsBool,
     images,
+    imageInfos,
+    imageDetail,
     searchDetailImageURL,
     videoStream,
+    infin,
+    searchReq,
     selectedUserStyle,
-    userFashionRate
+    userFashionRate,
+    surveys
   }
 }
