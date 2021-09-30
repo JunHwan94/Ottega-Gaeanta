@@ -325,7 +325,7 @@
         </v-main>
 
         <!-- 디자인 선택 (패턴, 색상) -->
-        <v-main v-if="styleValue != null">
+        <v-main v-if="styleValue != null" id="design-overflow">
         <h3 class="my-2 mx-2">Design</h3>
         <v-divider></v-divider>
           <template>
@@ -493,12 +493,16 @@ export default {
       menuOpen: false,
       categoryItems: ['top','bottom','outer','onepiece'],
       categoryValue: null,
-      styleItems: ['탑', '블라우스', '캐주얼상의', '니트웨어', '셔츠', '베스트','코트','재킷','점퍼','패딩','청바지','팬츠','스커트','드레스','점프수트','수영복'],
+      styleItems: [
+        '탑', '블라우스', '티셔츠', '니트웨어', '후드티', '브라탑',
+        '코트', '재킷', '점퍼', '패딩', '짚업', '가디건', '베스트',
+        '청바지', '팬츠', '스커트', '레깅스', '조커팬츠',
+        '드레스','점프수트'],
       styleValue: null,
       topIndex: [1,2,3,4,5,6],
-      bottomIndex: [11,12,13],
-      outerIndex: [7,8,9,10],
-      dressIndex: [14,15,16],
+      outerIndex: [7,8,9,10,11,12,13],
+      bottomIndex: [14,15,16,17,18],
+      dressIndex: [19,20],
       designItems: [
                     '블랙','화이트','그레이','레드','핑크','오렌지','베이지','브라운','옐로우','그린','블루','스카이블루','퍼플',
                     '체크','스트라이프','지그재그','호피','지브라','도트','카무플라쥬','페이즐리','아가일','플로럴','레터링','해골','타이다이','그라데이션','무지','그래픽','하운즈 투스','깅엄'
@@ -516,5 +520,8 @@ export default {
 <style>
 .search-container {
   z-index: 10;
+}
+#design-overflow {
+  overflow: hidden;
 }
 </style>
