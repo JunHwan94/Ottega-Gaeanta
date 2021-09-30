@@ -1,7 +1,31 @@
 // import $axios from 'axios'
 
+
 import axios from 'axios'
+import store from '../index'
+
 axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
+axios.interceptors.request.use(
+  config => {
+      store.commit('startSpinner');
+      return config;
+  },
+  error => {
+      alert('데이터 요청 실패');
+      return Promise.reject(error);
+  }
+);
+
+axios.interceptors.response.use(
+  response => {
+      store.commit('endSpinner');
+      return response;
+  },
+  error => {
+      alert('데이터 응답 실패');
+      return Promise.reject(error);
+  }
+)
 
 // const baseUrl = 'https://localhost:443/'
 const baseUrl = 'https://j5b206.p.ssafy.io:443/'
