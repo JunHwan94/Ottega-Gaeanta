@@ -1,10 +1,34 @@
 // import $axios from 'axios'
 
-import axios from 'axios'
-axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 
-// const baseUrl = 'https://localhost:443/'
-const baseUrl = 'https://j5b206.p.ssafy.io:443/'
+import axios from 'axios'
+import store from '../index'
+
+axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
+axios.interceptors.request.use(
+  config => {
+      store.commit('startSpinner');
+      return config;
+  },
+  error => {
+      alert('데이터 요청 실패');
+      return Promise.reject(error);
+  }
+);
+
+axios.interceptors.response.use(
+  response => {
+      store.commit('endSpinner');
+      return response;
+  },
+  error => {
+      alert('데이터 응답 실패');
+      return Promise.reject(error);
+  }
+)
+
+const baseUrl = 'https://localhost:443/'
+// const baseUrl = 'https://j5b206.p.ssafy.io:443/'
 // axios 샘플
 export function showStyleInfo({ commit, getters }, credentials) {
     const showSearchDetail = !credentials.showSearchDetail
@@ -17,13 +41,11 @@ export function showStyleInfo({ commit, getters }, credentials) {
     commit("setImageDetail", imageDetail[index])
 }
 export function showSearchItems({ commit }, searchReq) {
-    console.log(searchReq)
     const url = baseUrl + "search/s3image"
     return axios.post(url, searchReq)
 }
 
 export function evaluateImage({ commit }, image) {
-    console.log(image)
     const url = baseUrl + 'eval/input'
     return axios.post(url, image)
 }

@@ -8,4 +8,5 @@ import java.util.List;
 public interface FPTIService {
     List<FPTISurvey> getSurveys();
     FPTIType getResult(int typeNo);
+    int getTypeNo(List<Integer> array);
 }
