@@ -21,6 +21,7 @@
         <v-col v-for="index in images" :key="index" cols="2">
           <v-hover :v-slot="{ hover }">
             <v-card id="card-img" @click="showStyleInfo({showSearchDetail, imgURL : index})">
+              <p>{{index}}</p>
               <v-img :src="index"></v-img>
               <!-- <v-img src="@/assets/logo.png" @load="this.$redrawVueMasonry()"></v-img> -->
             </v-card>
@@ -98,23 +99,22 @@ export default {
       this.chips = [...this.chips]
     },
     repaint() {
-      setTimeout(() => this.$redrawVueMasonry(), 500);
+      setTimeout(() => this.$redrawVueMasonry(), 700);
     },
     async infiniteHandler() {
       if((window.innerHeight + window.scrollY) >= document.body.offsetHeight){
           // setTimeout(() => {
             let searchReq = this.$store.getters['getSearchReq']
             if(this.infin) searchReq.page++
-            this.$store.commit('setSearchReq')
+            this.$store.commit('setSearchReq', searchReq)
             this.$store.dispatch('showSearchItems', searchReq)
               .then((result) => {
                 console.log(result.data)
                 this.$store.commit('addImages', result.data.s3url)
-                this.repaint()
-            setTimeout(() => {
-              
-            }, 1000);
-          // }, 250);
+                setTimeout(() => {
+                  this.repaint()
+                }, 500);
+          // }, 100);
           
         })
       }
