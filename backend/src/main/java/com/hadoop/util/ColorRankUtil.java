@@ -15,6 +15,7 @@ public class ColorRankUtil {
 
     public static Map<String, String> rank = new HashMap<>();
 
+
     @PostConstruct
     public void initRank(){
 
