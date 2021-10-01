@@ -55,7 +55,7 @@
           <div style="height: 50px;"></div>
           <!-- 카카오 공유 -->
           <div>
-            카카오공유 구현예정
+            <img src="//developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png" alt="kakao" @click="sendkakao" id="kakao-share">
           </div>
         </div>
       </v-card>
@@ -92,8 +92,30 @@ export default {
   methods: {
     goToSearch () {
       this.$router.push('SearchResult')
-    }
-  }
+    },
+    sendkakao: function () {
+      Kakao.Link.createDefaultButton({ 
+        container: '#kakao-share',
+        objectType: 'feed', 
+        content: { 
+          title: '옷테가 괜찮다 패피티아이 진단 결과', 
+          description: '당신은 어떤 스타일? 옷테가 괜찮다에서 확인하세요', 
+          imageUrl: require('@/assets/logo.png'),
+          link: { 
+            mobileWebUrl: 'http://localhost:8080/fptiResult', 
+            webUrl: 'http://localhost:8080/fptiResult', 
+          }, 
+        }, 
+        buttons: [ { 
+          title: '웹으로 보기', 
+          link: { 
+            mobileWebUrl: 'http://localhost:8080/fptiResult', 
+            webUrl: 'http://localhost:8080/fptiResult', 
+          }, 
+        }, ], 
+      }) 
+    },
+  },
 }
 </script>
 

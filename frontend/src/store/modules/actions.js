@@ -54,3 +54,8 @@ export function getSurveys() {
     const url = baseUrl + '/fpti/getSurveys'
     return axios.get(url)
 }
+
+export function getSurveyResult({ commit }, obj) {
+  const url = baseUrl + '/fpti/result'
+  return axios.get(url, obj)
+}
