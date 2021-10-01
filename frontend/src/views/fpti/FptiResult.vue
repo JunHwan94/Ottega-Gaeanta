@@ -100,17 +100,17 @@ export default {
         content: { 
           title: '옷테가 괜찮다 패피티아이 진단 결과', 
           description: '당신은 어떤 스타일? 옷테가 괜찮다에서 확인하세요', 
-          imageUrl: require('@/assets/logo.png'),
+          imageUrl: 'https://cc-prod.scene7.com/is/image/CCProdAuthor/Fashion-illustration_P1_900x420?$pjpeg$&jpegSize=200&wid=900',
           link: { 
-            mobileWebUrl: 'http://localhost:8080/fptiResult', 
-            webUrl: 'http://localhost:8080/fptiResult', 
+            mobileWebUrl: 'https://j5b206.p.ssafy.io/fptiResult', 
+            webUrl: 'https://j5b206.p.ssafy.io/fptiResult', 
           }, 
         }, 
         buttons: [ { 
           title: '웹으로 보기', 
           link: { 
-            mobileWebUrl: 'http://localhost:8080/fptiResult', 
-            webUrl: 'http://localhost:8080/fptiResult', 
+            mobileWebUrl: 'https://j5b206.p.ssafy.io/fptiResult', 
+            webUrl: 'https://j5b206.p.ssafy.io/fptiResult', 
           }, 
         }, ], 
       }) 
@@ -123,6 +123,9 @@ export default {
 #goSearchBtn:hover {
   background-color: #FBACCC;
   color: #FBACCC;
+  cursor: pointer;
+}
+#kakao-share:hover {
   cursor: pointer;
 }
 </style>
