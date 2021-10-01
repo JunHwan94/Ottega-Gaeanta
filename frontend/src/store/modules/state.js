@@ -21,6 +21,7 @@ const surveys = []
 const LoadingStatus = false
 const styleImage = null
 const styleDepthImage = null
+let styleIndex = 0
 
 export default function () {
   return {
@@ -39,6 +40,7 @@ export default function () {
     surveys,
     LoadingStatus,
     styleImage,
-    styleDepthImage
+    styleDepthImage,
+    styleIndex
   }
 }

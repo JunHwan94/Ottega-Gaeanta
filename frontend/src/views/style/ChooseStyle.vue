@@ -5,7 +5,7 @@
       <p class="explain-detail">회원님이 좋아하실만한 스타일을 더 많이 추천해드릴 수 있습니다.</p>
     </div>
     <div class="container">
-      <div v-for="(image ,i) in images1" :key="i" class="box" @click="boxClick(i)">
+      <div v-for="(image ,i) in images1" :key="i" class="box" @click="[boxClick(i), showStyleDetailModal(i)]">
         <div class="select">
           <!-- <span>♥♥</span> -->
           <img :src="image" style="width:310px; height: 300px;"/>
@@ -13,7 +13,7 @@
       </div>
     </div>
     <div class="container">
-      <div v-for="(image, i) in images2" :key="i" class="box" @click="boxClick(i + 5)">
+      <div v-for="(image, i) in images2" :key="i" class="box" @click="[boxClick(i + 5), showStyleDetailModal(i + 5)]">
         <div class="select">
           <!-- <h1>♥</h1> -->
           <img :src="image" style="width:310px; height: 300px;"/>
@@ -48,16 +48,16 @@
         require('@/assets/chooseStyle/10-casual.jpg'),
       ],
       imageDepth: [
-        require('@/assets/chooseStyle/map3-t.jpg'),
+        require('@/assets/chooseStyle/1-traditional-map.png'),
+        require('@/assets/chooseStyle/2-manish-map.png'),
         require('@/assets/chooseStyle/p1map.png'),
+        require('@/assets/chooseStyle/test.png'),
+        require('@/assets/chooseStyle/test.png'),
         require('@/assets/chooseStyle/p1map.png'),
-        require('@/assets/chooseStyle/p1map.png'),
-        require('@/assets/chooseStyle/p1map.png'),
-        require('@/assets/chooseStyle/p1map.png'),
-        require('@/assets/chooseStyle/p1map.png'),
-        require('@/assets/chooseStyle/p1map.png'),
-        require('@/assets/chooseStyle/p1map.png'),
-        require('@/assets/chooseStyle/p1map.png'),
+        require('@/assets/chooseStyle/7-gender-map.png'),
+        require('@/assets/chooseStyle/8-sporty-map.png'),
+        require('@/assets/chooseStyle/9-subculture-map.png'),
+        require('@/assets/chooseStyle/10-casual-map.png'),
       ],
       style: [
         '트레디셔널',
@@ -81,6 +81,12 @@
     methods: {
       toggle() {
         this.show = !this.show
+      },
+      showStyleDetailModal(i) {
+        this.$store.commit('SAVE_STYLE_IMAGE', i < 5 ? this.images1[i] : this.images2[i-5])
+        this.$store.commit('SAVE_STYLE_DEPTH_IMAGE', this.imageDepth[i])
+        this.$store.commit('SAVE_STYLE_INDEX', i)
+        this.show = true
       },
       confirm() {
         let checkCount = 0
@@ -109,8 +115,9 @@
         const select = document.getElementsByClassName('select')[i]
         if (this.checkList[i]) {
           select.classList.add('check')
-          this.$store.commit('SAVE_STYLE_IMAGE', this.images1[i])
-          this.$store.commit('SAVE_STYLE_DEPTH_IMAGE', this.imageDepth[i])
+          console.log(i)
+          // this.$store.commit('SAVE_STYLE_IMAGE', i < 5 ? this.images1[i] : this.images2[i-5])
+          // this.$store.commit('SAVE_STYLE_DEPTH_IMAGE', this.imageDepth[i])
         } else {
           select.classList.remove('check')
         }

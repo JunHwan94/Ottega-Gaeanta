@@ -37,3 +37,6 @@ export function getStyleImage (state) {
 export function getStyleDepthImage (state) {
   return state.styleDepthImage
 }
+export function getStyleIndex (state) {
+  return state.styleIndex
+}
