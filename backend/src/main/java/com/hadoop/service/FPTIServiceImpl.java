@@ -27,7 +27,7 @@ public class FPTIServiceImpl implements FPTIService{
     @Override
     public FPTIType getResult(int typeNo) {
         return mongoTemplate.findOne(
-                Query.query(Criteria.where("typeNo").is(typeNo)),
+                Query.query(Criteria.where("typeno").is(typeNo)),
                 FPTIType.class
         );
     }
