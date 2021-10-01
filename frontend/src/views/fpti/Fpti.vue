@@ -106,6 +106,7 @@ export default {
     // db 조회 안될 때 테스트 용
     // getSurveys: [{"qno": 1,"question": "당신의 옷장에는 어떤 옷이 많은가요?","answerList": ["셔츠, 블라우스", "후드, 맨투맨"]},{"qno": 2,"question": "당신의 옷들은 어떤 색인가요?","answerList": ["알록달록", "무채색"]},{"qno": 3,"question": "쇼핑하러 가면 어떤 옷을 사나요?","answerList": ["가성비 무난한 옷", "비싼 명품"]},{"qno": 4,"question": "유행하는 옷은 어떻게 한다?","answerList": ["바로 산다", "유행 안타는거 입음"]},{"qno": 5,"question": "평소 집에서 혼자 쉴때 당신의 옷차림은?","answerList": ["속옷바람", "편한 옷차림", "나홀로 패션쇼"]},{"qno": 6,"question": "당신은 친구들과 여행을 계획하고 있다. 다음 중 더 끌리는 곳은?","answerList": ["\"인간은 땅으로부터 왔소이다\" \n인적이 드문 산과 바다 또는 자연", "\"나는 인싸다\" 무적권 붐비는 핫 플레이스 "]},{"qno": 7,"question": "유튜브를 켜면 보통 가장 위에 있는 컨텐츠","answerList": ["뷰티", "개그", "사회과학", "야한거"]},{"qno": 8,"question": "로또 1등이 당첨되면 가장 먼저 할 일은?","answerList": ["갖고싶었던 차를 일시불로 지른다", "이자율이 높은 은행을 알아본다", "친구들한테 한 턱 쏜다!"]},{"qno": 9,"question": "친구가 패션에 대한 고민을 털어놓는다. 어떻게 할 것인가?","answerList": ["\"패션이란 말이야..\"로 운을 떼면서 조언을 해준다", "스타일은 타고나는 것, 앞에서 맞장구만 쳐준다", "패션에 대해 큰 관심이 없다. 주제를 다른 방향으로 바꿀 기회만 노린다. "]},{"qno": 10,"question": "내 핸드폰 케이스는","answerList": ["없다", "투명 케이스", "누런 투명 케이스", "색상 또는 이미지 프린트가 있는 케이스"]},{"qno": 11,"question": "지금 내 방 상태는","answerList": ["발 디딜 틈이 없다", "아직 사람이 지낼만한 수준이다", "우렁각시가 다녀갔나..? 싶을 정도로 깔끔하다"]},{"qno": 12,"question": "현재 내 지갑에 포함된 색 개수는?","answerList": ["1개", "2개", "3개 이상", "지갑같은거 안씀"]},{"problemNo": 13,"question": "지금 그림을 그린다면?","answerList": ["아름다웠던 곳을 기억해서 그린다", "지금 내가 느낀대로, 그리고 싶은대로 그린다"]}],
     stylePoints: {},
+    styleList: ['트레디셔널','매니시','페미닌','에스닉','컨템포러리','내추럴','젠더프루이드','스포티','서브컬쳐','캐주얼'],
     pointMap: [
       {},
       {
@@ -181,22 +182,37 @@ export default {
   },
   mounted() {
     // fpti point init
-    const styleList = ['트레디셔널','매니시','페미닌','에스닉','컨템포러리','내추럴','젠더프루이드','스포티','서브컬쳐','캐주얼']
-    for (let i = 0; i < styleList.length; i++) {
-      this.stylePoints[styleList[i]] = 0
+    for (let i = 0; i < this.styleList.length; i++) {
+      this.stylePoints[this.styleList[i]] = 0
     }
   },
   methods: {
     select (qno, ansIndex) {
-      console.log(qno, ansIndex)
+      
       const styleArr = this.pointMap[qno][ansIndex]
-      console.log(styleArr)
+      // console.log(styleArr)
       for (let i = 0; i < styleArr.length; i++) {
-        console.log(this.stylePoints)
+        // console.log(this.stylePoints)
         this.stylePoints[styleArr[i]] += 10
       }
       if (qno == this.getSurveys.length) { // 마지막 문항인 경우
-        console.log(this.stylePoints)
+        // console.log(this.stylePoints)
+        
+        const answerArr = []
+        // console.log(this.stylePoints)
+        for (let i = 0; i < this.styleList.length; i++) {
+          // console.log(this.styleList[i])
+          answerArr[i] = this.stylePoints[this.styleList[i]]
+        }
+        console.log(answerArr)
+        const obj = {
+          array: answerArr
+        }
+        // obj.array = answerArr;
+        this.$store.dispatch('getSurveyResult', obj)
+        .then((response) => {
+          console.log(response.data);
+        })
         alert('완료되었습니다.')
         // this.$router.push('/')
       }
