@@ -5,6 +5,7 @@ import com.hadoop.repository.SearchRepository;
 import com.hadoop.repository.SearchRepositorySupport;
 import com.hadoop.request.SearchReq;
 import com.hadoop.response.OtherStyleRes;
+import com.hadoop.response.SimillarStyleRes;
 import com.hadoop.util.StyleListUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,5 +48,9 @@ public class SearchService {
             }
         }
         return list;
+    }
+
+    public List<SimillarStyleRes> getSimillarStyles(String style){
+        return searchRepositorySupport.getSimillarStyles(style);
     }
 }

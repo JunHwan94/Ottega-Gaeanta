@@ -5,14 +5,17 @@ import com.hadoop.repository.SearchRepository;
 import com.hadoop.request.SearchReq;
 import com.hadoop.response.OtherStyleRes;
 import com.hadoop.response.SearchRes;
+import com.hadoop.response.SimillarStyleRes;
 import com.hadoop.service.S3Service;
 import com.hadoop.service.SearchService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.ws.rs.GET;
 import java.util.List;
 
 @Api(value="예시")
@@ -46,5 +49,10 @@ public class SearchController {
     @PostMapping("/other")
     public ResponseEntity<List<OtherStyleRes>> getOtherStyle(@RequestBody String style){
         return ResponseEntity.ok(searchService.getOtherStyles(style));
+    }
+
+    @GetMapping("/simillar/{style}")
+    public ResponseEntity<List<SimillarStyleRes>> getSimillarStyles(@PathVariable String style){
+        return ResponseEntity.ok(searchService.getSimillarStyles(style));
     }
 }

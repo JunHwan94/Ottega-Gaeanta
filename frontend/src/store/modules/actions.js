@@ -27,8 +27,8 @@ axios.interceptors.response.use(
   }
 )
 
-// const baseUrl = 'https://localhost:443/'
-const baseUrl = 'https://j5b206.p.ssafy.io:443/'
+const baseUrl = 'https://localhost:443/'
+// const baseUrl = 'https://j5b206.p.ssafy.io:443/'
 // axios 샘플
 export function showStyleInfo({ commit, getters }, credentials) {
     const showSearchDetail = !credentials.showSearchDetail
@@ -39,6 +39,13 @@ export function showStyleInfo({ commit, getters }, credentials) {
     commit("SEARCH_STYLE_UNIT_INFO", showSearchDetail)
     commit("SEARCH_DETAIL_IMAGE_URL", imgURL)
     commit("setImageDetail", imageDetail[index])
+
+    // console.log(imageDetail[index].style[[0]].style)
+    getSimillarStyles(imageDetail[index].style[[0]].style).then((result) => {
+        commit("setSimillarStyles", result.data)
+    })
+    // console.log(simillarImages)
+    // commit("setSimillarStyles", simillarImages)
 }
 export function showSearchItems({ commit }, searchReq) {
     const url = baseUrl + "search/s3image"
@@ -52,5 +59,10 @@ export function evaluateImage({ commit }, image) {
 
 export function getSurveys() {
     const url = baseUrl + '/fpti/getSurveys'
+    return axios.get(url)
+}
+
+function getSimillarStyles(style) {
+    const url = baseUrl + '/search/simillar/' + style
     return axios.get(url)
 }
