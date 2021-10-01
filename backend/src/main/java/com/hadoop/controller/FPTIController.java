@@ -13,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.ws.rs.POST;
 import java.util.List;
 
 @RestController
@@ -40,10 +41,10 @@ public class FPTIController {
         return ResponseEntity.status(200).body(FPTIRes.of(200, "성공", type));
     }
 
-    @GetMapping("/result")
+    @PostMapping("/result")
     @ApiOperation(value = "패피티아이 순위 정하기", notes = "패피티아이 순위 정해서 typeNo 반환")
-    public ResponseEntity<? extends BaseResponseBody> getArray(@RequestParam(value = "arr[]", required = true) List<Integer> array){
-        int typeNo = fptiService.getTypeNo(array);
+    public ResponseEntity<? extends BaseResponseBody> getArray(@RequestParam(value = "arr[]", required = true) List<Integer> arr){
+        int typeNo = fptiService.getTypeNo(arr);
         FPTIType type = fptiService.getResult(typeNo);
         return ResponseEntity.status(200).body(FPTIRes.of(200, "성공", type));
     }
