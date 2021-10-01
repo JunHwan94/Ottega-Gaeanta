@@ -228,10 +228,10 @@ export default {
   /* height: 100vh; */
 }
 .slider {
-  width: 350px;
+  width: 450px;
 }
 .frame {
-  /* border: 1px solid black;  */
+  border: 1px solid black; 
   background-color: white;
 }
 img {
@@ -239,8 +239,8 @@ img {
   height: 200px;
 }
 .btn {
-  width: 300px;
-  height: 50px;
+  width: 350px;
+  height: 60px;
   line-height: 50px;
   border-radius: 5px;
   background-color: #F875AA;
