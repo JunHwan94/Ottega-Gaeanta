@@ -7,7 +7,10 @@
     <div>
     </div>
   </div>
-</template>
+  <!-- <div align="center" v-if="loading" class="test">
+    <img :src='image' style='margin: 0px auto;'/>
+  </div> -->
+  </template>
 
 <script>
   export default {
@@ -19,6 +22,7 @@
     },
     name: 'LoadingSpinner',
     data: () => ({
+      image: require('@/assets/zzz.gif'),
     }),
     computed: {
     },
@@ -28,6 +32,18 @@
 </script>
 
 <style scoped>
+/*
+.test {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 999;
+}
+.test > img {
+  width: 100px;
+  height: 100px;
+}
+*/
 .lds-facebook {
   display: inline-block;
   position: absolute;
