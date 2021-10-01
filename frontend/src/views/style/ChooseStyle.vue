@@ -2,47 +2,62 @@
   <div class="main-container">
     <div class="explain-area">
       <h1>✔ 선호하는 스타일을 3가지 선택하세요</h1>
-      <p class="explain-detail">회원님이 좋아하실만한 스타일이나 색감을 더 많이 추천해드릴 수 있습니다.</p>
+      <p class="explain-detail">회원님이 좋아하실만한 스타일을 더 많이 추천해드릴 수 있습니다.</p>
     </div>
     <div class="container">
-      <div v-for="i in 5" :key="i" class="box" @click="boxClick(i - 1)">
+      <div v-for="(image ,i) in images1" :key="i" class="box" @click="boxClick(i)">
+        <div class="select">
+          <!-- <span>♥♥</span> -->
+          <img :src="image" style="width:310px; height: 300px;"/>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div v-for="(image, i) in images2" :key="i" class="box" @click="boxClick(i + 5)">
         <div class="select">
           <!-- <h1>♥</h1> -->
+          <img :src="image" style="width:310px; height: 300px;"/>
         </div>
       </div>
-      <!-- <div class="box">
-        <div class="select">
-        </div>
-      </div>
-      <div class="box">
-        <div class="select">
-        </div>
-      </div>
-      <div class="box">
-        <div class="select">
-        </div>
-      </div>
-      <div class="box">
-        <div class="select">
-        </div>
-      </div> -->
     </div>
-    <div class="divider"></div>
+    <!-- <div class="divider"></div> -->
     <div align="center">
       <div class="btn" @click="confirm()">스타일 확정</div>
+      <div class="btn" @click="toggle()">토글</div>
     </div>
+    <choose-style-detail v-if="show"></choose-style-detail>
   </div>
 </template>
 
 <script>
+  import ChooseStyleDetail from '../../components/chooseStyle/ChooseStyleDetail.vue'
   export default {
     data: () => ({
-      images: [
-        require('@/assets/chooseStyle/sample2.jpg'),
-        require('@/assets/chooseStyle/sample3.jpg'),
-        require('@/assets/chooseStyle/sample4.jpg'),
-        require('@/assets/chooseStyle/sample5.jpg'),
-        require('@/assets/chooseStyle/sample6.jpg'),
+      images1: [
+        require('@/assets/chooseStyle/1-traditional.jpg'),
+        require('@/assets/chooseStyle/2-manish.jpg'),
+        require('@/assets/chooseStyle/p1.png'),
+        require('@/assets/chooseStyle/4-ethnic.jpg'),
+        require('@/assets/chooseStyle/5-contemporary.jpg'),
+      ],
+      images2: [
+        require('@/assets/chooseStyle/6-natural.jpg'),
+        require('@/assets/chooseStyle/7-gender.jpg'),
+        require('@/assets/chooseStyle/8-sporty.jpg'),
+        require('@/assets/chooseStyle/9-subculture.jpg'),
+        require('@/assets/chooseStyle/10-casual.jpg'),
+      ],
+      imageDepth: [
+        require('@/assets/chooseStyle/map3-t.jpg'),
+        require('@/assets/chooseStyle/p1map.png'),
+        require('@/assets/chooseStyle/p1map.png'),
+        require('@/assets/chooseStyle/p1map.png'),
+        require('@/assets/chooseStyle/p1map.png'),
+        require('@/assets/chooseStyle/p1map.png'),
+        require('@/assets/chooseStyle/p1map.png'),
+        require('@/assets/chooseStyle/p1map.png'),
+        require('@/assets/chooseStyle/p1map.png'),
+        require('@/assets/chooseStyle/p1map.png'),
       ],
       style: [
         '트레디셔널',
@@ -56,9 +71,17 @@
         '서브컬쳐',
         '캐주얼',
       ],
+      show: false,
+      visibleFirstStyle: true,
       checkList: [false, false, false, false, false],
     }),
+    components: {
+      ChooseStyleDetail
+    },
     methods: {
+      toggle() {
+        this.show = !this.show
+      },
       confirm() {
         let checkCount = 0
         const selectedUserStyle = []
@@ -86,77 +109,55 @@
         const select = document.getElementsByClassName('select')[i]
         if (this.checkList[i]) {
           select.classList.add('check')
+          this.$store.commit('SAVE_STYLE_IMAGE', this.images1[i])
+          this.$store.commit('SAVE_STYLE_DEPTH_IMAGE', this.imageDepth[i])
         } else {
           select.classList.remove('check')
         }
-        
       }
     },
     mounted() {
-      const frameWidth = 310, frameHeight = 300;
-      const size = 5
-      // let app = new PIXI.Application({
-      //   width: frameWidth,
-      //   height: frameHeight
-      // });
-      console.log(this.img)
-      const apps = []
-      for (let i = 0; i < size; i++) {
-        apps[i] = new PIXI.Application({width: frameWidth, height: frameHeight})
-      }
+      // const frameWidth = 310, frameHeight = 300;
+      // const size = 10
+      // console.log(this.img)
+      // const apps = []
+      // for (let i = 0; i < size; i++) {
+      //   apps[i] = new PIXI.Application({width: frameWidth, height: frameHeight})
+      // }
 
-      /* PIXI 객체 생성 및 적용 */
-      // console.log(app.view.style.position = 'relative')
-      // document.querySelector('.box').appendChild(app.view); // html tag 한 개 나옴
-      const frames = document.getElementsByClassName('box')
-      for (let i = 0; i < frames.length; i++) {
-        frames[i].appendChild(apps[i].view)
-      }
-      const images = []
-      for (let i = 0; i < size; i++) {
-        images[i] = new PIXI.Sprite.from(this.images[i])
-        images[i].width = frameWidth
-        images[i].height = frameHeight
-        apps[i].stage.addChild(images[i])
-      }
-      // let img = new PIXI.Sprite.from(require('@/assets/sample2.jpg'));
-      // img.width = frameWidth;
-      // img.height = frameHeight;
-      // app.stage.addChild(img);
+      // /* PIXI 객체 생성 및 적용 */
+      // const frames = document.getElementsByClassName('box')
+      // for (let i = 0; i < frames.length; i++) {
+      //   frames[i].appendChild(apps[i].view)
+      // }
+      // const images = []
+      // for (let i = 0; i < size; i++) {
+      //   images[i] = new PIXI.Sprite.from(this.images[i])
+      //   images[i].width = frameWidth
+      //   images[i].height = frameHeight
+      //   apps[i].stage.addChild(images[i])
+      // }
 
-      /* PIXI 이미지 외곡 설정 및 적용 */
-      const depthMaps = []
-      const displacementFilters = []
-      for (let i = 0; i < size; i++) {
-        depthMaps[i] = new PIXI.Sprite.from(require('@/assets/map3.jpg'));
-        depthMaps[i].width = frameWidth
-        depthMaps[i].height = frameHeight
-        apps[i].stage.addChild(depthMaps[i])
-        displacementFilters[i] = new PIXI.filters.DisplacementFilter(depthMaps[i])
-        console.log(apps[i])
-        apps[i].stage.filters = [displacementFilters[i]]
-      }
-      console.log('3')
-      for (let i = 0; i < frames.length; i++) {
-        frames[i].onmousemove = function (e) {
-          displacementFilters[i].scale.x = (window.innerWidth / 2 - e.clientX) / 20;
-          displacementFilters[i].scale.y = (window.innerHeight / 2 - e.clientY) / 20;
-        }
-      }
-      console.log('4')
-      // let depthMap = new PIXI.Sprite.from(require('@/assets/map3.jpg'));
-      // depthMap.width = frameWidth;
-      // depthMap.height = frameHeight;
-      // app.stage.addChild(depthMap);
-      // let displacementFilter = new PIXI.filters.DisplacementFilter(depthMap);
-      // app.stage.filters = [displacementFilter];
+      // /* PIXI 이미지 외곡 설정 및 적용 */
+      // const depthMaps = []
+      // const displacementFilters = []
+      // for (let i = 0; i < size; i++) {
+      //   depthMaps[i] = new PIXI.Sprite.from(require('@/assets/chooseStyle/p1map.png'));
+      //   depthMaps[i].width = frameWidth
+      //   depthMaps[i].height = frameHeight
+      //   apps[i].stage.addChild(depthMaps[i])
+      //   displacementFilters[i] = new PIXI.filters.DisplacementFilter(depthMaps[i])
+      //   console.log(apps[i])
+      //   apps[i].stage.filters = [displacementFilters[i]]
+      // }
 
-      /* PIXI 이미지 마우스 이벤트 지정 */
-      // let control = document.querySelector('.box')
-      // control.onmousemove = function (e) {
-      //   displacementFilter.scale.x = (window.innerWidth / 2 - e.clientX) / 20;
-      //   displacementFilter.scale.y = (window.innerHeight / 2 - e.clientY) / 20;
-      // };
+      // // 마우스 이동 이벤트 지정
+      // for (let i = 0; i < frames.length; i++) {
+      //   frames[i].onmousemove = function (e) {
+      //     displacementFilters[i].scale.x = (window.innerWidth / 2 - e.clientX) / 25 ;
+      //     displacementFilters[i].scale.y = (window.innerHeight / 2 - e.clientY) / 20;
+      //   }
+      // }
     },
   }
 </script>
@@ -164,7 +165,7 @@
 <style scoped>
   .main-container {
     padding-top: 4rem;
-    height: 100vh;
+    height: 100%;
     width: 100vw;
     background: linear-gradient(to bottom right, #FBACCC, #F1D1D0, white);
     font-family: Binggrae-Bold;
@@ -189,7 +190,7 @@
     margin: 0 2%;
     box-shadow: 0 20px 30px rgba(0, 0, 0, .1);
     line-height: 0;
-    height: 100%;
+    height: 300px;
     cursor: pointer;
     border-radius: 15px;
     border: 2px solid black;
@@ -202,9 +203,10 @@
     width: 100%;
     height: 100%;
     z-index: 1;
+    background-color: black;
   }
   .check {
-    background: black;
+    background-color: black;
     opacity: 0.5;
   }
   .check > h1 { 
@@ -230,12 +232,13 @@
   }
 
   .explain-area {
-    margin: 100px;
+    margin: 60px;
+    margin-bottom: 20px;
   }
 
   .explain-detail {
     margin-left: 15px;
-    margin-top: 15px;
+    /* margin-top: 15px; */
     font-size: 3vh;
   }
   .btn {

@@ -16,9 +16,13 @@ export function SAVE_SELECTED_USER_STYLE (state, selectedUserStyle) {
 }
 export function SAVE_USER_FASHION_RATE (state, userFashionRate) {
   state.userFashionRate = userFashionRate
-  console.log(state.userFashionRate)
 }
-
+export function SAVE_STYLE_IMAGE (state, styleImage) {
+  state.styleImage = styleImage
+}
+export function SAVE_STYLE_DEPTH_IMAGE (state, styleDepthImage) {
+  state.styleDepthImage = styleDepthImage
+}
 // 검색 request 객체 setting
 export function setSearchReq (state, searchReq) {
   state.searchReq = searchReq
