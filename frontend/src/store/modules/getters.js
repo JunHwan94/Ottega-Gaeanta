@@ -28,6 +28,12 @@ export function getImageDetail (state) {
 export function getLoadingSpinnerStatus (state) {
   return state.LoadingStatus
 }
-export function getSimillarStyles(state) {
+export function getSimillarStyles (state) {
   return state.simillarStyles
+}
+export function getStyleImage (state) {
+  return state.styleImage
+}
+export function getStyleDepthImage (state) {
+  return state.styleDepthImage
 }

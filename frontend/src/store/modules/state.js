@@ -19,6 +19,8 @@ const userFashionRate = []
 const infin = false   // 검색 기능 시에 무한 스크롤 실행 여부. 처음 검색창에 들어가면 비활성화, 처음 검색 결과 이후 활성화
 const surveys = []
 const LoadingStatus = false
+const styleImage = null
+const styleDepthImage = null
 
 export default function () {
   return {
@@ -35,6 +37,8 @@ export default function () {
     selectedUserStyle,
     userFashionRate,
     surveys,
-    LoadingStatus
+    LoadingStatus,
+    styleImage,
+    styleDepthImage
   }
 }
