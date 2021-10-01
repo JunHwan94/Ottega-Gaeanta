@@ -38,7 +38,7 @@ public class FPTIServiceImpl implements FPTIService{
         int max = array.get(array.size()-1);
         List<Integer> maxResult = new ArrayList<>();
         for(int i = 0; i < array.size(); i++){
-            if(array.get(i) == max)maxResult.add(array.get(i));
+            if(array.get(i) == max)maxResult.add(i+1);
         }
         if(maxResult.size() == 1) return maxResult.get(0);
         else{
