@@ -34,8 +34,10 @@ public class FPTIServiceImpl implements FPTIService{
 
     @Override
     public int getTypeNo(List<Integer> array){
-        Collections.sort(array);
-        int max = array.get(array.size()-1);
+        int max = 0;
+        for(int i = 0; i < array.size(); i++){
+            if(array.get(i) > max) max = array.get(i);
+        }
         List<Integer> maxResult = new ArrayList<>();
         for(int i = 0; i < array.size(); i++){
             if(array.get(i) == max)maxResult.add(i+1);
