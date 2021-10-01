@@ -111,7 +111,10 @@ export default {
       'searchDetailImageURL',
 
       // 이 친구가 해당 사진 정보 담고 있습니다.
-      'imageDetail'
+      'imageDetail',
+
+      // 유사스타일 리스트입니다.
+      'simillarStyles'
     ]),
     flipCSS () {
       if (this.show) {

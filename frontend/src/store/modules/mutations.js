@@ -71,3 +71,7 @@ export function endSpinner(state) {
   // alert('tesa')
   state.LoadingStatus = false
 }
+
+export function setSimillarStyles(state, simillarStyles) {
+  state.simillarStyles = simillarStyles
+}

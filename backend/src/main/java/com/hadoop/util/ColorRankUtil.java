@@ -13,31 +13,8 @@ import java.util.Map;
 @Component
 public class ColorRankUtil {
 
-    public static Map<String, String> rank = new HashMap<>();
+    File styleFile = new File("../stylelist.txt");
+    File urlFile = new File("../styleImageUrl.txt");
 
 
-    @PostConstruct
-    public void initRank(){
-
-        try {
-            final String rootPath = System.getProperty("java.class.path").split(";")[1];
-
-//            System.out.println(System.getProperty("java.class.path"));
-            File file = new File(rootPath + "\\rank.txt");
-//            System.out.println("init 실행");
-            FileReader fr = new FileReader(file);
-            BufferedReader br = new BufferedReader(fr);
-            String line = null;
-
-            while((line = br.readLine()) != null){
-                String[] a = line.split("/");
-                String key = a[0];
-                String value = a[1];
-                rank.put(key, value);
-                System.out.println(rank.get(key));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 }
