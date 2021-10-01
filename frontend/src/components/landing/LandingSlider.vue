@@ -3,20 +3,21 @@
     <Snowf :amount="20" :size="5" :speed="1.5" :wind="10" :opacity="1" :swing="1" :image="null" :zIndex="1"
       :resize="true" color="#ff69b4" />
     <div>
+      <br>
       <v-container class="lighten-5">
         <v-row class="mb-12" no-gutters>
-          <v-col class="menu" lg="3" @click="nextPage(1)">
-            스마트 검색
+          <v-col class="menu" lg="4" @click="nextPage(1)" align="right" style="padding-right: 150px;">
+            스타일 검색
           </v-col>
-          <v-col class="menu" lg="3" @click="nextPage(2)">
-            코디 추천
+          <v-col class="menu" lg="4" @click="nextPage(2)">
+            의상 색 조합 분석
           </v-col>
-          <v-col class="menu" lg="3" @click="nextPage(3)">
-            퍼스널 컬러
+          <v-col class="menu" lg="4" @click="nextPage(3)" align="left" style="padding-left: 150px;">
+            패피티아이
           </v-col>
-          <v-col class="menu" lg="3" @click="nextPage(4)">
+          <!-- <v-col class="menu" lg="3" @click="nextPage(4)">
             코디 점수
-          </v-col>
+          </v-col> -->
         </v-row>
       </v-container>
       <v-container class="lighten-5">
@@ -33,8 +34,8 @@
               다른 사람들은 어떻게 옷을 입는지 구경하고<br>
               나만의 스타일을 만들어가세요.
             </div>
-            <div class="menu-btn">
-              스타일 똑똑하게 검색하세요!
+            <div class="menu-btn" @click="changePage(0)">
+              스타일 똑똑하게 검색하기
             </div>
           </v-col>
         </v-row>
@@ -42,17 +43,18 @@
         <!-- 빅데이터로 정확하게 소개 -->
         <v-row class="mb-6 menu-row" justify="center" no-gutters v-show="page === 2">
           <v-col lg="4">
-            <img :src="image[1]" />
+            <img :src="image[1]"  style="width: 20vw;"/>
           </v-col>
           <v-col lg="1"></v-col>
           <v-col class="menu-detail" lg="4">
-            <div class="menu-detail-title">빅데이터로 정확하게!</div>
-            <div class="menu-detail-content">
-              120만건의 패션 스타일을 분석하여<br>
-              어울리는 스타일과 색상을 알려드려요!
+            <div class="menu-detail-title">내 의상 색 조합은 괜찮을까?</div>
+            <div class="menu-detail-content" style="font-weight:normal;">
+              미디어 장치, 사진을 활용해 옷의 <br>
+              <span style="color: #f875aa;">색 조합</span>을 분석해드립니다! 그리고 <br>
+              추천을 통해 자신만의 색상 조합을 알아보세요!
             </div>
-            <div class="menu-btn">
-              나만의 코디를 추천 받고싶다면?
+            <div class="menu-btn" @click="changePage(1)">
+              내 의상을 분석하고 싶다면?
             </div>
           </v-col>
         </v-row>
@@ -60,23 +62,24 @@
         <!-- 퍼스널 컬러 기능 소개 -->
         <v-row class="mb-6 menu-row" justify="center" no-gutters v-show="page === 3">
           <v-col lg="4">
-            <img :src="image[2]" />
+            <img :src="image[2]"/>
           </v-col>
           <v-col lg="1"></v-col>
           <v-col class="menu-detail" lg="4">
-            <div class="menu-detail-title">내 피부에 날개를 달아줘</div>
+            <div class="menu-detail-title">내 패션 성향 알아보기</div>
             <div class="menu-detail-content">
-              나의 피부톤을 정확하게 알고 자신만의<br>
-              개성있는 스타일을 만들어가세요!
+              패피티아이를 통해 <br>
+              숨은 내 스타일 성향을 알아보고<br>
+              친구들과 공유해보세요 ! (소름 주의)
             </div>
-            <div class="menu-btn">
-              나이 퍼스널 컬러 알아보기
+            <div class="menu-btn" @click="changePage(2)">
+              FPTI (패피티아이) 시작하기
             </div>
           </v-col>
         </v-row>
 
         <!-- 서비스 시작하기 -->
-        <v-row class="mb-6 menu-row" justify="center" no-gutters v-show="page === 4">
+        <!-- <v-row class="mb-6 menu-row" justify="center" no-gutters v-show="page === 4">
           <v-col lg="4">
             <img :src="image[3]" />
           </v-col>
@@ -91,13 +94,14 @@
               서비스 시작하기
             </div>
           </v-col>
-        </v-row>
+        </v-row> -->
       </v-container>
+      <br><br>
       <div class="progress-container">
         <div class="progress" @click="nextPage(1)" />
         <div class="progress" @click="nextPage(2)" />
         <div class="progress" @click="nextPage(3)" />
-        <div class="progress" @click="nextPage(4)" />
+        <!-- <div class="progress" @click="nextPage(4)" /> -->
       </div>
     </div>
 
@@ -113,8 +117,8 @@
     },
     data: () => ({
       image: [
-        'https://img1.daumcdn.net/thumb/R1280x0.fpng/?fname=http://t1.daumcdn.net/brunch/service/user/6x6e/image/mG_H5qGH5RElp6kLQGHG0sheyG8.png',
-        'https://static.coupangcdn.com/image/vendor_inventory/5fdd/3635f2d30ae5299adad49ac0d61cc2cf47a02d5c1f70d3e37db5f9ed1d54.jpg',
+        require('@/assets/ex-search.png'),
+        require('@/assets/ex-analyze.png'),
         'https://post-phinf.pstatic.net/MjAyMTA0MDZfMjIw/MDAxNjE3Njk0NTYzMDIy.vh_iFhI2K6VWGCSX0ysqFr23aPnYqPTZkzpbUav7xRkg.AWMAI1T96OnWsGWPDDwHrkNCAgOlBho_S9cqzhArFg8g.JPEG/%EC%9D%BC%EB%9F%AC%EC%8A%A4%ED%8A%B8_%EB%8F%84%EC%8B%9D%ED%99%94.jpg?type=w1200',
         'https://post-phinf.pstatic.net/MjAyMTA0MDZfMjIw/MDAxNjE3Njk0NTYzMDIy.vh_iFhI2K6VWGCSX0ysqFr23aPnYqPTZkzpbUav7xRkg.AWMAI1T96OnWsGWPDDwHrkNCAgOlBho_S9cqzhArFg8g.JPEG/%EC%9D%BC%EB%9F%AC%EC%8A%A4%ED%8A%B8_%EB%8F%84%EC%8B%9D%ED%99%94.jpg?type=w1200'
       ],
@@ -124,7 +128,7 @@
         '#F875AA',
         '#F875AA',
       ],
-      pages: ['/', '/', '/', '/', '/chooseStyle'],
+      pages: ['/chooseStyle', '/evaluationMain', '/fpti'],
       page: 1,
     }),
     methods: {

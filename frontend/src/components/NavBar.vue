@@ -52,7 +52,7 @@
         ['Large', 'lg'],
       ],
       colors: ['#F875AA'],
-      items: ['메인으로', '의상 검색','색 조합 평가','FPTI(패피티아이)',],
+      items: ['메인으로', '스타일 검색','의상 색 조합 분석','FPTI(패피티아이)',],
       pages: ['/','/searchResult','/evaluationMain','/fpti'],
     }),
     computed: {
