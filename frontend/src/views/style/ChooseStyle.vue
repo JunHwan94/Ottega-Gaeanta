@@ -23,9 +23,8 @@
     <!-- <div class="divider"></div> -->
     <div align="center">
       <div class="btn" @click="confirm()">스타일 확정</div>
-      <div class="btn" @click="toggle()">토글</div>
     </div>
-    <choose-style-detail v-if="show"></choose-style-detail>
+    <choose-style-detail v-if="show" @close="invisibleModal"></choose-style-detail>
   </div>
 </template>
 
@@ -79,8 +78,8 @@
       ChooseStyleDetail
     },
     methods: {
-      toggle() {
-        this.show = !this.show
+      invisibleModal () {
+        this.show = false
       },
       showStyleDetailModal(i) {
         this.$store.commit('SAVE_STYLE_IMAGE', i < 5 ? this.images1[i] : this.images2[i-5])
