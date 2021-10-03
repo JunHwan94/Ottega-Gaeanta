@@ -12,6 +12,7 @@
     "core-js": "^3.6.5",
     "flipbook-vue": "^0.10.4",
     "install": "^0.13.0",
+    "sweetalert2": "^11.1.7",
     "vue": "^2.6.11",
     "vue-infinite-loading": "^2.4.5",
     "vue-masonry": "^0.13.0",
