@@ -5,18 +5,21 @@
       <p class="explain-detail">회원님이 좋아하실만한 스타일을 더 많이 추천해드릴 수 있습니다.</p>
     </div>
     <div class="container">
-      <div v-for="(image ,i) in images1" :key="i" class="box" @click="[boxClick(i), showStyleDetailModal(i)]">
+      <div v-for="(image ,i) in images1" :key="i" class="box" @click="[showStyleDetailModal(i)]">
         <div class="select">
           <!-- <span>♥♥</span> -->
           <img :src="image" style="width:310px; height: 300px;"/>
+          <div class="heart-area"></div>
         </div>
       </div>
     </div>
     <div class="container">
-      <div v-for="(image, i) in images2" :key="i" class="box" @click="[boxClick(i + 5), showStyleDetailModal(i + 5)]">
-        <div class="select">
+      <div v-for="(image, i) in images2" :key="i" class="box" @click="[showStyleDetailModal(i + 5)]">
+        <div class="select" style="position: relative;">
           <!-- <h1>♥</h1> -->
           <img :src="image" style="width:310px; height: 300px;"/>
+          <div class="heart-area"></div>
+          <!-- <div style="position: absolute; top: 50%; left: 115px; font-size: 50px; color: #F4F9F9;">♥</div> -->
         </div>
       </div>
     </div>
@@ -24,7 +27,7 @@
     <div align="center">
       <div class="btn" @click="confirm()">스타일 확정</div>
     </div>
-    <choose-style-detail v-if="show" @close="invisibleModal"></choose-style-detail>
+    <choose-style-detail v-if="show" @close="invisibleModal" @like-style="likeStyle"></choose-style-detail>
   </div>
 </template>
 
@@ -72,7 +75,7 @@
       ],
       show: false,
       visibleFirstStyle: true,
-      checkList: [false, false, false, false, false],
+      checkList: [false, false, false, false, false, false, false, false, false, false],
     }),
     components: {
       ChooseStyleDetail
@@ -82,6 +85,17 @@
         this.show = false
       },
       showStyleDetailModal(i) {
+        const select = document.getElementsByClassName('select')[i]
+        const area = document.getElementsByClassName('box')[i]
+        const heart = document.getElementsByClassName('heart-area')[i]
+        
+        if (this.checkList[i]) {
+          this.checkList[i] = false
+          select.classList.remove('check')
+          area.classList.remove('back')
+          heart.classList.remove('heart')
+          return
+        }
         this.$store.commit('SAVE_STYLE_IMAGE', i < 5 ? this.images1[i] : this.images2[i-5])
         this.$store.commit('SAVE_STYLE_DEPTH_IMAGE', this.imageDepth[i])
         this.$store.commit('SAVE_STYLE_INDEX', i)
@@ -109,17 +123,14 @@
         // 이동
         this.$router.push('/searchResult')
       },
-      boxClick (i) {
-        this.checkList[i] = !this.checkList[i]
+      likeStyle (i) { // modal에서 좋아요 눌렀을 때 처리
+        this.checkList[i] = true
         const select = document.getElementsByClassName('select')[i]
-        if (this.checkList[i]) {
-          select.classList.add('check')
-          console.log(i)
-          // this.$store.commit('SAVE_STYLE_IMAGE', i < 5 ? this.images1[i] : this.images2[i-5])
-          // this.$store.commit('SAVE_STYLE_DEPTH_IMAGE', this.imageDepth[i])
-        } else {
-          select.classList.remove('check')
-        }
+        const area = document.getElementsByClassName('box')[i]
+        const heart = document.getElementsByClassName('heart-area')[i]
+        select.classList.add('check')
+        area.classList.add('back')
+        heart.classList.add('heart')
       }
     },
     mounted() {
@@ -199,7 +210,7 @@
     height: 300px;
     cursor: pointer;
     border-radius: 15px;
-    border: 2px solid black;
+    border: 2px solid hotpink;
     /* background: black; */
     position: relative;
     /* box-shadow: 0 20px 30px rgba(0,0,0,.1); */
@@ -256,5 +267,63 @@
   cursor: pointer;
   margin-top: 5vh;
   font-family: Cafe24Ssurround;
+}
+.back {
+  background: white;
+  animation-name: backdiv;
+  animation-duration: 1s; 
+  animation-iteration-count: infinite;
+}
+
+.heart {
+  position: absolute;
+  margin: auto;
+  top: -50px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: pink;
+  height: 50px;
+  width: 50px;
+  transform: rotate(-45deg);
+  animation-name: beat;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  z-index: 999;
+}
+.heart:after {
+  background-color: pink;
+  content: "";
+  border-radius: 50%;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  top: 0px;
+  left: 25px;
+}
+.heart:before {
+  background-color: pink;
+  content: "";
+  border-radius: 50%;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  top: -25px;
+  left: 0px;
+}
+
+@keyframes backdiv {
+  50% {
+    background: #ffe6f2;
+  }
+}
+
+@keyframes beat {
+  0% {
+    transform: scale(1) rotate(-45deg);
+  }
+  50% {
+    transform: scale(0.6) rotate(-45deg);
+  }
 }
 </style>

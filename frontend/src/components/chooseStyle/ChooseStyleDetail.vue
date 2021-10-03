@@ -1,28 +1,30 @@
 <template>
   <div class="container" align="center">
+    <div id="back"></div>
+    <div id="heart"></div>
     <div class="image-area">
       <span style="font-size: 2.5vh;">{{data[getStyleIndex].title}}</span>
       <span style="float: right; cursor: pointer; font-size: 2.5vh;" @click="close()">X</span>
       <div class="divider"></div>
       <div class="pixi"></div>
       <div align="left" style="padding: 10px 80px;">
-        <div v-for="tag in data[getStyleIndex].hashtag" :key="tag" style="color: blue; display:inline-block; margin-right: 50px;">
+        <div v-for="tag in data[getStyleIndex].hashtag" :key="tag" style="color: blue; display:inline-block; margin-right: 50px; font-family:Cafe24Ssurround;">
           {{tag}}
         </div>
-        <div style="margin-top: 10px;">
+        <div style="margin-top: 10px;" class="text-content">
           {{data[getStyleIndex].content}}
         </div>
         <div style="margin-top: 10px; padding-top: 30px;">
           <h2 class="mb-5">하위 스타일에는 어떤게 있을까요!?</h2>
           <div align="center" v-for="(style, index) in data[getStyleIndex].subStyle" :key="style" style="color: red; display:inline-block; margin-right: 50px;">
             <img :src="data[getStyleIndex].subStyleImage[index]" style="width: 100px; height: 100px; border-radius: 50px;"/><br>
-            {{style}}
+            <span style="font-family: ELAND_Choice_M;">{{style}}</span>
           </div>
         </div>
         <div style="margin-top: 10px; padding-top: 30px;">
           <h2 class="mb-5" v-html="data[getStyleIndex].end"></h2>
           <div  align="center">
-            <div class="btn">{{data[getStyleIndex].style}} 선택하기</div>
+            <div class="btn" @click="like(getStyleIndex)">{{data[getStyleIndex].style}} 선택하기</div>
           </div>
           
         </div>
@@ -50,7 +52,7 @@
           ]
         },
         {
-          title: '매니시 : 신사복 디자인을 여성스러운 감각으로 도입한 스타일.',
+          title: '매니시 : 신사복 디자인을 여성스러운 감각으로 도입하다.',
           hashtag: ['# 남성적', '# 단정한', '# 세미 정장'],
           content: '매니시 스타일은 보통 블라우스나 셔츠 & 블레이저 등 단정한 세미 정장 위주의 스타일입니다. 담백하고 불편함 없는, 익숙한 듯한 담담한 태도를 드러내는 소년 같은 소녀 스타일을 연출할 수 있습니다.',
           subStyle: ['매니시','톰보이'],
@@ -128,7 +130,7 @@
           hashtag: ['# 역동적인', '# 운동', '# 레깅스'],
           content: '스포티는 남녀노소 운동을 좋아하는 사람이라면 한 번쯤 시도해본 스타일입니다. 맨투맨, 스포츠 브라탑, 민소매, 레깅스, 자전거 룩 등 힙하면서 편안한 스타일링이 가능합니다.',
           subStyle: ['스포티',],
-          end: '<span style="color:red;">운동</span>을 좋아한다면 바로 꾹 눌러주세요.',
+          end: '<span style="color:red;">운동</span>을 좋아한다면 꾹 눌러주세요.',
           style: '스포티',
           subStyleImage: [
             'https://j5b206.s3.ap-northeast-2.amazonaws.com/스포티/20200922sfd-1 (2699).JPG'
@@ -191,9 +193,19 @@
       };
     },
     methods: {
-      close() {
+      close () {
         this.$emit('close')
       },
+      like (i) {
+        const area = document.getElementsByClassName('image-area')[0]
+        const heart = document.getElementById('heart')
+        area.classList.add('back')
+        heart.classList.add('heart')
+        setTimeout(() => {
+          this.close()
+          this.$emit('like-style', i)
+        }, 1500)
+      }
     }
   }
 </script>
@@ -223,10 +235,10 @@
   background-color:  #FBACCC;
 }
 .btn {
-  width: 300px;
-  height: 80px;
-  line-height: 80px;
-  font-size: 2.5vh;
+  width: 250px;
+  height: 60px;
+  line-height: 60px;
+  font-size: 2vh;
   background-color: #F875AA;
   border-radius: 10px;
   margin: 0px 10px;
@@ -234,8 +246,68 @@
   cursor: pointer;
   text-align: center;
 }
-
+.text-content {
+  font-family: ELAND_Choice_M;
+}
 .btn:hover {
   background-color: #F1D1D0;;
 }
+.back {
+    background: white;
+    animation-name: backdiv;
+    animation-duration: 1s; 
+    animation-iteration-count: infinite;
+  }
+
+  .heart {
+    position: absolute;
+    margin: auto;
+    top: -50px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: pink;
+    height: 50px;
+    width: 50px;
+    transform: rotate(-45deg);
+    animation-name: beat;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    z-index: 999;
+  }
+  .heart:after {
+    background-color: pink;
+    content: "";
+    border-radius: 50%;
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    top: 0px;
+    left: 25px;
+  }
+  .heart:before {
+    background-color: pink;
+    content: "";
+    border-radius: 50%;
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    top: -25px;
+    left: 0px;
+  }
+
+  @keyframes backdiv {
+    50% {
+      background: #ffe6f2;
+    }
+  }
+
+  @keyframes beat {
+    0% {
+      transform: scale(1) rotate(-45deg);
+    }
+    50% {
+      transform: scale(0.6) rotate(-45deg);
+    }
+  }
 </style>
