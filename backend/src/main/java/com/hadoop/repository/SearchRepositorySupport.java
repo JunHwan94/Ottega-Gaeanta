@@ -4,6 +4,7 @@ import com.hadoop.entity.Data;
 import com.hadoop.entity.SimillarStyle;
 import com.hadoop.request.SearchReq;
 import com.hadoop.response.SimillarStyleRes;
+import org.apache.hadoop.yarn.webapp.hamlet.Hamlet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Query;
@@ -23,7 +24,10 @@ public class SearchRepositorySupport {
 
     public List<Data> getDoc(SearchReq searchReq){
         Query query = null;
-        if(searchReq.getColor().equals("")){
+
+        if(searchReq.getCloth().equals("")){
+          query = new Query(where("style.style").in(searchReq.getStyle())).skip(searchReq.getPage()*20);
+        } else if(searchReq.getColor().equals("")){
             query = new Query(where(searchReq.getCloth() + ".category").is(searchReq.getCategory())
                     .and(searchReq.getCloth() + ".print").all(searchReq.getPrint())
                     .and("style.style").in(searchReq.getStyle())
@@ -45,6 +49,7 @@ public class SearchRepositorySupport {
 
     public List<SimillarStyleRes> getSimillarStyles(String toStyle){
 
+        System.out.println(toStyle);
         Query query = new Query(where("stlist.stname").is(toStyle));
         SimillarStyle list = mongoTemplate.findOne(query, SimillarStyle.class);
 
