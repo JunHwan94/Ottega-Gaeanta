@@ -72,7 +72,27 @@ export default {
     this.repaint();    
   },
   created() {
+    console.log('검색화면')
     window.addEventListener('scroll', this.infiniteHandler)
+    let searchReq = {
+      category: "",
+      cloth: "",
+      color: "",
+      page: 0,
+      print: "",
+      style: []
+    }
+    searchReq.style = this.$store.getters['getSelectedUserStyle']
+    this.$store.commit('setSearchReq', searchReq)
+
+    this.$store.dispatch('showSearchItems', searchReq)
+      .then((result) => {
+          console.log(result.data)
+          // store에 있는 이미지 배열에 저장
+          this.$store.commit('setImages', result.data);
+          this.$store.commit('searchStart')
+          this.repaint()
+        })
   },
   watch: {
     images: function() {
@@ -80,7 +100,7 @@ export default {
     }
   },
   destroyed() {
-    window.removeEventListener('scroll')
+    window.removeEventListener('scroll', this.infiniteHandler)
   },
   methods: {
     ...mapActions([

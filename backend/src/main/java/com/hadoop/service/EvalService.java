@@ -47,7 +47,8 @@ public class EvalService {
 
         try {
             response = rt.postForEntity(
-                    "http://j5b206.p.ssafy.io:8888/model",
+                    // 백준님 개인 flask URL 주소입니다.
+                    "http://3.38.125.201:8888/model",
                     entity,
                     ColorRank.class
             );
@@ -65,6 +66,4 @@ public class EvalService {
         EvalColorRes evalColorRes = new EvalColorRes(top, pants, rank.getValue());
         return evalColorRes;
     }
-
-
 }
