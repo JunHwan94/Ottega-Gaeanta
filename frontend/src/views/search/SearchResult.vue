@@ -84,7 +84,6 @@ export default {
     }
     searchReq.style = this.$store.getters['getSelectedUserStyle']
 
-    let 
     this.$store.commit('setSearchReq', searchReq)
 
     this.$store.dispatch('showSearchItems', searchReq)
