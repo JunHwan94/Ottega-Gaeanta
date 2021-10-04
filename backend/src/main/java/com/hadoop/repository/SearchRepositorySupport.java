@@ -3,8 +3,10 @@ package com.hadoop.repository;
 import com.hadoop.entity.CategoryColors;
 import com.hadoop.entity.Data;
 import com.hadoop.entity.SimillarStyle;
+import com.hadoop.request.ColorStyleReq;
 import com.hadoop.request.SearchReq;
 import com.hadoop.response.SimillarStyleRes;
+import org.apache.hadoop.yarn.webapp.hamlet.Hamlet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Query;
@@ -68,5 +70,34 @@ public class SearchRepositorySupport {
 
     public List<CategoryColors> getColors(){
         return mongoTemplate.findAll(CategoryColors.class);
+    }
+
+    public List<Data> getColorStyles(ColorStyleReq colorStyleReq){
+
+        int page = 0;
+        Query query = new Query(
+                where("top.color").all(colorStyleReq.getTop())
+                .and("bottom.color").all(colorStyleReq.getBottom())
+        ).skip(page * 20);
+
+        List<Data> result = new ArrayList<>();
+
+        outer : while(true){
+            List<Data> list = mongoTemplate.find(query, Data.class);
+
+            for(int i = 0; i < list.size(); i++){
+                if(i == 0) {
+                    result.add(list.get(i));
+                } else {
+                    if(!result.get(result.size() - 1).getStyle().get(0).getStyle().equals(list.get(i).getStyle().get(0).getStyle())){
+                        result.add(list.get(i));
+                    }
+                }
+                if(result.size() == 4) break outer;
+            }
+            page++;
+            System.out.println(result.size());
+        }
+        return result;
     }
 }
