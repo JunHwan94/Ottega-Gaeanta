@@ -54,11 +54,8 @@ export default {
   },
   data () {
     return {
-      number: [0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2],
       hover: true,
       // showSearchDetail: false,
-      chips: ['Programming', 'Playing video games', 'Watching movies', 'Sleeping'],
-      items: ['Streaming', 'Eating'],
       page : 1
     }
   },
