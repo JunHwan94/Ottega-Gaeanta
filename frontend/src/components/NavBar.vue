@@ -56,10 +56,10 @@
       pages: ['/','/searchResult','/evaluationMain','/fpti'],
     }),
     computed: {
-      ...mapGetters(["getVideoStream"]),
+      ...mapGetters(['getVideoStream', 'getSelectedUserStyle']),
     },
     methods: {
-      changePage(index) {
+      changePage (index) {
         this.menuVisible = false
         if (this.getVideoStream != null) { // 웹 캠 객체가 활성화 상태이면 비활성 처리함
           const tracks = this.getVideoStream.getTracks()
@@ -67,11 +67,15 @@
             track.stop();
           });
         }
+        if (index == 1 && this.getSelectedUserStyle == null) { // 선호 스타일 미지정 상태로 검색페이지 이동 시, 선호 스타일을 페이지로 이동
+          this.$router.push('/chooseStyle')
+          return
+        }
         this.$router.push(this.pages[index])
       },
-      clickMenu() {
+      clickMenu () {
         this.menuVisible = !this.menuVisible
-      }
+      },
     }
   }
 </script>

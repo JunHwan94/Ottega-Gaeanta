@@ -1,225 +1,179 @@
 <template>
   <div class="fpti-container">
-    <!-- <div class="" align="center"> 
-      <h2>내 성격에 딱!<br>어울리는 룩은?</h2><br>
-      <h4>룩으로 알아보는 내 패션성향, FPTI</h4>
-    </div> -->
-    <!-- {{getSurveys}} -->
     <div align="center" style="margin-top:-50px;">
-    <!-- <vueper-slides class="in" :touchable="false" :bullets="false" :arrows="false" ref="first">
-      <vueper-slide
-        :key="1"
-        :style="'background-color: #42b983'" >
-        
-        <template v-slot:content>
-          <div><h1>dsasa</h1></div>
-          <div><h1>dsasa</h1></div>
-          <div><h1>dsasa</h1></div>
-          <div><h1>dsasa</h1></div>
-          <div><h1>dsasa</h1></div>
-          <div>
-            ID: <input type="text"/><br/>
-            PW: <input type="text"/><br/>
-            <button @click="$refs.first.next()">다음</button>
-          </div>
-        </template>
-      </vueper-slide>
-      <vueper-slide
-        :key="2"
-        :style="'background-color: #42b983'">
-        <template v-slot:content>
-          <div>
-            나이: <input type="text"/><br/>
-            주소: <input type="text"/><br/>
-            <button @click="$refs.first.previous()">이전</button>
-            <button @click="$refs.first.next()">다음</button>
-          </div>
-        </template>
-      </vueper-slide>
-      <vueper-slide
-        :key="3"
-        :style="'background-color: #42b983'">
-        <template v-slot:content>
-          <div>
-            자기소개: <textarea/><br/>
-            <button @click="$refs.first.previous()">이전</button>
-            <button v-on:click="showAlert('가입을 축하드립니다')">가입완료</button>
-          </div>
-        </template>
-      </vueper-slide>
-    </vueper-slides> -->
-    <vueper-slides 3d class="no-shadow slider" fixed-height="600px" :arrows="false" :touchable="false" ref="fpti" bullets-outside transition-speed="250">
-      <vueper-slide
-        class="frame"
-        :key="111">
-        <template v-slot:content>
-          <div class="mt-12">
-            <h2>내 성격에 딱!<br>어울리는 룩은?</h2><br>
-            <h4>룩으로 알아보는 내 패션성향, FPTI</h4>
-            <div class="mt-5">
-              <img :src="mainImage"/>
-            </div>
-            <div class="btn mt-5" @click="$refs.fpti.next()">
-              패피티아이 시작~!
-            </div>
-          </div>
-        </template>
-      </vueper-slide>
-      <vueper-slide
-        class="frame"
-        v-for="survey in getSurveys"
-        :key="survey.qno">
-        <template v-slot:content>
-          <div class="mt-12">
-            <div>
-              <h3>Q{{survey.qno}}. {{survey.question}}</h3>  
-            </div>
-            <div class="mt-5">
-              <img :src="mainImage"/>
-            </div>
-            <div v-for="(answer, index) in survey.answerList" :key="index">
-              <div class="btn mt-2" @click="[select(survey.qno, index + 1)]">
-                <span>{{answer}}</span>
+      <img :src="backgroundImage" class="fpti-back"/>
+      <vueper-slides 3d class="no-shadow slider" fixed-height="600px" :arrows="false" :touchable="false" ref="fpti"
+        bullets-outside transition-speed="250">
+        <vueper-slide class="frame" :key="111">
+          <template v-slot:content>
+            <div class="mt-12">
+              <h2>내 성격에 딱!<br>어울리는 룩은?</h2><br>
+              <h4>룩으로 알아보는 내 패션성향, FPTI</h4>
+              <div class="mt-5">
+                <img :src="mainImage" />
+              </div>
+              <div class="btn mt-5" @click="$refs.fpti.next()">
+                패피티아이 시작~!
               </div>
             </div>
-          </div>
-        </template>
-      </vueper-slide>
-    </vueper-slides>
-  </div>
+          </template>
+        </vueper-slide>
+        <vueper-slide class="frame" v-for="survey in getSurveys" :key="survey.qno">
+          <template v-slot:content>
+            <div class="mt-12">
+              <div>
+                <h3>Q{{survey.qno}}. {{survey.question}}</h3>
+              </div>
+              <div class="mt-5">
+                <img :src="mainImage" />
+              </div>
+              <div v-for="(answer, index) in survey.answerList" :key="index">
+                <div class="btn mt-2" @click="[select(survey.qno, index + 1)]">
+                  <span>{{answer}}</span>
+                </div>
+              </div>
+            </div>
+          </template>
+        </vueper-slide>
+      </vueper-slides>
+    </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import { VueperSlides, VueperSlide } from 'vueperslides'
-import 'vueperslides/dist/vueperslides.css'
-export default {
-  components: {
-    VueperSlides, VueperSlide
-  },
-  computed: {
-    ...mapGetters(["getSurveys"]),
-  },
-  data: () => ({
-    mainImage: require('@/assets/fpti/main.png'),
-    // db 조회 안될 때 테스트 용
-    // getSurveys: [{"qno": 1,"question": "당신의 옷장에는 어떤 옷이 많은가요?","answerList": ["셔츠, 블라우스", "후드, 맨투맨"]},{"qno": 2,"question": "당신의 옷들은 어떤 색인가요?","answerList": ["알록달록", "무채색"]},{"qno": 3,"question": "쇼핑하러 가면 어떤 옷을 사나요?","answerList": ["가성비 무난한 옷", "비싼 명품"]},{"qno": 4,"question": "유행하는 옷은 어떻게 한다?","answerList": ["바로 산다", "유행 안타는거 입음"]},{"qno": 5,"question": "평소 집에서 혼자 쉴때 당신의 옷차림은?","answerList": ["속옷바람", "편한 옷차림", "나홀로 패션쇼"]},{"qno": 6,"question": "당신은 친구들과 여행을 계획하고 있다. 다음 중 더 끌리는 곳은?","answerList": ["\"인간은 땅으로부터 왔소이다\" \n인적이 드문 산과 바다 또는 자연", "\"나는 인싸다\" 무적권 붐비는 핫 플레이스 "]},{"qno": 7,"question": "유튜브를 켜면 보통 가장 위에 있는 컨텐츠","answerList": ["뷰티", "개그", "사회과학", "야한거"]},{"qno": 8,"question": "로또 1등이 당첨되면 가장 먼저 할 일은?","answerList": ["갖고싶었던 차를 일시불로 지른다", "이자율이 높은 은행을 알아본다", "친구들한테 한 턱 쏜다!"]},{"qno": 9,"question": "친구가 패션에 대한 고민을 털어놓는다. 어떻게 할 것인가?","answerList": ["\"패션이란 말이야..\"로 운을 떼면서 조언을 해준다", "스타일은 타고나는 것, 앞에서 맞장구만 쳐준다", "패션에 대해 큰 관심이 없다. 주제를 다른 방향으로 바꿀 기회만 노린다. "]},{"qno": 10,"question": "내 핸드폰 케이스는","answerList": ["없다", "투명 케이스", "누런 투명 케이스", "색상 또는 이미지 프린트가 있는 케이스"]},{"qno": 11,"question": "지금 내 방 상태는","answerList": ["발 디딜 틈이 없다", "아직 사람이 지낼만한 수준이다", "우렁각시가 다녀갔나..? 싶을 정도로 깔끔하다"]},{"qno": 12,"question": "현재 내 지갑에 포함된 색 개수는?","answerList": ["1개", "2개", "3개 이상", "지갑같은거 안씀"]},{"problemNo": 13,"question": "지금 그림을 그린다면?","answerList": ["아름다웠던 곳을 기억해서 그린다", "지금 내가 느낀대로, 그리고 싶은대로 그린다"]}],
-    stylePoints: {},
-    styleList: ['트레디셔널','매니시','페미닌','에스닉','컨템포러리','내추럴','젠더프루이드','스포티','서브컬쳐','캐주얼'],
-    pointMap: [
-      {},
-      {
-        1: ['매니시','페미닌','에스닉','트레디셔널','컨템포러리',],
-        2: ['캐주얼','서브컬쳐','스포티','내추럴','젠더프루이드'],
-      },
-      {
-        1: ['캐주얼', '서브컬쳐', '스포티', '내추럴', '젠더프루이드',],
-        2: ['매니시', '페미닌', '에스닉', '트레디셔널', '컨템포러리'],
-      },
-      {
-        1: ['캐주얼','내추럴'],
-        2: ['페미닌','트레디셔널',],
-      },
-      {
-        1: ['컨템포러리', '서브컬쳐', ],
-        2: ['캐주얼', '내추럴', '젠더프루이드', '서브컬쳐', '스포티'],
-      },
-      {
-        1: ['트레디셔널', '에스닉', '내추럴'],
-        2: ['스포티', '서브컬쳐', '캐주얼', '젠더프루이드'],
-        3: ['매니시', '페미닌' ,'컨템포러리'],
-      },
-      {
-        1: ['스포티', '내추럴', '서브컬쳐', '캐주얼' ],
-        2: ['서브컬쳐', '컨템포러리', '페미닌'],
-      },
-      {
-        1: ['트레디셔널', '컨템포러리', '페미닌'],
-        2: ['컨템포러리', '캐주얼', '내추럴', '서브컬쳐'],
-        3: ['매니시'], 
-        4: []// '야한거'라는 선택지 추후 삭제
-      },
-      {
-        1: ['에스닉', '매니시', ],
-        2: [], // 스타일을 정의하지 못한 항목
-        3: ['캐주얼', '스포티'],
-      },
-      {
-        1: [], // 스타일을 정의하지 못한 항목
-        2: [], // 스타일을 정의하지 못한 항목
-        3: ['캐주얼']
-      },
-      { // 10
-        1: ['컨템포러리', '내추럴', '젠더프루이드'],
-        2: ['페미닌', '내추럴'],
-        3: ['캐주얼', '서브컬쳐'],
-        4: ['에스닉'],
-      },
-      { // 11
-        1: ['서브컬쳐', '스포티', ],
-        2: ['캐주얼', '내추럴'],
-        3: ['매니시', '페미닌','에스닉','트레디셔널',],
-      },
-      { // 12
-        1: ['컨템포러리', '매니시',],
-        2: ['캐주얼', '내추럴'],
-        3: ['서브컬쳐', '에스닉'],
-        4: [],
-      },
-      {
-        1: ['트레디셔널', '페미닌', '에스닉','컨템포러리','내추럴' ],
-        2: ['매니시', '젠더프루이드','스포티','서브컬쳐','캐주얼'],
-      },
-    ],
-  }),
-  created() {
-    this.$store.dispatch('getSurveys')
-      .then((response) => {
-        console.log(response.data.surveys);
-        this.$store.commit('SAVE_FPTI_SURVEYS', response.data.surveys)
-      })
-  },
-  mounted() {
-    // fpti point init
-    for (let i = 0; i < this.styleList.length; i++) {
-      this.stylePoints[this.styleList[i]] = 0
-    }
-  },
-  methods: {
-    select (qno, ansIndex) {
-      
-      const styleArr = this.pointMap[qno][ansIndex]
-      // console.log(styleArr)
-      for (let i = 0; i < styleArr.length; i++) {
-        // console.log(this.stylePoints)
-        this.stylePoints[styleArr[i]] += 10
-      }
-      if (qno == this.getSurveys.length) { // 마지막 문항인 경우
-        // console.log(this.stylePoints)
-        
-        const answerArr = []
-        // console.log(this.stylePoints)
-        for (let i = 0; i < this.styleList.length; i++) {
-          // console.log(this.styleList[i])
-          answerArr[i] = this.stylePoints[this.styleList[i]]
-        }
-        console.log(answerArr)
-        const obj = {
-          array: answerArr
-        }
-        // obj.array = answerArr;
-        this.$store.dispatch('getSurveyResult', obj)
+  import { mapGetters } from 'vuex'
+  import {
+    VueperSlides,
+    VueperSlide
+  } from 'vueperslides'
+  import 'vueperslides/dist/vueperslides.css'
+  export default {
+    components: {
+      VueperSlides,
+      VueperSlide
+    },
+    computed: {
+      ...mapGetters(["getSurveys"]),
+    },
+    data: () => ({
+      backgroundImage: require('@/assets/fpti/fpti-background.png'),
+      mainImage: require('@/assets/fpti/main.png'),
+      // db 조회 안될 때 테스트 용
+      // getSurveys: [{"qno": 1,"question": "당신의 옷장에는 어떤 옷이 많은가요?","answerList": ["셔츠, 블라우스", "후드, 맨투맨"]},{"qno": 2,"question": "당신의 옷들은 어떤 색인가요?","answerList": ["알록달록", "무채색"]},{"qno": 3,"question": "쇼핑하러 가면 어떤 옷을 사나요?","answerList": ["가성비 무난한 옷", "비싼 명품"]},{"qno": 4,"question": "유행하는 옷은 어떻게 한다?","answerList": ["바로 산다", "유행 안타는거 입음"]},{"qno": 5,"question": "평소 집에서 혼자 쉴때 당신의 옷차림은?","answerList": ["속옷바람", "편한 옷차림", "나홀로 패션쇼"]},{"qno": 6,"question": "당신은 친구들과 여행을 계획하고 있다. 다음 중 더 끌리는 곳은?","answerList": ["\"인간은 땅으로부터 왔소이다\" \n인적이 드문 산과 바다 또는 자연", "\"나는 인싸다\" 무적권 붐비는 핫 플레이스 "]},{"qno": 7,"question": "유튜브를 켜면 보통 가장 위에 있는 컨텐츠","answerList": ["뷰티", "개그", "사회과학", "야한거"]},{"qno": 8,"question": "로또 1등이 당첨되면 가장 먼저 할 일은?","answerList": ["갖고싶었던 차를 일시불로 지른다", "이자율이 높은 은행을 알아본다", "친구들한테 한 턱 쏜다!"]},{"qno": 9,"question": "친구가 패션에 대한 고민을 털어놓는다. 어떻게 할 것인가?","answerList": ["\"패션이란 말이야..\"로 운을 떼면서 조언을 해준다", "스타일은 타고나는 것, 앞에서 맞장구만 쳐준다", "패션에 대해 큰 관심이 없다. 주제를 다른 방향으로 바꿀 기회만 노린다. "]},{"qno": 10,"question": "내 핸드폰 케이스는","answerList": ["없다", "투명 케이스", "누런 투명 케이스", "색상 또는 이미지 프린트가 있는 케이스"]},{"qno": 11,"question": "지금 내 방 상태는","answerList": ["발 디딜 틈이 없다", "아직 사람이 지낼만한 수준이다", "우렁각시가 다녀갔나..? 싶을 정도로 깔끔하다"]},{"qno": 12,"question": "현재 내 지갑에 포함된 색 개수는?","answerList": ["1개", "2개", "3개 이상", "지갑같은거 안씀"]},{"problemNo": 13,"question": "지금 그림을 그린다면?","answerList": ["아름다웠던 곳을 기억해서 그린다", "지금 내가 느낀대로, 그리고 싶은대로 그린다"]}],
+      stylePoints: {},
+      styleList: ['트레디셔널', '매니시', '페미닌', '에스닉', '컨템포러리', '내추럴', '젠더프루이드', '스포티', '서브컬쳐', '캐주얼'],
+      pointMap: [{},
+        {
+          1: ['매니시', '페미닌', '에스닉', '트레디셔널', '컨템포러리', ],
+          2: ['캐주얼', '서브컬쳐', '스포티', '내추럴', '젠더프루이드'],
+        },
+        {
+          1: ['캐주얼', '서브컬쳐', '스포티', '내추럴', '젠더프루이드', ],
+          2: ['매니시', '페미닌', '에스닉', '트레디셔널', '컨템포러리'],
+        },
+        {
+          1: ['캐주얼', '내추럴'],
+          2: ['페미닌', '트레디셔널', ],
+        },
+        {
+          1: ['컨템포러리', '서브컬쳐', ],
+          2: ['캐주얼', '내추럴', '젠더프루이드', '서브컬쳐', '스포티'],
+        },
+        {
+          1: ['트레디셔널', '에스닉', '내추럴'],
+          2: ['스포티', '서브컬쳐', '캐주얼', '젠더프루이드'],
+          3: ['매니시', '페미닌', '컨템포러리'],
+        },
+        {
+          1: ['스포티', '내추럴', '서브컬쳐', '캐주얼'],
+          2: ['서브컬쳐', '컨템포러리', '페미닌'],
+        },
+        {
+          1: ['트레디셔널', '컨템포러리', '페미닌'],
+          2: ['컨템포러리', '캐주얼', '내추럴', '서브컬쳐'],
+          3: ['매니시'],
+          4: [] // '야한거'라는 선택지 추후 삭제
+        },
+        {
+          1: ['에스닉', '매니시', ],
+          2: [], // 스타일을 정의하지 못한 항목
+          3: ['캐주얼', '스포티'],
+        },
+        {
+          1: [], // 스타일을 정의하지 못한 항목
+          2: [], // 스타일을 정의하지 못한 항목
+          3: ['캐주얼']
+        },
+        { // 10
+          1: ['컨템포러리', '내추럴', '젠더프루이드'],
+          2: ['페미닌', '내추럴'],
+          3: ['캐주얼', '서브컬쳐'],
+          4: ['에스닉'],
+        },
+        { // 11
+          1: ['서브컬쳐', '스포티', ],
+          2: ['캐주얼', '내추럴'],
+          3: ['매니시', '페미닌', '에스닉', '트레디셔널', ],
+        },
+        { // 12
+          1: ['컨템포러리', '매니시', ],
+          2: ['캐주얼', '내추럴'],
+          3: ['서브컬쳐', '에스닉'],
+          4: [],
+        },
+        {
+          1: ['트레디셔널', '페미닌', '에스닉', '컨템포러리', '내추럴'],
+          2: ['매니시', '젠더프루이드', '스포티', '서브컬쳐', '캐주얼'],
+        },
+      ],
+    }),
+    created() {
+      this.$store.dispatch('getSurveys')
         .then((response) => {
-          console.log(response.data);
+          console.log(response.data.surveys);
+          this.$store.commit('SAVE_FPTI_SURVEYS', response.data.surveys)
         })
-        alert('완료되었습니다.')
-        // this.$router.push('/')
+    },
+    mounted() {
+      // fpti point init
+      for (let i = 0; i < this.styleList.length; i++) {
+        this.stylePoints[this.styleList[i]] = 0
       }
-      this.$refs.fpti.next() // next page
+    },
+    methods: {
+      select(qno, ansIndex) {
+
+        const styleArr = this.pointMap[qno][ansIndex]
+        // console.log(styleArr)
+        for (let i = 0; i < styleArr.length; i++) {
+          // console.log(this.stylePoints)
+          this.stylePoints[styleArr[i]] += 10
+        }
+        if (qno == this.getSurveys.length) { // 마지막 문항인 경우
+          // console.log(this.stylePoints)
+
+          const answerArr = []
+          // console.log(this.stylePoints)
+          for (let i = 0; i < this.styleList.length; i++) {
+            // console.log(this.styleList[i])
+            answerArr[i] = this.stylePoints[this.styleList[i]]
+          }
+          console.log(answerArr)
+          const obj = {
+            array: answerArr
+          }
+          // obj.array = answerArr;
+          this.$store.dispatch('getSurveyResult', obj)
+            .then((response) => {
+              console.log(response.data);
+            })
+          alert('완료되었습니다.')
+          // this.$router.push('/')
+        }
+        this.$refs.fpti.next() // next page
+      }
     }
   }
-}
 </script>
 
 <style scoped>
@@ -227,17 +181,21 @@ export default {
   margin-top: 15rem;
   /* height: 100vh; */
 }
+
 .slider {
   width: 450px;
 }
+
 .frame {
-  border: 1px solid black; 
+  border: 1px solid black;
   background-color: white;
 }
+
 img {
   width: 200px;
   height: 200px;
 }
+
 .btn {
   width: 350px;
   height: 60px;
@@ -248,7 +206,16 @@ img {
   cursor: pointer;
   font-weight: bold;
 }
+
 .btn:hover {
   background-color: black;
+}
+.fpti-back {
+  width: 80vw; 
+  height: 90vh; 
+  position: fixed; 
+  top: 5vh; 
+  left: 10vw; 
+  z-index: 1;
 }
 </style>

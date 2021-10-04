@@ -110,6 +110,7 @@
 
 <script>
   import Snowf from 'vue-snowf';
+  import { mapGetters } from 'vuex'
   export default {
     name: 'LandingSlider',
     components: {
@@ -128,15 +129,22 @@
         '#F875AA',
         '#F875AA',
       ],
-      pages: ['/chooseStyle', '/evaluationMain', '/fpti'],
+      pages: ['/searchResult', '/evaluationMain', '/fpti'],
       page: 1,
     }),
+    computed: {
+      ...mapGetters(["getSelectedUserStyle"]),
+    },
     methods: {
       nextPage(page) {
         this.page = page
         this.moveFocusing(page)
       },
       changePage(index) {
+        if (index == 0 && this.getSelectedUserStyle == null) {
+          this.$router.push('/chooseStyle')
+          return
+        }
         this.$router.push(this.pages[index])
       },
       clearFocusing() {
