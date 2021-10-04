@@ -3,9 +3,7 @@ package com.hadoop.controller;
 import com.hadoop.entity.Data;
 import com.hadoop.repository.SearchRepository;
 import com.hadoop.request.SearchReq;
-import com.hadoop.response.OtherStyleRes;
-import com.hadoop.response.SearchRes;
-import com.hadoop.response.SimillarStyleRes;
+import com.hadoop.response.*;
 import com.hadoop.service.S3Service;
 import com.hadoop.service.SearchService;
 import io.swagger.annotations.Api;
@@ -54,5 +52,10 @@ public class SearchController {
     @GetMapping("/simillar/{style}")
     public ResponseEntity<List<SimillarStyleRes>> getSimillarStyles(@PathVariable String style){
         return ResponseEntity.ok(searchService.getSimillarStyles(style));
+    }
+
+    @GetMapping("/colors")
+    public ResponseEntity<? extends BaseResponseBody> getColors(){
+        return ResponseEntity.ok(ColorsRes.of(200, "성공", searchService.getColors()));
     }
 }
