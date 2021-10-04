@@ -7,8 +7,9 @@ public class Driver {
 		int exitCode = -1;
 		ProgramDriver pgd = new ProgramDriver();
 		try {
-			pgd.addClass("onlystyle", ssafy.StyleCollector.class, "");
-      			pgd.driver(args);
+			pgd.addClass("onlystyle", StyleCollector.class, "");
+			pgd.addClass("getcolors", ColorCollector.class, "");
+			pgd.driver(args);
 			exitCode = 0;
 		}
 		catch(Throwable e) {
