@@ -63,7 +63,7 @@ export function getSurveys() {
     return axios.get(url)
 }
 
-function getSimillarStyles(style) {
+export function getSimillarStyles(style) {
     const url = baseUrl + '/search/simillar/' + style
     return axios.get(url)
 }
@@ -71,4 +71,9 @@ function getSimillarStyles(style) {
 export function getSurveyResult({ commit }, query) {
   const url = baseUrl + '/fpti/result' + query
   return axios.post(url)
+}
+
+export function getFptiResultFromKakaoShare({ commit }, query) {
+  const url = baseUrl + '/fpti/result/' + query
+  return axios.get(url)
 }
