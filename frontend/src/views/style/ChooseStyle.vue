@@ -26,7 +26,6 @@
     <!-- <div class="divider"></div> -->
     <div align="center">
       <div class="btn" @click="confirm()">스타일 확정</div>
-      <div class="btn" @click="test()">alert test</div>
     </div>
     <choose-style-detail v-if="show" @close="invisibleModal" @like-style="likeStyle"></choose-style-detail>
   </div>
@@ -35,7 +34,6 @@
 <script>
   import ChooseStyleDetail from '../../components/chooseStyle/ChooseStyleDetail.vue'
   import Swal from 'sweetalert2'
-
   export default {
     data: () => ({
       images1: [
@@ -136,25 +134,6 @@
         
         this.$store.commit('SAVE_SELECTED_USER_STYLE', selectedUserStyle)
         this.$router.push('/searchResult')
-      },
-      test () {
-        const Toast = Swal.mixin({
-          toast: true,
-          position: 'top-right',
-          iconColor: 'white',
-          color: 'white',
-          background: '#f27474',
-          customClass: {
-            popup: 'colored-toast'
-          },
-          showConfirmButton: false,
-          timer: 1500,
-          timerProgressBar: true
-        })
-        Toast.fire({
-          icon: 'error',
-          title: '<span style="color: white;">선호 스타일을 <br>3개 선택해주세요!<span>'
-        })
       },
       likeStyle (i) { // modal에서 좋아요 눌렀을 때 처리
         this.checkList[i] = true
