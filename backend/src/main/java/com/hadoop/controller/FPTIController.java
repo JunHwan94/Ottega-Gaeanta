@@ -43,7 +43,7 @@ public class FPTIController {
 
     @PostMapping("/result")
     @ApiOperation(value = "패피티아이 순위 정하기", notes = "패피티아이 순위 정해서 typeNo 반환")
-    public ResponseEntity<? extends BaseResponseBody> getArray(@RequestParam(value = "arr[]", required = true) List<Integer> arr){
+    public ResponseEntity<? extends BaseResponseBody> getArray(@RequestParam(value = "arr", required = true) List<Integer> arr){
         int typeNo = fptiService.getTypeNo(arr);
         FPTIType type = fptiService.getResult(typeNo);
         return ResponseEntity.status(200).body(FPTIRes.of(200, "성공", type));

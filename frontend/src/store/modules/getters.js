@@ -40,3 +40,6 @@ export function getStyleDepthImage (state) {
 export function getStyleIndex (state) {
   return state.styleIndex
 }
+export function getFptiResult (state) {
+  return state.fptiResult
+}

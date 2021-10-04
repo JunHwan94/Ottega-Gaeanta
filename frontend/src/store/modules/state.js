@@ -22,6 +22,7 @@ const LoadingStatus = false
 const styleImage = null
 const styleDepthImage = null
 let styleIndex = 0
+const fptiResult = null
 
 export default function () {
   return {
@@ -41,6 +42,7 @@ export default function () {
     LoadingStatus,
     styleImage,
     styleDepthImage,
-    styleIndex
+    styleIndex,
+    fptiResult
   }
 }
