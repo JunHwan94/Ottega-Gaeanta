@@ -54,7 +54,8 @@ public class SearchController {
         return ResponseEntity.ok(searchService.getSimillarStyles(style));
     }
 
-    @GetMapping("/colors")
+    // 카테고리별 색, 프린트 종류 반환하는 api
+    @GetMapping("/getColors")
     public ResponseEntity<? extends BaseResponseBody> getColors(){
         return ResponseEntity.ok(ColorsRes.of(200, "성공", searchService.getColors()));
     }
