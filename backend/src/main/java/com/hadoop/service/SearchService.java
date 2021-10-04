@@ -1,5 +1,6 @@
 package com.hadoop.service;
 
+import com.hadoop.entity.CategoryColors;
 import com.hadoop.entity.Data;
 import com.hadoop.repository.SearchRepository;
 import com.hadoop.repository.SearchRepositorySupport;
@@ -11,9 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class SearchService {
@@ -52,5 +51,9 @@ public class SearchService {
 
     public List<SimillarStyleRes> getSimillarStyles(String style){
         return searchRepositorySupport.getSimillarStyles(style);
+    }
+
+    public List<CategoryColors> getColors(){
+        return searchRepositorySupport.getColors();
     }
 }

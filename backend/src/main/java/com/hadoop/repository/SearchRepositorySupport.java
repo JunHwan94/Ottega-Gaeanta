@@ -1,10 +1,10 @@
 package com.hadoop.repository;
 
+import com.hadoop.entity.CategoryColors;
 import com.hadoop.entity.Data;
 import com.hadoop.entity.SimillarStyle;
 import com.hadoop.request.SearchReq;
 import com.hadoop.response.SimillarStyleRes;
-import org.apache.hadoop.yarn.webapp.hamlet.Hamlet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Query;
@@ -66,4 +66,7 @@ public class SearchRepositorySupport {
         return results;
     }
 
+    public List<CategoryColors> getColors(){
+        return mongoTemplate.findAll(CategoryColors.class);
+    }
 }
