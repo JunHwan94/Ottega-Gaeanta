@@ -153,7 +153,7 @@
         })
         Toast.fire({
           icon: 'error',
-          title: '<span style="color: white;">선호 스타일을 <br>3 개 선택해주세요!<span>'
+          title: '<span style="color: white;">선호 스타일을 <br>3개 선택해주세요!<span>'
         })
       },
       likeStyle (i) { // modal에서 좋아요 눌렀을 때 처리
