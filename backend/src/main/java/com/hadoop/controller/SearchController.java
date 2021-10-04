@@ -2,6 +2,7 @@ package com.hadoop.controller;
 
 import com.hadoop.common.model.response.BaseResponseBody;
 import com.hadoop.entity.Data;
+import com.hadoop.request.ColorStyleReq;
 import com.hadoop.request.SearchReq;
 import com.hadoop.response.*;
 import com.hadoop.service.S3Service;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Api(value="예시")
@@ -55,5 +57,17 @@ public class SearchController {
     @GetMapping("/getColors")
     public ResponseEntity<? extends BaseResponseBody> getColors(){
         return ResponseEntity.ok(ColorsRes.of(200, "성공", searchService.getColors()));
+    }
+
+    @GetMapping("/getColorStyle/{top}/{bottom}")
+    public ResponseEntity<SearchRes> getColorStyle(@PathVariable String top, @PathVariable String bottom){
+        ColorStyleReq colorStyleReq = new ColorStyleReq();
+        colorStyleReq.setTop(top);
+        colorStyleReq.setBottom(bottom);
+
+        List<Data> data = searchService.getColorStyles(colorStyleReq);
+        List<String> s3url = s3Service.getS3ImageURL(data, 0);
+
+        return ResponseEntity.ok(new SearchRes(data, s3url));
     }
 }

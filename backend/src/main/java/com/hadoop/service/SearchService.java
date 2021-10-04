@@ -4,8 +4,10 @@ import com.hadoop.entity.CategoryColors;
 import com.hadoop.entity.Data;
 import com.hadoop.repository.SearchRepository;
 import com.hadoop.repository.SearchRepositorySupport;
+import com.hadoop.request.ColorStyleReq;
 import com.hadoop.request.SearchReq;
 import com.hadoop.response.OtherStyleRes;
+import com.hadoop.response.SearchRes;
 import com.hadoop.response.SimillarStyleRes;
 import com.hadoop.common.util.StyleListUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,5 +57,8 @@ public class SearchService {
 
     public List<CategoryColors> getColors(){
         return searchRepositorySupport.getColors();
+    }
+    public List<Data> getColorStyles(ColorStyleReq colorStyleReq) {
+        return searchRepositorySupport.getColorStyles(colorStyleReq);
     }
 }
