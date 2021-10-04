@@ -68,7 +68,7 @@ function getSimillarStyles(style) {
     return axios.get(url)
 }
 
-export function getSurveyResult({ commit }, obj) {
-  const url = baseUrl + '/fpti/result'
-  return axios.get(url, obj)
+export function getSurveyResult({ commit }, query) {
+  const url = baseUrl + '/fpti/result' + query
+  return axios.post(url)
 }
