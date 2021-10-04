@@ -21,7 +21,7 @@
         <vueper-slide class="frame" v-for="survey in getSurveys" :key="survey.qno">
           <template v-slot:content>
             <div class="mt-12">
-              <div>
+              <div class="pl-8 pr-8">
                 <h3>Q{{survey.qno}}. {{survey.question}}</h3>
               </div>
               <div class="mt-5">
@@ -142,33 +142,29 @@
     },
     methods: {
       select(qno, ansIndex) {
-
         const styleArr = this.pointMap[qno][ansIndex]
         // console.log(styleArr)
         for (let i = 0; i < styleArr.length; i++) {
-          // console.log(this.stylePoints)
-          this.stylePoints[styleArr[i]] += 10
+          this.stylePoints[styleArr[i]] += 10 // 문항 별 스타일 점수 부여
         }
         if (qno == this.getSurveys.length) { // 마지막 문항인 경우
-          // console.log(this.stylePoints)
-
           const answerArr = []
-          // console.log(this.stylePoints)
           for (let i = 0; i < this.styleList.length; i++) {
-            // console.log(this.styleList[i])
             answerArr[i] = this.stylePoints[this.styleList[i]]
           }
           console.log(answerArr)
-          const obj = {
-            array: answerArr
+          let query = '?'
+          for (let i = 0; i < answerArr.length - 1; i++) {
+            query += 'arr=' + answerArr[i] + '&'
           }
-          // obj.array = answerArr;
-          this.$store.dispatch('getSurveyResult', obj)
+          query += 'arr=' + answerArr[answerArr.length - 1]
+          
+          this.$store.dispatch('getSurveyResult', query)
             .then((response) => {
-              console.log(response.data);
+              this.$store.commit('SAVE_FPTI_RESULT', response.data.type)
             })
-          alert('완료되었습니다.')
-          // this.$router.push('/')
+          
+          this.$router.push('/fptiResult')
         }
         this.$refs.fpti.next() // next page
       }
@@ -187,7 +183,7 @@
 }
 
 .frame {
-  border: 1px solid black;
+  border: 3px solid hotpink;
   background-color: white;
 }
 
@@ -199,7 +195,7 @@ img {
 .btn {
   width: 350px;
   height: 60px;
-  line-height: 50px;
+  line-height: 60px;
   border-radius: 5px;
   background-color: #F875AA;
   color: white;
