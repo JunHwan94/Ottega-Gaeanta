@@ -11,6 +11,7 @@ import EvaluationFilm from '../views/evaluation/EvaluationFilm.vue'
 import EvaluationResult from '../views/evaluation/EvaluationResult.vue'
 import Fpti from '../views/fpti/Fpti.vue'
 import FptiResult from '../views/fpti/FptiResult.vue'
+import FptiResultKakaoShared from '../views/fpti/FptiResultKakaoShared.vue'
 import store from '../store/index'
 
 Vue.use(VueRouter)
@@ -75,6 +76,11 @@ const routes = [
     path: '/fptiResult',
     name: 'FptiResult',
     component: FptiResult
+  },
+  {
+    path: '/fptiResult/:typeno',
+    name: 'FptiResultKakaoShared',
+    component: FptiResultKakaoShared
   },
 ]
 
