@@ -1,7 +1,7 @@
-package com.hadoop.service;
+package com.hadoop.api.fpti.model.service;
 
-import com.hadoop.entity.FPTISurvey;
-import com.hadoop.entity.FPTIType;
+import com.hadoop.api.fpti.model.entity.FPTISurvey;
+import com.hadoop.api.fpti.model.entity.FPTIType;
 
 import java.util.List;
 

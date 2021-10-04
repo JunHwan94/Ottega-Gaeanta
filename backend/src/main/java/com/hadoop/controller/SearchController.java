@@ -1,19 +1,16 @@
 package com.hadoop.controller;
 
+import com.hadoop.common.model.response.BaseResponseBody;
 import com.hadoop.entity.Data;
-import com.hadoop.repository.SearchRepository;
 import com.hadoop.request.SearchReq;
 import com.hadoop.response.*;
 import com.hadoop.service.S3Service;
 import com.hadoop.service.SearchService;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.ws.rs.GET;
 import java.util.List;
 
 @Api(value="예시")

@@ -1,10 +1,11 @@
-package com.hadoop.response;
+package com.hadoop.api.fpti.model.response;
 
-import com.hadoop.entity.FPTIType;
+import com.hadoop.api.fpti.model.entity.FPTIType;
+import com.hadoop.common.model.response.BaseResponseBody;
 import lombok.Getter;
 
 @Getter
-public class FPTIRes extends BaseResponseBody{
+public class FPTIRes extends BaseResponseBody {
 
     private FPTIType type;
 

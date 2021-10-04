@@ -1,6 +1,7 @@
-package com.hadoop.response;
+package com.hadoop.api.fpti.model.response;
 
-import com.hadoop.entity.FPTISurvey;
+import com.hadoop.api.fpti.model.entity.FPTISurvey;
+import com.hadoop.common.model.response.BaseResponseBody;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,7 +9,7 @@ import java.util.List;
 
 @Getter
 @Setter
-public class FPTISurveyRes extends BaseResponseBody{
+public class FPTISurveyRes extends BaseResponseBody {
 
     private List<FPTISurvey> surveys;
 

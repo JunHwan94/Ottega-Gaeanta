@@ -1,4 +1,4 @@
-package com.hadoop.entity;
+package com.hadoop.api.fpti.model.entity;
 
 import lombok.Getter;
 import lombok.Setter;
