@@ -26,7 +26,7 @@
             </div>
           </v-row><br>
           <v-row class="menu-container" justify="center">
-            <div class="menu">
+            <div class="menu" @click="toggleColorTableModal()">
               색 조합표 보기
               <img :src="test2" style="vertical-align:middle; width: 50px; height: 50px;"/>
               <!-- <v-icon large color="white darken-5"> mdi-arrow-up-bold-box-outline</v-icon> -->
@@ -39,11 +39,13 @@
       </v-row>
     </div>
     <evaluation-picture-modal v-if="modalVisible" @close="invisibleModal"></evaluation-picture-modal>
+    <evaluation-color-table v-if="colorTableVisible" @close="invisibleColorTable"></evaluation-color-table>
   </div>
 </template>
 
 <script>
   import EvaluationPictureModal from '@/components/evaluation/EvaluationPictureModal.vue'
+  import EvaluationColorTable from '@/components/evaluation/EvaluationColorTable.vue'
   export default {
     data: () => ({
       pages: ['evaluationFilm'],
@@ -52,9 +54,11 @@
       test1: require('@/assets/picture.png'),
       test2: require('@/assets/color.png'),
       modalVisible: false,
+      colorTableVisible: false,
     }),
     components: {
       EvaluationPictureModal,
+      EvaluationColorTable,
     },
     mounted() {
       // const menu = document.querySelectorAll('.menu')
@@ -90,6 +94,12 @@
       },
       invisibleModal () {
         this.modalVisible = false
+      },
+      toggleColorTableModal () {
+        this.colorTableVisible = !this.colorTableVisible
+      },
+      invisibleColorTable () {
+        this.colorTableVisible = false
       }
     }
   }
