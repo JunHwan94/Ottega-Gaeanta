@@ -1,4 +1,4 @@
-package com.hadoop.util;
+package com.hadoop.common.util;
 
 import org.springframework.stereotype.Component;
 

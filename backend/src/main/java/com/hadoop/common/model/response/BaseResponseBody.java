@@ -1,4 +1,4 @@
-package com.hadoop.response;
+package com.hadoop.common.model.response;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;

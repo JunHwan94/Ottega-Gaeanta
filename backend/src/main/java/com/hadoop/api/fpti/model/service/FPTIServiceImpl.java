@@ -1,7 +1,7 @@
-package com.hadoop.service;
+package com.hadoop.api.fpti.model.service;
 
-import com.hadoop.entity.FPTISurvey;
-import com.hadoop.entity.FPTIType;
+import com.hadoop.api.fpti.model.entity.FPTISurvey;
+import com.hadoop.api.fpti.model.entity.FPTIType;
 import lombok.AllArgsConstructor;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -9,7 +9,6 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
