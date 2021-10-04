@@ -1,15 +1,15 @@
 <template>
-  <div class="lds-facebook" v-if="loading">
+  <!-- <div class="lds-facebook" v-if="loading">
     <div>
     </div>
     <div>
     </div>
     <div>
     </div>
-  </div>
-  <!-- <div align="center" v-if="loading" class="test">
-    <img :src='image' style='margin: 0px auto;'/>
   </div> -->
+  <div align="center" v-if="loading" class="test">
+    <img :src='image' style='margin: 0px auto;'/>
+  </div>
   </template>
 
 <script>
@@ -22,7 +22,7 @@
     },
     name: 'LoadingSpinner',
     data: () => ({
-      image: require('@/assets/zzz.gif'),
+      image: require('@/assets/loading.gif'),
     }),
     computed: {
     },
@@ -32,18 +32,18 @@
 </script>
 
 <style scoped>
-/*
+
 .test {
   position: fixed;
-  top: 50%;
-  left: 50%;
+  top: 40%;
+  left: 40%;
   z-index: 999;
 }
 .test > img {
-  width: 100px;
-  height: 100px;
+  width: 400px;
+  height: 200px;
 }
-*/
+
 .lds-facebook {
   display: inline-block;
   position: absolute;
