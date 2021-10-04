@@ -1,9 +1,11 @@
 <template>
   <div class="main">
-    <button id="toggleStream" @click="toggleStream()">Play</button><br>
-    <button id="cvtGray" @click="cvtGray()" style="visibility: hidden;">Capture Image</button>
-    <video id="video"></video>
-    <canvas id='output' style="display: none;"></canvas>
+    <!-- <button id="toggleStream" @click="toggleStream()">Play</button><br>
+    <button id="cvtGray" @click="cvtGray()" style="visibility: hidden;">Capture Image</button> -->
+
+    <video id="video" style="width: 90%; height: 100%; left: 52%;"></video>
+    <img id="guideLine" :src="silhouette" style="width : 35vw; height: 55vh; position: absolute; top: 35%; left: 34%;"/>
+    <canvas id='output' style="width : 90%; height: 630px; display: none; left: 52%;"></canvas>
   </div>
 </template>
 
@@ -24,6 +26,7 @@
       cap: '',
       file: '',
       formdata: '',
+      silhouette: require('@/assets/silhouette.png')
     }),
     methods: {
       toggleStream() {
@@ -33,42 +36,43 @@
               (stream) => { // success
                 this.$store.commit('SAVE_VIDEO_STREAM', stream)
                 this.video.width = this.videoWidth
-                this.video.height = this.videoHeight //prevent Opencv.js error.
+                this.video.height = this.videoHeight//prevent Opencv.js error.
                 video.srcObject = stream;
                 video.play();
-                setTimeout(this.cvtGray, 3000);
+                // setTimeout(this.cvtGray, 3000);
               },
               (error) => { // error
                 console.log(error)
               }
             );
-            document.getElementById('toggleStream').innerHTML = "Stop";
-            document.getElementById('cvtGray').style.visibility = 'visible';
+            // document.getElementById('toggleStream').innerHTML = "Stop";
+            // document.getElementById('cvtGray').style.visibility = 'visible';
         }
-        else { // stop 버튼 누르면 화면 검은색 됨
-            const stream = video.srcObject;
-            alert('스탑누름')
-            console.log(stream)
-            console.log(stream.getTracks())
-            const tracks = stream.getTracks();
-            tracks.forEach(track => {
-                track.stop();
-            });
-            document.getElementById('toggleStream').innerHTML = "Play";
-            document.getElementById('cvtGray').style.visibility = 'hidden';
-        }
+        // else { // stop 버튼 누르면 화면 검은색 됨
+        //     const stream = video.srcObject;
+        //     alert('스탑누름')
+        //     console.log(stream)
+        //     console.log(stream.getTracks())
+        //     const tracks = stream.getTracks();
+        //     tracks.forEach(track => {
+        //         track.stop();
+        //     });
+        //     document.getElementById('toggleStream').innerHTML = "Play";
+        //     document.getElementById('cvtGray').style.visibility = 'hidden';
+        // }
         this.streaming = !this.streaming;
       },
       cvtGray() {
-        this.src = new cv.Mat(this.videoHeight, this.videoWidth, cv.CV_8UC4);
-        this.cap = new cv.VideoCapture('video');
+        document.getElementById('guideLine').style.visibility = 'hidden';
+        this.src = new cv.Mat(this.videoHeight, this.videoWidth, cv.CV_8UC4);;
+        this.cap = new cv.VideoCapture('video'); 
         setTimeout(this.process, 30);
       },
       process() {
         if (this.streaming === true) {
             this.cap.read(this.src);
             this.video.style.display = 'none';
-            document.querySelector('#output').style.display = 'block';
+            document.querySelector('#output').style.display = ''
             cv.imshow('output', this.src);
 
             const imgDataUrl = this.canvas.toDataURL('image/jpg')
@@ -86,6 +90,11 @@
             console.log(this.formdata);
             // this.file = file
         }
+      },
+      retryCamera(){
+        this.video.style.display = '';
+        document.getElementById('output').style.display = 'none'
+        document.getElementById('guideLine').style.visibility = '';
       },
       post() {
         this.$store.dispatch('evaluateImage', this.formdata)
@@ -112,6 +121,7 @@
 video {
   width: 100%;
   height: 100%;
+  padding: 10px;
 }
 .main {
   font-family: Cafe24Ssurround;
