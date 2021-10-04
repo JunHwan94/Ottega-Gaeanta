@@ -1,11 +1,11 @@
-package com.hadoop.controller;
+package com.hadoop.api.fpti.controller;
 
-import com.hadoop.entity.FPTISurvey;
-import com.hadoop.entity.FPTIType;
-import com.hadoop.response.BaseResponseBody;
-import com.hadoop.response.FPTIRes;
-import com.hadoop.response.FPTISurveyRes;
-import com.hadoop.service.FPTIService;
+import com.hadoop.api.fpti.model.entity.FPTISurvey;
+import com.hadoop.api.fpti.model.entity.FPTIType;
+import com.hadoop.common.model.response.BaseResponseBody;
+import com.hadoop.api.fpti.model.response.FPTIRes;
+import com.hadoop.api.fpti.model.response.FPTISurveyRes;
+import com.hadoop.api.fpti.model.service.FPTIService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
@@ -13,7 +13,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.ws.rs.POST;
 import java.util.List;
 
 @RestController
