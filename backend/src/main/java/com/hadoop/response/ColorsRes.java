@@ -1,9 +1,11 @@
 package com.hadoop.response;
 
 import com.hadoop.entity.CategoryColors;
+import lombok.Getter;
 
 import java.util.List;
 
+@Getter
 public class ColorsRes extends BaseResponseBody{
     private List<CategoryColors> colors;
 
