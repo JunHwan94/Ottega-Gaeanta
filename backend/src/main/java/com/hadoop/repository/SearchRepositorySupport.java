@@ -51,7 +51,6 @@ public class SearchRepositorySupport {
 
     public List<SimillarStyleRes> getSimillarStyles(String toStyle){
 
-        System.out.println(toStyle);
         Query query = new Query(where("stlist.stname").is(toStyle));
         SimillarStyle list = mongoTemplate.findOne(query, SimillarStyle.class);
 
