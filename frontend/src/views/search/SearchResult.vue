@@ -70,6 +70,7 @@ export default {
   },
   mounted() {
     this.repaint();    
+    this.$store.commit('SAVE_CHOOSE_STYLE_MENU_STATE', true)
   },
   created() {
     console.log('검색화면')
@@ -102,6 +103,7 @@ export default {
   },
   destroyed() {
     window.removeEventListener('scroll', this.infiniteHandler)
+    this.$store.commit('SAVE_CHOOSE_STYLE_MENU_STATE', false)
   },
   methods: {
     ...mapActions([
