@@ -24,7 +24,7 @@ public class BaseResponseBody {
         this.statusCode = statusCode;
     }
 
-    public static BaseResponseBody of(String message, Integer statusCode){
+    public static BaseResponseBody of(Integer statusCode, String message){
         BaseResponseBody body = new BaseResponseBody();
         body.message = message;
         body.statusCode = statusCode;
