@@ -58,7 +58,7 @@
       ],
       colors: ['#F875AA'],
       items: ['메인으로', '스타일 검색', '의상 색 조합 분석', 'FPTI(패피티아이)', ],
-      pages: ['/', '/searchResult', '/evaluationMain', '/evaluationResult'], // fpti
+      pages: ['/', '/searchResult', '/evaluationMain', '/fpti'], // fpti
     }),
     computed: {
       ...mapGetters(['getVideoStream', 'getSelectedUserStyle', 'getChooseStyleMenuVisibleState']),
@@ -76,12 +76,12 @@
     methods: {
       changePage(index) {
         this.menuVisible = false
-        if (this.getVideoStream != null) { // 웹 캠 객체가 활성화 상태이면 비활성 처리함
-          const tracks = this.getVideoStream.getTracks()
-          tracks.forEach(track => {
-            track.stop();
-          });
-        }
+        // if (this.getVideoStream != null) { // 웹 캠 객체가 활성화 상태이면 비활성 처리함
+        //   const tracks = this.getVideoStream.getTracks()
+        //   tracks.forEach(track => {
+        //     track.stop();
+        //   });
+        // }
         if (index == 1 && this.getSelectedUserStyle == null) { // 선호 스타일 미지정 상태로 검색페이지 이동 시, 선호 스타일을 페이지로 이동
           this.$router.push('/chooseStyle')
           return
