@@ -3,6 +3,7 @@ import com.hadoop.api.eval.model.db.entity.ColorRank;
 import com.hadoop.api.eval.model.db.entity.Rank;
 import com.hadoop.api.eval.model.db.repository.EvalRepositorySupport;
 import com.hadoop.api.eval.model.response.EvalColorRes;
+import com.hadoop.api.eval.util.ColorMatchUtil;
 import com.hadoop.api.search.model.db.entity.Data;
 import com.hadoop.api.search.model.request.ColorStyleReq;
 import com.hadoop.common.util.FileUtil;
@@ -23,6 +24,9 @@ public class EvalService {
 
     @Autowired
     EvalRepositorySupport evalRepositorySupport;
+
+    @Autowired
+    ColorMatchUtil colorMatchUtil;
 
     public EvalColorRes storeImage(MultipartFile image) throws IOException {
         FileUtil fileUtil = FileUtil.getInstance();
@@ -60,6 +64,9 @@ public class EvalService {
             String key = top + "-" + pants;
 
             Rank rank = evalRepositorySupport.getRank(key);
+
+            top = colorMatchUtil.colorMap.get(top);
+            pants = colorMatchUtil.colorMap.get(pants);
 
             EvalColorRes evalColorRes = new EvalColorRes(top, pants, rank.getValue());
 
