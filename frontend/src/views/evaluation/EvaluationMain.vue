@@ -46,6 +46,7 @@
 <script>
   import EvaluationPictureModal from '@/components/evaluation/EvaluationPictureModal.vue'
   import EvaluationColorTable from '@/components/evaluation/EvaluationColorTable.vue'
+  import { mapGetters } from "vuex"
   export default {
     data: () => ({
       pages: ['evaluationFilm'],
@@ -60,30 +61,16 @@
       EvaluationPictureModal,
       EvaluationColorTable,
     },
+    computed: {
+      ...mapGetters(['getColorModalState']),
+    },
     mounted() {
-      // const menu = document.querySelectorAll('.menu')
-      // const leftImage = document.querySelector('.left-image')
-      // const rightImage = document.querySelector('.right-image')
-      // menu[0].addEventListener('mouseover', function () {
-      //   imageClear()
-      //   leftImage.src = require('@/assets/camerapicture.png')
-      //   leftImage.style.visibility = 'visible'
-      // })
-      // menu[1].addEventListener('mouseover', function () {
-      //   imageClear()
-      //   rightImage.src = require('@/assets/camerapicture.png')
-      //   rightImage.style.visibility = 'visible'
-      // })
-      // menu[2].addEventListener('mouseover', function () {
-      //   imageClear()
-      //   leftImage.src = require('@/assets/main.png')
-      //   leftImage.style.visibility = 'visible'
-      // })
-
-      // const imageClear = function () {
-      //   leftImage.style.visibility = 'hidden'
-      //   rightImage.style.visibility = 'hidden'
-      // }
+      if (this.getColorModalState) {
+        this.colorTableVisible = true
+      }
+    },
+    destroyed() {
+      this.$store.commit('SAVE_COLOR_MODAL_STATE', false)
     },
     methods: {
       changePage(index) {

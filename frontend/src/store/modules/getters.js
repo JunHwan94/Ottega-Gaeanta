@@ -43,3 +43,9 @@ export function getStyleIndex (state) {
 export function getFptiResult (state) {
   return state.fptiResult
 }
+export function getColorModalState (state) {
+  return state.colorModalState
+}
+export function getChooseStyleMenuVisibleState (state) {
+  return state.chooseStyleMenuVisibleState
+}
