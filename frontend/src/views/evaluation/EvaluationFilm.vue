@@ -27,8 +27,8 @@
       <div class="capture-btn" id="retry-btn" @click="retry()" style="display: none;">
         <h2>다시 찍기😊</h2>
       </div>
-      <!-- <div class="capture-btn" style="color: white" @click="post()"> -->
-      <div class="capture-btn" style="color: white">  
+      <div class="capture-btn" style="color: white" @click="post()">
+      <!-- <div class="capture-btn" style="color: white">   -->
         <h2>의상 분석😊</h2>
       </div>
     </v-row>

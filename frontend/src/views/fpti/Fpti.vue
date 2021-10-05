@@ -25,7 +25,7 @@
                 <h3>Q{{survey.qno}}. {{survey.question}}</h3>
               </div>
               <div class="mt-5">
-                <img :src="mainImage" />
+                <img :src="survey.iconUrl" />
               </div>
               <div v-for="(answer, index) in survey.answerList" :key="index">
                 <div class="btn mt-2" @click="[select(survey.qno, index + 1)]">

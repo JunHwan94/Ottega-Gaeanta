@@ -26,6 +26,7 @@
       cap: '',
       file: '',
       formdata: '',
+      stream: null,
       silhouette: require('@/assets/silhouette.png')
     }),
     methods: {
@@ -34,7 +35,8 @@
             navigator.getUserMedia(
               this.constraints, // user media config
               (stream) => { // success
-                this.$store.commit('SAVE_VIDEO_STREAM', stream)
+                // this.$store.commit('SAVE_VIDEO_STREAM', stream)
+                this.stream = stream
                 this.video.width = this.videoWidth
                 this.video.height = this.videoHeight//prevent Opencv.js error.
                 video.srcObject = stream;
@@ -113,6 +115,14 @@
       this.canvas.width = this.videoWidth;
       this.canvas.height = this.videoHeight
       console.log('마운트 됨요')
+    },
+    destroyed() {
+      if (this.stream != null) { // 웹 캠 객체가 활성화 상태이면 비활성 처리함
+        const tracks = this.stream.getTracks()
+        tracks.forEach(track => {
+          track.stop();
+        });
+      }
     }
   }
 </script>
