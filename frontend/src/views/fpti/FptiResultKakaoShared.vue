@@ -59,12 +59,13 @@
         <div style="background-color: #333333; height: 170px;">
           <div style="height: 20px;"></div>
           <div class="d-flex" style="margin-left: 15%">
-            <h1 style="color: #FFFFFF; text-align: center; font-family: Cafe24Ssurround;">잠깐만!!!</h1>&nbsp;&nbsp;&nbsp;
-            <h1 style="color: #F875AA; text-align: center; font-family: Cafe24Ssurround;">이게 나라고??</h1>
+            <h2 style="color: #FFFFFF; text-align: center; font-family: Cafe24Ssurround;">나의&nbsp;</h2>
+            <h2 style="color: #F875AA; text-align: center; font-family: Cafe24Ssurround;">스타일 취향</h2>
+            <h2 style="color: #FFFFFF; text-align: center; font-family: Cafe24Ssurround;">이 궁금하다면?</h2>
           </div>
           <br>
           <div>
-            <v-btn @click="retryFpti" id="goSearchBtn" style="color: #F875AA; text-align: right; font-family: Cafe24Ssurround; margin-right: 20px; width: 250px; height: 40px; font-size: 1.2rem;">RETRY</v-btn>
+            <v-btn @click="retryFpti" id="goSearchBtn" style="color: #F875AA; text-align: right; font-family: Cafe24Ssurround; margin-right: 20px; width: 250px; height: 40px; font-size: 1.1rem;">패피티아이 시작하기</v-btn>
           </div>
         </div>
       </v-card>
@@ -85,6 +86,7 @@ export default {
   computed: {
     ...mapState([
       'fptiResult',
+      'selectedUserStyle',
     ]),
   },
   data () {
@@ -96,7 +98,11 @@ export default {
   },
   methods: {
     goToSearch () {
-      this.$router.push({name: 'SearchResult'})
+      if (this.selectedUserStyle === null) {
+        this.$router.push({name: 'ChooseStyle'})
+      } else {
+        this.$router.push({name: 'SearchResult'})
+      }
     },
     retryFpti () {
       this.$router.push({name: 'Fpti'})
