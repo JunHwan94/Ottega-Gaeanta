@@ -26,7 +26,7 @@
         <br><br><br>
         <!-- <h2 style="color: #F875AA; text-align: center; font-family: Cafe24Ssurround;">{{ fptiResult.comment }}</h2> -->
         <br>
-        <div style="background-color: #F1D1D0; height: 430px;">
+        <div style="background-color: #F1D1D0; height: 450px;">
           <div style="height: 40px;"></div>
           <div class="pt-2">
             <h2 style="color: #F875AA; text-align: center; font-family: Cafe24Ssurround;">{{ fptiResult.comment }}</h2>
