@@ -53,19 +53,22 @@ public class EvalService {
                     entity,
                     ColorRank.class
             );
+
+            String top = response.getBody().getTop();
+            String pants = response.getBody().getPants();
+
+            String key = top + "-" + pants;
+
+            Rank rank = evalRepositorySupport.getRank(key);
+
+            EvalColorRes evalColorRes = new EvalColorRes(top, pants, rank.getValue());
+
+            return evalColorRes;
+
         } catch (Exception e) {
             e.printStackTrace();
+            return null;
         }
-
-        String top = response.getBody().getTop();
-        String pants = response.getBody().getPants();
-
-        String key = top + "-" + pants;
-
-        Rank rank = evalRepositorySupport.getRank(key);
-
-        EvalColorRes evalColorRes = new EvalColorRes(top, pants, rank.getValue());
-        return evalColorRes;
     }
 
     public List<Data> getColorStyles(ColorStyleReq colorStyleReq) {

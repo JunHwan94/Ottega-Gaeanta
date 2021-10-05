@@ -146,8 +146,6 @@
     display: inline-block;
   }
 
-  .top-menu:hover {}
-
   .top-menu img {
     width: 40px;
     height: 40px;
@@ -193,8 +191,8 @@
     background: #F1D1D0;
 
   }
-  .menu-frame {
+  /* .menu-frame { */
     /* display: inline-block; */
     /* margin: 0px 10px; */
-  }
+  /* } */
 </style>
