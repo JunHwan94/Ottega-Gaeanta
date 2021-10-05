@@ -83,6 +83,7 @@ export default {
   computed: {
     ...mapState([
       'fptiResult',
+      'selectedUserStyle',
     ]),
   },
   data () {
@@ -106,7 +107,11 @@ export default {
   },
   methods: {
     goToSearch () {
-      this.$router.push('SearchResult')
+      if (this.selectedUserStyle === null) {
+        this.$router.push({name: 'ChooseStyle'})
+      } else {
+        this.$router.push({name: 'SearchResult'})
+      }
     },
     retryFpti () {
       this.$router.push('Fpti')
