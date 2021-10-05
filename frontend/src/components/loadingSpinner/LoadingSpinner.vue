@@ -8,7 +8,8 @@
     </div>
   </div> -->
   <div align="center" v-if="loading" class="test">
-    <img :src='image' style='margin: 0px auto;'/>
+    <img class="animation" :src="image" style='margin: 0px auto;'/><br>
+    <img class="message" :src="message"/>
   </div>
   </template>
 
@@ -23,6 +24,7 @@
     name: 'LoadingSpinner',
     data: () => ({
       image: require('@/assets/loading.gif'),
+      message: require('@/assets/loading-message.gif')
     }),
     computed: {
     },
@@ -39,9 +41,17 @@
   left: 40%;
   z-index: 999;
 }
-.test > img {
+.animation {
   width: 400px;
   height: 200px;
+}
+.message {
+  width: 200px;
+  height: 300px;
+  position: fixed;
+  top: 43%;
+  left: 45%;
+  z-index: 999;
 }
 
 .lds-facebook {

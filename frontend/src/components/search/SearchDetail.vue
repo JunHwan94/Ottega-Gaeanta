@@ -43,8 +43,8 @@
               <h2 style="color: #000000; text-align: left; font-family: Cafe24Ssurround; margin: 2%;">SUB</h2>
               <v-row>
                 <v-col cols=1></v-col>
-                <v-col v-for="(simillarStyle, idx) in simillarStylesTemp" :key="idx" cols=3>
-                  <img :src="simillarStyle" alt="image" style="height: 15vh; width: 13vh; border-radius: 2vh;">
+                <v-col v-for="(simillarStyle, idx) in simillarStyles" :key="idx" cols=3>
+                  <img :src="simillarStyle.sturl" alt="image" style="height: 15vh; width: 13vh; border-radius: 2vh;">
                 </v-col>
               </v-row>
             </div>
@@ -70,9 +70,11 @@
                     <div align="left" v-if="imageDetail.outer[0].length">
                       <span :style="fashionInfoStyle">기장 : {{ imageDetail.outer[0].length }}</span>
                     </div>
-                    <div align="left" v-if="imageDetail.outer[0].print.length !== 0">
-                      <span :style="fashionInfoStyle">디자인 : </span>
-                      <span v-for="design in imageDetail.outer[0].print" :key="design" style="font-size: 1.3rem; font-family: ELAND_Choice_M;">{{ design }}</span>
+                    <div align="left" v-if="imageDetail.outer[0].print !== undefined">
+                      <div v-if="imageDetail.outer[0].print.length !== 0">
+                        <span :style="fashionInfoStyle">디자인 : </span>
+                        <span v-for="design in imageDetail.outer[0].print" :key="design" style="font-size: 1.3rem; font-family: ELAND_Choice_M;">{{ design }}</span>
+                      </div>
                     </div>
                     <div align="left" v-if="imageDetail.outer[0].material">
                       <span :style="fashionInfoStyle">소재 : </span>
@@ -94,9 +96,11 @@
                     <div align="left" v-if="imageDetail.onepiece[0].length">
                       <span :style="fashionInfoStyle">기장 : {{ imageDetail.onepiece[0].length }}</span>
                     </div>
-                    <div align="left" v-if="imageDetail.onepiece[0].print.length !== 0">
-                      <span :style="fashionInfoStyle">디자인 : </span>
-                      <span v-for="design in imageDetail.onepiece[0].print" :key="design" style="font-size: 1.3rem; font-family: ELAND_Choice_M;">{{ design }}</span>
+                    <div align="left" v-if="imageDetail.onepiece[0].print !== undefined">
+                      <div v-if="imageDetail.onepiece[0].print.length !== 0">
+                        <span :style="fashionInfoStyle">디자인 : </span>
+                        <span v-for="design in imageDetail.onepiece[0].print" :key="design" style="font-size: 1.3rem; font-family: ELAND_Choice_M;">{{ design }}</span>
+                      </div>
                     </div>
                     <div align="left" v-if="imageDetail.onepiece[0].neckLine">
                       <span :style="fashionInfoStyle">넥라인 : {{ imageDetail.onepiece[0].neckLine }}</span>
@@ -135,9 +139,11 @@
                     <div align="left" v-if="imageDetail.top[0].sleeveLength">
                       <span :style="fashionInfoStyle">기장 : {{ imageDetail.top[0].sleeveLength }}</span>
                     </div>
-                    <div align="left" v-if="imageDetail.top[0].print.length !== 0">
-                      <span :style="fashionInfoStyle">디자인 : </span>
-                      <span v-for="design in imageDetail.top[0].print" :key="design" style="font-size: 1.3rem; font-family: ELAND_Choice_M;">{{ design }}</span>
+                    <div align="left" v-if="imageDetail.top[0].print !== undefined">
+                      <div v-if="imageDetail.top[0].print.length !== 0">
+                        <span :style="fashionInfoStyle">디자인 : </span>
+                        <span v-for="design in imageDetail.top[0].print" :key="design" style="font-size: 1.3rem; font-family: ELAND_Choice_M;">{{ design }}</span>
+                      </div>  
                     </div>
                     <div align="left" v-if="imageDetail.top[0].neckLine">
                       <span :style="fashionInfoStyle">넥라인 : {{ imageDetail.top[0].neckLine }}</span>
@@ -158,9 +164,11 @@
                     <div align="left" v-if="imageDetail.bottom[0].length">
                       <span :style="fashionInfoStyle">기장 : {{ imageDetail.bottom[0].length }}</span>
                     </div>
-                    <div align="left" v-if="imageDetail.bottom[0].print.length !== 0">
-                      <span :style="fashionInfoStyle">디자인 : </span>
-                      <span v-for="design in imageDetail.bottom[0].print" :key="design" style="font-size: 1.3rem; font-family: ELAND_Choice_M;">{{ design }}</span>
+                    <div align="left" v-if="imageDetail.bottom[0].print !== undefined">
+                      <div v-if="imageDetail.bottom[0].print.length != 0">
+                        <span :style="fashionInfoStyle">디자인 : </span>
+                        <span v-for="design in imageDetail.bottom[0].print" :key="design" style="font-size: 1.3rem; font-family: ELAND_Choice_M;">{{ design }}</span>
+                      </div>
                     </div>
                     <div align="left" v-if="imageDetail.bottom[0].material">
                       <span :style="fashionInfoStyle">소재 : </span>
@@ -180,7 +188,7 @@
             <v-btn
               color="secondary"
               text
-              @click="showStyleInfo({showSearchDetail}); variableShowInitialize();"
+              @click="showStyleInfo({showSearchDetail, idx : '', imgURL : ''}); variableShowInitialize();"
             >
               <h1>X</h1>
             </v-btn>

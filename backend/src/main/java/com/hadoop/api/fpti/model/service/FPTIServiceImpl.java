@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @AllArgsConstructor
 @Service
@@ -24,12 +25,14 @@ public class FPTIServiceImpl implements FPTIService{
     }
 
     @Override
-    public FPTIType getResult(int typeNo) {
-        return mongoTemplate.findOne(
-                Query.query(Criteria.where("typeno").is(typeNo)),
-                FPTIType.class
+    public Optional<FPTIType> getResult(int typeNo) {
+        return Optional.ofNullable(
+                mongoTemplate.findOne(
+                        Query.query(Criteria.where("typeno").is(typeNo)),
+                        FPTIType.class
+                )
         );
-    }
+    } 
 
     @Override
     public int getTypeNo(List<Integer> array){
