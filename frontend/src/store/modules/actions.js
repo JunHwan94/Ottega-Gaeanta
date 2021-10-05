@@ -41,10 +41,13 @@ export function showStyleInfo({ commit, getters }, credentials) {
     commit("SEARCH_DETAIL_IMAGE_URL", imgURL)
     commit("setImageDetail", imageDetail[index])
 
-    // console.log(imageDetail[index].style[[0]].style)
-    getSimillarStyles(imageDetail[index].style[[0]].style).then((result) => {
-        commit("setSimillarStyles", result.data)
-    })
+    // console.log(imageDetail[index])
+    if (index !== '') {
+        getSimillarStyles(imageDetail[index].style[[0]].style).then((result) => {
+            // console.log(result.data)
+            commit("setSimillarStyles", result.data)
+        })
+    }
     // console.log(simillarImages)
     // commit("setSimillarStyles", simillarImages)
 }
@@ -64,7 +67,8 @@ export function getSurveys() {
 }
 
 export function getSimillarStyles(style) {
-    const url = baseUrl + '/search/simillar/' + style
+    console.log(style)
+    const url = baseUrl + 'search/simillar/' + style
     return axios.get(url)
 }
 
