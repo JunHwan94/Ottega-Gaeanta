@@ -23,6 +23,8 @@ const styleImage = null
 const styleDepthImage = null
 let styleIndex = 0
 const fptiResult = null
+const colorModalState = false
+const chooseStyleMenuVisibleState = false
 
 export default function () {
   return {
@@ -43,6 +45,8 @@ export default function () {
     styleImage,
     styleDepthImage,
     styleIndex,
-    fptiResult
+    fptiResult,
+    colorModalState,
+    chooseStyleMenuVisibleState
   }
 }

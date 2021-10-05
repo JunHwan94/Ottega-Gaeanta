@@ -76,3 +76,9 @@ export function setSimillarStyles(state, simillarStyles) {
 export function SAVE_FPTI_RESULT(state, fptiResult) {
   state.fptiResult = fptiResult
 }
+export function SAVE_COLOR_MODAL_STATE(state, value) {
+  state.colorModalState = value
+}
+export function SAVE_CHOOSE_STYLE_MENU_STATE(state, value) {
+  state.chooseStyleMenuVisibleState = value
+}
