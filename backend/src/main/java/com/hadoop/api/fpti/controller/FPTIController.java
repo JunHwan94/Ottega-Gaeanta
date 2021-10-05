@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/fpti")
@@ -34,16 +35,18 @@ public class FPTIController {
     @GetMapping("/result/{typeNo}")
     @ApiOperation(value = "패피티아이 유형 정보", notes = "패피티아이 유형 조회")
     public ResponseEntity<? extends BaseResponseBody> getResult(@PathVariable @ApiParam(value = "패피티아이 유형 번호", required = true) int typeNo){
-        FPTIType type = fptiService.getResult(typeNo);
-        return ResponseEntity.status(200).body(FPTIRes.of(200, "성공", type));
+        Optional<FPTIType> typeOp = fptiService.getResult(typeNo);
+        if(typeOp.isPresent()) return ResponseEntity.status(200).body(FPTIRes.of(200, "성공", typeOp.get()));
+        return ResponseEntity.status(404).body(BaseResponseBody.of(404, "typeNo=" + typeNo + "인 데이터는 존재하지 않음"));
     }
 
     @PostMapping("/result")
     @ApiOperation(value = "패피티아이 순위 정하기", notes = "패피티아이 순위 정해서 typeNo 반환")
     public ResponseEntity<? extends BaseResponseBody> getArray(@RequestParam(value = "arr", required = true) List<Integer> arr){
         int typeNo = fptiService.getTypeNo(arr);
-        FPTIType type = fptiService.getResult(typeNo);
-        return ResponseEntity.status(200).body(FPTIRes.of(200, "성공", type));
+        Optional<FPTIType> typeOp = fptiService.getResult(typeNo);
+        if(typeOp.isPresent()) return ResponseEntity.status(200).body(FPTIRes.of(200, "성공", typeOp.get()));
+        return ResponseEntity.status(404).body(BaseResponseBody.of(404, "typeNo=" + typeNo + "인 데이터는 존재하지 않음"));
     }
 
 }
