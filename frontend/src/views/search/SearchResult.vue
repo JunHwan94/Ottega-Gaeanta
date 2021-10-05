@@ -12,9 +12,6 @@
           :searchItemsBool="searchItemsBool"
         /> -->
       </div>
-      <div class="col-1" style="z-index: 3;">
-        <ChangeStyleModal/>
-      </div>
     </div>
     <v-container id="container-height">
       <v-row id="searchRow" v-masonry>
