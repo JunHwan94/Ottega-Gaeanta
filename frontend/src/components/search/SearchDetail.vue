@@ -40,7 +40,7 @@
           <div id="infobook7" @click="goFlip" :style="flipCSS2" v-if="imageDetail" style="padding-top: 3rem; padding-left: 1rem;">
             <!-- 유사 스타일 -->
             <div>
-              <h2 style="color: #000000; text-align: left; font-family: Cafe24Ssurround; margin: 2%;">SUB</h2>
+              <h4 style="color: #000000; text-align: left; font-family: Cafe24Ssurround; margin-left: 2%;">SUB</h4>
               <v-row>
                 <v-col cols=1></v-col>
                 <v-col v-for="(simillarStyle, idx) in simillarStyles" :key="idx" cols=3>
@@ -51,10 +51,10 @@
             <br>
             <hr>
             <!-- 패션 정보 -->
-            <h2 style="color: #000000; text-align: left; font-family: Cafe24Ssurround; margin: 2%;">스타일</h2>
+            <h4 style="color: #000000; text-align: left; font-family: Cafe24Ssurround; margin-left: 2%;">스타일</h4>
             <div class="d-flex" style="padding-left: 10%;">
-              <span style="font-size: 1.5rem; font-family: ELAND_Choice_M;">#{{ imageDetail.style[0].style }}</span>&nbsp;&nbsp;&nbsp;&nbsp;
-              <span style="font-size: 1.5rem; font-family: ELAND_Choice_M;" v-if="imageDetail.style[0].subStyle !== null">#{{ imageDetail.style[0].subStyle }}</span>
+              <span style="font-size: 1.3rem; font-family: ELAND_Choice_M;">#{{ imageDetail.style[0].style }}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+              <span style="font-size: 1.3rem; font-family: ELAND_Choice_M;" v-if="imageDetail.style[0].subStyle !== null">#{{ imageDetail.style[0].subStyle }}</span>
             </div>
             <br>
             <hr>
@@ -62,7 +62,7 @@
             <v-row>
               <v-col v-if="!isEmptyObject(imageDetail.outer[0])" cols="4">
                 <div style="padding-left: 4%; border-right:1px solid #DDDDDD;">
-                  <h2 style="color: #000000; text-align: left; font-family: Cafe24Ssurround; margin: 2%;">아우터</h2>
+                  <h4 style="color: #000000; text-align: left; font-family: Cafe24Ssurround; margin: 2%;">아우터</h4>
                   <div>
                     <div align="left" v-if="imageDetail.outer[0].color">
                       <span :style="fashionInfoStyle">색상 : {{ imageDetail.outer[0].color }}</span>
@@ -88,7 +88,7 @@
               </v-col>
               <v-col v-if="!isEmptyObject(imageDetail.onepiece[0])" cols="4">
                 <div style="padding-left: 4%;">
-                  <h2 style="color: #000000; text-align: left; font-family: Cafe24Ssurround; margin: 2%;">원피스</h2>
+                  <h4 style="color: #000000; text-align: left; font-family: Cafe24Ssurround; margin: 2%;">원피스</h4>
                   <div >
                     <div align="left" v-if="imageDetail.onepiece[0].color">
                       <span :style="fashionInfoStyle">색상 : {{ imageDetail.onepiece[0].color }}</span>
@@ -110,7 +110,7 @@
               </v-col>
               <v-col v-if="!isEmptyObject(imageDetail.onepiece[0])" cols="4">
                 <div style="padding-left: 4%;">
-                  <h2 style="color: #000000; text-align: left; font-family: Cafe24Ssurround; margin: 2%;">&nbsp;</h2>
+                  <h4 style="color: #000000; text-align: left; font-family: Cafe24Ssurround; margin: 2%;">&nbsp;</h4>
                   <div >
                     <div align="left" v-if="imageDetail.onepiece[0].detail.length !== 0">
                       <span :style="fashionInfoStyle">디테일 : </span>
@@ -131,7 +131,7 @@
               </v-col>
               <v-col v-if="!isEmptyObject(imageDetail.top[0])" cols="4">
                 <div style="padding-left: 4%; border-right:1px solid #DDDDDD;">
-                  <h2 style="color: #000000; text-align: left; font-family: Cafe24Ssurround; margin: 2%;">상의</h2>
+                  <h4 style="color: #000000; text-align: left; font-family: Cafe24Ssurround; margin: 2%;">상의</h4>
                   <div>
                     <div align="left" v-if="imageDetail.top[0].color">
                       <span :style="fashionInfoStyle">색상 : {{ imageDetail.top[0].color }}</span>
@@ -156,7 +156,7 @@
               </v-col>
               <v-col v-if="!isEmptyObject(imageDetail.bottom[0])" cols="4">
                 <div style="padding-left: 4%;">
-                  <h2 style="color: #000000; text-align: left; font-family: Cafe24Ssurround; margin: 2%;">하의</h2>
+                  <h4 style="color: #000000; text-align: left; font-family: Cafe24Ssurround; margin: 2%;">하의</h4>
                   <div>
                     <div align="left" v-if="imageDetail.bottom[0].color">
                       <span :style="fashionInfoStyle">색상 : {{ imageDetail.bottom[0].color }}</span>
@@ -273,7 +273,7 @@ export default {
     fashionInfoStyle () {
       return {
         marginLeft: '6%',
-        fontSize: '1.3rem',
+        fontSize: '1.1rem',
         fontFamily: 'ELAND_Choice_M',
       }
     }
