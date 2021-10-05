@@ -162,9 +162,9 @@
           this.$store.dispatch('getSurveyResult', query)
             .then((response) => {
               this.$store.commit('SAVE_FPTI_RESULT', response.data.type)
+              this.$router.push('/fptiResult')
             })
-          
-          this.$router.push('/fptiResult')
+          return
         }
         this.$refs.fpti.next() // next page
       }
