@@ -27,7 +27,7 @@
           </v-row><br>
           <v-row class="menu-container" justify="center">
             <div class="menu" @click="toggleColorTableModal()">
-              색 조합표 보기
+              평가 방식 보기
               <img :src="test2" style="vertical-align:middle; width: 50px; height: 50px;"/>
               <!-- <v-icon large color="white darken-5"> mdi-arrow-up-bold-box-outline</v-icon> -->
             </div>

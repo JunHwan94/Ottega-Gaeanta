@@ -1,7 +1,6 @@
 <template>
   <div id="div-container">
     <div align="center" style="margin-top: 5rem;">
-      {{ fptiResult }}
       <v-card style="width: 30rem;">
         <h1 style="text-align: center;">패피티아이(FPTI) 진단 결과</h1>
         <h1 style="text-align: center; color: #F875AA; margin-top: 5px;">당신은?</h1>
@@ -27,7 +26,7 @@
         <br><br><br>
         <!-- <h2 style="color: #F875AA; text-align: center; font-family: Cafe24Ssurround;">{{ fptiResult.comment }}</h2> -->
         <br>
-        <div style="background-color: #F1D1D0; height: 430px;">
+        <div style="background-color: #F1D1D0; height: 450px;">
           <div style="height: 40px;"></div>
           <div class="pt-2">
             <h2 style="color: #F875AA; text-align: center; font-family: Cafe24Ssurround;">{{ fptiResult.comment }}</h2>
@@ -122,19 +121,19 @@ export default {
           imageUrl: 'https://cc-prod.scene7.com/is/image/CCProdAuthor/Fashion-illustration_P1_900x420?$pjpeg$&jpegSize=200&wid=900',
           // imageUrl: require('@/assets/main.png'),
           link: {
-            mobileWebUrl: `http://localhost:8080/fptiResult/${this.fptiResult.typeno}`, 
-            webUrl: `http://localhost:8080/fptiResult/${this.fptiResult.typeno}`, 
-            // mobileWebUrl: 'https://j5b206.p.ssafy.io/fptiResult', 
-            // webUrl: 'https://j5b206.p.ssafy.io/fptiResult', 
+            // mobileWebUrl: `http://localhost:8080/fptiResult/${this.fptiResult.typeno}`, 
+            // webUrl: `http://localhost:8080/fptiResult/${this.fptiResult.typeno}`, 
+            mobileWebUrl: `https://j5b206.p.ssafy.io/fptiResult/${this.fptiResult.typeno}`, 
+            webUrl: `https://j5b206.p.ssafy.io/fptiResult/${this.fptiResult.typeno}`, 
           }, 
         }, 
         buttons: [ { 
           title: '웹으로 보기', 
           link: { 
-            mobileWebUrl: `http://localhost:8080/fptiResult/${this.fptiResult.typeno}`, 
-            webUrl: `http://localhost:8080/fptiResult/${this.fptiResult.typeno}`, 
-            // mobileWebUrl: 'https://j5b206.p.ssafy.io/fptiResult', 
-            // webUrl: 'https://j5b206.p.ssafy.io/fptiResult', 
+            // mobileWebUrl: `http://localhost:8080/fptiResult/${this.fptiResult.typeno}`, 
+            // webUrl: `http://localhost:8080/fptiResult/${this.fptiResult.typeno}`, 
+            mobileWebUrl: `https://j5b206.p.ssafy.io/fptiResult/${this.fptiResult.typeno}`, 
+            webUrl: `https://j5b206.p.ssafy.io/fptiResult/${this.fptiResult.typeno}`, 
           }, 
         }, ], 
       }) 
