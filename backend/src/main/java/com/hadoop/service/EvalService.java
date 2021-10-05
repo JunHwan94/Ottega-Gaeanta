@@ -1,7 +1,9 @@
 package com.hadoop.service;
 import com.hadoop.entity.ColorRank;
+import com.hadoop.entity.Data;
 import com.hadoop.entity.Rank;
 import com.hadoop.repository.EvalRepositorySupport;
+import com.hadoop.request.ColorStyleReq;
 import com.hadoop.response.EvalColorRes;
 import com.hadoop.common.util.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 @Service
 public class EvalService {
@@ -63,5 +66,9 @@ public class EvalService {
 
         EvalColorRes evalColorRes = new EvalColorRes(top, pants, rank.getValue());
         return evalColorRes;
+    }
+
+    public List<Data> getColorStyles(ColorStyleReq colorStyleReq) {
+        return evalRepositorySupport.getColorStyles(colorStyleReq);
     }
 }

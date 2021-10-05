@@ -71,32 +71,4 @@ public class SearchRepositorySupport {
         return mongoTemplate.findAll(CategoryColors.class);
     }
 
-    public List<Data> getColorStyles(ColorStyleReq colorStyleReq){
-
-        int page = 0;
-        Query query = new Query(
-                where("top.color").all(colorStyleReq.getTop())
-                .and("bottom.color").all(colorStyleReq.getBottom())
-        ).skip(page * 20);
-
-        List<Data> result = new ArrayList<>();
-
-        outer : while(true){
-            List<Data> list = mongoTemplate.find(query, Data.class);
-
-            for(int i = 0; i < list.size(); i++){
-                if(i == 0) {
-                    result.add(list.get(i));
-                } else {
-                    if(!result.get(result.size() - 1).getStyle().get(0).getStyle().equals(list.get(i).getStyle().get(0).getStyle())){
-                        result.add(list.get(i));
-                    }
-                }
-                if(result.size() == 4) break outer;
-            }
-            page++;
-            System.out.println(result.size());
-        }
-        return result;
-    }
 }

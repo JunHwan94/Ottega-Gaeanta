@@ -58,16 +58,4 @@ public class SearchController {
     public ResponseEntity<? extends BaseResponseBody> getColors(){
         return ResponseEntity.ok(ColorsRes.of(200, "성공", searchService.getColors()));
     }
-
-    @GetMapping("/getColorStyle/{top}/{bottom}")
-    public ResponseEntity<SearchRes> getColorStyle(@PathVariable String top, @PathVariable String bottom){
-        ColorStyleReq colorStyleReq = new ColorStyleReq();
-        colorStyleReq.setTop(top);
-        colorStyleReq.setBottom(bottom);
-
-        List<Data> data = searchService.getColorStyles(colorStyleReq);
-        List<String> s3url = s3Service.getS3ImageURL(data, 0);
-
-        return ResponseEntity.ok(new SearchRes(data, s3url));
-    }
 }

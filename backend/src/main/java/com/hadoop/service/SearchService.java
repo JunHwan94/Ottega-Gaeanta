@@ -58,7 +58,4 @@ public class SearchService {
     public List<CategoryColors> getColors(){
         return searchRepositorySupport.getColors();
     }
-    public List<Data> getColorStyles(ColorStyleReq colorStyleReq) {
-        return searchRepositorySupport.getColorStyles(colorStyleReq);
-    }
 }
