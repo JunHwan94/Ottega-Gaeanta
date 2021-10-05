@@ -81,3 +81,11 @@ export function getFptiResultFromKakaoShare({ commit }, query) {
   const url = baseUrl + '/fpti/result/' + query
   return axios.get(url)
 }
+
+export function getSimillarColorStyles({ commit }, param) {
+    const top = param.top;
+    const bottom = param.bottom;
+
+    const url = baseUrl + 'eval/getColorStyle/' + top + '/' + bottom
+    return axios.get(url)
+  }
