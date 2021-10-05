@@ -61,7 +61,7 @@
           <img :src="recommendImages[2]" class="recommend-image" />
           <img :src="recommendImages[0]" class="recommend-image" />
         </div>
-        <div class="btn" @click="move()">
+        <div class="btn" @click="move(2)">
           <span class="btn-text">다른 스타일 <br>둘러보기</span>
           <!-- <h7>다른 스타일 <br>둘러보기</h7> -->
         </div>
@@ -159,7 +159,10 @@
     },
     methods: {
       move(i) {
-        const page = ['','evaluationMain/','searchResult/']
+        const page = ['evaluationMain/','evaluationMain/','searchResult/']
+        if (i == 0) {
+          this.$store.commit('SAVE_COLOR_MODAL_STATE', true)
+        }
         this.$router.push(page[i])
       }
     }
