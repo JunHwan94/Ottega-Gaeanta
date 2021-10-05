@@ -32,7 +32,7 @@ public class FPTIServiceImpl implements FPTIService{
                         FPTIType.class
                 )
         );
-    }
+    } 
 
     @Override
     public int getTypeNo(List<Integer> array){
