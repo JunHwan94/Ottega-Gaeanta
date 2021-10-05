@@ -27,8 +27,8 @@ axios.interceptors.response.use(
   }
 )
 
-const baseUrl = 'https://localhost:443/'
-// const baseUrl = 'https://j5b206.p.ssafy.io:443/'
+// const baseUrl = 'https://localhost:443/'
+const baseUrl = 'https://j5b206.p.ssafy.io:443/'
 // const baseUrl = 'https://52.78.73.111:443/'
 // axios 샘플
 export function showStyleInfo({ commit, getters }, credentials) {

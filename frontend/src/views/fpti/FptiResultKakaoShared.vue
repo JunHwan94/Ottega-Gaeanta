@@ -109,19 +109,19 @@ export default {
           imageUrl: 'https://cc-prod.scene7.com/is/image/CCProdAuthor/Fashion-illustration_P1_900x420?$pjpeg$&jpegSize=200&wid=900',
           // imageUrl: require('@/assets/main.png'),
           link: {
-            mobileWebUrl: `http://localhost:8080/fptiResult/${this.fptiResult.typeno}`, 
-            webUrl: `http://localhost:8080/fptiResult/${this.fptiResult.typeno}`, 
-            // mobileWebUrl: 'https://j5b206.p.ssafy.io/fptiResult', 
-            // webUrl: 'https://j5b206.p.ssafy.io/fptiResult', 
+            // mobileWebUrl: `http://localhost:8080/fptiResult/${this.fptiResult.typeno}`, 
+            // webUrl: `http://localhost:8080/fptiResult/${this.fptiResult.typeno}`, 
+            mobileWebUrl: `https://j5b206.p.ssafy.io/fptiResult/${this.fptiResult.typeno}`, 
+            webUrl: `https://j5b206.p.ssafy.io/fptiResult/${this.fptiResult.typeno}`, 
           }, 
         }, 
         buttons: [ { 
           title: '웹으로 보기', 
           link: { 
-            mobileWebUrl: `http://localhost:8080/fptiResult/${this.fptiResult.typeno}`, 
-            webUrl: `http://localhost:8080/fptiResult/${this.fptiResult.typeno}`, 
-            // mobileWebUrl: 'https://j5b206.p.ssafy.io/fptiResult', 
-            // webUrl: 'https://j5b206.p.ssafy.io/fptiResult', 
+            // mobileWebUrl: `http://localhost:8080/fptiResult/${this.fptiResult.typeno}`, 
+            // webUrl: `http://localhost:8080/fptiResult/${this.fptiResult.typeno}`, 
+            mobileWebUrl: `https://j5b206.p.ssafy.io/fptiResult/${this.fptiResult.typeno}`, 
+            webUrl: `https://j5b206.p.ssafy.io/fptiResult/${this.fptiResult.typeno}`, 
           }, 
         }, ], 
       }) 
