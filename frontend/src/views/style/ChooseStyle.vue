@@ -32,6 +32,7 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
   import ChooseStyleDetail from '../../components/chooseStyle/ChooseStyleDetail.vue'
   import Swal from 'sweetalert2'
   export default {
@@ -78,6 +79,9 @@
       visibleFirstStyle: true,
       checkList: [false, false, false, false, false, false, false, false, false, false],
     }),
+    computed: {
+      ...mapGetters(["getSelectedUserStyle"]),
+    },
     components: {
       ChooseStyleDetail
     },
@@ -145,6 +149,21 @@
         heart.classList.add('heart')
       }
     },
+    mounted() {
+      if (this.getSelectedUserStyle != null) {
+        for (let i = 0; i < this.getSelectedUserStyle.length; i++) {
+          const index = this.style.indexOf(this.getSelectedUserStyle[i])
+          this.checkList[index] = true
+          const select = document.getElementsByClassName('select')[index]
+          const area = document.getElementsByClassName('box')[index]
+          const heart = document.getElementsByClassName('heart-area')[index]
+          select.classList.add('check')
+          area.classList.add('back')
+          heart.classList.add('heart')
+        }
+      }
+      
+    }
   }
 </script>
 
