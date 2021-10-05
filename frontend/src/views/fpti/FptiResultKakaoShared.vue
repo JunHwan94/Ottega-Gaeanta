@@ -75,10 +75,12 @@
 
 <script>
 import SearchResult from '@/views/search/SearchResult.vue'
+import Fpti from '@/views/fpti/Fpti.vue'
 import { mapActions, mapState } from 'vuex'
 export default {
   components: {
-    SearchResult
+    SearchResult,
+    Fpti,
   },
   computed: {
     ...mapState([
@@ -94,10 +96,10 @@ export default {
   },
   methods: {
     goToSearch () {
-      this.$router.push('SearchResult')
+      this.$router.push({name: 'SearchResult'})
     },
     retryFpti () {
-      this.$router.push('Fpti')
+      this.$router.push({name: 'Fpti'})
     },
     sendkakao: function () {
       Kakao.Link.createDefaultButton({ 
