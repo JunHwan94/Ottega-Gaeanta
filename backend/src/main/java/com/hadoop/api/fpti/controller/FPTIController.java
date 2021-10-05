@@ -35,8 +35,6 @@ public class FPTIController {
     @ApiOperation(value = "패피티아이 유형 정보", notes = "패피티아이 유형 조회")
     public ResponseEntity<? extends BaseResponseBody> getResult(@PathVariable @ApiParam(value = "패피티아이 유형 번호", required = true) int typeNo){
         FPTIType type = fptiService.getResult(typeNo);
-        // log.debug(type.toString());
-        // TODO 예외 처리하기 null 등
         return ResponseEntity.status(200).body(FPTIRes.of(200, "성공", type));
     }
 
