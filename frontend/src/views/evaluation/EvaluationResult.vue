@@ -214,7 +214,7 @@
     margin-left: 30px;
     float: left;
     border: 1px solid #FBACCC;
-    z-index: 50;
+    z-index: 0;
   }
 
   .color-image {

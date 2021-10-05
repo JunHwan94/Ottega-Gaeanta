@@ -40,6 +40,7 @@
 </template>
 
 <script>
+  import Swal from 'sweetalert2'
   export default {
     name: 'EvaluationPictureModal',
     data: () => ({
@@ -99,10 +100,27 @@
           form.append('image', this.image)
           this.$store.dispatch('evaluateImage', form)
           .then((result) => {
-            alert('분석이 완료되었습니다!')
             console.log(result.data);
             this.$store.commit('SAVE_USER_FASHION_RATE', result.data)
-            this.$router.push('/evaluationResult')
+            Swal.mixin({
+                toast: true,
+                position: 'top-right',
+                iconColor: 'white',
+                color: 'white',
+                background: '#a5dc86',
+                customClass: {
+                  popup: 'colored-toast'
+                },
+                showConfirmButton: false,
+                timer: 1500,
+                timerProgressBar: true
+              }).fire({
+                icon: 'success',
+                title: '드디어 의상 분석이 완료되었습니다.'
+              })
+              .then(() => {
+                this.$router.push('/evaluationResult')
+              })
           })
         }
         
