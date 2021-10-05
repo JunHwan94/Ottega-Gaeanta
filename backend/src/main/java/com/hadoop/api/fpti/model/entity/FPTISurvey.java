@@ -8,9 +8,10 @@ import java.util.Set;
 
 @Getter
 @Setter
-@Document(collection = "fpti_survey")
+@Document(collection = "fpti_surveys")
 public class FPTISurvey {
     private int qno;
+    private String iconUrl;
     private String question;
     private Set<String> answerList;
 }

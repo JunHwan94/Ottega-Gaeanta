@@ -94,7 +94,7 @@ router.beforeEach((to, from, next) => {
   store.commit('startSpinner');
   setTimeout(() => {
       next();
-  }, 500);
+  }, 1500);
 })
 
 router.afterEach((to, from) => {

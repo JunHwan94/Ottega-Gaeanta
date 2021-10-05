@@ -13,18 +13,9 @@ public class BaseResponseBody {
     @ApiModelProperty(name="응답 코드", example = "200")
     private Integer statusCode = null;
 
-    public BaseResponseBody(){}
+    protected BaseResponseBody(){}
 
-    public BaseResponseBody(Integer statusCode){
-        this.statusCode = statusCode;
-    }
-
-    public BaseResponseBody(String message, Integer statusCode){
-        this.message = message;
-        this.statusCode = statusCode;
-    }
-
-    public static BaseResponseBody of(String message, Integer statusCode){
+    public static BaseResponseBody of(Integer statusCode, String message){
         BaseResponseBody body = new BaseResponseBody();
         body.message = message;
         body.statusCode = statusCode;
