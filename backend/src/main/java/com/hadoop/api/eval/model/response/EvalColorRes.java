@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.Set;
 
 @Getter
@@ -14,5 +15,5 @@ public class EvalColorRes {
     String pants;
     String rank;
     String desc;
-    Set<String> hashtag;
+    ArrayList<String> hashtag;
 }
