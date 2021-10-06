@@ -43,6 +43,8 @@ public class EvalService {
         MultiValueMap<String, Object> params = new LinkedMultiValueMap<>();
         params.add("file", new FileSystemResource("../file.jpg"));
 
+        log.debug(image.getOriginalFilename());
+
         HttpHeaders headers = new HttpHeaders();
 //        headers.add("Accept", MediaType.APPLICATION_JSON.toString());   // json 결과 String으로 변환해서 가져오기는 하는데 흠
         headers.setContentType(MediaType.MULTIPART_FORM_DATA);
