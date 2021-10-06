@@ -1,5 +1,6 @@
 <template>
   <div class="main-container">
+    <swal-alert></swal-alert>
     <div class="explain-area">
       <h1>✔ 선호하는 스타일을 3가지 선택하세요</h1>
       <p class="explain-detail">회원님이 좋아하실만한 스타일을 더 많이 추천해드릴 수 있습니다.</p>
@@ -34,7 +35,7 @@
 <script>
   import { mapGetters } from 'vuex'
   import ChooseStyleDetail from '../../components/chooseStyle/ChooseStyleDetail.vue'
-  import Swal from 'sweetalert2'
+  import SwalAlert from '@/components/SwalAlert'
   export default {
     data: () => ({
       images1: [
@@ -83,7 +84,8 @@
       ...mapGetters(["getSelectedUserStyle"]),
     },
     components: {
-      ChooseStyleDetail
+      ChooseStyleDetail,
+      SwalAlert
     },
     methods: {
       invisibleModal () {
@@ -116,23 +118,8 @@
           }
         }
         if (checkCount != 3) {
-          const text = checkCount < 3 ? '<span style="color: white;">선호 스타일을 <br>3개 선택해주세요!<span>' : '<span style="color: white;">선호 스타일을 <br>3개만 선택해주세요!<span>'
-          Swal.mixin({
-            toast: true,
-            position: 'top-right',
-            iconColor: 'white',
-            color: 'white',
-            background: '#f27474',
-            customClass: {
-              popup: 'colored-toast'
-            },
-            showConfirmButton: false,
-            timer: 1500,
-            timerProgressBar: true
-          }).fire({
-            icon: 'error',
-            title: text
-          })
+          const text = checkCount < 3 ? '선호 스타일을 <br>3개 선택해주세요!' : '선호 스타일을 <br>3개만 선택해주세요!'
+          this.$children[0].$vnode.componentInstance.swalAlert('error', text)
           return
         }
         
