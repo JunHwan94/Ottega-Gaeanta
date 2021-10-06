@@ -112,8 +112,8 @@ export default {
         container: '#kakao-share',
         objectType: 'feed', 
         content: { 
-          title: '옷테가 괜찮다 패피티아이 진단 결과', 
-          description: '당신은 어떤 스타일? 옷테가 괜찮다에서 확인하세요', 
+          title: 'Ottega-Gaeanta 패피티아이 진단 결과', 
+          description: '당신은 어떤 스타일? Ottega-Gaeanta에서 확인하세요',
           imageUrl: 'https://cc-prod.scene7.com/is/image/CCProdAuthor/Fashion-illustration_P1_900x420?$pjpeg$&jpegSize=200&wid=900',
           // imageUrl: require('@/assets/main.png'),
           link: {

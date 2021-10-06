@@ -39,9 +39,9 @@
           <div id="infobook6" @click="goFlip" :style="flipCSS2" v-if="imageDetail" style="padding-top: 3rem; padding-left: 1rem;"></div>
           <div id="infobook7" @click="goFlip" :style="flipCSS2" v-if="imageDetail" style="padding-top: 1.3rem; padding-left: 1rem;">
             <!-- 유사 스타일 -->
-            <div style="margin-bottom: 3%;">
-              <h3 style="color: #000000; text-align: left; font-family: Cafe24Ssurround; margin-left: 2%;">SUB</h3>
-              <div style="margin-top: 1%;">
+            <div style="margin-bottom: 2%;">
+              <h4 style="color: #000000; text-align: left; font-family: Cafe24Ssurround; margin-left: 2%;">SUB</h4>
+              <div style="margin-top: 1%;" v-if="simillarStyles.length !== 0">
                 <v-row>
                   <v-col cols=1></v-col>
                   <v-col v-for="(simillarStyle, idx) in simillarStyles" :key="idx" cols=3>
@@ -54,155 +54,132 @@
                   </v-col>
                 </v-row>
               </div>
+              <div style="margin-top: 1%;" v-if="simillarStyles.length === 0">
+                <div style="height: 15vh;" align="center">
+                  <div style="padding-top: 6vh;">
+                    <span>추천할만한 유사 스타일 룩이 없습니다</span>
+                  </div>
+                </div>
+              </div>
             </div>
             <hr>
             <!-- 패션 정보 -->
-            <div style="margin-bottom: 3%; margin-top: 1%">
-              <h3 style="color: #000000; text-align: left; font-family: Cafe24Ssurround; margin: 2%;">스타일</h3>
-              <div class="d-flex" style="padding-left: 15%; padding-top: 1%">
+            <div style="margin-bottom: 2%; margin-top: 1%">
+              <h4 style="color: #000000; text-align: left; font-family: Cafe24Ssurround; margin: 2%;">스타일</h4>
+              <div class="d-flex" style="padding-left: 15%;">
                 <span style="font-size: 1.2rem; font-family: ELAND_Choice_M;">#{{ imageDetail.style[0].style }}</span>&nbsp;&nbsp;&nbsp;&nbsp;
                 <span style="font-size: 1.2rem; font-family: ELAND_Choice_M;" v-if="imageDetail.style[0].subStyle !== null">#{{ imageDetail.style[0].subStyle }}</span>
               </div>
             </div>
             <hr>
-            <div style="margin-top: 3%">
-              <v-row>
-                <v-col v-if="!isEmptyObject(imageDetail.outer[0])" cols="4">
-                  <div style="padding-left: 2%; border-right:1px solid #DDDDDD;">
-                    <h3 style="color: #000000; text-align: left; font-family: Cafe24Ssurround; margin-left: 2%; margin-top: 1%; margin-bottom: 2%">아우터</h3>
-                    <div>
-                      <div align="left" v-if="imageDetail.outer[0].color">
-                        <span :style="fashionInfoLabelStyle">색상 :</span>
-                        <span :style="fashionInfoStyle">{{ imageDetail.outer[0].color }}</span>
-                      </div>
-                      <div align="left" v-if="imageDetail.outer[0].length">
-                        <span :style="fashionInfoLabelStyle">기장 :</span>
-                        <span :style="fashionInfoStyle">{{ imageDetail.outer[0].length }}</span>
-                      </div>
-                      <div align="left" v-if="imageDetail.outer[0].print !== undefined">
-                        <div v-if="imageDetail.outer[0].print.length !== 0">
-                          <span :style="fashionInfoLabelStyle">디자인 :</span>
-                          <span v-for="design in imageDetail.outer[0].print" :key="design" style="font-size: 0.9rem; font-family: ELAND_Choice_M; margin-left: 2%;">{{ design }}</span>
-                        </div>
-                      </div>
-                      <div align="left" v-if="imageDetail.outer[0].material">
-                        <span :style="fashionInfoLabelStyle">소재 :</span>
-                        <span v-for="material in imageDetail.outer[0].material" :key="material" style="font-size: 0.9rem; font-family: ELAND_Choice_M; margin-left: 2%;">{{ material }}</span>
-                      </div>
-                      <div align="left" v-if="imageDetail.outer[0].fit">
-                        <span :style="fashionInfoLabelStyle">핏 :</span>
-                        <span :style="fashionInfoStyle">{{ imageDetail.outer[0].fit }}</span>
-                      </div>
+            <!-- 아우터 -->
+            <div style="margin-top: 2%;" v-if="!isEmptyObject(imageDetail.outer[0])">
+              <h4 style="color: #000000; text-align: left; font-family: Cafe24Ssurround; margin-left: 2%; margin-top: 1%; margin-bottom: 2%">아우터</h4>
+              <div align="center">
+                <span v-if="imageDetail.outer[0].category" :style="fashionInfoStyle">이&nbsp;</span>
+                <span v-if="imageDetail.outer[0].category" :style="fashionInfoLabelStyle">{{ imageDetail.outer[0].category }}</span>
+                <span v-if="imageDetail.outer[0].category" :style="fashionInfoStyle">은(는)&nbsp;</span>
+                <span v-if="imageDetail.outer[0].color" :style="fashionInfoLabelStyle">{{ imageDetail.outer[0].color }}&nbsp;</span>
+                <span v-if="imageDetail.outer[0].color" :style="fashionInfoStyle">색상에,&nbsp;</span>
+                <span v-if="imageDetail.outer[0].length" :style="fashionInfoLabelStyle">{{ imageDetail.outer[0].length }}&nbsp;</span>
+                <span v-if="imageDetail.outer[0].length" :style="fashionInfoStyle">기장,&nbsp;</span>
+                <span v-if="imageDetail.outer[0].material" :style="fashionInfoLabelStyle">{{ imageDetail.outer[0].material[0] }}&nbsp;</span>
+                <span v-if="imageDetail.outer[0].material" :style="fashionInfoStyle">소재로 이루어진&nbsp;</span>
+                <span v-if="imageDetail.outer[0].fit" :style="fashionInfoLabelStyle">{{ imageDetail.outer[0].fit }}핏&nbsp;</span>
+                <span :style="fashionInfoStyle">아우터입니다.&nbsp;</span>
+              </div>
+              <div align="center" v-if="imageDetail.outer[0].print !== undefined">
+                <div v-if="imageDetail.outer[0].print.length !== 0">
+                  <span :style="fashionInfoStyle">디자인은&nbsp;</span>
+                  <span :style="fashionInfoLabelStyle" v-for="design in imageDetail.outer[0].print" :key="design" style="font-size: 0.9rem; font-family: ELAND_Choice_M;">'{{ design }}'&nbsp;</span>
+                  <span :style="fashionInfoStyle">이 있습니다.</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 원피스 -->
+            <div style="margin-top: 2%; " v-if="!isEmptyObject(imageDetail.onepiece[0])">
+              <h4 style="color: #000000; text-align: left; font-family: Cafe24Ssurround; margin-left: 2%; margin-top: 1%; margin-bottom: 2%">원피스</h4>
+              <div align="center">
+                <span v-if="imageDetail.onepiece[0].category" :style="fashionInfoStyle">이&nbsp;</span>
+                <span v-if="imageDetail.onepiece[0].category" :style="fashionInfoLabelStyle">{{ imageDetail.onepiece[0].category }}</span>
+                <span v-if="imageDetail.onepiece[0].category" :style="fashionInfoStyle">은(는)&nbsp;</span>
+                <span v-if="imageDetail.onepiece[0].color" :style="fashionInfoLabelStyle">{{ imageDetail.onepiece[0].color }}&nbsp;</span>
+                <span v-if="imageDetail.onepiece[0].color" :style="fashionInfoStyle">색상에,&nbsp;</span>
+                <span v-if="imageDetail.onepiece[0].length" :style="fashionInfoLabelStyle">{{ imageDetail.onepiece[0].length }}&nbsp;</span>
+                <span v-if="imageDetail.onepiece[0].length" :style="fashionInfoStyle">기장,&nbsp;</span>
+                <span v-if="imageDetail.onepiece[0].material" :style="fashionInfoLabelStyle">{{ imageDetail.onepiece[0].material[0] }}&nbsp;</span>
+                <span v-if="imageDetail.onepiece[0].material" :style="fashionInfoStyle">소재로 이루어진&nbsp;</span>
+                <span v-if="imageDetail.onepiece[0].fit" :style="fashionInfoLabelStyle">{{ imageDetail.onepiece[0].fit }}핏&nbsp;</span>
+                <span :style="fashionInfoStyle">원피스입니다.&nbsp;</span>
+              </div>
+              <div>
+                <v-row justify="center">
+                  <div align="center">
+                    <span v-if="imageDetail.onepiece[0].neckLine" :style="fashionInfoLabelStyle">{{ imageDetail.onepiece[0].neckLine }}</span>
+                    <span v-if="imageDetail.onepiece[0].neckLine" :style="fashionInfoStyle">의 넥라인,&nbsp; </span>
+                    <span v-if="imageDetail.onepiece[0].sleeveLength" :style="fashionInfoLabelStyle">{{ imageDetail.onepiece[0].sleeveLength }}</span>
+                    <span v-if="imageDetail.onepiece[0].sleeveLength" :style="fashionInfoStyle">의 소매입니다.&nbsp;</span>
+                  </div>
+                  <div align="center" v-if="imageDetail.onepiece[0].print !== undefined">
+                    <div v-if="imageDetail.onepiece[0].print.length !== 0">
+                      <span :style="fashionInfoStyle">디자인은&nbsp;</span>
+                      <span :style="fashionInfoLabelStyle" v-for="design in imageDetail.onepiece[0].print" :key="design" style="font-size: 0.9rem; font-family: ELAND_Choice_M;">'{{ design }}'&nbsp;</span>
+                      <span :style="fashionInfoStyle">이 있습니다.</span>
                     </div>
                   </div>
-                </v-col>
-                <v-col v-if="!isEmptyObject(imageDetail.onepiece[0])" cols="4">
-                  <div style="padding-left: 2%;">
-                    <h3 style="color: #000000; text-align: left; font-family: Cafe24Ssurround; margin-left: 2%; margin-top: 1%; margin-bottom: 2%;">원피스</h3>
-                    <div >
-                      <div align="left" v-if="imageDetail.onepiece[0].color">
-                        <span :style="fashionInfoLabelStyle">색상 :</span>
-                        <span :style="fashionInfoStyle">{{ imageDetail.onepiece[0].color }}</span>
-                      </div>
-                      <div align="left" v-if="imageDetail.onepiece[0].length">
-                        <span :style="fashionInfoLabelStyle">기장 :</span>
-                        <span :style="fashionInfoStyle">{{ imageDetail.onepiece[0].length }}</span>
-                      </div>
-                      <div align="left" v-if="imageDetail.onepiece[0].print !== undefined">
-                        <div v-if="imageDetail.onepiece[0].print.length !== 0">
-                          <span :style="fashionInfoLabelStyle">디자인 :</span>
-                          <span v-for="design in imageDetail.onepiece[0].print" :key="design" style="font-size: 0.9rem; font-family: ELAND_Choice_M; margin-left: 2%">{{ design }}</span>
-                        </div>
-                      </div>
-                      <div align="left" v-if="imageDetail.onepiece[0].neckLine">
-                        <span :style="fashionInfoLabelStyle">넥라인 :</span>
-                        <span :style="fashionInfoStyle">{{ imageDetail.onepiece[0].neckLine }}</span>
-                      </div>
-                    </div>
-                  </div>
-                </v-col>
-                <v-col v-if="!isEmptyObject(imageDetail.onepiece[0])" cols="4">
-                  <div style="padding-left: 2%;">
-                    <h3 style="color: #000000; text-align: left; font-family: Cafe24Ssurround; margin-left: 2%; margin-top: 1%; margin-bottom: 2%">&nbsp;</h3>
-                    <div >
-                      <div align="left" v-if="imageDetail.onepiece[0].detail.length !== 0">
-                        <span :style="fashionInfoLabelStyle">디테일 :</span>
-                        <span v-for="detail in imageDetail.onepiece[0].detail" :key="detail" style="font-size: 0.9rem; font-family: ELAND_Choice_M; margin-left: 2%;">{{ detail }}</span>
-                      </div>
-                      <div align="left" v-if="imageDetail.onepiece[0].sleeveLength">
-                        <span :style="fashionInfoLabelStyle">소매 :</span>
-                        <span :style="fashionInfoStyle">{{ imageDetail.onepiece[0].sleeveLength }}</span>
-                      </div>
-                      <div align="left" v-if="imageDetail.onepiece[0].material.length !== 0">
-                        <span :style="fashionInfoLabelStyle">소재 :</span>
-                        <span v-for="material in imageDetail.onepiece[0].material" :key="material" style="font-size: 0.9rem; font-family: ELAND_Choice_M; margin-left: 2%;">{{ material }}</span>
-                      </div>
-                      <div align="left" v-if="imageDetail.onepiece[0].fit">
-                        <span :style="fashionInfoLabelStyle">핏 :</span>
-                        <span :style="fashionInfoStyle">{{ imageDetail.onepiece[0].fit }}</span>
-                      </div>
-                    </div>
-                  </div>
-                </v-col>
-                <v-col v-if="!isEmptyObject(imageDetail.top[0])" cols="4">
-                  <div style="padding-left: 2%; border-right:1px solid #DDDDDD;">
-                    <h3 style="color: #000000; text-align: left; font-family: Cafe24Ssurround; margin-left: 2%; margin-top: 1%; margin-bottom: 2%">상의</h3>
-                    <div>
-                      <div align="left" v-if="imageDetail.top[0].color">
-                        <span :style="fashionInfoLabelStyle">색상 :</span>
-                        <span :style="fashionInfoStyle">{{ imageDetail.top[0].color }}</span>
-                      </div>
-                      <div align="left" v-if="imageDetail.top[0].sleeveLength">
-                        <span :style="fashionInfoLabelStyle">기장 :</span>
-                        <span :style="fashionInfoStyle">{{ imageDetail.top[0].sleeveLength }}</span>
-                      </div>
-                      <div align="left" v-if="imageDetail.top[0].print !== undefined">
-                        <div v-if="imageDetail.top[0].print.length !== 0">
-                          <span :style="fashionInfoLabelStyle">디자인 :</span>
-                          <span v-for="design in imageDetail.top[0].print" :key="design" style="font-size: 0.9rem; font-family: ELAND_Choice_M; margin-left: 2%;">{{ design }}</span>
-                        </div>  
-                      </div>
-                      <div align="left" v-if="imageDetail.top[0].neckLine">
-                        <span :style="fashionInfoLabelStyle">넥라인 :</span>
-                        <span :style="fashionInfoStyle">{{ imageDetail.top[0].neckLine }}</span>
-                      </div>
-                      <div align="left" v-if="imageDetail.top[0].fit">
-                        <span :style="fashionInfoLabelStyle">핏 :</span>
-                        <span :style="fashionInfoStyle">{{ imageDetail.top[0].fit }}</span>
-                      </div>
-                    </div>
-                  </div>               
-                </v-col>
-                <v-col v-if="!isEmptyObject(imageDetail.bottom[0])" cols="4">
-                  <div style="padding-left: 2%; border-right:1px solid #DDDDDD;">
-                    <h3 style="color: #000000; text-align: left; font-family: Cafe24Ssurround; margin-left: 2%; margin-top: 1%; margin-bottom: 2%">하의</h3>
-                    <div>
-                      <div align="left" v-if="imageDetail.bottom[0].color">
-                        <span :style="fashionInfoLabelStyle">색상 :</span>
-                        <span :style="fashionInfoStyle">{{ imageDetail.bottom[0].color }}</span>
-                      </div>
-                      <div align="left" v-if="imageDetail.bottom[0].length">
-                        <span :style="fashionInfoLabelStyle">기장 :</span>
-                        <span :style="fashionInfoStyle">{{ imageDetail.bottom[0].length }}</span>
-                      </div>
-                      <div align="left" v-if="imageDetail.bottom[0].print !== undefined">
-                        <div v-if="imageDetail.bottom[0].print.length != 0">
-                          <span :style="fashionInfoLabelStyle">디자인 :</span>
-                          <span v-for="design in imageDetail.bottom[0].print" :key="design" style="font-size: 0.9rem; font-family: ELAND_Choice_M; margin-left: 2%;">{{ design }}</span>
-                        </div>
-                      </div>
-                      <div align="left" v-if="imageDetail.bottom[0].material">
-                        <span :style="fashionInfoLabelStyle">소재 :</span>
-                        <span v-for="material in imageDetail.bottom[0].material" :key="material" style="font-size: 0.9rem; font-family: ELAND_Choice_M; margin-left: 2%;">{{ material }}</span>
-                      </div>
-                      <div align="left" v-if="imageDetail.bottom[0].fit">
-                        <span :style="fashionInfoLabelStyle">핏 :</span>
-                        <span :style="fashionInfoStyle">{{ imageDetail.bottom[0].fit }}</span>
-                      </div>
-                    </div>
-                  </div>
-                </v-col>
-              </v-row>
+                </v-row>
+              </div>
+            </div>
+
+            <!-- 상의 -->
+            <div style="margin-top: 2%; " v-if="!isEmptyObject(imageDetail.top[0])">
+              <h4 style="color: #000000; text-align: left; font-family: Cafe24Ssurround; margin-left: 2%; margin-top: 1%; margin-bottom: 2%">상의</h4>
+              <div align="center">
+                <span v-if="imageDetail.top[0].category" :style="fashionInfoStyle">이&nbsp;</span>
+                <span v-if="imageDetail.top[0].category" :style="fashionInfoLabelStyle">{{ imageDetail.top[0].category }}</span>
+                <span v-if="imageDetail.top[0].category" :style="fashionInfoStyle">은(는)&nbsp;</span>
+                <span v-if="imageDetail.top[0].color" :style="fashionInfoLabelStyle">{{ imageDetail.top[0].color }}&nbsp;</span>
+                <span v-if="imageDetail.top[0].color" :style="fashionInfoStyle">색상에,&nbsp;</span>
+                <span v-if="imageDetail.top[0].length" :style="fashionInfoLabelStyle">{{ imageDetail.top[0].sleeveLength }}&nbsp;</span>
+                <span v-if="imageDetail.top[0].length" :style="fashionInfoStyle">소매,&nbsp;</span>
+                <span v-if="imageDetail.top[0].neckLine" :style="fashionInfoLabelStyle">{{ imageDetail.top[0].neckLine }}&nbsp;</span>
+                <span v-if="imageDetail.top[0].neckLine" :style="fashionInfoStyle">넥라인으로 이루어진&nbsp;</span>
+                <span v-if="imageDetail.top[0].fit" :style="fashionInfoLabelStyle">{{ imageDetail.top[0].fit }}핏&nbsp;</span>
+                <span :style="fashionInfoStyle">상의입니다.&nbsp;</span>
+              </div>
+              <div align="center" v-if="imageDetail.top[0].print !== undefined">
+                <div v-if="imageDetail.top[0].print.length !== 0">
+                  <span :style="fashionInfoStyle">디자인은&nbsp;</span>
+                  <span :style="fashionInfoLabelStyle" v-for="design in imageDetail.top[0].print" :key="design" style="font-size: 0.9rem; font-family: ELAND_Choice_M;">'{{ design }}'&nbsp;</span>
+                  <span :style="fashionInfoStyle">이 있습니다.</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 하의 -->
+            <div style="margin-top: 2%; " v-if="!isEmptyObject(imageDetail.bottom[0])">
+              <h4 style="color: #000000; text-align: left; font-family: Cafe24Ssurround; margin-left: 2%; margin-top: 1%; margin-bottom: 2%">하의</h4>
+              <div align="center">
+                <span v-if="imageDetail.bottom[0].category" :style="fashionInfoStyle">이&nbsp;</span>
+                <span v-if="imageDetail.bottom[0].category" :style="fashionInfoLabelStyle">{{ imageDetail.bottom[0].category }}</span>
+                <span v-if="imageDetail.bottom[0].category" :style="fashionInfoStyle">은(는)&nbsp;</span>
+                <span v-if="imageDetail.bottom[0].color" :style="fashionInfoLabelStyle">{{ imageDetail.bottom[0].color }}&nbsp;</span>
+                <span v-if="imageDetail.bottom[0].color" :style="fashionInfoStyle">색상에,&nbsp;</span>
+                <span v-if="imageDetail.bottom[0].length" :style="fashionInfoLabelStyle">{{ imageDetail.bottom[0].length }}&nbsp;</span>
+                <span v-if="imageDetail.bottom[0].length" :style="fashionInfoStyle">기장,&nbsp;</span>
+                <span v-if="imageDetail.bottom[0].material" :style="fashionInfoLabelStyle">{{ imageDetail.bottom[0].material[0] }}&nbsp;</span>
+                <span v-if="imageDetail.bottom[0].material" :style="fashionInfoStyle">소재로 이루어진&nbsp;</span>
+                <span v-if="imageDetail.bottom[0].fit" :style="fashionInfoLabelStyle">{{ imageDetail.bottom[0].fit }}핏&nbsp;</span>
+                <span :style="fashionInfoStyle">하의입니다.&nbsp;</span>
+              </div>
+              <div align="center" v-if="imageDetail.bottom[0].print !== undefined">
+                <div v-if="imageDetail.bottom[0].print.length !== 0">
+                  <span :style="fashionInfoStyle">디자인은&nbsp;</span>
+                  <span :style="fashionInfoLabelStyle" v-for="design in imageDetail.bottom[0].print" :key="design" style="font-size: 0.9rem; font-family: ELAND_Choice_M;">'{{ design }}'&nbsp;</span>
+                  <span :style="fashionInfoStyle">이 있습니다.</span>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -295,15 +272,13 @@ export default {
     },
     fashionInfoStyle () {
       return {
-        marginLeft: '2%',
-        fontSize: '0.9rem',
+        fontSize: '0.8rem',
         fontFamily: 'ELAND_Choice_M',
       }
     },
     fashionInfoLabelStyle () {
       return {
-        marginLeft: '6%',
-        fontSize: '0.9rem',
+        fontSize: '0.8rem',
         fontFamily: 'ELAND_Choice_M',
         fontWeight: 'bold',
       }
