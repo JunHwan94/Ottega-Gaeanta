@@ -11,6 +11,7 @@ const searchReq = {   // 검색 action 들어갈 request 객체
   print : '',
   page : 0
 };
+const evalSameColorStyle = []
 const simillarStyles = []
 const searchDetailImageURL = '@/assets/3.jpg'
 const videoStream = null
@@ -36,6 +37,7 @@ export default function () {
     searchDetailImageURL,
     simillarStyles,
     videoStream,
+    evalSameColorStyle,
     infin,
     searchReq,
     selectedUserStyle,

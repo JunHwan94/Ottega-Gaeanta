@@ -53,13 +53,14 @@
         <div class="section">
           <h2>비슷한 색상으로 스타일링한 옷은?</h2>
         </div>
+        {{ getEvalSameColorStyle }}
         <div style="display: inline-block;">
-          <img :src="recommendImages[0]" class="recommend-image" />
-          <img :src="recommendImages[1]" class="recommend-image" />
+          <img :src="getEvalSameColorStyle[0]" class="recommend-image" />
+          <img v-if="getEvalSameColorStyle[1]" :src="getEvalSameColorStyle[1]" class="recommend-image" />
         </div>
         <div>
-          <img :src="recommendImages[2]" class="recommend-image" />
-          <img :src="recommendImages[0]" class="recommend-image" />
+          <img v-if="getEvalSameColorStyle[2]" :src="getEvalSameColorStyle[2]" class="recommend-image" />
+          <img v-if="getEvalSameColorStyle[3]" :src="getEvalSameColorStyle[3]" class="recommend-image" />
         </div>
         <div class="btn" @click="move(2)">
           <span class="btn-text">다른 스타일 <br>둘러보기</span>
@@ -148,14 +149,15 @@
         require('@/assets/evalResult-sample-2.jpg'),
         require('@/assets/evalResult-sample-3.jpg'),
       ],
-      getUserFashionRate: {
-        "rank": "A",
-        "desc": "A! 무슨 색으로 상하의 조합을 맞추어야 이쁘고 멋있게 보일지 아시는 분!",
-        "hashtag": ["# 왕", "# 색조합마스터"],
-      },
+      // getUserFashionRate: {
+      //   "rank": "A",
+      //   "desc": "A! 무슨 색으로 상하의 조합을 맞추어야 이쁘고 멋있게 보일지 아시는 분!",
+      //   "hashtag": ["# 왕", "# 색조합마스터"],
+      // },
     }),
     computed: {
       // ...mapGetters(["getUserFashionRate"]),
+      ...mapGetters(['getEvalSameColorStyle', 'getUserFashionRate'])
     },
     methods: {
       move(i) {
