@@ -27,6 +27,8 @@
     <div align="center">
       <div class="btn" @click="confirm()">스타일 확정</div>
     </div>
+    <!-- 스타일 확정 버튼이 밑에 박혀 있어서 좀 띄워주기 위한 빈공간 -->
+    <div style="height: 100px;"></div>
     <choose-style-detail v-if="show" @close="invisibleModal" @like-style="likeStyle"></choose-style-detail>
   </div>
 </template>
