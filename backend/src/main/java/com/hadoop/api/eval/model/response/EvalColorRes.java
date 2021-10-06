@@ -15,5 +15,5 @@ public class EvalColorRes {
     String pants;
     String rank;
     String desc;
-    ArrayList<String> hashtag;
+    Set<String> hashtag;
 }
