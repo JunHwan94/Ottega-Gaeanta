@@ -99,10 +99,30 @@
           form.append('image', this.image)
           this.$store.dispatch('evaluateImage', form)
           .then((result) => {
-            alert('분석이 완료되었습니다!')
-            console.log(result.data);
-            this.$store.commit('SAVE_USER_FASHION_RATE', result.data)
-            this.$router.push('/evaluationResult')
+            if(result.data == '' || result.data.top == null || result.data.pants == null) {
+              console.log(result)
+              alert('해당 이미지로는 상하의 색상 추출이 불가합니다. 다시 시도해주세요.')
+              this.$router.go()
+            } else {
+              console.log(result.data)
+              const getColorStyleReq = {
+                top : result.data.top,
+                bottom : result.data.pants
+              }
+              this.$store.commit('SAVE_USER_FASHION_RATE', result.data)
+
+              this.$store.dispatch('getSimillarColorStyles', getColorStyleReq)
+                .then((result) => {
+                  console.log(result.data)
+                  this.$store.commit['setEvalSameColorStyle', result.data.s3url]
+                  setTimeout(() => {
+                    this.$router.push('/evaluationResult')
+                  }, 2000)
+                })
+            }// alert('분석이 완료되었습니다!')
+            // console.log(result.data);
+            // this.$store.commit('SAVE_USER_FASHION_RATE', result.data)
+            // this.$router.push('/evaluationResult')
           })
         }
         
@@ -187,6 +207,7 @@
   line-height: 30px;
   background-color: #F4F9F9;
   border: 2px solid #F875AA;
+  color: #F875AA;
   display: inline-block;
   border-radius: 10px;
   margin: 0px 10px;

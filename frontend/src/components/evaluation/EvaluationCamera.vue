@@ -4,7 +4,7 @@
     <button id="cvtGray" @click="cvtGray()" style="visibility: hidden;">Capture Image</button> -->
 
     <video id="video" style="width: 90%; height: 100%; left: 52%;"></video>
-    <img id="guideLine" :src="silhouette" style="width : 35vw; height: 55vh; position: absolute; top: 35%; left: 34%;"/>
+    <img v-if="silhouette" id="guideLine" :src="silhouette" style="width : 35vw; height: 55vh; position: absolute; top: 35%; left: 34%;"/>
     <canvas id='output' style="width : 90%; height: 630px; display: none; left: 52%;"></canvas>
   </div>
 </template>
@@ -27,7 +27,7 @@
       file: '',
       formdata: '',
       stream: null,
-      silhouette: require('@/assets/silhouette.png')
+      silhouette: ''
     }),
     methods: {
       toggleStream() {
@@ -41,6 +41,8 @@
                 this.video.height = this.videoHeight//prevent Opencv.js error.
                 video.srcObject = stream;
                 video.play();
+
+                this.silhouette = require('@/assets/silhouette.png')
                 // setTimeout(this.cvtGray, 3000);
               },
               (error) => { // error
@@ -142,7 +144,24 @@
         console.log(this.formdata)
         this.$store.dispatch('evaluateImage', this.formdata)
         .then((result) => {
-          console.log(result.data);
+          console.log(result);
+          if(result.data == '' || result.data.top == null || result.data.pants == null) {
+            console.log(result)
+            alert('해당 이미지로는 상하의 색상 추출이 불가합니다. 다시 시도해주세요.')
+            this.$router.go()
+          } else {
+            const getColorStyleReq = {
+              top : result.data.top,
+              bottom : result.data.pants
+            }
+            this.$store.commit('SAVE_USER_FASHION_RATE', result.data)
+
+            this.$store.dispatch('getSimillarColorStyles', getColorStyleReq)
+              .then((result) => {
+                this.$store.commit['setEvalSameColorStyle', result.data.s3url]
+                this.$router.push('/evaluationResult')
+              })
+          }
         })
       }
     },

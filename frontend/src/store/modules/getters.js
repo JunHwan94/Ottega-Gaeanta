@@ -49,3 +49,6 @@ export function getColorModalState (state) {
 export function getChooseStyleMenuVisibleState (state) {
   return state.chooseStyleMenuVisibleState
 }
+export function getEvalSameColorStyle (state) {
+  return state.evalSameColorStyle
+}
