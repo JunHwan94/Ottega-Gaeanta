@@ -2,7 +2,7 @@
   <div class="container" align="center">
     <div id="back"></div>
     <div id="heart"></div>
-    <div class="image-area">
+    <div class="image-area modal-container">
       <span style="font-size: 2.5vh;">{{data[getStyleIndex].title}}</span>
       <span style="float: right; cursor: pointer; font-size: 2.5vh;" @click="close()">X</span>
       <div class="divider"></div>
@@ -211,6 +211,24 @@
 </script>
 
 <style scoped>
+/* 스크롤 CSS */
+.modal-container {
+  overflow: scroll;
+}
+.modal-container::-webkit-scrollbar {
+  width: 12px;
+}
+.modal-container::-webkit-scrollbar-thumb {
+  background-color: #F875AA;
+  border-radius: 10px;
+  background-clip: padding-box;
+  border: 2px solid transparent;
+}
+.modal-container::-webkit-scrollbar-track {
+  background-color: F4F9F9;
+  border-radius: 10px;
+  box-shadow: inset 0px 0px 5px white;
+}
 .image-area {
   width: 40vw;
   height: 70vh;
