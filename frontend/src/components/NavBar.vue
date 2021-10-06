@@ -12,11 +12,6 @@
               <span @click="clickChangeStyleMenu()">스타일 변경</span>
             </div>
           </div>
-          <div class="menu-detail" align="right" v-if="menuVisible">
-            <ul align="left">
-              <li v-for="(item, index) in items" :key="index" @click="changePage(index)">{{item}}</li>
-            </ul>
-          </div>
         </div>
         <div class="top-menu">
           <div>
@@ -169,6 +164,7 @@
     background: #F4F9F9;
     display: inline-block;
     position: absolute;
+    z-index: 9999;
     left: 85vw;
   }
 
