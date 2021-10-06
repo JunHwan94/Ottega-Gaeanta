@@ -12,17 +12,21 @@
           :searchItemsBool="searchItemsBool"
         /> -->
       </div>
-      <div class="col-1" style="z-index: 3;">
-        <ChangeStyleModal/>
-      </div>
     </div>
     <v-container id="container-height">
       <v-row id="searchRow" v-masonry>
-        <v-col v-for="(image, index) in images" :key="index" cols="2">
+        <v-col v-for="(image, index) in images" :key="index" cols="2" class="list-complete-item">
           <v-hover :v-slot="{ hover }">
-            <v-card id="card-img" @click="showStyleInfo({showSearchDetail, idx : index, imgURL : image})">
+            <v-card id="card-img" @click="showStyleInfo({showSearchDetail, idx : index, imgURL : image})" @mouseover="splitImageUrl(image)">
               <v-img :src="image"></v-img>
               <!-- <v-img src="@/assets/logo.png" @load="this.$redrawVueMasonry()"></v-img> -->
+              <div class="overlay">
+                <div class="text">
+                  <h2>{{ imageStyleInfo }}</h2>
+                  <br>
+                  <h5>상세보기 클릭</h5>
+                </div>
+              </div>
             </v-card>
           </v-hover>
         </v-col>
@@ -56,7 +60,9 @@ export default {
     return {
       hover: true,
       // showSearchDetail: false,
-      page : 1
+      page : 1,
+      showDesc: false,
+      imageStyleInfo: [],
     }
   },
   computed: {
@@ -136,7 +142,10 @@ export default {
                 }, 1000);
         })
       }
-    }
+    },
+    splitImageUrl (image) {
+      this.imageStyleInfo = image.split('/')[3]
+    },
   },
 }
 </script>
@@ -154,6 +163,34 @@ export default {
   height: 110vh;
 } */
 #card-img:hover {
-  border: 5px solid #FBACCC;
+  border: 5px solid white;
+  transition: 0.5s;
+}
+.list-complete-item #card-img .overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: #FDBDCC;
+}
+.list-complete-item #card-img:hover .overlay {
+    opacity: 0.8;
+}
+.list-complete-item #card-img .text {
+    color: white;
+    font-size: 1.0rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-family: Cafe24Ssurround;
 }
 </style>
