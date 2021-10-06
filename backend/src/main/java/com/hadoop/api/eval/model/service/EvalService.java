@@ -8,6 +8,7 @@ import com.hadoop.api.eval.util.ColorMatchUtil;
 import com.hadoop.api.search.model.db.entity.Data;
 import com.hadoop.api.search.model.request.ColorStyleReq;
 import com.hadoop.common.util.FileUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.*;
@@ -20,6 +21,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+@Slf4j
 @Service
 public class EvalService {
 
@@ -40,6 +42,8 @@ public class EvalService {
 
         MultiValueMap<String, Object> params = new LinkedMultiValueMap<>();
         params.add("file", new FileSystemResource("../file.jpg"));
+
+        log.debug(image.getOriginalFilename());
 
         HttpHeaders headers = new HttpHeaders();
 //        headers.add("Accept", MediaType.APPLICATION_JSON.toString());   // json 결과 String으로 변환해서 가져오기는 하는데 흠
@@ -64,15 +68,23 @@ public class EvalService {
             String top = response.getBody().getTop();
             String pants = response.getBody().getPants();
 
+            log.debug("top : " + top);
+            log.debug("pants : " + pants);
+
             String key = top + "-" + pants;
 
             Rank rank = evalRepositorySupport.getRank(key);
             RankDesc rankDesc = evalRepositorySupport.getDesc(rank.getValue());
 
-            top = colorMatchUtil.colorMap.get(top);
-            pants = colorMatchUtil.colorMap.get(pants);
+            System.out.println(rank.getKey());
+            System.out.println(rank.getValue());
+            System.out.println(top);
+            System.out.println(pants);
+            System.out.println(rankDesc.getDesc());
+            System.out.println(rankDesc.getHashtag());
+            System.out.println(rankDesc.getDesc());
 
-            EvalColorRes evalColorRes = new EvalColorRes(top, pants, rank.getValue(), rankDesc.getDesc(), rankDesc.getHashtag());
+            EvalColorRes evalColorRes = new EvalColorRes(colorMatchUtil.colorMap.get(top), colorMatchUtil.colorMap.get(pants), rank.getValue(), rankDesc.getDesc(), rankDesc.getHashtag());
 
             return evalColorRes;
 
