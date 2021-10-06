@@ -24,7 +24,7 @@
                 <div class="text">
                   <h2>{{ imageStyleInfo }}</h2>
                   <br>
-                  <h4>상세보기 클릭</h4>
+                  <h5>상세보기 클릭</h5>
                 </div>
               </div>
             </v-card>
@@ -183,7 +183,7 @@ export default {
 }
 .list-complete-item #card-img .text {
     color: white;
-    font-size: 1.1rem;
+    font-size: 1.0rem;
     position: absolute;
     top: 50%;
     left: 50%;
