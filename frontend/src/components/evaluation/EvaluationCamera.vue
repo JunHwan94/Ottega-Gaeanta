@@ -77,20 +77,60 @@
             document.querySelector('#output').style.display = ''
             cv.imshow('output', this.src);
 
-            const imgDataUrl = this.canvas.toDataURL('image/jpg')
-            const blobBin = atob(imgDataUrl.split(',')[1]);	// base64 데이터 디코딩
-            let array = [];
-            for (let i = 0; i < blobBin.length; i++) {
-                array.push(blobBin.charCodeAt(i));
-            }
-            const file = new Blob([new Uint8Array(array)], {type: 'image/jpg'});	// Blob 생성
-            // console.log(file);
-            this.formdata = new FormData();	// formData 생성
-            this.formdata.append("image", file);	// file data 추가
+            // this.canvas.toBlob((blob) => {
+            //   let file = new File([blob], "fileName.jpg", { type: "image/jpg" })
 
-            // this.formdata = formdata;
-            console.log(this.formdata);
-            // this.file = file
+            //   console.log('------------')
+            //   console.log(file)
+            //   console.log(blob)
+            //   console.log(this)
+            //   console.log(this.formdata)
+            //   console.log('------------')
+            //   let form = new FormData()
+            //   form.append('image', file)
+            //   // form.append('image', blob, 'test.jpg')
+            //   console.log(form)
+            //   this.$store.dispatch('evaluateImage', form)
+            //     .then((result) => {
+            //       alert('tst')
+            //       alert(result.data);
+            //     })
+            // })
+
+            const imgBase64 = this.canvas.toDataURL('image/jpeg', 'image/octet-stream')
+
+            const decodImg = atob(imgBase64.split(',')[1]);
+
+            let array = [];
+            for (let i = 0; i < decodImg .length; i++) {
+              array.push(decodImg .charCodeAt(i));
+            }
+
+            const file = new Blob([new Uint8Array(array)], {type: 'image/jpeg'});
+            const fileName = 'canvas_img_' + new Date().getMilliseconds() + '.jpg';
+            let formData = new FormData();
+            formData.append('image', file, fileName);
+            this.formdata = formData
+
+            // this.$store.dispatch('evaluateImage', formData)
+            //     .then((result) => {
+            //       alert('tst')
+            //       alert(result.data);
+            //       console.log(result.data)
+            //     })
+
+
+
+            // const imgDataUrl = this.canvas.toDataURL('image/jpg')
+            // const blobBin = atob(imgDataUrl.split(',')[1]);	// base64 데이터 디코딩
+            // let array = [];
+            // for (let i = 0; i < blobBin.length; i++) {
+            //     array.push(blobBin.charCodeAt(i));
+            // }
+            // const file = new Blob([new Uint8Array(array)], {type: 'image/jpg'});	// Blob 생성
+            // console.log(file)
+            // this.formdata = new FormData();	// formData 생성
+            // this.formdata.append("image", file);	// file data 추가
         }
       },
       retryCamera(){
@@ -99,6 +139,7 @@
         document.getElementById('guideLine').style.visibility = '';
       },
       post() {
+        console.log(this.formdata)
         this.$store.dispatch('evaluateImage', this.formdata)
         .then((result) => {
           console.log(result.data);
