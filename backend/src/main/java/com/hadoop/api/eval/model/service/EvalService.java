@@ -8,6 +8,7 @@ import com.hadoop.api.eval.util.ColorMatchUtil;
 import com.hadoop.api.search.model.db.entity.Data;
 import com.hadoop.api.search.model.request.ColorStyleReq;
 import com.hadoop.common.util.FileUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.*;
@@ -20,6 +21,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+@Slf4j
 @Service
 public class EvalService {
 
@@ -63,6 +65,9 @@ public class EvalService {
 
             String top = response.getBody().getTop();
             String pants = response.getBody().getPants();
+
+            log.debug("top : " + top);
+            log.debug("pants : " + pants);
 
             String key = top + "-" + pants;
 
