@@ -1,6 +1,7 @@
 package com.hadoop.api.eval.model.db.repository;
 
 import com.hadoop.api.eval.model.db.entity.Rank;
+import com.hadoop.api.eval.model.db.entity.RankDesc;
 import com.hadoop.api.search.model.db.entity.Data;
 import com.hadoop.api.search.model.request.ColorStyleReq;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,11 @@ public class EvalRepositorySupport {
     public Rank getRank(String key) {
         Query query = new Query(where("key").is(key));
         return mongoTemplate.findOne(query, Rank.class);
+    }
+
+    public RankDesc getDesc(String rank){
+        Query query = new Query(where("rank").is(rank));
+        return mongoTemplate.findOne(query, RankDesc.class);
     }
 
     public List<Data> getColorStyles(ColorStyleReq colorStyleReq){
