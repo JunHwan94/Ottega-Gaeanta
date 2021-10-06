@@ -1,6 +1,7 @@
 package com.hadoop.api.eval.model.service;
 import com.hadoop.api.eval.model.db.entity.ColorRank;
 import com.hadoop.api.eval.model.db.entity.Rank;
+import com.hadoop.api.eval.model.db.entity.RankDesc;
 import com.hadoop.api.eval.model.db.repository.EvalRepositorySupport;
 import com.hadoop.api.eval.model.response.EvalColorRes;
 import com.hadoop.api.eval.util.ColorMatchUtil;
@@ -51,6 +52,7 @@ public class EvalService {
         ResponseEntity<ColorRank> response = null;
 
         try {
+            
             response = rt.postForEntity(
                     // 백준님 개인 flask URL 주소입니다.
                     "http://3.38.125.201:8888/model",
@@ -58,17 +60,19 @@ public class EvalService {
                     ColorRank.class
             );
 
+
             String top = response.getBody().getTop();
             String pants = response.getBody().getPants();
 
             String key = top + "-" + pants;
 
             Rank rank = evalRepositorySupport.getRank(key);
+            RankDesc rankDesc = evalRepositorySupport.getDesc(rank.getValue());
 
             top = colorMatchUtil.colorMap.get(top);
             pants = colorMatchUtil.colorMap.get(pants);
 
-            EvalColorRes evalColorRes = new EvalColorRes(top, pants, rank.getValue());
+            EvalColorRes evalColorRes = new EvalColorRes(top, pants, rank.getValue(), rankDesc.getDesc(), rankDesc.getHashtag());
 
             return evalColorRes;
 
