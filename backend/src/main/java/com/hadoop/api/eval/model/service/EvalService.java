@@ -52,7 +52,7 @@ public class EvalService {
         ResponseEntity<ColorRank> response = null;
 
         try {
-            
+
             response = rt.postForEntity(
                     // 백준님 개인 flask URL 주소입니다.
                     "http://3.38.125.201:8888/model",

@@ -7,6 +7,7 @@ import java.util.Set;
 @Getter
 @Setter
 public class RankDesc {
+    String rank;
     String desc;
     Set<String> hashtag;
 }
