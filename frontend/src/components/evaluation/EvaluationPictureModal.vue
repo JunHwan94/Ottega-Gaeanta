@@ -54,8 +54,6 @@
       dropInputTag(event) {
         console.log('영역안에 파일이 지정됨')
         const file = Array.from(event.dataTransfer.files, v => v)[0]
-        console.log(file)
-        console.log('이거 파일이다')
         // 파일이 jpg, png가 아니면 다른 파일 객체에
         const extension = file.name.split('.')[1] // 파일 full name
 
@@ -67,8 +65,6 @@
           return
         }
         this.image = file
-        // presentImage(file)
-        console.log('영역안에 파일이 지정됨 end')
       },
       dragEnter() {
         const frame = document.getElementById('unSelectFileFrame')
@@ -100,31 +96,45 @@
           form.append('image', this.image)
           this.$store.dispatch('evaluateImage', form)
           .then((result) => {
-            console.log(result.data);
-            this.$store.commit('SAVE_USER_FASHION_RATE', result.data)
-            Swal.mixin({
-                toast: true,
-                position: 'top-right',
-                iconColor: 'white',
-                color: 'white',
-                background: '#a5dc86',
-                customClass: {
-                  popup: 'colored-toast'
-                },
-                showConfirmButton: false,
-                timer: 1500,
-                timerProgressBar: true
-              }).fire({
-                icon: 'success',
-                title: '드디어 의상 분석이 완료되었습니다.'
-              })
-              .then(() => {
-                this.$router.push('/evaluationResult')
-              })
+            if(result.data == '' || result.data.top == null || result.data.pants == null) {
+              console.log(result)
+              alert('해당 이미지로는 상하의 색상 추출이 불가합니다. 다시 시도해주세요.')
+            } else {
+              console.log(result.data)
+              const getColorStyleReq = {
+                top : result.data.top,
+                bottom : result.data.pants
+              }
+              this.$store.commit('SAVE_USER_FASHION_RATE', result.data)
+
+              this.$store.dispatch('getSimillarColorStyles', getColorStyleReq)
+                .then((result) => {
+                  console.log(result.data)
+                  this.$store.commit('setEvalSameColorStyle', result.data.s3url)
+
+                  Swal.mixin({
+                    toast: true,
+                    position: 'top-right',
+                    iconColor: 'white',
+                    color: 'white',
+                    background: '#a5dc86',
+                    customClass: {
+                      popup: 'colored-toast'
+                    },
+                    showConfirmButton: false,
+                    timer: 1500,
+                    timerProgressBar: true
+                  }).fire({
+                    icon: 'success',
+                    title: '드디어 의상 분석이 완료되었습니다.'
+                  })
+                  .then(() => {
+                    this.$router.push('/evaluationResult')
+                  })
+                })
+            }
           })
         }
-        
-
       }
     },
   }
