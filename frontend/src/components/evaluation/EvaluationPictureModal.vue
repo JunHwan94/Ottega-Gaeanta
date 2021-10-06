@@ -207,6 +207,7 @@
   line-height: 30px;
   background-color: #F4F9F9;
   border: 2px solid #F875AA;
+  color: #F875AA;
   display: inline-block;
   border-radius: 10px;
   margin: 0px 10px;
