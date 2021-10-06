@@ -2,7 +2,7 @@
   <div class="main">
     <!-- <button id="toggleStream" @click="toggleStream()">Play</button><br>
     <button id="cvtGray" @click="cvtGray()" style="visibility: hidden;">Capture Image</button> -->
-
+    <swal-alert></swal-alert>
     <video id="video" style="width: 90%; height: 100%; left: 52%;"></video>
     <img v-if="silhouette" id="guideLine" :src="silhouette" style="width : 35vw; height: 55vh; position: absolute; top: 35%; left: 34%;"/>
     <canvas id='output' style="width : 90%; height: 630px; display: none; left: 52%;"></canvas>
@@ -10,6 +10,7 @@
 </template>
 
 <script>
+  import SwalAlert from '@/components/SwalAlert'
   export default {
     name: 'EvaluationCamera',
     data: () => ({
@@ -29,6 +30,9 @@
       stream: null,
       silhouette: ''
     }),
+    components: {
+      SwalAlert
+    },
     methods: {
       toggleStream() {
         if (this.streaming === false) {
@@ -106,8 +110,7 @@
           console.log(result);
           if(result.data == '' || result.data.top == null || result.data.pants == null) {
             console.log(result)
-            alert('해당 이미지로는 상하의 색상 추출이 불가합니다. 다시 시도해주세요.')
-            this.$router.go()
+            this.$children[0].$vnode.componentInstance.swalAlert('error', '색상 추출이 불가합니다. <br>다시 시도해주세요.')
           } else {
             const getColorStyleReq = {
               top : result.data.top,
@@ -117,8 +120,11 @@
 
             this.$store.dispatch('getSimillarColorStyles', getColorStyleReq)
               .then((result) => {
-                this.$store.commit['setEvalSameColorStyle', result.data.s3url]
-                this.$router.push('/evaluationResult')
+                this.$store.commit('setEvalSameColorStyle', result.data.s3url)
+                this.$children[0].$vnode.componentInstance.swalAlert('success', '드디어 의상 분석이 완료되었습니다.')
+                  .then(() => {
+                    this.$router.push('/evaluationResult')
+                  })
               })
           }
         })

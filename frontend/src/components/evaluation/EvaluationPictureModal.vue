@@ -1,5 +1,6 @@
 <template>
   <div class="modal-container">
+    <swal-alert></swal-alert>
     <span style="font-size: 3vh;">사진으로 의상 색 조합 평가</span>
     <span style="float: right; cursor: pointer;" @click="close()">X</span>
     <div class="divider"></div>
@@ -40,13 +41,16 @@
 </template>
 
 <script>
-  import Swal from 'sweetalert2'
+  import SwalAlert from '@/components/SwalAlert'
   export default {
     name: 'EvaluationPictureModal',
     data: () => ({
       image: null,
       imageObject: null,
     }),
+    components: {
+      SwalAlert
+    },
     methods: {
       close() {
         this.$emit('close')
@@ -61,7 +65,7 @@
         if (imageExtension.includes(extension)) {
           this.imageObject = URL.createObjectURL(file)
         } else {
-          alert('사진 파일을 업로드해주세요!')
+          this.$children[0].$vnode.componentInstance.swalAlert('error', '사진 파일을 업로드 해주세요.')
           return
         }
         this.image = file
@@ -98,7 +102,7 @@
           .then((result) => {
             if(result.data == '' || result.data.top == null || result.data.pants == null) {
               console.log(result)
-              alert('해당 이미지로는 상하의 색상 추출이 불가합니다. 다시 시도해주세요.')
+              this.$children[0].$vnode.componentInstance.swalAlert('error', '색상 추출이 불가합니다. <br>다시 시도해주세요.')
             } else {
               console.log(result.data)
               const getColorStyleReq = {
@@ -111,26 +115,10 @@
                 .then((result) => {
                   console.log(result.data)
                   this.$store.commit('setEvalSameColorStyle', result.data.s3url)
-
-                  Swal.mixin({
-                    toast: true,
-                    position: 'top-right',
-                    iconColor: 'white',
-                    color: 'white',
-                    background: '#a5dc86',
-                    customClass: {
-                      popup: 'colored-toast'
-                    },
-                    showConfirmButton: false,
-                    timer: 1500,
-                    timerProgressBar: true
-                  }).fire({
-                    icon: 'success',
-                    title: '드디어 의상 분석이 완료되었습니다.'
-                  })
-                  .then(() => {
-                    this.$router.push('/evaluationResult')
-                  })
+                  this.$children[0].$vnode.componentInstance.swalAlert('success', '드디어 의상 분석이 완료되었습니다.')
+                    .then(() => {
+                      this.$router.push('/evaluationResult')
+                    })
                 })
             }
           })
