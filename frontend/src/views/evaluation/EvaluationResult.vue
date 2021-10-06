@@ -1,10 +1,6 @@
 <template>
   <div class="result-container">
     <div class="test">Ottega-Gaeanta</div>
-    <!-- <div class="test">Ottega-Gaeanta</div>
-    <div class="test">Ottega-Gaeanta</div>
-    <div class="test">Ottega-Gaeanta</div>
-    <div class="test">Ottega-Gaeanta</div> -->
     <div class="top" align="center">
       <div id="sub-title">내 스타일은 어떨까?</div>
       <div id="main-title" ><span style="background: linear-gradient(to top, #f875aa 40%, transparent 40%);">의상 평가 결과</span></div>
@@ -20,7 +16,6 @@
         <div class="section">
           <div class="btn" @click="move(0)">
             <span class="btn-text">169가지 색 조합표 <br>둘러보기</span>
-            <!-- <h7>169가지 색 조합표 <br>둘러보기</h7> -->
           </div>
         </div>
       </div>
@@ -43,7 +38,6 @@
         </div>
         <div class="section">
           <div class="btn" @click="move(1)">
-            <!-- <h7>색 조합 분석 <br>다시하기</h7> -->
             <span class="btn-text">색 조합 분석 <br>다시하기</span>
           </div>
         </div>
@@ -64,75 +58,9 @@
         </div>
         <div class="btn" @click="move(2)">
           <span class="btn-text">다른 스타일 <br>둘러보기</span>
-          <!-- <h7>다른 스타일 <br>둘러보기</h7> -->
         </div>
       </div>
     </div>
-
-    <!-- <div class="evaluation" align="center">
-      <v-row>
-        <v-col lg=2></v-col>
-        <v-col class="evaluation-comment" lg=4>
-          색상 매칭만 잘해도 반은 간다!<br>
-          <span>
-            의상 진단 결과 아주 양호 합니다!<br>
-            흰색 티셔츠와 검은색 진, 잘 어울리는 조합입니다.<br>
-            님 좀 입는듯!?
-          </span>
-        </v-col>
-        <v-col lg=4>
-          <div class="card">
-            <p>오늘 당신의 코디 점수는? </p><br>
-            <v-row>
-              <v-col lg=6 align="center">
-                <img class="evaluation-img" :src="mainImageUrl" />
-              </v-col>
-              <v-col lg=6 align="center"><br>
-                <div class="rate">{{getUserFashionRate.rank}}</div>
-              </v-col>
-            </v-row>
-            <div>한줄 평 <br> 색 상 조합에 조금만 더 신경을 기울이면<br> 좋은 스타일링이 가능할 것 같습니다 화이팅!</div>
-          </div>
-        </v-col>
-        <v-col lg=2></v-col>
-      </v-row>
-    </div>
-    <div class="area-divider"></div>
-    <div class="color-area" align="center">
-      <v-row>
-        <v-col lg=2></v-col>
-        <v-col lg=4>
-          <div class="color-card">
-            <img :src="colorCombinationImg"/>
-          </div>
-        </v-col>
-        <v-col lg=4>
-          <div class="color-comment">
-            <div class="area-divider"></div>
-            색상 조합 이렇게 다양합니다<br> 이 기준에 맞춰서 옷을 입으면 조금 더 나은 스타일링이 가능하겠죠!?<br><br>
-            서비스를 지속적으로 이용하면서 자신만의 컬러 조합과 스타일을 만들어보세요<br>
-          </div>
-        </v-col>
-        <v-col lg=2></v-col>
-      </v-row>
-    </div>
-    <div class="area-divider"></div>
-    <div class="recommend-area" align="center">
-      <div class="recommend-title" align="left">
-        같은 색상으로 스타일링한 다른 옷
-      </div>
-      <div class="recommend-detail" >
-        <div class="recommend-item" v-for="img in recommendImages" v-bind:key="img">
-          <img :src="img" />
-        </div>
-      </div>
-      <div class="btn" @click="move()">
-        <h2>비슷한 색 조합 의상 둘러보기</h2>
-      </div>
-      <div>
-      </div>
-    </div> -->
-
   </div>
 </template>
 
@@ -216,7 +144,7 @@
     margin-left: 30px;
     float: left;
     border: 1px solid #FBACCC;
-    z-index: 50;
+    z-index: 0;
   }
 
   .color-image {

@@ -3,6 +3,8 @@
 
 import axios from 'axios'
 import store from '../index'
+import Swal from 'sweetalert2'
+
 
 axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 axios.interceptors.request.use(
@@ -11,7 +13,22 @@ axios.interceptors.request.use(
       return config;
   },
   error => {
-      alert('데이터 요청 실패');
+      Swal.mixin({
+        toast: true,
+        position: 'top-right',
+        iconColor: 'white',
+        color: 'white',
+        background: '#f27474',
+        customClass: {
+          popup: 'colored-toast'
+        },
+        showConfirmButton: false,
+        timer: 1500,
+        timerProgressBar: true
+      }).fire({
+        icon: 'error',
+        title: '데이터 요청 실패'
+      })
       return Promise.reject(error);
   }
 );
