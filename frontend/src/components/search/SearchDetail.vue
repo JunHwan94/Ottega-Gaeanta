@@ -187,7 +187,7 @@
                       </div>
                       <div align="left" v-if="imageDetail.bottom[0].print !== undefined">
                         <div v-if="imageDetail.bottom[0].print.length != 0">
-                          <span :style="fashionInfoStyle">디자인 :</span>
+                          <span :style="fashionInfoLabelStyle">디자인 :</span>
                           <span v-for="design in imageDetail.bottom[0].print" :key="design" style="font-size: 1.0rem; font-family: ELAND_Choice_M; margin-left: 2%;">{{ design }}</span>
                         </div>
                       </div>
@@ -296,14 +296,14 @@ export default {
     fashionInfoStyle () {
       return {
         marginLeft: '2%',
-        fontSize: '1.0rem',
+        fontSize: '0.9rem',
         fontFamily: 'ELAND_Choice_M',
       }
     },
     fashionInfoLabelStyle () {
       return {
         marginLeft: '6%',
-        fontSize: '1.0rem',
+        fontSize: '0.9rem',
         fontFamily: 'ELAND_Choice_M',
         fontWeight: 'bold',
       }
