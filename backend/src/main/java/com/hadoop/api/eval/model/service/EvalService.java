@@ -43,6 +43,8 @@ public class EvalService {
         MultiValueMap<String, Object> params = new LinkedMultiValueMap<>();
         params.add("file", new FileSystemResource("../file.jpg"));
 
+        log.debug(image.getOriginalFilename());
+
         HttpHeaders headers = new HttpHeaders();
 //        headers.add("Accept", MediaType.APPLICATION_JSON.toString());   // json 결과 String으로 변환해서 가져오기는 하는데 흠
         headers.setContentType(MediaType.MULTIPART_FORM_DATA);
@@ -74,10 +76,15 @@ public class EvalService {
             Rank rank = evalRepositorySupport.getRank(key);
             RankDesc rankDesc = evalRepositorySupport.getDesc(rank.getValue());
 
-            top = colorMatchUtil.colorMap.get(top);
-            pants = colorMatchUtil.colorMap.get(pants);
+            System.out.println(rank.getKey());
+            System.out.println(rank.getValue());
+            System.out.println(top);
+            System.out.println(pants);
+            System.out.println(rankDesc.getDesc());
+            System.out.println(rankDesc.getHashtag());
+            System.out.println(rankDesc.getDesc());
 
-            EvalColorRes evalColorRes = new EvalColorRes(top, pants, rank.getValue(), rankDesc.getDesc(), rankDesc.getHashtag());
+            EvalColorRes evalColorRes = new EvalColorRes(colorMatchUtil.colorMap.get(top), colorMatchUtil.colorMap.get(pants), rank.getValue(), rankDesc.getDesc(), rankDesc.getHashtag());
 
             return evalColorRes;
 
