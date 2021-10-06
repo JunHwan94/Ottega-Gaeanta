@@ -82,12 +82,12 @@
                       <div align="left" v-if="imageDetail.outer[0].print !== undefined">
                         <div v-if="imageDetail.outer[0].print.length !== 0">
                           <span :style="fashionInfoLabelStyle">디자인 :</span>
-                          <span v-for="design in imageDetail.outer[0].print" :key="design" style="font-size: 1.0rem; font-family: ELAND_Choice_M; margin-left: 2%;">{{ design }}</span>
+                          <span v-for="design in imageDetail.outer[0].print" :key="design" style="font-size: 0.9rem; font-family: ELAND_Choice_M; margin-left: 2%;">{{ design }}</span>
                         </div>
                       </div>
                       <div align="left" v-if="imageDetail.outer[0].material">
                         <span :style="fashionInfoLabelStyle">소재 :</span>
-                        <span v-for="material in imageDetail.outer[0].material" :key="material" style="font-size: 1.0rem; font-family: ELAND_Choice_M; margin-left: 2%;">{{ material }}</span>
+                        <span v-for="material in imageDetail.outer[0].material" :key="material" style="font-size: 0.9rem; font-family: ELAND_Choice_M; margin-left: 2%;">{{ material }}</span>
                       </div>
                       <div align="left" v-if="imageDetail.outer[0].fit">
                         <span :style="fashionInfoLabelStyle">핏 :</span>
@@ -111,7 +111,7 @@
                       <div align="left" v-if="imageDetail.onepiece[0].print !== undefined">
                         <div v-if="imageDetail.onepiece[0].print.length !== 0">
                           <span :style="fashionInfoLabelStyle">디자인 :</span>
-                          <span v-for="design in imageDetail.onepiece[0].print" :key="design" style="font-size: 1.0rem; font-family: ELAND_Choice_M; margin-left: 2%">{{ design }}</span>
+                          <span v-for="design in imageDetail.onepiece[0].print" :key="design" style="font-size: 0.9rem; font-family: ELAND_Choice_M; margin-left: 2%">{{ design }}</span>
                         </div>
                       </div>
                       <div align="left" v-if="imageDetail.onepiece[0].neckLine">
@@ -127,7 +127,7 @@
                     <div >
                       <div align="left" v-if="imageDetail.onepiece[0].detail.length !== 0">
                         <span :style="fashionInfoLabelStyle">디테일 :</span>
-                        <span v-for="detail in imageDetail.onepiece[0].detail" :key="detail" style="font-size: 1.0rem; font-family: ELAND_Choice_M; margin-left: 2%;">{{ detail }}</span>
+                        <span v-for="detail in imageDetail.onepiece[0].detail" :key="detail" style="font-size: 0.9rem; font-family: ELAND_Choice_M; margin-left: 2%;">{{ detail }}</span>
                       </div>
                       <div align="left" v-if="imageDetail.onepiece[0].sleeveLength">
                         <span :style="fashionInfoLabelStyle">소매 :</span>
@@ -135,7 +135,7 @@
                       </div>
                       <div align="left" v-if="imageDetail.onepiece[0].material.length !== 0">
                         <span :style="fashionInfoLabelStyle">소재 :</span>
-                        <span v-for="material in imageDetail.onepiece[0].material" :key="material" style="font-size: 1.0rem; font-family: ELAND_Choice_M; margin-left: 2%;">{{ material }}</span>
+                        <span v-for="material in imageDetail.onepiece[0].material" :key="material" style="font-size: 0.9rem; font-family: ELAND_Choice_M; margin-left: 2%;">{{ material }}</span>
                       </div>
                       <div align="left" v-if="imageDetail.onepiece[0].fit">
                         <span :style="fashionInfoLabelStyle">핏 :</span>
@@ -159,7 +159,7 @@
                       <div align="left" v-if="imageDetail.top[0].print !== undefined">
                         <div v-if="imageDetail.top[0].print.length !== 0">
                           <span :style="fashionInfoLabelStyle">디자인 :</span>
-                          <span v-for="design in imageDetail.top[0].print" :key="design" style="font-size: 1.0rem; font-family: ELAND_Choice_M; margin-left: 2%;">{{ design }}</span>
+                          <span v-for="design in imageDetail.top[0].print" :key="design" style="font-size: 0.9rem; font-family: ELAND_Choice_M; margin-left: 2%;">{{ design }}</span>
                         </div>  
                       </div>
                       <div align="left" v-if="imageDetail.top[0].neckLine">
@@ -188,12 +188,12 @@
                       <div align="left" v-if="imageDetail.bottom[0].print !== undefined">
                         <div v-if="imageDetail.bottom[0].print.length != 0">
                           <span :style="fashionInfoLabelStyle">디자인 :</span>
-                          <span v-for="design in imageDetail.bottom[0].print" :key="design" style="font-size: 1.0rem; font-family: ELAND_Choice_M; margin-left: 2%;">{{ design }}</span>
+                          <span v-for="design in imageDetail.bottom[0].print" :key="design" style="font-size: 0.9rem; font-family: ELAND_Choice_M; margin-left: 2%;">{{ design }}</span>
                         </div>
                       </div>
                       <div align="left" v-if="imageDetail.bottom[0].material">
                         <span :style="fashionInfoLabelStyle">소재 :</span>
-                        <span v-for="material in imageDetail.bottom[0].material" :key="material" style="font-size: 1.0rem; font-family: ELAND_Choice_M; margin-left: 2%;">{{ material }}</span>
+                        <span v-for="material in imageDetail.bottom[0].material" :key="material" style="font-size: 0.9rem; font-family: ELAND_Choice_M; margin-left: 2%;">{{ material }}</span>
                       </div>
                       <div align="left" v-if="imageDetail.bottom[0].fit">
                         <span :style="fashionInfoLabelStyle">핏 :</span>
