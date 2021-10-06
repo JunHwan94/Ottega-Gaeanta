@@ -381,7 +381,7 @@ section{
 #flipbook7:hover{
   transform: rotateY(-20deg);
   background: #F1F1F1;
-  transition: 1.0s;
+  transition: 2.0s;
 }
 
 /* 패션 정보 북 */
