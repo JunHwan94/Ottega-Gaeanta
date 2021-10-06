@@ -10,5 +10,5 @@ import java.util.Set;
 public class RankDesc {
     String rank;
     String desc;
-    ArrayList<String> hashtag;
+    Set<String> hashtag;
 }
