@@ -43,7 +43,7 @@
       images1: [
         require('@/assets/chooseStyle/1-traditional.jpg'),
         require('@/assets/chooseStyle/2-manish.jpg'),
-        require('@/assets/chooseStyle/p1.png'),
+        require('@/assets/chooseStyle/3-feminine.jpg'),
         require('@/assets/chooseStyle/4-ethnic.jpg'),
         require('@/assets/chooseStyle/5-contemporary.jpg'),
       ],
@@ -57,10 +57,10 @@
       imageDepth: [
         require('@/assets/chooseStyle/1-traditional-map.png'),
         require('@/assets/chooseStyle/2-manish-map.png'),
-        require('@/assets/chooseStyle/p1map.png'),
+        require('@/assets/chooseStyle/3-feminine-map.png'),
+        require('@/assets/chooseStyle/4-ethnic-map.png'),
         require('@/assets/chooseStyle/test.png'),
-        require('@/assets/chooseStyle/test.png'),
-        require('@/assets/chooseStyle/p1map.png'),
+        require('@/assets/chooseStyle/6-natural-map.png'),
         require('@/assets/chooseStyle/7-gender-map.png'),
         require('@/assets/chooseStyle/8-sporty-map.png'),
         require('@/assets/chooseStyle/9-subculture-map.png'),
