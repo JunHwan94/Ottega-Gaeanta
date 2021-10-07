@@ -71,6 +71,10 @@
                   <div style="padding-left: 2%; border-right:1px solid #DDDDDD;">
                     <h3 style="color: #000000; text-align: left; font-family: Cafe24Ssurround; margin-left: 2%; margin-top: 1%; margin-bottom: 2%">아우터</h3>
                     <div>
+                      <div align="left" v-if="imageDetail.outer[0].category">
+                        <span :style="fashionInfoLabelStyle">의상 :</span>
+                        <span :style="fashionInfoStyle">{{ imageDetail.outer[0].category }}</span>
+                      </div>
                       <div align="left" v-if="imageDetail.outer[0].color">
                         <span :style="fashionInfoLabelStyle">색상 :</span>
                         <span :style="fashionInfoStyle">{{ imageDetail.outer[0].color }}</span>
@@ -100,6 +104,10 @@
                   <div style="padding-left: 2%;">
                     <h3 style="color: #000000; text-align: left; font-family: Cafe24Ssurround; margin-left: 2%; margin-top: 1%; margin-bottom: 2%;">원피스</h3>
                     <div >
+                      <div align="left" v-if="imageDetail.onepiece[0].category">
+                        <span :style="fashionInfoLabelStyle">의상 :</span>
+                        <span :style="fashionInfoStyle">{{ imageDetail.onepiece[0].category }}</span>
+                      </div>
                       <div align="left" v-if="imageDetail.onepiece[0].color">
                         <span :style="fashionInfoLabelStyle">색상 :</span>
                         <span :style="fashionInfoStyle">{{ imageDetail.onepiece[0].color }}</span>
@@ -148,6 +156,10 @@
                   <div style="padding-left: 2%; border-right:1px solid #DDDDDD;">
                     <h3 style="color: #000000; text-align: left; font-family: Cafe24Ssurround; margin-left: 2%; margin-top: 1%; margin-bottom: 2%">상의</h3>
                     <div>
+                      <div align="left" v-if="imageDetail.top[0].category">
+                        <span :style="fashionInfoLabelStyle">의상 :</span>
+                        <span :style="fashionInfoStyle">{{ imageDetail.top[0].category }}</span>
+                      </div>
                       <div align="left" v-if="imageDetail.top[0].color">
                         <span :style="fashionInfoLabelStyle">색상 :</span>
                         <span :style="fashionInfoStyle">{{ imageDetail.top[0].color }}</span>
@@ -177,6 +189,10 @@
                   <div style="padding-left: 2%; border-right:1px solid #DDDDDD;">
                     <h3 style="color: #000000; text-align: left; font-family: Cafe24Ssurround; margin-left: 2%; margin-top: 1%; margin-bottom: 2%">하의</h3>
                     <div>
+                      <div align="left" v-if="imageDetail.bottom[0].category">
+                        <span :style="fashionInfoLabelStyle">의상 :</span>
+                        <span :style="fashionInfoStyle">{{ imageDetail.bottom[0].category }}</span>
+                      </div>
                       <div align="left" v-if="imageDetail.bottom[0].color">
                         <span :style="fashionInfoLabelStyle">색상 :</span>
                         <span :style="fashionInfoStyle">{{ imageDetail.bottom[0].color }}</span>
