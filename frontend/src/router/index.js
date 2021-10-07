@@ -91,6 +91,7 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
+  if(to.fullPath !== '/searchResult') { store.state.chooseStyleMenuVisibleState = false }
   store.commit('startSpinner');
   setTimeout(() => {
       next();
