@@ -7,9 +7,11 @@
     <div>
     </div>
   </div> -->
-  <div align="center" v-if="loading" class="test">
-    <img class="animation" :src="image" style='margin: 0px auto;'/><br>
-    <img class="message" :src="message"/>
+  <div v-if="loading" class="loadingSpinnerBackground">
+    <div align="center" class="test">
+      <img class="animation" :src="image" style='margin: 0px auto;'/><br>
+      <img class="message" :src="message"/>
+    </div>
   </div>
   </template>
 
@@ -34,7 +36,13 @@
 </script>
 
 <style scoped>
-
+.loadingSpinnerBackground {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba( 0, 0, 0, 0.4 );
+  z-index: 998;
+}
 .test {
   position: fixed;
   top: 40%;

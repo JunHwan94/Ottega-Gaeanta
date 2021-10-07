@@ -52,3 +52,6 @@ export function getChooseStyleMenuVisibleState (state) {
 export function getEvalSameColorStyle (state) {
   return state.evalSameColorStyle
 }
+export function getUserEvaluationImage(state) {
+  return state.userEvaluationImage
+}

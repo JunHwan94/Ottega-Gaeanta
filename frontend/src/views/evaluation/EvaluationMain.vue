@@ -8,9 +8,6 @@
     <div class="card">
       <v-row class="menu-container" justify="center">
         <v-col lg=4>
-          <img class="left-image"/>
-        </v-col>
-        <v-col lg=4>
           <v-row class="menu-container" justify="center" @click="changePage(0)">
             <div class="menu" style="">
               실시간 측정 방식
@@ -33,9 +30,6 @@
             </div>
           </v-row>
         </v-col>
-        <v-col lg=4>
-          <img class="right-image"/>
-        </v-col>
       </v-row>
     </div>
     <evaluation-picture-modal v-if="modalVisible" @close="invisibleModal"></evaluation-picture-modal>
@@ -49,7 +43,7 @@
   import { mapGetters } from "vuex"
   export default {
     data: () => ({
-      pages: ['evaluationFilm'],
+      pages: ['/evaluationFilm'],
       mainImageUrl: '',
       test: require('@/assets/camerapicture.png'),
       test1: require('@/assets/picture.png'),
@@ -74,7 +68,10 @@
     },
     methods: {
       changePage(index) {
-        this.$router.push(this.pages[index])
+        // this.$router.push(this.pages[index])
+
+        this.$router.push({name: 'EvaluationFilm'})
+        // EvaluationFilm
       },
       toggleModal () {
         this.modalVisible = !this.modalVisible
@@ -145,12 +142,6 @@
 .menu:hover {
   box-shadow: 1px 1px 10px 0 rgba(0, 0, 0, .1);
   margin-top: 0;
-}
-
-.left-image, .right-image {
-  width:400px; height:400px; visibility: hidden;
-  transition-property: all;
-  transition-duration: 2.5s;
 }
 
 .blur {

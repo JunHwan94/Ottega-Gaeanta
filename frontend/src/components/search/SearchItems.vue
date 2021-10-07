@@ -57,7 +57,7 @@
               </v-slide-group>
               <v-divider></v-divider>
               <br>
-              <v-expand-transition>
+              <!-- <v-expand-transition>
                 <v-sheet
                   v-if="categoryValue != null"
                   height="50"
@@ -73,7 +73,7 @@
                     </h3>
                   </v-row>
                 </v-sheet>
-              </v-expand-transition>
+              </v-expand-transition> -->
               
             </v-sheet>
           </template>
@@ -289,7 +289,7 @@
 
               <v-divider></v-divider>
               <br>
-              <v-expand-transition>
+              <!-- <v-expand-transition>
                 <v-sheet
                   v-if="styleValue != null"
                   height="50"
@@ -300,25 +300,21 @@
                     align="center"
                     justify="center"
                   >
-                    <!-- 상의 -->
                     <h3 class="text-h6" v-if="categoryValue === 0">
                       Selected {{ styleItems[topIndex[styleValue]-1] }}
                     </h3>
-                    <!-- 하의 -->
                     <h3 class="text-h6" v-if="categoryValue === 1">
                       Selected {{ styleItems[bottomIndex[styleValue]-1] }}
                     </h3>
-                    <!-- 아우터 -->
                     <h3 class="text-h6" v-if="categoryValue === 2">
                       Selected {{ styleItems[outerIndex[styleValue]-1] }}
                     </h3>
-                    <!-- 원피스 -->
                     <h3 class="text-h6" v-if="categoryValue === 3">
                       Selected {{ styleItems[dressIndex[styleValue]-1] }}
                     </h3>
                   </v-row>
                 </v-sheet>
-              </v-expand-transition>
+              </v-expand-transition> -->
               
             </v-sheet>
           </template>
@@ -384,7 +380,7 @@
               <v-divider></v-divider>
               <br>
               
-              <v-expand-transition>
+              <!-- <v-expand-transition>
                 <v-sheet
                   v-if="designValue != null"
                   height="50"
@@ -400,7 +396,7 @@
                     </h3>
                   </v-row>
                 </v-sheet>
-              </v-expand-transition>
+              </v-expand-transition> -->
               
             </v-sheet>
           </template>
@@ -446,7 +442,7 @@ export default {
       
       let searchReq = {
         style : '',
-        cloth : this.categoryItems[this.categoryValue],
+        cloth : this.categoryItemsHash[this.categoryItems[this.categoryValue]],
         category : this.styleItems[this.styleValue],
         color : '',
         print : '',
@@ -491,7 +487,8 @@ export default {
   data () {
     return {
       menuOpen: false,
-      categoryItems: ['top','bottom','outer','onepiece'],
+      categoryItemsHash: {'상의': 'top', '하의': 'bottom', '아우터': 'outer', '원피스': 'onepiece'},
+      categoryItems: ['상의','하의','아우터','원피스'],
       categoryValue: null,
       styleItems: [
         '탑', '블라우스', '티셔츠', '셔츠', '니트웨어', '후드티', '브라탑',

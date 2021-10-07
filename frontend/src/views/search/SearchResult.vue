@@ -101,6 +101,7 @@ export default {
           this.$store.commit('searchStart')
           this.repaint()
         })
+    this.repaint()
   },
   watch: {
     images: function() {
