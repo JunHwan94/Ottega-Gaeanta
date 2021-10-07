@@ -151,15 +151,15 @@
           
         },
         {
-          title: '캐주얼 : 올드한 느낌을 현대에 맞게 재해석하다.',
-          hashtag: ['# 전통적인', '# 체크', '# 고풍스러운'],
-          content: '트레디셔널 스타일은 전통에 근거한 고풍스러운 스타일을 뜻합니다. 전통은 넓은 의미로는 과거부터 전해오는 문화유산이기 때문에 자칫 패션에 적용하면 촌스러울 수 있지만 트레디셔널 스타일은 전통의 감성을 현대에서 풀어낸 스타일이라고 할 수 있겠습니다. ',
-          subStyle: ['클래식','프레피'],
-          end: '잠깐! 혹시 <span style="color:red;">체크무늬</span>를 좋아하시나요? 그렇다면!!!!!',
-          style: '트레디셔널',
+          title: '캐주얼 : 어떤 장소, 분위기에도 어울리는 귀여운 스타일',
+          hashtag: ['# 편안한', '# 일상적인', '# 대학생룩'],
+          content: '캐주얼 스타일은 남녀노소 사랑하는 대표적인 스타일입니다. 어떤 장소나 분위기에도 무난하게 스타일링 가능하며 귀여운 스타일이고, 옷장을 들여다보면 누구나 가지고 있는 맨투맨, 후드티, 츄리닝이 캐주얼에 속합니다. 꾸민듯 안꾸밋든 멋진 캐주얼 스타일 어떠신가요?',
+          subStyle: ['밀리터리','스트리트'],
+          end: '잠깐! 혹시 <span style="color:red;">꾸안꾸</span>를 좋아하시나요? 그렇다면!!!!!',
+          style: '캐주얼',
           subStyleImage: [
-            'https://j5b206.s3.ap-northeast-2.amazonaws.com/클래식/GramMeterGroove_033_59.jpg',
-            'https://j5b206.s3.ap-northeast-2.amazonaws.com/프레피/1 (24783).JPG'
+            'https://j5b206.s3.ap-northeast-2.amazonaws.com/밀리터리/FallingJ_118_img.jpg',
+            'https://j5b206.s3.ap-northeast-2.amazonaws.com/%EC%8A%A4%ED%8A%B8%EB%A6%AC%ED%8A%B8/lwerkjdjc_2%20(3064).jpg'
           ]
         },
       ]

@@ -160,7 +160,7 @@
         this.clearFocusing()
         const menu = document.querySelector(`.menu:nth-child(${index})`)
         const progress = document.querySelector(`.progress:nth-child(${index})`)
-        menu.style.color = 'red'
+        menu.style.color = '#e25959'
         progress.style.background = this.btnColor[index - 1]
         progress.style.borderColor = this.btnColor[index - 1]
       },
@@ -170,7 +170,7 @@
       const firstProgress = document.getElementsByClassName('progress')[0]
       firstProgress.style.background = '#F975AA'
       firstProgress.style.borderColor = '#F975AA'
-      document.getElementsByClassName('menu')[0].style.color = 'red'
+      document.getElementsByClassName('menu')[0].style.color = '#e25959'
     },
   }
 </script>
@@ -211,7 +211,7 @@ img {
   z-index: 2;
 }
 .menu:hover {
-  color: red;
+  color: rgb(226, 89, 89);
 }
 .menu-detail {
   font-family: Cafe24Ssurround;
