@@ -4,7 +4,7 @@
     <button id="cvtGray" @click="cvtGray()" style="visibility: hidden;">Capture Image</button> -->
     <swal-alert></swal-alert>
     <video id="video" style="width: 90%; height: 100%; left: 52%;"></video>
-    <img v-if="silhouette" id="guideLine" :src="silhouette" style="width : 35vw; height: 55vh; position: absolute; top: 35%; left: 34%;"/>
+    <img v-if="silhouette" id="guideLine" :src="silhouette" style="width : 35vw; height: 55vh; position: absolute; top: 33%; left: 34%;"/>
     <canvas id='output' style="width : 90%; height: 630px; display: none; left: 52%;"></canvas>
   </div>
 </template>
