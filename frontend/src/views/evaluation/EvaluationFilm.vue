@@ -21,15 +21,15 @@
     
     <v-row justify="center">
       <div class="capture-btn" id="capture-btn" @click="capture()">
-        <h2>{{sec}} 초 뒤 촬용😊</h2>
+        <h2>{{sec}} 초 뒤 촬영</h2>
       </div>
       <div style="width=2%;"></div>
       <div class="capture-btn" id="retry-btn" @click="retry()" style="display: none;">
-        <h2>다시 찍기😊</h2>
+        <h2>다시 찍기✔</h2>
       </div>
-      <div class="capture-btn" style="color: white" @click="post()">
+      <div class="capture-btn" @click="post()">
       <!-- <div class="capture-btn" style="color: white">   -->
-        <h2>의상 분석😊</h2>
+        <h2>의상 분석</h2>
       </div>
     </v-row>
   </div>
@@ -84,8 +84,8 @@
   background: linear-gradient(to bottom right, #FBACCC, #F1D1D0, white);
 }
 .title {
-  margin-top: 10vh;
-  margin-bottom: 5vh;
+  margin-top: 5vh;
+  margin-bottom: 2vh;
 }
 .content-area {
   width: 100%;
@@ -108,13 +108,20 @@ p, h2 {
   font-family: Cafe24Ssurround;
 }
 .capture-btn {
-  border: 2px solid rgb(0, 0, 0);
+  border: 2px solid #F875AA;
   padding: 10px;
   width: 400px;
-  border-radius: 25px;
-  background-color: #F875AA;
+  border-radius: 15px;
+  height: 70px;
+  line-height: 50px;
+  background-color: #F4F9F9;
+  color: #F875AA;
   cursor: pointer;
   margin: 0 1%;
   margin-bottom: 2%;
+}
+.capture-btn:hover {
+  background-color: #F875AA;
+  color: #F4F9F9;
 }
 </style>

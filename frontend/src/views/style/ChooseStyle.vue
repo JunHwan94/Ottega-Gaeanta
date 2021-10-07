@@ -2,14 +2,14 @@
   <div class="main-container">
     <swal-alert></swal-alert>
     <div class="explain-area">
-      <h1>✔ 선호하는 스타일을 3가지 선택하세요</h1>
+      <h2>✔ 선호하는 스타일을 3가지 선택하세요</h2>
       <p class="explain-detail">회원님이 좋아하실만한 스타일을 더 많이 추천해드릴 수 있습니다.</p>
     </div>
     <div class="container">
       <div v-for="(image ,i) in images1" :key="i" class="box" @click="[showStyleDetailModal(i)]">
         <div class="select">
           <!-- <span>♥♥</span> -->
-          <img :src="image" style="width:310px; height: 300px;"/>
+          <img :src="image" style="width:310px; height: 260px;"/>
           <div class="heart-area"></div>
         </div>
       </div>
@@ -94,6 +94,10 @@
         this.show = false
       },
       showStyleDetailModal(i) {
+        if (this.show) {
+          this.show = false
+          return
+        }
         const select = document.getElementsByClassName('select')[i]
         const area = document.getElementsByClassName('box')[i]
         const heart = document.getElementsByClassName('heart-area')[i]
@@ -179,7 +183,7 @@
   margin: 0 2%;
   box-shadow: 0 20px 30px rgba(0, 0, 0, .1);
   line-height: 0;
-  height: 300px;
+  height: 260px;
   cursor: pointer;
   border-radius: 15px;
   border: 2px solid hotpink;
@@ -219,17 +223,22 @@ F .box:hover>img {
 }
 .explain-detail {
   margin-left: 15px;
-  font-size: 3vh;
+  font-size: 2vh;
 }
 .btn {
-  border: 2px solid black;
+  border: 2px solid #F875AA;;
+  color: #F875AA;
   padding: 10px;
   width: 400px;
   border-radius: 25px;
-  background-color: #F875AA;
+  background-color: #F4F9F9;
   cursor: pointer;
   margin-top: 5vh;
   font-family: Cafe24Ssurround;
+}
+.btn:hover {
+  color:#F4F9F9;
+  background-color: #F875AA;
 }
 .back {
   background: white;

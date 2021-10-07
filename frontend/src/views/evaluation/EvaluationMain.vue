@@ -8,9 +8,6 @@
     <div class="card">
       <v-row class="menu-container" justify="center">
         <v-col lg=4>
-          <img class="left-image"/>
-        </v-col>
-        <v-col lg=4>
           <v-row class="menu-container" justify="center" @click="changePage(0)">
             <div class="menu" style="">
               실시간 측정 방식
@@ -32,9 +29,6 @@
               <!-- <v-icon large color="white darken-5"> mdi-arrow-up-bold-box-outline</v-icon> -->
             </div>
           </v-row>
-        </v-col>
-        <v-col lg=4>
-          <img class="right-image"/>
         </v-col>
       </v-row>
     </div>
@@ -145,12 +139,6 @@
 .menu:hover {
   box-shadow: 1px 1px 10px 0 rgba(0, 0, 0, .1);
   margin-top: 0;
-}
-
-.left-image, .right-image {
-  width:400px; height:400px; visibility: hidden;
-  transition-property: all;
-  transition-duration: 2.5s;
 }
 
 .blur {
