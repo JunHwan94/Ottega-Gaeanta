@@ -108,6 +108,7 @@ dependencies {
 	implementation 'org.springframework.data:spring-data-hadoop-config:2.5.0.RELEASE'
 	implementation 'org.apache.hadoop:hadoop-core:1.2.1'
 	implementation 'commons-io:commons-io:2.6'
+
 }
 
 test {
