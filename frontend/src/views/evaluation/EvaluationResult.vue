@@ -1,10 +1,6 @@
 <template>
   <div class="result-container">
     <div class="test">Ottega-Gaeanta</div>
-    <!-- <div class="test">Ottega-Gaeanta</div>
-    <div class="test">Ottega-Gaeanta</div>
-    <div class="test">Ottega-Gaeanta</div>
-    <div class="test">Ottega-Gaeanta</div> -->
     <div class="top" align="center">
       <div id="sub-title">내 스타일은 어떨까?</div>
       <div id="main-title" ><span style="background: linear-gradient(to top, #f875aa 40%, transparent 40%);">의상 평가 결과</span></div>
@@ -16,36 +12,48 @@
         <div class="section">
           <h2>도저히 이쁜 색 조합을 못찾겠다고?</h2>
         </div>
-        <img :src="colorCombinationImg" class="color-image" style="overflow: hidden; width:60%; height: 55%;" />
-        <div class="section">
+        <div class="card-body">
+          <img :src="colorCombinationImg" class="color-image" style="overflow: hidden; width:60%; height: 100%;" />
+        </div>
+        <div class="btn-area">
           <div class="btn" @click="move(0)">
-            <span class="btn-text">169가지 색 조합표 <br>둘러보기</span>
-            <!-- <h7>169가지 색 조합표 <br>둘러보기</h7> -->
+            <span class="btn-text">색 조합 평가방식 <br>보러가기</span>
           </div>
         </div>
       </div>
       <div class="card" style="left: 37vw;">
         <div class="section">
           <h2>색상 조합만 잘 해도 반은간다!</h2>
-          <div style="display: inline-block;">
-            <img :src="userImage" class="user-image">
+          <div class="card-body">
+            <div style="display: inline-block; margin-right: 10px;">
+              <img :src="getUserEvaluationImage" class="user-image mb-5">
+            </div>
+            <div style="display: inline-block; margin-left: 10px;" >
+              <div style="">
+                <span class="rank">{{ getUserFashionRate.rank }} 등급</span>
+              </div>
+            <div>
+              상의 색상 : {{getUserFashionRate.top}}<br>
+              하의 색상 : {{getUserFashionRate.pants}}
+            </div>
+              
+            </div>
+            <div>
+              <span v-for="tag in getUserFashionRate.hashtag" :key="tag" style="color: blue;">
+                {{tag}}
+              </span>
+            </div>
+            <br>
+            <div style="width: 70%">
+              {{getUserFashionRate.desc}}
+            </div>
           </div>
-          <div style="display: inline-block; line-height: 30px;">
-            <span class="rank" style="font-family: Binggrae-Bold;">{{ getUserFashionRate.rank }}</span>
+          <div class="btn-area">
+            <div class="btn" @click="move(1)">
+              <span class="btn-text">색 조합 분석 <br>다시하기</span>
+            </div>
           </div>
-          <br><br>
-          <span v-for="tag in getUserFashionRate.hashtag" :key="tag">
-            {{tag}}
-          </span>
-        </div>
-        <div class="section" style="width: 60%">
-          {{getUserFashionRate.desc}}
-        </div>
-        <div class="section">
-          <div class="btn" @click="move(1)">
-            <!-- <h7>색 조합 분석 <br>다시하기</h7> -->
-            <span class="btn-text">색 조합 분석 <br>다시하기</span>
-          </div>
+
         </div>
       </div>
       
@@ -53,86 +61,23 @@
         <div class="section">
           <h2>비슷한 색상으로 스타일링한 옷은?</h2>
         </div>
-        {{ getEvalSameColorStyle }}
-        <div style="display: inline-block;">
-          <img :src="getEvalSameColorStyle[0]" class="recommend-image" />
-          <img v-if="getEvalSameColorStyle[1]" :src="getEvalSameColorStyle[1]" class="recommend-image" />
+        <div class="card-body">
+          <div style="display: inline-block;">
+            <img v-if="getEvalSameColorStyle[0]" :src="getEvalSameColorStyle[0]" class="recommend-image" />
+            <img v-if="getEvalSameColorStyle[1]" :src="getEvalSameColorStyle[1]" class="recommend-image" />
+          </div>  
+          <div>
+            <img v-if="getEvalSameColorStyle[2]" :src="getEvalSameColorStyle[2]" class="recommend-image" />
+            <img v-if="getEvalSameColorStyle[3]" :src="getEvalSameColorStyle[3]" class="recommend-image" />
+          </div>
         </div>
-        <div>
-          <img v-if="getEvalSameColorStyle[2]" :src="getEvalSameColorStyle[2]" class="recommend-image" />
-          <img v-if="getEvalSameColorStyle[3]" :src="getEvalSameColorStyle[3]" class="recommend-image" />
-        </div>
-        <div class="btn" @click="move(2)">
-          <span class="btn-text">다른 스타일 <br>둘러보기</span>
-          <!-- <h7>다른 스타일 <br>둘러보기</h7> -->
+        <div class="btn-area">
+          <div class="btn" @click="move(2)">
+            <span class="btn-text">다른 스타일 <br>둘러보기</span>
+          </div>
         </div>
       </div>
     </div>
-
-    <!-- <div class="evaluation" align="center">
-      <v-row>
-        <v-col lg=2></v-col>
-        <v-col class="evaluation-comment" lg=4>
-          색상 매칭만 잘해도 반은 간다!<br>
-          <span>
-            의상 진단 결과 아주 양호 합니다!<br>
-            흰색 티셔츠와 검은색 진, 잘 어울리는 조합입니다.<br>
-            님 좀 입는듯!?
-          </span>
-        </v-col>
-        <v-col lg=4>
-          <div class="card">
-            <p>오늘 당신의 코디 점수는? </p><br>
-            <v-row>
-              <v-col lg=6 align="center">
-                <img class="evaluation-img" :src="mainImageUrl" />
-              </v-col>
-              <v-col lg=6 align="center"><br>
-                <div class="rate">{{getUserFashionRate.rank}}</div>
-              </v-col>
-            </v-row>
-            <div>한줄 평 <br> 색 상 조합에 조금만 더 신경을 기울이면<br> 좋은 스타일링이 가능할 것 같습니다 화이팅!</div>
-          </div>
-        </v-col>
-        <v-col lg=2></v-col>
-      </v-row>
-    </div>
-    <div class="area-divider"></div>
-    <div class="color-area" align="center">
-      <v-row>
-        <v-col lg=2></v-col>
-        <v-col lg=4>
-          <div class="color-card">
-            <img :src="colorCombinationImg"/>
-          </div>
-        </v-col>
-        <v-col lg=4>
-          <div class="color-comment">
-            <div class="area-divider"></div>
-            색상 조합 이렇게 다양합니다<br> 이 기준에 맞춰서 옷을 입으면 조금 더 나은 스타일링이 가능하겠죠!?<br><br>
-            서비스를 지속적으로 이용하면서 자신만의 컬러 조합과 스타일을 만들어보세요<br>
-          </div>
-        </v-col>
-        <v-col lg=2></v-col>
-      </v-row>
-    </div>
-    <div class="area-divider"></div>
-    <div class="recommend-area" align="center">
-      <div class="recommend-title" align="left">
-        같은 색상으로 스타일링한 다른 옷
-      </div>
-      <div class="recommend-detail" >
-        <div class="recommend-item" v-for="img in recommendImages" v-bind:key="img">
-          <img :src="img" />
-        </div>
-      </div>
-      <div class="btn" @click="move()">
-        <h2>비슷한 색 조합 의상 둘러보기</h2>
-      </div>
-      <div>
-      </div>
-    </div> -->
-
   </div>
 </template>
 
@@ -157,7 +102,7 @@
     }),
     computed: {
       // ...mapGetters(["getUserFashionRate"]),
-      ...mapGetters(['getEvalSameColorStyle', 'getUserFashionRate'])
+      ...mapGetters(['getEvalSameColorStyle', 'getUserFashionRate', 'getUserEvaluationImage'])
     },
     methods: {
       move(i) {
@@ -215,8 +160,8 @@
     box-shadow: 3px 3px 3px 3px #FBACCC;
     margin-left: 30px;
     float: left;
-    border: 1px solid #FBACCC;
-    z-index: 50;
+    border: 3px solid #FBACCC;
+    z-index: 0;
   }
 
   .color-image {
@@ -228,9 +173,9 @@
 
   .user-image {
     margin-top: 20px;
-    width: 150px;
-    height: 150px;
-    border-radius: 100px;
+    width: 200px;
+    height: 200px;
+    border-radius: 15px;
     border: 1px solid black;
     vertical-align: middle;
   }
@@ -246,9 +191,9 @@
   }
 
   .rank {
-    font-size: 50px;
+    font-size: 40px;
     color: red;
-    margin-left: 60px;
+    /* margin-left: 60px; */
     /* line-height: -10px; */
   }
 
@@ -257,14 +202,16 @@
   }
 
   .btn {
-    border: 2px solid #F875AA;
+    border: 3px solid #F875AA;
     padding: 10px;
     width: 200px;
     border-radius: 20px;
     background-color: #F4F9F9;
     cursor: pointer;
     color: #F875AA;
-    margin-top: 5vh;
+  }
+  .btn-area { 
+    margin-top: 3vh;
   }
   btn-text {
     font-size: 30px;
@@ -282,6 +229,9 @@
     line-height: 240px;
     transform: translate(0px, 30px) rotate(-10deg);
     animation: move 4s ease-in-out infinite;
+  }
+  .card-body {
+    height: 35vh;
   }
   @keyframes move {
   0% {

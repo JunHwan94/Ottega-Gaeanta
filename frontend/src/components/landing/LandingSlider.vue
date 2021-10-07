@@ -70,7 +70,7 @@
             <div class="menu-detail-content">
               패피티아이를 통해 <br>
               숨은 내 스타일 성향을 알아보고<br>
-              친구들과 공유해보세요 ! (소름 주의)
+              친구들과 공유해보세요 !
             </div>
             <div class="menu-btn" @click="changePage(2)">
               FPTI (패피티아이) 시작하기
@@ -96,7 +96,6 @@
           </v-col>
         </v-row> -->
       </v-container>
-      <br><br>
       <div class="progress-container">
         <div class="progress" @click="nextPage(1)" />
         <div class="progress" @click="nextPage(2)" />
@@ -120,7 +119,7 @@
       image: [
         require('@/assets/ex-search.png'),
         require('@/assets/ex-analyze.png'),
-        'https://post-phinf.pstatic.net/MjAyMTA0MDZfMjIw/MDAxNjE3Njk0NTYzMDIy.vh_iFhI2K6VWGCSX0ysqFr23aPnYqPTZkzpbUav7xRkg.AWMAI1T96OnWsGWPDDwHrkNCAgOlBho_S9cqzhArFg8g.JPEG/%EC%9D%BC%EB%9F%AC%EC%8A%A4%ED%8A%B8_%EB%8F%84%EC%8B%9D%ED%99%94.jpg?type=w1200',
+        require('@/assets/ex-fpti.png'),
         'https://post-phinf.pstatic.net/MjAyMTA0MDZfMjIw/MDAxNjE3Njk0NTYzMDIy.vh_iFhI2K6VWGCSX0ysqFr23aPnYqPTZkzpbUav7xRkg.AWMAI1T96OnWsGWPDDwHrkNCAgOlBho_S9cqzhArFg8g.JPEG/%EC%9D%BC%EB%9F%AC%EC%8A%A4%ED%8A%B8_%EB%8F%84%EC%8B%9D%ED%99%94.jpg?type=w1200'
       ],
       btnColor: [
@@ -161,7 +160,7 @@
         this.clearFocusing()
         const menu = document.querySelector(`.menu:nth-child(${index})`)
         const progress = document.querySelector(`.progress:nth-child(${index})`)
-        menu.style.color = 'red'
+        menu.style.color = '#e25959'
         progress.style.background = this.btnColor[index - 1]
         progress.style.borderColor = this.btnColor[index - 1]
       },
@@ -171,7 +170,7 @@
       const firstProgress = document.getElementsByClassName('progress')[0]
       firstProgress.style.background = '#F975AA'
       firstProgress.style.borderColor = '#F975AA'
-      document.getElementsByClassName('menu')[0].style.color = 'red'
+      document.getElementsByClassName('menu')[0].style.color = '#e25959'
     },
   }
 </script>
@@ -189,6 +188,7 @@ img {
 }
 .progress-container {
   text-align: center;
+  height: 100px;
 }
 .progress {
   display: inline-block;
@@ -211,7 +211,7 @@ img {
   z-index: 2;
 }
 .menu:hover {
-  color: red;
+  color: rgb(226, 89, 89);
 }
 .menu-detail {
   font-family: Cafe24Ssurround;
@@ -224,6 +224,7 @@ img {
 .menu-detail-content {
   margin-top: 1.5rem;
   font-size: 1.2rem;
+  font-family: ELAND_Choice_M;
 }
 .menu-btn {
   text-align: center;
@@ -232,6 +233,7 @@ img {
   padding: 10px;
   cursor: pointer;
   color: white;
+  font-family: ELAND_Choice_M;
   background-color: #F875AA;
 }
 .menu-btn:hover {

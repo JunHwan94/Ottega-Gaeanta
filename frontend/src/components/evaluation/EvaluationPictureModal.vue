@@ -1,5 +1,6 @@
 <template>
   <div class="modal-container">
+    <swal-alert></swal-alert>
     <span style="font-size: 3vh;">사진으로 의상 색 조합 평가</span>
     <span style="float: right; cursor: pointer;" @click="close()">X</span>
     <div class="divider"></div>
@@ -40,12 +41,16 @@
 </template>
 
 <script>
+  import SwalAlert from '@/components/SwalAlert'
   export default {
     name: 'EvaluationPictureModal',
     data: () => ({
       image: null,
       imageObject: null,
     }),
+    components: {
+      SwalAlert
+    },
     methods: {
       close() {
         this.$emit('close')
@@ -53,21 +58,18 @@
       dropInputTag(event) {
         console.log('영역안에 파일이 지정됨')
         const file = Array.from(event.dataTransfer.files, v => v)[0]
-        console.log(file)
-        console.log('이거 파일이다')
         // 파일이 jpg, png가 아니면 다른 파일 객체에
         const extension = file.name.split('.')[1] // 파일 full name
 
         const imageExtension = ['jpg', 'JPG', 'jpeg', 'JPEG', 'png', 'PNG']
         if (imageExtension.includes(extension)) {
           this.imageObject = URL.createObjectURL(file)
+          this.$store.commit('SAVE_USER_EVALUATION_IMAGE', this.imageObject)
         } else {
-          alert('사진 파일을 업로드해주세요!')
+          this.$children[0].$vnode.componentInstance.swalAlert('error', '사진 파일을 업로드 해주세요.')
           return
         }
         this.image = file
-        // presentImage(file)
-        console.log('영역안에 파일이 지정됨 end')
       },
       dragEnter() {
         const frame = document.getElementById('unSelectFileFrame')
@@ -101,8 +103,7 @@
           .then((result) => {
             if(result.data == '' || result.data.top == null || result.data.pants == null) {
               console.log(result)
-              alert('해당 이미지로는 상하의 색상 추출이 불가합니다. 다시 시도해주세요.')
-              this.$router.go()
+              this.$children[0].$vnode.componentInstance.swalAlert('error', '색상 추출이 불가합니다. <br>다시 시도해주세요.')
             } else {
               console.log(result.data)
               const getColorStyleReq = {
@@ -114,19 +115,15 @@
               this.$store.dispatch('getSimillarColorStyles', getColorStyleReq)
                 .then((result) => {
                   console.log(result.data)
-                  this.$store.commit['setEvalSameColorStyle', result.data.s3url]
-                  setTimeout(() => {
-                    this.$router.push('/evaluationResult')
-                  }, 2000)
+                  this.$store.commit('setEvalSameColorStyle', result.data.s3url)
+                  this.$children[0].$vnode.componentInstance.swalAlert('success', '드디어 의상 분석이 완료되었습니다.')
+                    .then(() => {
+                      this.$router.push('/evaluationResult')
+                    })
                 })
-            }// alert('분석이 완료되었습니다!')
-            // console.log(result.data);
-            // this.$store.commit('SAVE_USER_FASHION_RATE', result.data)
-            // this.$router.push('/evaluationResult')
+            }
           })
         }
-        
-
       }
     },
   }
@@ -202,9 +199,9 @@
   }
 }
 .cancel-btn {
-  width: 80px;
-  height: 30px;
-  line-height: 30px;
+  width: 10vw;
+  height: 70px;
+  line-height: 70px;
   background-color: #F4F9F9;
   border: 2px solid #F875AA;
   color: #F875AA;
@@ -214,15 +211,24 @@
   cursor: pointer;
 }
 .confirm-btn {
-  width: 80px;
-  height: 30px;
-  line-height: 30px;
-  background-color: #F875AA;
+  width: 10vw;
+  height: 70px;
+  line-height: 70px;
+  background-color: #F4F9F9;
+  border: 2px solid #F875AA;
   display: inline-block;
   border-radius: 10px;
   margin: 0px 10px;
-  color: #F4F9F9;
+  color: #F875AA;
   cursor: pointer;
+}
+.cancel-btn:hover {
+  color: #F4F9F9;
+  background-color: #F875AA; 
+}
+.confirm-btn:hover {
+  color: #F4F9F9;
+  background-color: #F875AA; 
 }
 .btn-area {
   margin-top: 50px;
