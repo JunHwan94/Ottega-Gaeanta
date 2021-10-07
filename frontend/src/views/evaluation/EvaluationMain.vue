@@ -43,7 +43,7 @@
   import { mapGetters } from "vuex"
   export default {
     data: () => ({
-      pages: ['evaluationFilm'],
+      pages: ['/evaluationFilm'],
       mainImageUrl: '',
       test: require('@/assets/camerapicture.png'),
       test1: require('@/assets/picture.png'),
@@ -68,7 +68,10 @@
     },
     methods: {
       changePage(index) {
-        this.$router.push(this.pages[index])
+        // this.$router.push(this.pages[index])
+
+        this.$router.push({name: 'EvaluationFilm'})
+        // EvaluationFilm
       },
       toggleModal () {
         this.modalVisible = !this.modalVisible
