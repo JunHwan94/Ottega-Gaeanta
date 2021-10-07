@@ -117,6 +117,7 @@
             let formData = new FormData();
             formData.append('image', file, fileName);
             this.formdata = formData
+            this.$store.commit('SAVE_USER_EVALUATION_IMAGE', URL.createObjectURL(file))
 
             // this.$store.dispatch('evaluateImage', formData)
             //     .then((result) => {
