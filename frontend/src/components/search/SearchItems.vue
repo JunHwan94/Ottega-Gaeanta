@@ -440,14 +440,50 @@ export default {
     save() {
       let colorSample = ['블랙','화이트','그레이','레드','핑크','오렌지','베이지','브라운','옐로우','그린','블루','스카이블루','퍼플'];
       
-      let searchReq = {
-        style : '',
-        cloth : this.categoryItemsHash[this.categoryItems[this.categoryValue]],
-        category : this.styleItems[this.styleValue],
-        color : '',
-        print : '',
-        page : 0,
-      };
+      let searchReq = {}
+
+      if (this.categoryItemsHash[this.categoryItems[this.categoryValue]] === 'top') {
+        searchReq = {
+          style : '',
+          cloth : this.categoryItemsHash[this.categoryItems[this.categoryValue]],
+          category : this.styleItems[this.topIndex[this.styleValue]-1],
+          color : '',
+          print : '',
+          page : 0,
+        };
+      } 
+      else if (this.categoryItemsHash[this.categoryItems[this.categoryValue]] === 'bottom') {
+        searchReq = {
+          style : '',
+          cloth : this.categoryItemsHash[this.categoryItems[this.categoryValue]],
+          category : this.styleItems[this.bottomIndex[this.styleValue]-1],
+          color : '',
+          print : '',
+          page : 0,
+        };
+      } 
+      else if (this.categoryItemsHash[this.categoryItems[this.categoryValue]] === 'outer') {
+        searchReq = {
+          style : '',
+          cloth : this.categoryItemsHash[this.categoryItems[this.categoryValue]],
+          category : this.styleItems[this.outerIndex[this.styleValue]-1],
+          color : '',
+          print : '',
+          page : 0,
+        };
+      } 
+      else {
+        searchReq = {
+          style : '',
+          cloth : this.categoryItemsHash[this.categoryItems[this.categoryValue]],
+          category : this.styleItems[this.dressIndex[this.styleValue]-1],
+          color : '',
+          print : '',
+          page : 0,
+        };
+      } 
+      
+
 
       // 선호하는 스타일들을 request 객체에 추가 
       searchReq.style = this.getSelectedUserStyle
@@ -459,6 +495,8 @@ export default {
 
       // store에 있는 searchReq에 저장
       this.$store.commit('setSearchReq', searchReq)
+
+      console.log(this.styleItems[this.outerIndex[this.styleValue]-1], searchReq)
 
       // action에 있는 백엔드 API 호출 function 실행
       this.$store.dispatch('showSearchItems', searchReq)
