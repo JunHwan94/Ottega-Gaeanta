@@ -18,7 +18,7 @@
       <span style="font-size: 2.2vh; color: #F875AA;">169개의 조합이</span>
     </div>
     <div align="center">
-      <span style="font-size: 2.2vh; color: #F875AA;">A+ ~ F&nbsp;</span>
+      <span style="font-size: 2.2vh; color: #F875AA;">A ~ F&nbsp;</span>
       <span style="font-size: 2.2vh;">의&nbsp;</span>
       <span style="font-size: 2.2vh; color: #F875AA;">5개 등급</span>
       <span style="font-size: 2.2vh;">으로 책정됩니다</span>
@@ -35,8 +35,8 @@
     </div>
     <div align="center" class="">
       <span style="font-size: 2.2vh;">색을 추출하는 &nbsp;</span>
-      <span style="font-size: 2.2vh; color: #F875AA;">딥러닝 모델</span>
-      <span style="font-size: 2.2vh;">을 거쳐 등급화됩니다 &nbsp;</span>
+      <!-- <span style="font-size: 2.2vh; color: #F875AA;">딥러닝 모델</span> -->
+      <span style="font-size: 2.2vh;">과정을 거쳐 등급화됩니다 &nbsp;</span>
     </div>
     <br>
     <div class="divider"></div>
@@ -105,15 +105,19 @@ export default {
   
 }
 .cancel-btn {
-  width: 80px;
-  height: 30px;
-  line-height: 30px;
-  color: #F4F9F9;
-  background-color: #F875AA;
+  width: 10vw;
+  height: 70px;
+  line-height: 70px;
+  background-color: #F4F9F9;
   border: 2px solid #F875AA;
   display: inline-block;
   border-radius: 10px;
   margin: 0px 10px;
+  color: #F875AA;
   cursor: pointer;
+}
+.cancel-btn:hover {
+  color: #F4F9F9;
+  background-color: #F875AA;
 }
 </style>

@@ -199,9 +199,9 @@
   }
 }
 .cancel-btn {
-  width: 80px;
-  height: 30px;
-  line-height: 30px;
+  width: 10vw;
+  height: 70px;
+  line-height: 70px;
   background-color: #F4F9F9;
   border: 2px solid #F875AA;
   color: #F875AA;
@@ -211,15 +211,24 @@
   cursor: pointer;
 }
 .confirm-btn {
-  width: 80px;
-  height: 30px;
-  line-height: 30px;
-  background-color: #F875AA;
+  width: 10vw;
+  height: 70px;
+  line-height: 70px;
+  background-color: #F4F9F9;
+  border: 2px solid #F875AA;
   display: inline-block;
   border-radius: 10px;
   margin: 0px 10px;
-  color: #F4F9F9;
+  color: #F875AA;
   cursor: pointer;
+}
+.cancel-btn:hover {
+  color: #F4F9F9;
+  background-color: #F875AA; 
+}
+.confirm-btn:hover {
+  color: #F4F9F9;
+  background-color: #F875AA; 
 }
 .btn-area {
   margin-top: 50px;
