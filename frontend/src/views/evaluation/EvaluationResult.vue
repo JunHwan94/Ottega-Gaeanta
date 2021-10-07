@@ -12,34 +12,48 @@
         <div class="section">
           <h2>도저히 이쁜 색 조합을 못찾겠다고?</h2>
         </div>
-        <img :src="colorCombinationImg" class="color-image" style="overflow: hidden; width:60%; height: 55%;" />
-        <div class="section">
+        <div class="card-body">
+          <img :src="colorCombinationImg" class="color-image" style="overflow: hidden; width:60%; height: 100%;" />
+        </div>
+        <div class="btn-area">
           <div class="btn" @click="move(0)">
-            <span class="btn-text">169가지 색 조합표 <br>둘러보기</span>
+            <span class="btn-text">색 조합 평가방식 <br>보러가기</span>
           </div>
         </div>
       </div>
       <div class="card" style="left: 37vw;">
         <div class="section">
           <h2>색상 조합만 잘 해도 반은간다!</h2>
-          <div style="display: inline-block;">
-            <img :src="userImage" class="user-image">
+          <div class="card-body">
+            <div style="display: inline-block; margin-right: 10px;">
+              <img :src="getUserEvaluationImage" class="user-image mb-5">
+            </div>
+            <div style="display: inline-block; margin-left: 10px;" >
+              <div style="">
+                <span class="rank">{{ getUserFashionRate.rank }} 등급</span>
+              </div>
+            <div>
+              상의 색상 : {{getUserFashionRate.top}}<br>
+              하의 색상 : {{getUserFashionRate.pants}}
+            </div>
+              
+            </div>
+            <div>
+              <span v-for="tag in getUserFashionRate.hashtag" :key="tag" style="color: blue;">
+                {{tag}}
+              </span>
+            </div>
+            <br>
+            <div style="width: 70%">
+              {{getUserFashionRate.desc}}
+            </div>
           </div>
-          <div style="display: inline-block; line-height: 30px;">
-            <span class="rank" style="font-family: Binggrae-Bold;">{{ getUserFashionRate.rank }}</span>
+          <div class="btn-area">
+            <div class="btn" @click="move(1)">
+              <span class="btn-text">색 조합 분석 <br>다시하기</span>
+            </div>
           </div>
-          <br><br>
-          <span v-for="tag in getUserFashionRate.hashtag" :key="tag">
-            {{tag}}
-          </span>
-        </div>
-        <div class="section" style="width: 60%">
-          {{getUserFashionRate.desc}}
-        </div>
-        <div class="section">
-          <div class="btn" @click="move(1)">
-            <span class="btn-text">색 조합 분석 <br>다시하기</span>
-          </div>
+
         </div>
       </div>
       
@@ -47,17 +61,20 @@
         <div class="section">
           <h2>비슷한 색상으로 스타일링한 옷은?</h2>
         </div>
-        {{ getEvalSameColorStyle }}
-        <div style="display: inline-block;">
-          <img :src="getEvalSameColorStyle[0]" class="recommend-image" />
-          <img v-if="getEvalSameColorStyle[1]" :src="getEvalSameColorStyle[1]" class="recommend-image" />
+        <div class="card-body">
+          <div style="display: inline-block;">
+            <img v-if="getEvalSameColorStyle[0]" :src="getEvalSameColorStyle[0]" class="recommend-image" />
+            <img v-if="getEvalSameColorStyle[1]" :src="getEvalSameColorStyle[1]" class="recommend-image" />
+          </div>  
+          <div>
+            <img v-if="getEvalSameColorStyle[2]" :src="getEvalSameColorStyle[2]" class="recommend-image" />
+            <img v-if="getEvalSameColorStyle[3]" :src="getEvalSameColorStyle[3]" class="recommend-image" />
+          </div>
         </div>
-        <div>
-          <img v-if="getEvalSameColorStyle[2]" :src="getEvalSameColorStyle[2]" class="recommend-image" />
-          <img v-if="getEvalSameColorStyle[3]" :src="getEvalSameColorStyle[3]" class="recommend-image" />
-        </div>
-        <div class="btn" @click="move(2)">
-          <span class="btn-text">다른 스타일 <br>둘러보기</span>
+        <div class="btn-area">
+          <div class="btn" @click="move(2)">
+            <span class="btn-text">다른 스타일 <br>둘러보기</span>
+          </div>
         </div>
       </div>
     </div>
@@ -85,7 +102,7 @@
     }),
     computed: {
       // ...mapGetters(["getUserFashionRate"]),
-      ...mapGetters(['getEvalSameColorStyle', 'getUserFashionRate'])
+      ...mapGetters(['getEvalSameColorStyle', 'getUserFashionRate', 'getUserEvaluationImage'])
     },
     methods: {
       move(i) {
@@ -143,7 +160,7 @@
     box-shadow: 3px 3px 3px 3px #FBACCC;
     margin-left: 30px;
     float: left;
-    border: 1px solid #FBACCC;
+    border: 3px solid #FBACCC;
     z-index: 0;
   }
 
@@ -156,9 +173,9 @@
 
   .user-image {
     margin-top: 20px;
-    width: 150px;
-    height: 150px;
-    border-radius: 100px;
+    width: 200px;
+    height: 200px;
+    border-radius: 15px;
     border: 1px solid black;
     vertical-align: middle;
   }
@@ -174,9 +191,9 @@
   }
 
   .rank {
-    font-size: 50px;
+    font-size: 40px;
     color: red;
-    margin-left: 60px;
+    /* margin-left: 60px; */
     /* line-height: -10px; */
   }
 
@@ -185,14 +202,16 @@
   }
 
   .btn {
-    border: 2px solid #F875AA;
+    border: 3px solid #F875AA;
     padding: 10px;
     width: 200px;
     border-radius: 20px;
     background-color: #F4F9F9;
     cursor: pointer;
     color: #F875AA;
-    margin-top: 5vh;
+  }
+  .btn-area { 
+    margin-top: 3vh;
   }
   btn-text {
     font-size: 30px;
@@ -210,6 +229,9 @@
     line-height: 240px;
     transform: translate(0px, 30px) rotate(-10deg);
     animation: move 4s ease-in-out infinite;
+  }
+  .card-body {
+    height: 35vh;
   }
   @keyframes move {
   0% {

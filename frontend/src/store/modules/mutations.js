@@ -85,3 +85,8 @@ export function SAVE_CHOOSE_STYLE_MENU_STATE(state, value) {
 export function setEvalSameColorStyle(state, evalSameColorStyle) {
   state.evalSameColorStyle = evalSameColorStyle
 }
+export function SAVE_USER_EVALUATION_IMAGE (state, userEvaluationImage) {
+  state.userEvaluationImage = userEvaluationImage
+}
+
+

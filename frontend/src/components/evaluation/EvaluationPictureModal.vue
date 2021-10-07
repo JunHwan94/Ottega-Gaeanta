@@ -64,6 +64,7 @@
         const imageExtension = ['jpg', 'JPG', 'jpeg', 'JPEG', 'png', 'PNG']
         if (imageExtension.includes(extension)) {
           this.imageObject = URL.createObjectURL(file)
+          this.$store.commit('SAVE_USER_EVALUATION_IMAGE', this.imageObject)
         } else {
           this.$children[0].$vnode.componentInstance.swalAlert('error', '사진 파일을 업로드 해주세요.')
           return
