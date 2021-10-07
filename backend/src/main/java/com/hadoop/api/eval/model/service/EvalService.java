@@ -56,7 +56,7 @@ public class EvalService {
         ResponseEntity<ColorRank> response = null;
 
         try {
-
+            System.out.println("Server Connection");
             response = rt.postForEntity(
                     // 백준님 개인 flask URL 주소입니다.
                     "http://3.38.125.201:8888/model",
@@ -75,6 +75,8 @@ public class EvalService {
 
             Rank rank = evalRepositorySupport.getRank(key);
             RankDesc rankDesc = evalRepositorySupport.getDesc(rank.getValue());
+            System.err.println(rankDesc.getDesc());
+            System.out.println(rankDesc.getHashtag());
 
             System.out.println(rank.getKey());
             System.out.println(rank.getValue());
