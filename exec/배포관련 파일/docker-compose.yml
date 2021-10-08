@@ -1,0 +1,45 @@
+# Docker compose 버전
+version: "3.8"
+# 가동할 컨테이너 목록
+services:
+  mongodb:
+    #사용할 이미지(Docker Hub 또는 로컬에 저장된 Image)
+    image: mongo
+    container_name: mongodb
+    restart: always
+    # 외부에서 컨테이너 내부로 연결되는 포트 목록
+    ports:
+      - "27017:27017"
+    # 컨테이너 내에서 사용되는 환경 변수
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: b4a1
+    # 실제 드라이브와 컨테이너의 드라이브를 연결
+    volumes:
+      - mongo-data:/data/db
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    # 컨테이너 내부에서 사용되는 네트워크
+    networks:
+      - back
+  app:
+    # 공개된 Image가 아닌 Dockerfile을 통한 빌드 이미지 사용
+    build:
+      context: ./
+    container_name: ottega_app
+    restart: always
+    ports:
+      - "443:443"
+    environment:
+      TZ: "Asia/Seoul"
+    # 실제 드라이브와 컨테이너의 드라이브를 연결
+    volumes:
+      - files:/tmp
+    depends_on:
+      - mongodb
+    networks:
+      - back
+networks:
+  back:
+volumes:
+  mongo-data:
+  files:
