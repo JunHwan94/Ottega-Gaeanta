@@ -20,4 +20,4 @@ RUN python setup.py install
 EXPOSE 3000
 
 WORKDIR /app
-CMD ["gunicorn", "app:app", "-b", "0.0.0.0:3000", "--timeout", "300", "-w", "3"]
+CMD ["gunicorn", "app:app", "-b", "0.0.0.0:3000", "--timeout", "0", "-w", "4", "--worker-class", "gevent"]

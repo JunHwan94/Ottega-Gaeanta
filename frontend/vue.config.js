@@ -1,11 +1,23 @@
 const path = require('path');
 module.exports = {
+  lintOnSave: false,
   transpileDependencies: [
     'vuetify'
   ],
   devServer: {
     port: 8080,
-    // proxy: 'http://localhost:8081',
+    // proxy: 'https://j5b206.p.ssafy.io:443',
+    proxy: {
+      '/search': {
+        target : 'https://j5b206.p.ssafy.io:443',
+      },
+      '/eval': {
+        target : 'https://j5b206.p.ssafy.io:443',
+      },
+      '/fpti': {
+        target : 'https://j5b206.p.ssafy.io:443',
+      }
+    },
     disableHostCheck: true
   },
   configureWebpack: {
