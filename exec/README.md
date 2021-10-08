@@ -1,15 +1,12 @@
 # gitlab 소스 코드 클론 이후 빌드 및 배포할 수 있는 작업 문서
 ### 1. 프로젝트 개발 설정 값 및 버전
- - JVM
- - 웹서버
- - WAS
  - InteliJ IDE
     - IntelliJ IDEA Community Edition 2021.1.3 x64
  - vs code
     - 1.60.2 (user setup)
 
 ### 2. 빌드 시 사용되는 환경 변수 등의 주요 내용 상세 기재
-
+ - 현재 디렉토리 관련 파일 업로드
 ### 3. 배포 시 특이사항
 ssafy에서 제공한 aws에 application과 flask model server를 같이 운영했을 때, aws instance가 다운되는 문제가 있었습니다.   
 application은 제공되는 aws에서 구동하고, flask model server는 개인 aws 배포 했습니다. (c5.9xlarge 요금제)
