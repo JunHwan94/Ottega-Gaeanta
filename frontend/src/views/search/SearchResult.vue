@@ -75,8 +75,8 @@ export default {
     ]),
   },
   mounted() {
-    this.repaint();    
     this.$store.commit('SAVE_CHOOSE_STYLE_MENU_STATE', true)
+    setTimeout(() => {this.repaint()}, 1000)
   },
   created() {
     console.log('검색화면')
