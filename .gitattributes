@@ -1,2 +1,5 @@
 hadoop/hadoop-3.2.2/share/hadoop/tools/lib/aws-java-sdk-bundle-1.11.563.jar filter=lfs diff=lfs merge=lfs -text
 *.html linguist-detectable=false
+*.css linguist-detectable=false
+*.shell linguist-detectable=false
+*.Batchfile linguist-detectable=false
